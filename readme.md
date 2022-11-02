@@ -1,5 +1,7 @@
 # Napkin
 
+![Mockup](mockup/mockup.png)
+
 ## Directory Structure
 
 - **frontend/** _(For all frontend code.)_
