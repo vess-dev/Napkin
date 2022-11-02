@@ -2,14 +2,14 @@
 
 ## Directory Structure
 
-- **frontend/** __(For all frontend code.)__
+- **frontend/** _(For all frontend code.)_
 - frontend/index.html
 - frontend/style.css
 - frontend/script.js
-- **frontend/assets/** (For all frontend assets.)
+- **frontend/assets/** _(For all frontend assets.)_
 
-- **backend/** (For all backend code.)
+- **backend/** _(For all backend code.)_
 
-- **database/** (For database code.)
+- **database/** _(For database code.)_
 
 ## License
