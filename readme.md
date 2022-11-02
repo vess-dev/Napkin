@@ -8,7 +8,7 @@
   - website/index.html
   - website/style.css
   - website/script.js
-- **website/assets/** _(For all frontend assets.)_
+  - **website/assets/** _(For all frontend assets.)_
 
 - **server/** _(For all server code.)_
 
