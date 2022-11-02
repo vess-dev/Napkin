@@ -1,6 +1,6 @@
 # Napkin
 
-![Mockup](mockup/mockup.png)
+![Mockup](reference/mockup.png)
 
 ## Directory Structure
 
