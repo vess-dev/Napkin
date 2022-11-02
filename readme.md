@@ -4,11 +4,11 @@
 
 ## Directory Structure
 
-- **frontend/** _(For all frontend code.)_
-- frontend/index.html
-- frontend/style.css
-- frontend/script.js
-- **frontend/assets/** _(For all frontend assets.)_
+- **website/** _(For all website code.)_
+- website/index.html
+- website/style.css
+- website/script.js
+- **website/assets/** _(For all frontend assets.)_
 
 - **server/** _(For all server code.)_
 
