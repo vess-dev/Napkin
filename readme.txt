@@ -1,1 +1,5 @@
-Base readme.
+# Napkin
+
+## Directory Structure
+
+## License
