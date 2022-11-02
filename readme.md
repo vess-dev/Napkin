@@ -10,7 +10,7 @@
 - frontend/script.js
 - **frontend/assets/** _(For all frontend assets.)_
 
-- **backend/** _(For all backend code.)_
+- **server/** _(For all server code.)_
 
 - **database/** _(For database code.)_
 
