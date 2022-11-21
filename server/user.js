@@ -9,7 +9,7 @@ const BaseError = require('./BaseError.js');
  */ 
 function getUserList() {
   return new Promise((resolve, reject) =>{
-    db.pool.query('select username, count(sessionuuid) as "sessions" from users LEFT join session on users.userid = session.userid group by username',
+    db.pool.query('select username, count(sessionuuid) as "Sessions" from Users LEFT join Session on Users.userid = Session.userid group by username',
       function(error, results) {
         if (error) {                    
           return reject(new BaseError("DB Error", 500, error));
