@@ -2,9 +2,9 @@ const mysql = require('mysql');
 
 var pool = mysql.createPool({
   host: "localhost",
-  user: "pmoore",
-  password: "password",
-  database: 'demoapp'
+  user: "sarisky",
+  password: "gottagetapwd",
+  database: 'napkin_db'
 });
 
 module.exports = {pool};

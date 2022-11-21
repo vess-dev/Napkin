@@ -1,4 +1,4 @@
-const SERVER = 'http://localhost:3000/';
+const SERVER = 'http://cpsc.roanoke.edu:3009/';
 
 const LOGIN_PAGE = '#login';
 const HOME_PAGE = '#home';

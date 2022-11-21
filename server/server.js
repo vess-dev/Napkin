@@ -9,7 +9,7 @@ const routes = require('./routes');
 const BaseError = require('./BaseError.js');
 
 
-const port = 3000 || process.argv[2];
+const port = 3009 || process.argv[2];
 
 const server = http.createServer();
 
@@ -25,7 +25,7 @@ function handleHTTPRequests(request, response) {
   console.log('Method: ' + request.method + "\nURL: " + request.url);
   console.log('Headers: ' + request.headers.cookie);
   // Setup CORS
-  response.setHeader('Access-Control-Allow-Origin', 'http://localhost');
+  response.setHeader('Access-Control-Allow-Origin', 'http://cpsc.roanoke.edu');
   response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, DELETE');
   response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization'); 
   response.setHeader('Access-Control-Allow-Credentials', 'true');
