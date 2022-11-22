@@ -7,6 +7,7 @@ const db = require('./dbi.js');
 const user = require('./user.js');
 const routes = require('./routes');
 const BaseError = require('./BaseError.js');
+const post = require('./post.js')
 
 
 const port = 3009 || process.argv[2];
@@ -44,7 +45,8 @@ function handleHTTPRequests(request, response) {
       parsedRequestBody = JSON.parse(data);
     }
 
-    const sessionid = auth.extractCookie('sessionid', request.headers.cookie);      
+    const sessionid = auth.extractCookie('sessionid', request.headers.cookie);   
+    //console.log('sessionid is ', sessionid)   
     auth.validateSession(sessionid, parsedURL.pathname, method).then(userID=>{
         routeRequests(parsedURL, method, parsedRequestBody, response, userID);  
       })
@@ -60,7 +62,7 @@ function handleHTTPRequests(request, response) {
  */   
 function routeRequests(url, method, bodyObject, response, userID) {
   let routeFound = false;
-  
+  console.log('urlpathname is', url.pathname)
   try {
     // OPTIONS handling
     if (method === 'OPTIONS') {
@@ -100,8 +102,43 @@ function routeRequests(url, method, bodyObject, response, userID) {
           response.end(); 
         });
       }
-    }
+    } 
+    // POST routes
+    if (url.pathname === routes.POST) {
+      console.log('will serve posts stuff')
 
+      // Creating a new POST
+      if (method === 'POST') {
+        routeFound = true;
+        post.addNewPOST(bodyObject).then(reply=>{
+          response.statusCode = 200;
+          response.write('{"success":"New post added with ID ' + reply + '"}');          
+        })
+        .catch(error=>{
+          handleErrorReply(response, error, 400);
+        })
+        .finally(() => {
+          response.end();
+        });
+      }
+      // Get list of all posts
+      if (method === 'GET') {
+        console.log('so far so good')
+        routeFound = true;
+        // Get list of posts
+        post.getPostList().then(list=>{
+          console.log('list is',list)
+          response.statusCode = 200;
+          response.write(JSON.stringify(list));
+        })
+        .catch(error=>{
+          handleErrorReply(response, error);
+        })
+        .finally(() => {
+          response.end(); 
+        });
+      }
+    }
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {
       routeFound = true;

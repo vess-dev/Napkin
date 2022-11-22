@@ -145,7 +145,7 @@ export var Users = {
 			// Display users in a table		
 		    for (const user of userList) {
 		    	const rowElement = document.createElement('div');
-		    	rowElement.textContent = user.username + " : " + user.sessions;
+		    	rowElement.textContent = user.username + " : " + user.Sessions;
 		    	rowContainerElement.appendChild(rowElement);
 	    	}
 	    	contentDOM.appendChild(rowContainerElement); 

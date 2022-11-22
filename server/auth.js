@@ -73,7 +73,7 @@ function getHashforAuth(username) {
  */ 
 function validateSession(sessionid, pathname, method) {
   return new Promise((resolve, reject) => {
-    
+    console.log('validate session called:', sessionid, pathname, method)
     // Resolve for requests that don't need to be authenticated
     if (((pathname === routes.USER) && (method === 'POST')) || 
       (pathname === routes.LOGIN) ||

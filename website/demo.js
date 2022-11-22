@@ -4,7 +4,8 @@ import {Helpers} from './helpers.js';
 import {setCookie, getCookie} from './cookies.js';
 import {ClientError} from './ClientError.js';
 import {Users} from './users.js';
-import {SERVER, HOME_PAGE, LOGIN_PAGE, ADD_USER_PAGE, LIST_USERS_PAGE} from './routes-client.js';
+import {Posts} from './posts.js';
+import {SERVER, HOME_PAGE, LOGIN_PAGE, ADD_USER_PAGE, LIST_USERS_PAGE, GET_POSTS_PAGE} from './routes-client.js';
 
 
 const AUTH = 'login';
@@ -74,7 +75,10 @@ function routePage(newPage) {
 			break;
 		case LIST_USERS_PAGE:
 			Users.loadListUsersPage();
-			break;				
+			break;	
+		case GET_POSTS_PAGE:
+			console.log('asked for post page')
+			post.get_posts_page()			
 		default:
 			loadLoginPage();	
 	}	
@@ -194,7 +198,10 @@ function handleMenuClick(event) {
 			break;
 		case 'logout_link':
 			handleLogout();
-			break;			
+			break;		
+		case 'getposts_link':
+			window.dispatchEvent(new CustomEvent("navigate", {detail: {page: GET_POSTS_PAGE}, bubbles: true}));  
+			break;
 	}
 	
 }
