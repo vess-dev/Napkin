@@ -11,7 +11,6 @@ CREATE TABLE users(
 );
 
 
-
 CREATE TABLE posts(
   post_id int NOT NULL,
   user_id int NOT NULL,
