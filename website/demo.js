@@ -4,7 +4,7 @@ import {Helpers} from './helpers.js';
 import {setCookie, getCookie} from './cookies.js';
 import {ClientError} from './ClientError.js';
 import {Users} from './users.js';
-//import {Posts} from './posts.js';
+import {Posts} from './posts.js';
 import {SERVER, HOME_PAGE, LOGIN_PAGE, ADD_USER_PAGE, LIST_USERS_PAGE, GET_POSTS_PAGE} from './routes-client.js';
 
 
@@ -78,7 +78,8 @@ function routePage(newPage) {
 			break;	
 		case GET_POSTS_PAGE:
 			console.log('asked for post page')
-			post.get_posts_page()			
+			Posts.loadListPostsPage();
+			break;			
 		default:
 			loadLoginPage();	
 	}	

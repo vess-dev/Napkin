@@ -9,7 +9,8 @@ const routes = require('./routes');
 const BaseError = require('./BaseError.js');
 const post = require('./post.js')
 const groupmembers = require('./groupmembers.js')
-
+const group = require('./group.js')
+const friend = require('./friendship.js')
 
 const port = 3009 || process.argv[2];
 
@@ -177,6 +178,76 @@ function routeRequests(url, method, bodyObject, response, userID) {
         });
       }
     }
+        //GROUP routes
+        if (url.pathname === routes.GROUP) {
+          console.log('will serve groups stuff')
+    
+          // Creating a new POST
+          /*if (method === 'POST') {
+            routeFound = true;
+            post.addNewPOST(bodyObject).then(reply=>{
+              response.statusCode = 200;
+              response.write('{"success":"New post added with ID ' + reply + '"}');          
+            })
+            .catch(error=>{
+              handleErrorReply(response, error, 400);
+            })
+            .finally(() => {
+              response.end();
+            });
+          } */
+          // Get list of all posts
+          if (method === 'GET') {
+            routeFound = true;
+            // Get list of groups
+            group.getGroupList().then(list=>{
+              response.statusCode = 200;
+              response.write(JSON.stringify(list));
+            })
+            .catch(error=>{
+              console.log('caught an error', error)
+              handleErrorReply(response, error);
+            })
+            .finally(() => {
+              response.end(); 
+            });
+          }
+        }
+                //friend routes
+                if (url.pathname === routes.FRIEND) {
+            
+                  // Creating a new POST
+                  /*if (method === 'POST') {
+                    routeFound = true;
+                    post.addNewPOST(bodyObject).then(reply=>{
+                      response.statusCode = 200;
+                      response.write('{"success":"New post added with ID ' + reply + '"}');          
+                    })
+                    .catch(error=>{
+                      handleErrorReply(response, error, 400);
+                    })
+                    .finally(() => {
+                      response.end();
+                    });
+                  } */
+                  // Get list of all posts
+                  if (method === 'GET') {
+                    console.log('on friends route')
+                    routeFound = true;
+                    // Get list of groups
+                    friend.getFriendList().then(list=>{
+                      response.statusCode = 200;
+                      response.write(JSON.stringify(list));
+                    })
+                    .catch(error=>{
+                      console.log('caught an error', error)
+                      handleErrorReply(response, error);
+                    })
+                    .finally(() => {
+                      response.end(); 
+                    });
+                  }
+                }
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {
       routeFound = true;
