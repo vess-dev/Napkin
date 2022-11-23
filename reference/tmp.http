@@ -4,7 +4,7 @@
 POST http://cpsc.roanoke.edu:3009/login
 content-type: application/json
 
-{"username": "catsari",
+{"user_email": "catsarisky@gmail.com",
 "password": "gottagetapwd"}
 
 ###
