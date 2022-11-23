@@ -6,7 +6,7 @@ CREATE TABLE users(
   user_password char(32) NOT NULL,
   user_handle char(32) NOT NULL,
   user_status char(16) NOT NULL,
-  PRIMARY KEY (user_id)
+  PRIMARY KEY (user_id),
   UNIQUE (user_handle)
 );
 
