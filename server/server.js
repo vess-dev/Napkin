@@ -240,7 +240,7 @@ function routeRequests(url, method, bodyObject, response, userID) {
                       response.write(JSON.stringify(list));
                     })
                     .catch(error=>{
-                      console.log('caught an error', error)
+                      console.log('caught an error ', error)
                       handleErrorReply(response, error);
                     })
                     .finally(() => {
