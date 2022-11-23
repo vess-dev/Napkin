@@ -92,7 +92,7 @@ function loadLoginPage() {
 	const contentDOM = document.querySelector('#content');
 
 	const loginForm = document.createElement('div');
-	loginForm.appendChild(Helpers.createField('Username', 'username'));
+	loginForm.appendChild(Helpers.createField('Email', 'user_email'));
 	loginForm.appendChild(Helpers.createField('Password', 'password'));
 
 	// Login Button
@@ -119,10 +119,10 @@ function loadLoginPage() {
  * 
  */
 async function handleLoginButtonClick(event) {
-	const username = document.querySelector('#username').value;
+	const user_email = document.querySelector('#user_email').value;
 	const password = document.querySelector('#password').value;	
  	const authRequest = {
-    	'username': username,    
+    	'user_email': user_email,    
     	'password': password
   	};
 

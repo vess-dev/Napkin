@@ -1,9 +1,9 @@
 CREATE TABLE users (
-  user_id int NOT NULL,
+  user_id int NOT NULL AUTO_INCREMENT,
   user_first_name char(64) NOT NULL,
   user_last_name char(64) NOT NULL,
   user_email char(64) NOT NULL,
-  user_password char(32) NOT NULL,
+  user_password char(255) NOT NULL,
   user_handle char(32) NOT NULL,
   user_status char(16) NOT NULL,
   PRIMARY KEY (user_id),

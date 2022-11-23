@@ -9,7 +9,7 @@ const BaseError = require('./BaseError.js');
  */ 
 function getUserList() {
   return new Promise((resolve, reject) =>{
-    db.pool.query('select username, count(sessionuuid) as "Sessions" from Users LEFT join Session on Users.userid = Session.userid group by username',
+    db.pool.query('select username, count(session_id) as "sessions" from Users LEFT join sessions on Users.user_id = session.user_id group by user_id',
       function(error, results) {
         console.log(results)
         if (error) {                    
@@ -29,14 +29,16 @@ function getUserList() {
 function addNewUser(userObject) {
   return new Promise((resolve, reject) =>{
     // Ensure username and password are present
-    if (!userObject.username || !userObject.password) {
-      return reject(new BaseError("Missing Fields", 400, "Username and Password are required fields"));
+    console.log('userObject has', userObject)
+    if (!userObject.user_email || !userObject.user_password) {
+      return reject(new BaseError("Missing Fields", 400, "Email and Password are required fields"));
     }
 
     bcrypt.genSalt(10).then((salt) => {              
-      bcrypt.hash(userObject.password, salt).then((hash) =>{        
+      bcrypt.hash(userObject.user_password, salt).then((hash) =>{        
         // Store hash in the database
-        insertUser(userObject.username, hash, userObject.fullname)
+        console.log('hash is ', hash)
+        insertUser(userObject.user_first_name, userObject.user_last_name, userObject.user_email, hash, userObject.user_handle, userObject.user_status)
         .then(response=>resolve(response))          
         .catch((error)=> {          
             return reject(error);
@@ -52,10 +54,10 @@ function addNewUser(userObject) {
  *  If user is created successfull, the promise is reolved and userid is returned. 
  *  Else, promise is rejected and an error message is returned.
  */ 
-function insertUser(username, password, fullname) {
+function insertUser(user_first_name, user_last_name, user_email, user_password, user_handle, user_status) {
   return new Promise((resolve, reject) =>{
-    db.pool.query('INSERT INTO Users SET ?', 
-      {username: username, password: password, fullname: fullname}, 
+    db.pool.query('INSERT INTO users SET ?', 
+      {user_first_name: user_first_name, user_password: user_password, user_last_name: user_last_name, user_email: user_email, user_handle: user_handle, user_status: user_status}, 
       function(error, results, fields) {
         if (error) {
           if (error.code === 'ER_DUP_ENTRY') {          

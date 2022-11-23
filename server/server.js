@@ -251,6 +251,7 @@ function routeRequests(url, method, bodyObject, response, userID) {
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {
       routeFound = true;
+      console.log('auth route, bodyObject is', bodyObject)
       auth.handleLoginAttempt(bodyObject)
       .then(reply=>{
         return auth.generateSessionId(reply);

@@ -9,12 +9,15 @@ export var Users = {
 	 * Given the required info for a user account, request to create user is made
 	 * If user is successfully added, a uuid of the new user is returned
 	 */ 
-	addUser:function(username, password, fullname) {
+	addUser:function(user_first_name, user_last_name, user_email, user_password, user_handle, user_status) {
 		
 	  const user = {
-	    'fullname': fullname,
-	    'password': password,
-	    'username': username    
+		'user_first_name': user_first_name, 
+		'user_password': user_password, 
+		'user_email': user_email,
+		'user_last_name': user_last_name, 
+		'user_handle': user_handle, 
+		'user_status': user_status || 'approved'
 	  };
 
 	  let options = {
@@ -51,11 +54,13 @@ export var Users = {
 	 * 
 	 */ 
 	handleAddUserClick:function(event) {
-		const fullname = document.querySelector('#fullname').value;
-		const username = document.querySelector('#username').value;
-		const password = document.querySelector('#password').value;		
+		const user_first_name = document.querySelector('#user_first_name').value;
+		const user_last_name = document.querySelector('#user_last_name').value;
+		const user_email = document.querySelector('#user_email').value;		
+		const user_password = document.querySelector('#user_password').value;	
+		const user_handle = document.querySelector('#user_handle').value;	
 		
-		Users.addUser(username, password, fullname).then(()=>{
+		Users.addUser(user_first_name, user_last_name, user_email, user_password, user_handle, 'pending').then(()=>{
 			// If successful, tell user and return them to login page to log in
 			Helpers.showNotification('User successfully added');
 			window.dispatchEvent(new CustomEvent("navigate", {detail: {page: LOGIN_PAGE}, bubbles: true}));		
@@ -74,9 +79,12 @@ export var Users = {
 		const contentDOM = document.querySelector('#content');
 
 		const addUserForm = document.createElement('div');
-		addUserForm.appendChild(Helpers.createField('Full Name', 'fullname'));
-		addUserForm.appendChild(Helpers.createField('Username', 'username'));
-		addUserForm.appendChild(Helpers.createField('Password', 'password'));
+		// user_first_name, user_last_name, user_email, user_password, user_handle
+		addUserForm.appendChild(Helpers.createField('First Name', 'user_first_name'));
+		addUserForm.appendChild(Helpers.createField('Last Name', 'user_last_name'));
+		addUserForm.appendChild(Helpers.createField('Email', 'user_email'));
+		addUserForm.appendChild(Helpers.createField('Handle', 'user_handle'));
+		addUserForm.appendChild(Helpers.createField('Password', 'user_password'));
 		addUserForm.appendChild(Helpers.createField('Confirm Password', 'confirmpass'));
 		
 		// Submit Button

@@ -11,14 +11,15 @@ const BaseError = require('./BaseError.js');
  * Returns error if user not present, or password hashes do not match
  */ 
 function handleLoginAttempt (givenUser) {
-  console.log('Handling login attempt for ' + givenUser.username);
+  console.log('Handling login attempt for ' + givenUser.user_email, givenUser);
   let userObj = null;
   return new Promise((resolve, reject)=>{
-    getHashforAuth(givenUser.username)
+    getHashforAuth(givenUser.user_email)
     .then(dbObj=>{
     	userObj = dbObj;
-      // Compare hash to entered password      
-      return bcrypt.compare(givenUser.password, dbObj.password);
+      // Compare hash to entered password   
+      console.log('given, dbobj', givenUser.user_password, dbObj.user_password)   
+      return bcrypt.compare(givenUser.password, dbObj.user_password);
   	})
     .then((result)=> {        
         // password is valid
@@ -46,11 +47,14 @@ function handleLoginAttempt (givenUser) {
  * Given a username, returns the password hash associated with that user
  * Returns an error if username not present
  */ 
-function getHashforAuth(username) {
+function getHashforAuth(user_email) {
+  console.log('getHashforAuth called with', user_email)
     return new Promise((resolve, reject)=>{
-    // Fetch hash from db for username    
-    db.pool.query(`SELECT userid, password from Users WHERE username = '${username}'`,      
+    // Fetch hash from db for username  
+    console.log('got user_email is', user_email)  
+    db.pool.query(`SELECT user_id, user_password from users WHERE user_email = '${user_email}'`,      
       function(error, results, fields) {
+        console.log(error, results, fields)
         if (error) {                            
           return reject(new BaseError('DB Error', 500, error));
         }
@@ -58,7 +62,8 @@ function getHashforAuth(username) {
           if (results.length === 0) {                          
             return reject(new BaseError("Missing User", 400, "User does not exist in database"));            
           }
-          else {                        
+          else { 
+            console.log('will return', results[0])                       
             return resolve(results[0]);
           }
         }
@@ -71,9 +76,9 @@ function getHashforAuth(username) {
  *  Given a session id, make sure it's present
  *  If it is present, return user id
  */ 
-function validateSession(sessionid, pathname, method) {
+function validateSession(session_id, pathname, method) {
   return new Promise((resolve, reject) => {
-    console.log('validate session called:', sessionid, pathname, method)
+    console.log('validate session called:', session_id, pathname, method)
     // Resolve for requests that don't need to be authenticated
     if (((pathname === routes.USER) && (method === 'POST')) || 
       (pathname === routes.LOGIN) ||
@@ -81,8 +86,8 @@ function validateSession(sessionid, pathname, method) {
       return resolve(null);
     }
 
-    console.log(`query: SELECT userid from Session WHERE sessionuuid = '${sessionid}'`);
-    db.pool.query(`SELECT userid from Session WHERE sessionuuid = '${sessionid}'`,      
+    console.log(`query: SELECT user_id from sessions WHERE session_id = '${session_id}'`);
+    db.pool.query(`SELECT user_id from sessions WHERE session_id = '${session_id}'`,      
       function(error, results, fields) {        
         if (error) {                            
           return reject(new BaseError("DB Error", 500, error));
@@ -92,7 +97,7 @@ function validateSession(sessionid, pathname, method) {
             return reject(new BaseError('Missing session', 401, 'User not authorized to perform that action'));            
           }
           else {                        
-            return resolve(results[0].userid);
+            return resolve(results[0].user_id);
           }
         }
       });
@@ -111,8 +116,11 @@ function generateSessionId(userObject) {
     // Write userid, sessionid to DB
     let expireTime = new Date();
     expireTime.setHours(expireTime.getHours() + 1);
-    db.pool.query('INSERT INTO Session SET ?', 
-      {userid: userObject.userid, sessionuuid: sessionid, maxage: expireTime.toISOString().slice(0, 19).replace('T', ' ')},
+    db.pool.query('INSERT INTO sessions SET ?', 
+      {user_id: userObject.user_id, session_id: sessionid, 
+        
+    },
+    // maxage: expireTime.toISOString().slice(0, 19).replace('T', ' ')
       function(error, results) {
         if (error) {                    
           return reject(new BaseError("DB Error", 500, error));
@@ -128,9 +136,9 @@ function generateSessionId(userObject) {
  *  Given a user id, removes ANY sessions with that user id
  *  So, this will log this user out anywhere they are logged in
  */ 
-function handleLogout(userID) {
+function handleLogout(user_id) {
 	return new Promise((resolve, reject) => {
-		db.pool.query(`DELETE from Session WHERE userid = '${userID}'`,
+		db.pool.query(`DELETE from session WHERE userid = '${user_id}'`,
 	      function(error, results, fields) {        
 	        if (error) { 
 	        	console.log('logout error code: ' + error.code);   
@@ -138,7 +146,7 @@ function handleLogout(userID) {
 	        	return reject(new BaseError("Logout Error", 500, error));
 	        }
 	        else {
-	        	return resolve(userID);
+	        	return resolve(user_id);
 	        }
 	  	});
 	});
@@ -167,7 +175,7 @@ function extractCookie(cname, cookies) {
  *  Called to periodically remove expired sessions
  */ 
 function expireSessions() {
-	db.pool.query(`DELETE from Session WHERE maxage <= now()`,
+	db.pool.query(`DELETE from session WHERE maxage <= now()`,
       function(error, results, fields) {        
         if (error) {    
         	console.error('Error removing sessions: ' + error);
