@@ -4,7 +4,7 @@ import {Helpers} from './helpers.js';
 import {setCookie, getCookie} from './cookies.js';
 import {ClientError} from './ClientError.js';
 import {Users} from './users.js';
-import {Posts} from './posts.js';
+//import {Posts} from './posts.js';
 import {SERVER, HOME_PAGE, LOGIN_PAGE, ADD_USER_PAGE, LIST_USERS_PAGE, GET_POSTS_PAGE} from './routes-client.js';
 
 

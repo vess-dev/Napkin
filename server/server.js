@@ -8,6 +8,7 @@ const user = require('./user.js');
 const routes = require('./routes');
 const BaseError = require('./BaseError.js');
 const post = require('./post.js')
+const groupmembers = require('./groupmembers.js')
 
 
 const port = 3009 || process.argv[2];
@@ -139,6 +140,43 @@ function routeRequests(url, method, bodyObject, response, userID) {
         });
       }
     }
+    //GROUPMEMBERS routes
+    if (url.pathname === routes.GROUPMEMBERS) {
+      console.log('will serve groupmembers stuff')
+
+      // Creating a new POST
+      /*if (method === 'POST') {
+        routeFound = true;
+        post.addNewPOST(bodyObject).then(reply=>{
+          response.statusCode = 200;
+          response.write('{"success":"New post added with ID ' + reply + '"}');          
+        })
+        .catch(error=>{
+          handleErrorReply(response, error, 400);
+        })
+        .finally(() => {
+          response.end();
+        });
+      } */
+      // Get list of all posts
+      if (method === 'GET') {
+        console.log('bodyobject', bodyObject, bodyObject.group_id)
+        routeFound = true;
+        // Get list of posts
+        groupmembers.getGroupMembersList(bodyObject.group_id).then(list=>{
+          console.log('list is',list)
+          response.statusCode = 200;
+          response.write(JSON.stringify(list));
+        })
+        .catch(error=>{
+          console.log('caught an error', error)
+          handleErrorReply(response, error);
+        })
+        .finally(() => {
+          response.end(); 
+        });
+      }
+    }
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {
       routeFound = true;
@@ -206,5 +244,5 @@ function handleErrorReply(response, errorObj, code, message) {
 server.listen(port, () => {
   console.log(`Server running at port ${port}`);
   // Remove expired sessions every 10 minutes
-  setTimeout(auth.expireSessions, 10000);
+  setTimeout(auth.expireSessions, 1000000);
 })

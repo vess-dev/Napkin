@@ -7,8 +7,8 @@ const BaseError = require('./BaseError.js');
  *  Assumes the user is authenticated to perform this action
  *  If promise is resolved, returns a list of users
  */ 
-function getPostList() {
-  console.log('getPostList was called')
+function getGroupMembersList(group_id) {
+  console.log('getGroupMembersList was called')
   return new Promise((resolve, reject) =>{
     /* db.pool.query('select post_id, post_content as "Sessions" from Users LEFT join Session on Users.userid = Session.userid group by username',
       function(error, results) {
@@ -20,37 +20,43 @@ function getPostList() {
           return resolve(results);        
         }
     */  
+        if (group_id == 'g1') {
         let result = [{       
-          "post_id": "a0001", 
-          "poster_id": "user002", 
-          "poster_name": "Billy Bob",
-          "poster_image": null,
-          "post_title": "The best picnic evah", 
-          "post_content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", 
-          "post_image": "https://images.unsplash.com/photo-1593034509785-5b17ba49f683?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80", 
-          "post_likes_score": 2, 
-          "post_comments_count": 12, 
-          "post_visible": true, 
-          "post_timestamp": "2020-01-01 10:10:10",
-          "user_reaction": 1
+          
+          "friend_id": "user002", 
+          "friend_handle": "Billy Bob",
+          "friend_image": null,
+          
         },
         {       
-          "post_id": "a0002", 
-          "poster_id": "user003", 
-          "poster_name": "Mary Sue",
-          "poster_image": "https://images.unsplash.com/photo-1627161683077-e34782c24d81?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&w=80&q=80",
-          "post_title": "I like cows", 
-          "post_content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", 
-          "post_image": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80", 
-          "post_likes_score": 0, 
-          "post_comments_count": 0, 
-          "post_visible": true, 
-          "post_timestamp": "2022-01-01 10:10:10",
-          "user_reaction": 0
+          "friend_id": "user003", 
+          "friend_name": "Mary Sue",
+          "friend_image": "https://images.unsplash.com/photo-1627161683077-e34782c24d81?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&w=80&q=80",
         }
-      ]
+      ] 
+      console.log('result1', result)
+      resolve(result)
+    } else if (group_id == 'g2') {
+        let result = [{       
+          
+          "friend_id": "user006", 
+          "friend_handle": "Bobby Boo",
+          "friend_image": null,
+          
+        },
+        {       
+          "friend_id": "user003", 
+          "friend_name": "Mary Sue",
+          "friend_image": "https://images.unsplash.com/photo-1627161683077-e34782c24d81?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&w=80&q=80",
+        }
+      ]   
+      console.log('result2', result)
+      resolve(result)
+      } else {
+        result = ""
+        reject("didn't find this group")}
 
-        resolve(result);  
+        ;  
     });
     
     
@@ -108,4 +114,4 @@ function getPostList() {
   });
 }
 */
-module.exports = {getPostList}
+module.exports = {getGroupMembersList}
