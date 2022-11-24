@@ -138,7 +138,7 @@ function generateSessionId(userObject) {
  */ 
 function handleLogout(user_id) {
 	return new Promise((resolve, reject) => {
-		db.pool.query(`DELETE from session WHERE userid = '${user_id}'`,
+		db.pool.query(`DELETE from sessions WHERE user_id = '${user_id}'`,
 	      function(error, results, fields) {        
 	        if (error) { 
 	        	console.log('logout error code: ' + error.code);   
@@ -175,7 +175,7 @@ function extractCookie(cname, cookies) {
  *  Called to periodically remove expired sessions
  */ 
 function expireSessions() {
-	db.pool.query(`DELETE from session WHERE maxage <= now()`,
+	db.pool.query(`DELETE from sessions WHERE maxage <= now()`,
       function(error, results, fields) {        
         if (error) {    
         	console.error('Error removing sessions: ' + error);

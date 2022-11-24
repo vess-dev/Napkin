@@ -26,16 +26,27 @@ CREATE TABLE posts(
   FOREIGN KEY (user_id) REFERENCES users(user_id)  
 );
 
+CREATE TABLE groups(
+  group_id int NOT NULL,
+  group_name char(64) NOT NULL,
+  owner_id int NOT NULL,
+  group_ranking int NOT NULL,
+  PRIMARY KEY(group_id),
+  FOREIGN KEY (owner_id) REFERENCES users(user_id)
+);
+
 CREATE TABLE group_memberships(
   group_id int NOT NULL,
   user_id int NOT NULL,
-  PRIMARY KEY(group_id),
-  FOREIGN KEY (user_id) REFERENCES users(user_id)  
+  FOREIGN KEY (user_id) REFERENCES users(user_id),
+  foreign key (group_id) references groups(group_id)
 );
 
 CREATE TABLE post_groups(
   group_id int NOT NULL, 
   post_id int NOT NULL, 
+  foreign key (post_id) references posts(post_id),
+  foreign key (group_id) references groups(group_id)
 );  
  
   
@@ -43,29 +54,28 @@ CREATE TABLE friendships(
   user_id int NOT NULL,
   friend_id int NOT NULL,
   friendship_status enum('nominal', 'accepted', 'pending', 'blocked', 'unblocked') NOT NULL,
-  friend_request DATE NOT NULL, 
+  friend_request_timestamp DATE NOT NULL, 
   PRIMARY KEY (user_id, friend_id),
-  UNIQUE (friend_id), 
-  FOREIGN KEY (user_id) REFERENCES users(user_id)  
+  FOREIGN KEY (user_id) REFERENCES users(user_id),
+  foreign key (friend_id) references users(user_id)
 );
 
 CREATE TABLE reactions(
   user_id int NOT NULL,
-  post_id int,
-  PRIMARY KEY(user_id, post_id),
+  post_id int NOT NULL,
+  PRIMARY KEY (user_id, post_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id),
   FOREIGN KEY (post_id) REFERENCES posts(post_id)
   );
 
-CREATE TABLE comments(
+CREATE TABLE comments (
   comment_id int NOT NULL,
   commenter_id int NOT NULL,
   comment_content varchar(10000),
   comment_timestamp DATETIME NOT NULL,
-  post_id int,
-  PRIMARY_KEY(comment_id),
-  UNIQUE(comment_id),
-  FOREIGN KEY (user_id) REFERENCES users(user_id),
+  post_id int NOT NULL,
+  PRIMARY KEY (comment_id),
+  FOREIGN KEY (commenter_id) REFERENCES users(user_id),
   FOREIGN KEY (post_id) REFERENCES posts(post_id)
 );
 
@@ -73,8 +83,7 @@ CREATE TABLE sessions(
   user_id int NOT NULL,
   session_id varchar(255) NOT NULL,
   maxage DATETIME,
-  PRIMARY KEY(session_id),
-  UNIQUE(session_id),
+  PRIMARY KEY (session_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)           
 );
 
@@ -82,15 +91,8 @@ CREATE TABLE posts_feed(
   user_id int NOT NULL, 
   post_id int NOT NULL,
   post_weight int NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(user_id)  
+  FOREIGN KEY (user_id) REFERENCES users(user_id),
+  foreign key (post_id) references posts(post_id)
 );
 
-CREATE TABLE groups(
-  group_id int NOT NULL,
-  group_name char(64) NOT NULL,
-  owner_id int NOT NULL,
-  group_ranking int NOT NULL,
-  PRIMARY KEY(group_id),
-  UNIQUE(group_name),
-  FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
+
