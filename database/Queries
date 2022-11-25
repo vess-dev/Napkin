@@ -1,0 +1,5 @@
+db.pool.query('INSERT INTO users', {user_first_name:"Sue", user_last_name:"Smith", user_id:"00001", user_password:"1234", user_email:"suesmith@napkin.com", user_password:"napkin1", user_handle:"sue_smith"}
+
+db.pool.query('INSERT INTO groups', {group_id:"00002", group_name:"napkins are really cool!", owner_id:"00003", group_ranking:"1"}
+
+db.pool.query('INSERT INTO comments', {comment_id:"00004", commenter_id:"00005", comment_content:"this is a cool nakpkin!", comment_timestamp:"2022-11-25 01:55:01"}
