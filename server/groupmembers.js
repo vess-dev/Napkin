@@ -21,8 +21,8 @@ function getGroupMembersList(group_id, requester_id) {
         }
       })
 
-      console.log('result1', result)
-      resolve(result)
+      console.log('result1', results)
+      resolve(results)
      
     })
   };

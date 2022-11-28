@@ -161,11 +161,11 @@ function routeRequests(url, method, bodyObject, response, userID) {
       } */
       // Get list of all members of a group
       if (method === 'GET') {
-        console.log(group_id)
         routeFound = true;
+        console.log(group_id)
         console.log('querystring is', req.querystring)
         console.log('parsed is', req.querystring.parse())
-        // Get list of posts
+        
         groupmembers.getGroupMembersList(group_id, userID).then(list=>{
           console.log('list is',list)
           response.statusCode = 200;
