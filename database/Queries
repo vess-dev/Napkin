@@ -1,4 +1,4 @@
-/*CREATE*/ db.pool.query('INSERT INTO users', {user_first_name:user_first_name, user_last_name:user_last_name, user_id:user_id, user_password:user_password, user_email:user_email, user_handle:user_handle})
+/*CREATE*/ db.pool.query('INSERT INTO users', {user_first_name:user_first_name, user_last_name:user_last_name, user_age:user_age, user_id:user_id, user_password:user_password, user_email:user_email, user_handle:user_handle})
 /* Will combine this with the code that hashes passwords - no further work needed on this, T. */
 /*UPDATE*/ db.pool.query('UPDATE users', {SET user_first_name:'Sue', user_last_name: 'Betty', user_password:'password', user_email:'suebetty@gmail.com', user_handle:'suebetty1'}, WHERE user_id='001')
 */UPDATE is not done just want to make sure i am doing it right before i do 10-20 of them. */
