@@ -19,7 +19,7 @@ GET http://cpsc.roanoke.edu:3009/groupmembers
 content-type: application/json
 cookie: sessionid=ec9256a8-d844-493c-9a6b-527977ef6be8
 
-{"group_id": "g2"}
+{"group_id": "1"}
 
 ### 
 
