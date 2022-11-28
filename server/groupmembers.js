@@ -30,7 +30,7 @@ function getGroupMembersList(group_id, requester_id) {
     
 
   //});
-}
+
 
 
 /**
