@@ -12,7 +12,7 @@ function getGroupMembersList(group_id, requester_id) {
   return new Promise((resolve, reject) =>{
      db.pool.query('SELECT * FROM group_memberships JOIN users ON group_memberships.user_id=users.user_id WHERE group_id = ? ', group_id.group_id,
       function(error, results) {
-        console.log(results)
+        console.log(error, results)
         if (error) {                    
           return reject(new BaseError("DB Error", 500, error));
         }
