@@ -28,4 +28,4 @@
 
 
 */API GET GROUP MEMBERS*/
-*/READ*/ db.pool.query(SELECT group_id, user_id, group_name FROM groups JOIN users ON groups.user_id=users.user_id WHERE group_id ='${group_id'})
+*/READ*/ (SELECT * FROM group_memberships JOIN users ON group_memberships.user_id=users.user_id WHERE group_id = '${group_id}';
