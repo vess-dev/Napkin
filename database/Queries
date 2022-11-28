@@ -1,13 +1,17 @@
-db.pool.query('INSERT INTO users', {user_first_name:user_first_name, user_last_name:user_last_name, user_id:user_id, user_password:user_password, user_email:user_email, user_password:user_password, user_handle:user_handle}
+/*CREATE*/ db.pool.query('INSERT INTO users', {user_first_name:user_first_name, user_last_name:user_last_name, user_id:user_id, user_password:user_password, user_email:user_email, user_handle:user_handle})
 /* Will combine this with the code that hashes passwords - no further work needed on this, T. */
-
-/* db.pool.query('INSERT INTO groups', {group_name:group_name, owner_id:owner_id, group_ranking:group_ranking} */
+/*UPDATE*/ db.pool.query('UPDATE users', {SET user_first_name:'Sue', user_last_name: 'Betty', user_password:'password', user_email:'suebetty@gmail.com', user_handle:'suebetty1'}, WHERE user_id='001')
+*/UPDATE is not done just want to make sure i am doing it right before i do 10-20 of them. */
+/*READ*/ db.pool.query(SELECT user_id, user_password FROM users WHERE user_handle = '${user_handle}')
+ db.pool.query(SELECT user_id, user_password FROM users WHERE user_handle = '${'suebetty1'}')
+ /*READ questions, is this the correct notation? my second question is do i use the user_handle that I have created for the WHERE statement?
+ 
+db.pool.query('INSERT INTO groups', {group_name:group_name, owner_id:owner_id, group_ranking:group_ranking})
 /* We are using autoincrement for group_id, so it isn't needed here.  Everything else looks fine. */
-/* CORRECTION: OOps, no, it doesn't.  I needed to change it to the syntax below to make it work: */
-
-db.pool.query('INSERT INTO groups SET ?', {group_name: group_name, owner_id: owner_id, group_ranking: group_ranking}
-
+/*UPDATE*/ db.pool.query('UPDATE groups', {SET group_name: NFL, owner_id: 001, group_ranking:3})
+/*UPDATE needs to be checked if it is right. */ 
+/*READ*/ db.pool.query (Select group_name, owner_id, FROM groups WHERE group_ranking='3')
+*/READ needs to be check/*
 db.pool.query('INSERT INTO comments', {comment_id:comment_id, commenter_id:commenter_id, comment_content:comment_content, comment_timestamp:comment_timestamp, post_id:post_id}
 /* This is going to need the post_id, too (which is not autoincrement in this table, since it says which post the comment belongs to.  But comment_id is autoincrement. */
-
-db.pool.query(`SELECT group_id, group_name, group_ranking FROM groups WHERE owner_id ='${user_id}'`
+/* I am confused on how to do the read and delete with comments */
