@@ -17,3 +17,4 @@
 
 */INSERT*/ db.pool.query('INSERT INTO friendships SET ?', {friend_id:friend_id, friendship_status:friendship_status, friend_request_timestamp:friend_request_timestamp})
 */UPDATE*/ db.pool.query('UPDATE friendships SET ?', {friend_id: friend_id, friendship_status: friendship_status, friend_request_timestamp: friend_request_timestamp})
+*/READ*/ db.pool.query(SELECT friendship_status, friend_request_timestamp FROM friendships WHERE user_id = '${user_id}' AND friend_id = '${friend_id}')
