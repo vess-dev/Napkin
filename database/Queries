@@ -10,8 +10,8 @@ db.pool.query('INSERT INTO groups SET ?', {group_name:group_name, owner_id:owner
 /*READ*/ db.pool.query (Select group_name, group_ranking, FROM groups WHERE group_id ='${group_id}')
 
 
-db.pool.query('INSERT INTO comments SET ?', {commenter_id:commenter_id, comment_content:comment_content, comment_timestamp:comment_timestamp, post_id:post_id})
-
-db.pool.query(`DELETE from comments WHERE comment_id = '${comment_id}'`)
+*/INSERT*/ db.pool.query('INSERT INTO comments SET ?', {commenter_id:commenter_id, comment_content:comment_content, comment_timestamp:comment_timestamp, post_id:post_id})
+*/READ*/ db.pool.query(SELECT comment_content, comment_timestamp FROM comments where comment_id = '${comment_id}')
+*/DELETE*/ db.pool.query(`DELETE from comments WHERE comment_id = '${comment_id}'`)
 /* This is going to need the post_id, too (which is not autoincrement in this table, since it says which post the comment belongs to.  But comment_id is autoincrement. */
 
