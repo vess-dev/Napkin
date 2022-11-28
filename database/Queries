@@ -12,7 +12,7 @@
 
 */INSERT*/ db.pool.query('INSERT INTO comments SET ?', {commenter_id:commenter_id, comment_content:comment_content, comment_timestamp:comment_timestamp, post_id:post_id})
 */READ*/ db.pool.query(SELECT comment_content, comment_timestamp FROM comments where comment_id = '${comment_id}')
-*/DELETE*/ db.pool.query(`DELETE FROM comments join posts ON comments.post_id=posts.post_id WHERE commenter_id = '${commenter_id}'`)
+*/DELETE*/ db.pool.query(`DELETE FROM comments join posts ON comments.post_id=posts.post_id WHERE commenter_id = '${commenter_id}' AND post_id = '${post_id}'`)
 /* This is going to need the post_id, too (which is not autoincrement in this table, since it says which post the comment belongs to.  But comment_id is autoincrement. */
 
 */INSERT*/ db.pool.query('INSERT INTO friendships SET ?', {friend_id:friend_id, friendship_status:friendship_status, friend_request_timestamp:friend_request_timestamp})
