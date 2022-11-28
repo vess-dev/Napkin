@@ -16,4 +16,4 @@
 /* This is going to need the post_id, too (which is not autoincrement in this table, since it says which post the comment belongs to.  But comment_id is autoincrement. */
 
 */INSERT*/ db.pool.query('INSERT INTO friendships SET ?', {friend_id:friend_id, friendship_status:friendship_status, friend_request_timestamp:friend_request_timestamp})
-*/UPDATE*/ db.pool.query('UPDATE friendships SET ?', {friend_id: friend_id, friendship_status: friendship_status, friend_request_timestamp: friend_request_timestamp}
+*/UPDATE*/ db.pool.query('UPDATE friendships SET ?', {friend_id: friend_id, friendship_status: friendship_status, friend_request_timestamp: friend_request_timestamp})
