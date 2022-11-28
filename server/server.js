@@ -159,12 +159,14 @@ function routeRequests(url, method, bodyObject, response, userID) {
           response.end();
         });
       } */
-      // Get list of all posts
+      // Get list of all members of a group
       if (method === 'GET') {
         console.log('bodyobject', bodyObject, bodyObject.group_id)
         routeFound = true;
+        console.log('querystring is', req.querystring)
+        console.log('parsed is', req.querystring.parse())
         // Get list of posts
-        groupmembers.getGroupMembersList(bodyObject.group_id).then(list=>{
+        groupmembers.getGroupMembersList(group_id, userID).then(list=>{
           console.log('list is',list)
           response.statusCode = 200;
           response.write(JSON.stringify(list));
