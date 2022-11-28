@@ -21,8 +21,8 @@ function getPostList() {
         }
     */  
         let result = [{       
-          "post_id": "a0001", 
-          "poster_id": "user002", 
+          "post_id": "1", 
+          "poster_id": "3", 
           "poster_name": "Billy Bob",
           "poster_image": null,
           "post_title": "The best picnic evah", 
@@ -35,8 +35,8 @@ function getPostList() {
           "user_reaction": 1
         },
         {       
-          "post_id": "a0002", 
-          "poster_id": "user003", 
+          "post_id": "2", 
+          "poster_id": "2", 
           "poster_name": "Mary Sue",
           "poster_image": "https://images.unsplash.com/photo-1627161683077-e34782c24d81?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&w=80&q=80",
           "post_title": "I like cows", 
