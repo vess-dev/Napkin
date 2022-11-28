@@ -1,12 +1,12 @@
 /*INSERT*/ db.pool.query('INSERT INTO users SET ?', {user_first_name:user_first_name, user_last_name:user_last_name, user_age:user_age, user_id:user_id, user_password:user_password, user_email:user_email, user_handle:user_handle})
 /* Will combine this with the code that hashes passwords - no further work needed on this, T. */
-/*UPDATE*/ db.pool.query('UPDATE SET ?', {user_first_name:'${user_first_name}', user_last_name: '${user_last_name}', user_age: '${user_age}', user_password:'${user_password}', user_email:'${user_email}', user_handle:'${user_handle}')
+/*UPDATE*/ db.pool.query('UPDATE SET ?', {user_first_name: user_first_name, user_last_name: user_last_name, user_age: user_age, user_password: user_password, user_email: user_email, user_handle: user_handle})
 /*READ*/ db.pool.query(SELECT user_first_name, user_last_name, user_age FROM users WHERE user_id = '${user_id}')
  
  
 */INSERT*/db.pool.query('INSERT INTO groups SET ?', {group_name:group_name, owner_id:owner_id, group_ranking:group_ranking})
 /* We are using autoincrement for group_id, so it isn't needed here.  Everything else looks fine. */
-/*UPDATE*/ db.pool.query('UPDATE groups SET ?', {group_name: '${group_name}', owner_id: '${owner_id}', group_ranking: '${group_ranking}') 
+/*UPDATE*/ db.pool.query('UPDATE groups SET ?', {group_name: group_name, owner_id: owner_id, group_ranking: group_ranking) 
 /*READ*/ db.pool.query (Select group_name, group_ranking, FROM groups WHERE group_id ='${group_id}')
 
 
@@ -15,3 +15,5 @@
 */DELETE*/ db.pool.query(`DELETE from comments WHERE comment_id = '${comment_id}'`)
 /* This is going to need the post_id, too (which is not autoincrement in this table, since it says which post the comment belongs to.  But comment_id is autoincrement. */
 
+*/INSERT*/ db.pool.query('INSERT INTO friendships SET ?', {friend_id:friend_id, friendship_status:friendship_status, friend_request_timestamp:friend_request_timestamp})
+*/UPDATE*/ db.pool.query('UPDATE friendships SET ?', {friend_id: friend_id, friendship_status: friendship_status, friend_request_timestamp: friend_request_timestamp}
