@@ -178,16 +178,18 @@ function routeRequests(url, method, bodyObject, response, userID) {
         });
       }
     }
-        //GROUP routes
+ //GROUP routes
         if (url.pathname === routes.GROUP) {
           console.log('will serve groups stuff')
     
-          // Creating a new POST
-          /*if (method === 'POST') {
+          // Creating a new group
+          if (method === 'POST') {
+            console.log('method is post for groups')
             routeFound = true;
-            post.addNewPOST(bodyObject).then(reply=>{
+            bodyObject.owner_id = userID
+            group.addNewGroup(bodyObject).then(reply=>{
               response.statusCode = 200;
-              response.write('{"success":"New post added with ID ' + reply + '"}');          
+              response.write('{"success":"New group added with ID ' + reply + '"}');          
             })
             .catch(error=>{
               handleErrorReply(response, error, 400);
@@ -195,12 +197,12 @@ function routeRequests(url, method, bodyObject, response, userID) {
             .finally(() => {
               response.end();
             });
-          } */
-          // Get list of all posts
-          if (method === 'GET') {
+          } 
+          // Get list of all groupss
+          else if (method === 'GET') {
             routeFound = true;
             // Get list of groups
-            group.getGroupList().then(list=>{
+            group.getGroupList(userID).then(list=>{
               response.statusCode = 200;
               response.write(JSON.stringify(list));
             })
@@ -213,7 +215,7 @@ function routeRequests(url, method, bodyObject, response, userID) {
             });
           }
         }
-                //friend routes
+  //friend routes
                 if (url.pathname === routes.FRIEND) {
             
                   // Creating a new POST

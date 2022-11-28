@@ -12,7 +12,7 @@ CREATE TABLE users (
 
 
 CREATE TABLE posts(
-  post_id int NOT NULL,
+  post_id int NOT NULL AUTO_INCREMENT,
   user_id int NOT NULL,
   post_title char(34),
   post_content varchar(30000),
@@ -27,7 +27,7 @@ CREATE TABLE posts(
 );
 
 CREATE TABLE groups(
-  group_id int NOT NULL,
+  group_id int NOT NULL AUTO_INCREMENT,
   group_name char(64) NOT NULL,
   owner_id int NOT NULL,
   group_ranking int NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE reactions(
   );
 
 CREATE TABLE comments (
-  comment_id int NOT NULL,
+  comment_id int NOT NULL AUTO_INCREMENT,
   commenter_id int NOT NULL,
   comment_content varchar(10000),
   comment_timestamp DATETIME NOT NULL,
