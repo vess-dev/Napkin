@@ -18,3 +18,7 @@
 */INSERT*/ db.pool.query('INSERT INTO friendships SET ?', {friend_id:friend_id, friendship_status:friendship_status, friend_request_timestamp:friend_request_timestamp})
 */UPDATE*/ db.pool.query('UPDATE friendships SET ?', {friend_id: friend_id, friendship_status: friendship_status, friend_request_timestamp: friend_request_timestamp})
 */READ*/ db.pool.query(SELECT friendship_status, friend_request_timestamp FROM friendships WHERE user_id = '${user_id}' AND friend_id = '${friend_id}')
+
+*/INSERT*/ db.pool.query('INSERT INTO posts SET ?', {post_id: post_id, post_title: post_title, post_content: post_content, post_image: post_image, post_likes_score: post_likes_score, post_comment_count: post_comment_count, post_visable: post_visable, post_timestamp: post_timestamp})
+*/UPDATE*/ db.pool.query('UPDATE posts SET ?', {post_id: post_id, post_title: post_title, post_content: post_content, post_image: post_image, post_likes_score: post_likes_score, post_comment_count: post_comment_count, post_visable: post_visable, post_timestamp: post_timestamp})
+*/READ*/ db.pool.query(SELECT post_title, post_content, post_image, post_likes_score, post_comment_count, post_visable, post_timestamp FROM posts WHERE user_id = '${user_id}' AND post_id = '${post_id})
