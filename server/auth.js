@@ -138,7 +138,7 @@ function generateSessionId(userObject) {
  */ 
 function handleLogout(user_id) {
 	return new Promise((resolve, reject) => {
-		db.pool.query(`DELETE from sessions WHERE user_id = '${user_id}'`,
+		db.pool.query(`DELETE from sessions WHERE user_id = ?`, {user_id},
 	      function(error, results, fields) {        
 	        if (error) { 
 	        	console.log('logout error code: ' + error.code);   

@@ -214,6 +214,19 @@ function routeRequests(url, method, bodyObject, response, userID) {
               response.end(); 
             });
           }
+          else if (method === 'PUT') {
+              routeFound = true;
+              group.updateGroup(bodyObject, userID).then(reply=>{
+              response.statusCode = 200;
+              response.write('{"success":"Group updated"}');          
+            })
+            .catch(error=>{
+              handleErrorReply(response, error, 400);
+            })
+            .finally(() => {
+              response.end();
+            });
+          }
         }
   //friend routes
                 if (url.pathname === routes.FRIEND) {

@@ -27,7 +27,7 @@ body {
 #menu_icon {
 	position: relative;
 	left: 1rem;
-	top: 0.7rem;
+	top: 1rem;
 }
 
 #notification_hook {
@@ -58,24 +58,6 @@ body {
 	z-index: 10;
 	/* padding: 0 1rem; */
 	top: 3rem;
-}
-
-.Nav_Menu {
-    font-size: 20px;
-    border: 1px solid #ddddb0;
-    display: inline-block;
-    position: relative;
-    left: 2rem;
-    top: 0.55rem;
-    width: 15%;
-    height: 1.9rem;
-    text-align: center;
-    
-}
-
-.Nav_Menu:hover {
-    background: #ddddb0;
-    cursor: pointer;
 }
 
 #menu ul {
