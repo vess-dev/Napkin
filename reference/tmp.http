@@ -15,7 +15,7 @@ cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
 ###
 
 
-GET http://cpsc.roanoke.edu:3009/groupmembers?group_id=5
+GET http://cpsc.roanoke.edu:3009/groupmembers?group_id=2
 content-type: application/json
 cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 
