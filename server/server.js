@@ -37,7 +37,7 @@ function handleHTTPRequests(request, response) {
   const method = request.method;
   const parsedURL = url.parse(request.url);
   console.log('parsedURL is',parsedURL)
-  try {console.log('with parse?',querystring.parse(parsedURL)) } catch {console.log('nope!')}
+  try {console.log('with parse?',querystring.parse(parsedURL).query) } catch {console.log('nope!')}
 
   
   let parsedRequestBody = "";
