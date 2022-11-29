@@ -11,6 +11,8 @@ CREATE TABLE users (
   UNIQUE (user_handle)
 );
 
+alter table users add column user_image varchar(1000);
+
 CREATE TABLE posts(
   post_id int NOT NULL AUTO_INCREMENT,
   user_id int NOT NULL,
