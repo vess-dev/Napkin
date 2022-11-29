@@ -145,24 +145,11 @@ function routeRequests(url, method, bodyObject, response, userID) {
     if (url.pathname === routes.GROUPMEMBERS) {
       console.log('will serve groupmembers stuff')
 
-      // Creating a new POST
-      /*if (method === 'POST') {
-        routeFound = true;
-        post.addNewPOST(bodyObject).then(reply=>{
-          response.statusCode = 200;
-          response.write('{"success":"New post added with ID ' + reply + '"}');          
-        })
-        .catch(error=>{
-          handleErrorReply(response, error, 400);
-        })
-        .finally(() => {
-          response.end();
-        });
-      } */
       // Get list of all members of a group
       if (method === 'GET') {
         routeFound = true;
-        console.log(group_id)
+        console.log('userID is',userID)
+        console.log('group_id is', group_id)
         console.log('querystring is', req.querystring)
         console.log('parsed is', req.querystring.parse())
         
