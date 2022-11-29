@@ -154,7 +154,7 @@ export var Users = {
 		    for (const user of userList) {
 				console.log('user is',user)
 		    	const rowElement = document.createElement('div');
-		    	rowElement.textContent = user.user_handle + " : " + user.sessions;
+		    	rowElement.textContent = user.user_handle + " : " + user['#sessions'] + "||" + user.user_image + "||" + user.user_first_name ;
 		    	rowContainerElement.appendChild(rowElement);
 	    	}
 	    	contentDOM.appendChild(rowContainerElement); 
