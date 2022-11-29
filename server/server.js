@@ -27,7 +27,6 @@ function handleHTTPRequests(request, response) {
 
   console.log('Method: ' + request.method + "\nURL: " + request.url);
   console.log('Headers: ' + request.headers.cookie);
-  try {console.log('with parse?',querystring.parse(url.parse(request.url))) } catch {console.log('nope!')}
 
   // Setup CORS
   response.setHeader('Access-Control-Allow-Origin', 'http://cpsc.roanoke.edu');
@@ -37,6 +36,10 @@ function handleHTTPRequests(request, response) {
   response.setHeader('content-type', 'application/json');  
   const method = request.method;
   const parsedURL = url.parse(request.url);
+  console.log('parsedURL is',parsedURL)
+  try {console.log('with parse?',querystring.parse(parsedURL)) } catch {console.log('nope!')}
+
+  
   let parsedRequestBody = "";
   let userId = null;
 
