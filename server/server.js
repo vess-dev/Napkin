@@ -149,7 +149,6 @@ function routeRequests(url, method, bodyObject, response, userID) {
       if (method === 'GET') {
         routeFound = true;
         console.log('userID is',userID)
-        console.log('group_id is', group_id)
         console.log('querystring is', req.querystring)
         console.log('parsed is', req.querystring.parse())
         
