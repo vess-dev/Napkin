@@ -27,7 +27,8 @@ function handleHTTPRequests(request, response) {
 
   console.log('Method: ' + request.method + "\nURL: " + request.url);
   console.log('Headers: ' + request.headers.cookie);
-  console.log('params:', request.params);
+  console.log('keys?', request.keys());
+  console.log('whole object?', request)
   // Setup CORS
   response.setHeader('Access-Control-Allow-Origin', 'http://cpsc.roanoke.edu');
   response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, DELETE');
