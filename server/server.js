@@ -310,6 +310,7 @@ function handleErrorReply(response, errorObj, code, message) {
   }
   else {
     console.error("Old error: " + message)
+    console.log('response was',response)
     response.statusCode = (code ? code : 400);
     response.write('{"error": ' + (message ? '"' + message + '"' : "There was an error") + '}');
   }
