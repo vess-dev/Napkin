@@ -40,6 +40,7 @@ function handleHTTPRequests(request, response) {
   let URLquery = parsedURL.query
   let queryObject = querystring.parse(URLquery)
   console.log('queryObject:', queryObject)
+  console.log('queryobject2', JSON.parse(queryObject))
 
   
   let parsedRequestBody = "";
@@ -156,7 +157,7 @@ function routeRequests(url, method, bodyObject, response, userID) {
       if (method === 'GET') {
         routeFound = true;
         console.log('userID is',userID)
-
+        console.log('group_id is ',queryObject.group_id)
         
         
         groupmembers.getGroupMembersList(queryObject.group_id, userID).then(list=>{

@@ -1,7 +1,6 @@
 const db = require('./dbi.js');
 const bcrypt = require('bcrypt');
 const BaseError = require('./BaseError.js');
-const { group } = require( 'console' );
 
 
 /**
