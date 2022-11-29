@@ -40,7 +40,6 @@ function handleHTTPRequests(request, response) {
   let URLquery = parsedURL.query
   let queryObject = querystring.parse(URLquery)
   console.log('queryObject:', queryObject)
-  console.log('queryobject2', JSON.parse(queryObject))
 
   
   let parsedRequestBody = "";
@@ -70,9 +69,10 @@ function handleHTTPRequests(request, response) {
 /**
  * 
  */   
-function routeRequests(url, method, bodyObject, response, userID) {
+function routeRequests(url, method, bodyObject, response, userID, queryObject) {
   let routeFound = false;
   console.log('urlpathname is', url.pathname)
+  console.log('queryObject is', queryObject)
   try {
     // OPTIONS handling
     if (method === 'OPTIONS') {
