@@ -149,7 +149,8 @@ function routeRequests(url, method, bodyObject, response, userID) {
       if (method === 'GET') {
         routeFound = true;
         console.log('userID is',userID)
-        console.log('querystring is', req.query)
+        console.log('query is',query)
+        console.log('querystring is', request.query)
         
         
         groupmembers.getGroupMembersList(group_id, userID).then(list=>{
