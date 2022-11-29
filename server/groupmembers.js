@@ -20,9 +20,6 @@ function getGroupMembersList(group_id, requester_id) {
           return resolve(results);        
         }
       })
-
-      console.log('result1', results)
-      resolve(results)
      
     })
   };
