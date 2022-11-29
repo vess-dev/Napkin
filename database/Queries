@@ -1,6 +1,6 @@
-/*INSERT*/ db.pool.query('INSERT INTO users SET ?', {user_first_name:user_first_name, user_last_name:user_last_name, user_age:user_age, user_id:user_id, user_password:user_password, user_email:user_email, user_handle:user_handle})
+/*INSERT*/ db.pool.query('INSERT INTO users SET ?', {user_first_name:user_first_name, user_last_name:user_last_name, user_age:user_age, user_id:user_id, user_password:user_password, user_email:user_email, user_handle:user_handle, user_image: user_image})
 /* Will combine this with the code that hashes passwords - no further work needed on this, T. */
-/*UPDATE*/ db.pool.query('UPDATE SET ?', {user_first_name: user_first_name, user_last_name: user_last_name, user_age: user_age, user_password: user_password, user_email: user_email, user_handle: user_handle})
+/*UPDATE*/ db.pool.query('UPDATE SET ?', {user_first_name: user_first_name, user_last_name: user_last_name, user_age: user_age, user_password: user_password, user_email: user_email, user_handle: user_handle, user_image: user_image})
 /*READ*/ db.pool.query(SELECT user_first_name, user_last_name, user_age FROM users WHERE user_id = '${user_id}')
 
  
