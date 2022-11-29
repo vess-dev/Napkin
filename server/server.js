@@ -149,8 +149,8 @@ function routeRequests(url, method, bodyObject, response, userID) {
       if (method === 'GET') {
         routeFound = true;
         console.log('userID is',userID)
-        console.log('querystring is', req.querystring)
-        console.log('parsed is', req.querystring.parse())
+        console.log('querystring is', req.query)
+        
         
         groupmembers.getGroupMembersList(group_id, userID).then(list=>{
           console.log('list is',list)
@@ -310,7 +310,6 @@ function handleErrorReply(response, errorObj, code, message) {
   }
   else {
     console.error("Old error: " + message)
-    console.log('response was',response)
     response.statusCode = (code ? code : 400);
     response.write('{"error": ' + (message ? '"' + message + '"' : "There was an error") + '}');
   }
