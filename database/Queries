@@ -27,6 +27,9 @@
 */INSERT*/ db.pool.query('INSERT INTO reactions SET ?', {user_id: user_id, post_id: post_id})
 */DELETE*/ db.pool.query(`DELETE FROM reactions WHERE post_id = '${post_id}'`)
 
+*/INSERT*/ db.pool.query('INSERT INTO posts_feed SET ?', {user_id: user_id, post_id: post_id, post_weight: post_weight})
+*/UPDATE*/ db.pool.query('UPDATE posts_feed SET?', {user_id: user_id, post_id: post_id, post_weight: post_weight})
+*/READ*/ db.pool.query(SELECT user_id, post_id, post_weight FROM posts_feed WHERE post_weight> '${post_weight}')
 
 */API GET GROUP MEMBERS*/
 */READ*/ (SELECT * FROM group_memberships JOIN users ON group_memberships.user_id=users.user_id WHERE group_id = '${group_id}';
