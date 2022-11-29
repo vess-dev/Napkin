@@ -57,7 +57,7 @@ function handleHTTPRequests(request, response) {
     const sessionid = auth.extractCookie('sessionid', request.headers.cookie);   
     //console.log('sessionid is ', sessionid)   
     auth.validateSession(sessionid, parsedURL.pathname, method).then(userID=>{
-        routeRequests(parsedURL, method, parsedRequestBody, response, userID);  
+        routeRequests(parsedURL, method, parsedRequestBody, response, userID, queryObject);  
       })
     .catch(error=>{
       handleErrorReply(response, error, 401, "Please login to view this page");
