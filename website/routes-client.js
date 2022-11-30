@@ -6,5 +6,4 @@ const ADD_USER_PAGE = '#addUser';
 const LIST_USERS_PAGE = '#listUsers';
 const GET_POSTS_PAGE = '#getPosts' ;
 
-
 export {SERVER, LOGIN_PAGE, HOME_PAGE, ADD_USER_PAGE, LIST_USERS_PAGE, GET_POSTS_PAGE};

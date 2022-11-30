@@ -1,1 +1,36 @@
-app.html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Napkin</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/38b3e3c4fb.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+  	<div id="header">
+  		<i class="fa-solid fa-bars" id="menu_icon"></i>
+  		<div class="Nav_Menu" id="Napkin_Home">Napkin</div>
+		<div class="Nav_Menu" id="User_Feed">My Feed</div>
+		<div class="Nav_Menu" id="Add_Post">Add a Post</div>
+		<div class="Nav_Menu" id="Friends">Friends</div>
+		<div class="Nav_Menu" id="Groups">Groups</div>
+		<div class="Nav_Menu">My Account</div>
+  		<div id="notification_hook" class="hidden">
+  			<i id="error_icon" class="fa-solid fa-triangle-exclamation hidden"></i>
+  			<span>Here is a notification about something that happened</span>
+  			<i id="close_notification_icon" class="fa-regular fa-circle-xmark"></i>
+  		</div>  		
+  	</div>
+  	<div id="menu" class="hidden">
+  		<ul>
+  			<li id="home_link">Home</li>
+  			<li id="listuser_link">List Users</li>
+			<li id="getposts_link">Get posts</li>
+  			<li id="logout_link">Log Out</li>
+  		</ul>
+  	</div>
+  	<div id="content">
+  	</div>
+  	<script type="module" src="demo.js" defer></script>
+  </body>
+  </html>
