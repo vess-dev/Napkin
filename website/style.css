@@ -27,7 +27,8 @@ body {
 
 #content {
 	position: relative;
-	padding: 2% 0 2%;
+	padding-left: 2rem;
+	padding-top: 6rem;
 }
 
 #header {
