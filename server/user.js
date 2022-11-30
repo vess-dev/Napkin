@@ -24,10 +24,11 @@ function getUserList() {
 }
 
 function searchUsers(searchstring) {
+  searchstring = '%'+searchstring+'%'
   console.log('got into searchUsers and searchstring is', searchstring)
   return new Promise((resolve, reject) =>{
     db.pool.query('select user_handle, users.user_id, user_image, user_first_name from users WHERE (user_first_name LIKE ?) OR (user_last_name LIKE ?) OR (user_handle LIKE ?)', 
-      [`'%`+searchstring+`%'`,`'%`+searchstring+`%'`,`'%`+searchstring+`%'`],
+      [searchstring, searchstring, searchstring],
       function(error, results) {
         console.log(results)
         if (error) {                    
