@@ -46,7 +46,7 @@ function(error, results) {
     recalculateComments(post_id);              
     return resolve(results);        
   }
-}
+})
 }
 
 function getCommentsOnPost(post_id) {
