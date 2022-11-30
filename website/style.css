@@ -1,10 +1,11 @@
 body {
-        font-family: "Ubuntu";
+    font-family: "Ubuntu";
+    font-size: 20px;
 }
 
 #header {
-	background-color: #ffffd0;
-	padding: 0.5rem 0;
+	background-color: Blue;
+	padding: 0;
 	position: absolute;
 	top: 0;
 	left: 0;
