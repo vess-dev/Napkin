@@ -45,6 +45,8 @@ You need to return only posts with the user_id matching the user's user_id.  And
 not just a list of post_ids, but the actual post contents all the stuff you'd need for drawing a post on teh screen.
 */ 
 
+*/Posts in order of post weight, this is what I have for now will come back to later, having issues getting the user info in this query*/
+*/READ*/ (select * from posts_feed inner join posts on posts_feed.post_id=posts_feed.post_id order by post_weight DESC;)
 
 */API GET GROUP MEMBERS*/
 */READ*/ (SELECT gm.user_ID FROM group_memberships gm JOIN users ON gm.user_id=users.user_id WHERE group_id = '${group_id}';
