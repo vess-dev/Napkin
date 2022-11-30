@@ -13,7 +13,7 @@
 
 */INSERT*/ db.pool.query('INSERT INTO comments SET ?', {commenter_id:commenter_id, comment_content:comment_content, comment_timestamp: NOW(), post_id:post_id})
 */READ*/ db.pool.query(SELECT comment_content, comment_timestamp FROM comments where comment_id = '${comment_id}')
-*/READ API*/ db.pool.query(SELECT comment_id, commenter_id, user_id, post_image, comment_content, comment_timestamp FROM comments JOIN posts on comments.post_id=posts.post_id;
+*/READ API*/ db.pool.query(SELECT comment_id, commenter_id, user_id, user_handle, user_image, comment_content, comment_timestamp FROM comments JOIN posts on comments.post_id=posts.post_id;
 /* Good start ^. Probably need the user_handle & image of the person who commented too, right?  I don't think you need to return the post_image... */
 
 */DELETE*/ db.pool.query(`DELETE FROM comments WHERE commenter_id = '${commenter_id}' AND post_id = '${post_id}'`)
