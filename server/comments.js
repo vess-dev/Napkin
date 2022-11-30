@@ -10,8 +10,11 @@ function addComment(commentObject, userID) {
   console.log('addComment function called')
   console.log('commentObject is', commentObject)
   console.log('userID is', userID)
+  let comment_content = commentObject.comment_content
+  let post_id = commentObject.post_id
+  console.log(comment_content, post_id)
   return new Promise((resolve, reject) =>{
-     db.pool.query('INSERT INTO comments SET ?', {commenter_id: userID, comment_content: commentObject.comment_content, comment_timestamp: NOW(), post_id: commentObject.post_id},
+     db.pool.query('INSERT INTO comments SET ?', {commenter_id: userID, comment_content: comment_content, comment_timestamp: NOW(), post_id: post_id},
       function(error, results) {
         console.log(results)
         if (error) {                    
