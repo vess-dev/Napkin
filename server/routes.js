@@ -5,6 +5,6 @@ const POST = '/post';
 const GROUPMEMBERS = '/groupmembers';
 const GROUP = '/group';
 const FRIEND = '/friend';
-const FRIENDSHIP = '/friendship';
+const COMMENT = '/comment';
 
-module.exports={USER, LOGIN, LOGOUT, POST, GROUPMEMBERS, GROUP, FRIEND, FRIENDSHIP};
+module.exports={USER, LOGIN, LOGOUT, POST, GROUPMEMBERS, GROUP, FRIEND, COMMENT};

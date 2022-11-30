@@ -11,6 +11,7 @@ const post = require('./post.js')
 const groupmembers = require('./groupmembers.js')
 const group = require('./group.js')
 const friend = require('./friendship.js')
+const comment = require('./comments.js')
 
 const port = 3009 || process.argv[2];
 
@@ -273,6 +274,27 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
                     });
                   }
                 }
+ //GROUP routes
+        if (url.pathname === routes.COMMENT) {
+          console.log('will serve comment stuff')
+    
+          // Creating a new comment
+          if (method === 'POST') {
+            console.log('method is post for comment')
+            routeFound = true;
+            bodyObject.owner_id = userID
+            group.addComment(bodyObject, userID).then(reply=>{
+              response.statusCode = 200;
+              response.write('{"success":"New comment added with ID ' + reply + '"}');          
+            })
+            .catch(error=>{
+              handleErrorReply(response, error, 400);
+            })
+            .finally(() => {
+              response.end();
+            });
+          } 
+        }
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {
       routeFound = true;
