@@ -12,3 +12,70 @@
 	<span>Here is a notification about something that happened</span>
 	<i id="close_notification_icon" class="fa-regular fa-circle-xmark"></i>
 </div>
+
+#menu_icon {
+	position: relative;
+	left: 1rem;
+	top: 0.7rem;
+}
+
+#menu ul {
+	list-style: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+#menu li {
+	padding: 0.2rem 2rem;
+}
+
+#menu li:hover {
+	background: #aaa;
+}
+
+#user_list div {
+	background: #ddd;
+	padding: 0.2rem 1rem;
+}
+
+label {
+	padding-right: 1rem;
+}
+
+.fa-triangle-exclamation {
+	color: #c11a1a;
+}
+
+.hidden {	
+	display: none !important;
+}
+
+#notification_hook {
+	background: #eeeee4;
+	border-radius : 5px;
+	border: solid;
+	height: 1.4rem;
+	margin: auto;
+	padding: 0.5rem;
+	position: relative;
+	top: -2rem;
+	width: 40rem;
+}
+
+#close_notification_icon {
+	position: absolute;
+	right: 1rem;
+	top: 0.8rem;
+}
+
+#menu {
+	border: 1px solid #222;
+	position: absolute;
+	background: white;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #888;
+	/* width: 6rem; */
+	z-index: 10;
+	/* padding: 0 1rem; */
+	top: 3rem;
+}
