@@ -38,7 +38,7 @@ them all... */
 /* This syntax would change ALL entries in posts_feed to these values */
 
 */READ*/ db.pool.query(SELECT user_id, post_id, post_weight FROM posts_feed WHERE post_weight> '${post_weight}')
-*/READ*/ db.pool.query(select * from posts inner join posts_feed on posts.post_id=posts_feed.post_id inner join users on posts_feed.user_id=users.user_id;)
+*/READ*/ db.pool.query(select * from posts inner join posts_feed on posts.post_id=posts_feed.post_id inner join users on posts_feed.user_id=users.user_id order by post_weight;)
 /* Please think about what this table does.  It collects the posts a user can see and the weights of each one
 You need to return only posts with the user_id matching the user's user_id.  And the API is going to need to return 
 not just a list of post_ids, but the actual post contents all the stuff you'd need for drawing a post on teh screen.
