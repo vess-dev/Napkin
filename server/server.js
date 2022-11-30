@@ -294,6 +294,21 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
               response.end();
             });
           } 
+          if (method === 'GET' && queryObject && queryObject.post_id) {
+            console.log('method is post for comment')
+            routeFound = true;
+            
+            comment.getCommentsOnPost(queryObject.post_id)
+            .then(list=>{
+              response.statusCode = 200;
+              response.write(JSON.stringify(list))})
+            .catch(error=>{
+              handleErrorReply(response, error, 400);
+            })
+            .finally(() => {
+              response.end();
+            });
+          } 
         }
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {

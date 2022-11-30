@@ -30,4 +30,23 @@ function addComment(commentObject, userID) {
 })}
 
 
-module.exports = {addComment}
+function getCommentsOnPost(post_id) {
+  console.log('getCommentsOnPost function called', post_id)
+  return new Promise((resolve, reject) =>{
+     db.pool.query('SELECT comment_id, commenter_id, comment_content, comment_timestamp FROM comments where post_id = ?', post_id,
+      function(error, results) {
+        console.log(results)
+        if (error) {                    
+          return reject(new BaseError("DB Error", 500, error));
+        }
+        else {               
+          return resolve(results);        
+        }
+
+    
+    
+
+  });
+})}
+
+module.exports = {addComment, getCommentsOnPost}
