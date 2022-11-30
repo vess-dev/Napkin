@@ -1,20 +1,19 @@
 /*INSERT*/ db.pool.query('INSERT INTO users SET ?', {user_first_name:user_first_name, user_last_name:user_last_name, user_age:user_age, user_id:user_id, user_password:user_password, user_email:user_email, user_handle:user_handle, user_image: user_image})
 /* Will combine this with the code that hashes passwords - no further work needed on this, T. */
 /*UPDATE*/ db.pool.query('UPDATE SET ?', {user_first_name: user_first_name, user_last_name: user_last_name, user_age: user_age, user_email: user_email, user_handle: user_handle, user_image: user_image})
-/* I removed user_password from above.  Because we store the hashed password, it's more complicated than this... */
 /*READ*/ db.pool.query(SELECT user_first_name, user_last_name, user_handle, user_image, user_age FROM users WHERE user_id = '${user_id}')
-/* do you want the user_handle, too? user_image?*/
+*/Good*/
  
 */INSERT*/db.pool.query('INSERT INTO groups SET ?', {group_name:group_name, owner_id:owner_id, group_ranking:group_ranking})
 /* We are using autoincrement for group_id, so it isn't needed here.  Everything else looks fine. */
 /*UPDATE*/ db.pool.query('UPDATE groups SET ?', {group_name: group_name, owner_id: owner_id, group_ranking: group_ranking) 
 /*READ*/ db.pool.query (Select group_name, group_ranking, FROM groups WHERE group_id ='${group_id}')
-
+*/Good*/
 
 */INSERT*/ db.pool.query('INSERT INTO comments SET ?', {commenter_id:commenter_id, comment_content:comment_content, comment_timestamp: NOW(), post_id:post_id})
 */READ*/ db.pool.query(SELECT comment_content, comment_timestamp FROM comments where comment_id = '${comment_id}')
 */READ API*/ db.pool.query(SELECT comment_id, commenter_id, user_id, user_handle, user_image, comment_content, comment_timestamp FROM comments JOIN posts on comments.post_id=posts.post_id;
-/* Good start ^. Probably need the user_handle & image of the person who commented too, right?  I don't think you need to return the post_image... */
+/* Good*/
 
 */DELETE*/ db.pool.query(`DELETE FROM comments WHERE commenter_id = '${commenter_id}' AND post_id = '${post_id}'`)
 /* this delete needs some checking - who is allowed to delete a post? Also, could there be multiple comments by the same user on a single post? This would delete
@@ -23,12 +22,12 @@ them all... */
 */INSERT*/ db.pool.query('INSERT INTO friendships SET ?', {friend_id:friend_id, friendship_status:friendship_status, friend_request_timestamp:friend_request_timestamp})
 */UPDATE*/ db.pool.query('UPDATE friendships SET ?', {friend_id: friend_id, friendship_status: friendship_status, friend_request_timestamp: friend_request_timestamp})
 */READ*/ db.pool.query(`SELECT friendship_status, friend_request_timestamp FROM friendships WHERE user_id = '${user_id}' AND friend_id = '${friend_id}'`)
+*/Good*/
 
 */INSERT*/ db.pool.query('INSERT INTO posts SET ?', {post_id: post_id, post_title: post_title, post_content: post_content, post_image: post_image, post_likes_score: post_likes_score, post_comment_count: post_comment_count, post_visable: post_visable, post_timestamp: post_timestamp})
 */UPDATE*/ db.pool.query('UPDATE posts SET ?', {post_id: post_id, post_title: post_title, post_content: post_content, post_image: post_image, post_likes_score: post_likes_score, post_comment_count: post_comment_count, post_visable: post_visable, post_timestamp: post_timestamp})
 */READ*/ db.pool.query(SELECT post_title, post_content, post_image, post_likes_score, post_comment_count, post_visable, post_timestamp FROM posts WHERE user_id > '0';)
-/* ACTION NEEDED:  This is going to get one post by one user (which is fine - sometimes we'll want that).  How can you get all the user's posts? */
-/* The READ line is fixed and now returns all the user's post */
+/* Good */
 
 */INSERT*/ db.pool.query('INSERT INTO reactions SET ?', {user_id: user_id, post_id: post_id})
 */DELETE*/ db.pool.query(`DELETE FROM reactions WHERE post_id = '${post_id}'`)
@@ -37,7 +36,9 @@ them all... */
 */UPDATE*/ db.pool.query('UPDATE posts_feed SET?', {user_id: user_id, post_id: post_id, post_weight: post_weight})
 /* This syntax would change ALL entries in posts_feed to these values */
 
-*/READ*/ db.pool.query(SELECT user_id, post_id, post_weight FROM posts_feed WHERE post_weight> '${post_weight}')
+*/READ*/ db.pool.query(select user_id, g.group_id, owner_id, group_name, group_ranking from groups g join group_memberships on g.group_id=group_memberships.group_id;)
+*/Good*/ 
+
 */READ*/ db.pool.query(select * from posts inner join posts_feed on posts.post_id=posts_feed.post_id inner join users on posts_feed.user_id=users.user_id order by post_weight;)
 /* Please think about what this table does.  It collects the posts a user can see and the weights of each one
 You need to return only posts with the user_id matching the user's user_id.  And the API is going to need to return 
