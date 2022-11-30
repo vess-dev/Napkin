@@ -23,6 +23,23 @@ function getUserList() {
   });
 }
 
+function searchUsers(searchstring) {
+  return new Promise((resolve, reject) =>{
+    db.pool.query('select user_handle, users.user_id, user_image, user_first_name from users WHERE user_first_name LIKE ? OR user_last_name LIKE ? OR user_handle LIKE ?', 
+      ['%'+searchstring+'%','%'+searchstring+'%'],
+      function(error, results) {
+        console.log(results)
+        if (error) {                    
+          return reject(new BaseError("DB Error", 500, error));
+        }
+        else {  
+          console.log('results is', results)             
+          return resolve(results);        
+        }
+    });
+  });
+}
+
 /**
  *  Given a user object, attempts to add that user
  */ 
@@ -50,7 +67,7 @@ function addNewUser(userObject) {
 
 /**
  *  Given a username, password, and other option details, attempts to insert that user into the 
- *  datbase. 
+ *  database. 
  *  If user is created successfull, the promise is reolved and userid is returned. 
  *  Else, promise is rejected and an error message is returned.
  */ 
@@ -75,4 +92,4 @@ function insertUser(user_first_name, user_last_name, user_email, user_password, 
   });
 }
 
-module.exports = {addNewUser, insertUser, getUserList}
+module.exports = {addNewUser, insertUser, getUserList, searchUsers}

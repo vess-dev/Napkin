@@ -98,10 +98,24 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         });
       }
       // Get list of all users
-      if (method === 'GET') {
+      if (method === 'GET' && (!queryObject || !queryObject.search)) {
         routeFound = true;
         // Get list of users
         user.getUserList().then(list=>{
+          response.statusCode = 200;
+          response.write(JSON.stringify(list));
+        })
+        .catch(error=>{
+          handleErrorReply(response, error);
+        })
+        .finally(() => {
+          response.end(); 
+        });
+      }
+      else if (method === 'GET' && queryObject && queryObject.search) {
+        routeFound = true;
+        // Get list of users
+        user.searchUsers(queryObject.search).then(list=>{
           response.statusCode = 200;
           response.write(JSON.stringify(list));
         })
