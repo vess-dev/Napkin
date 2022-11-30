@@ -22,13 +22,32 @@ function addComment(commentObject, userID) {
         if (error) {                    
           return reject(new BaseError("DB Error", 500, error));
         }
-        else {               
+        else { 
+          recalculateComments(post_id);              
           return resolve(results);        
         }
 
   });
 })}
 
+async function recalculateComments(post_id) {
+db.pool.query('UPDATE posts set post_comment_count = (select count(*) as ccount from comments where post_id=? group by post_id ) where post_id = ?', [post_id, post_id],
+function(error, results) {
+  console.log('error:',error)
+  console.log('results',results)
+  console.log(results)
+  if (error) {   
+    console.log('error on comments', error)                 
+    return reject(new BaseError("DB Error", 500, error));
+    
+  }
+  else { 
+    console.log('comments updated for ',post_id)
+    recalculateComments(post_id);              
+    return resolve(results);        
+  }
+}
+}
 
 function getCommentsOnPost(post_id) {
   console.log('getCommentsOnPost function called', post_id)
