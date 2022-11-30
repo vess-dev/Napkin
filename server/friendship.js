@@ -7,10 +7,11 @@ const BaseError = require('./BaseError.js');
  *  Assumes the user is authenticated to perform this action
  *  If promise is resolved, returns a list of users
  */ 
-function getFriendList() {
+function getFriendList(userID) {
   console.log('getFriendList function called')
   return new Promise((resolve, reject) =>{
-    /* db.pool.query('select post_id, post_content as "Sessions" from Users LEFT join Session on Users.userid = Session.userid group by username',
+     db.pool.query(`select friend_id, user_first_name, user_last_name, user_handle, user_image, user_status 
+     from friendships join users on friend_id=users.user_id where friendships.user_id = ? `, userID,
       function(error, results) {
         console.log(results)
         if (error) {                    
@@ -19,7 +20,7 @@ function getFriendList() {
         else {               
           return resolve(results);        
         }
-    */  
+      
         
         let result = [{       
           "friend_id": "u002",
