@@ -33,7 +33,7 @@ function addComment(commentObject, userID) {
 function getCommentsOnPost(post_id) {
   console.log('getCommentsOnPost function called', post_id)
   return new Promise((resolve, reject) =>{
-     db.pool.query('SELECT comment_id, commenter_id, comment_content, comment_timestamp FROM comments where post_id = ?', post_id,
+     db.pool.query('SELECT comment_id, commenter_id, user_handle, user_image, comment_content, comment_timestamp FROM comments join users on (commenter_id=user_id) where post_id = ?', post_id,
       function(error, results) {
         console.log(results)
         if (error) {                    
