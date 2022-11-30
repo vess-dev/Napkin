@@ -260,7 +260,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
                     console.log('on friends route')
                     routeFound = true;
                     // Get list of groups
-                    friend.getFriendList().then(list=>{
+                    friend.getFriendList(userID).then(list=>{
                       response.statusCode = 200;
                       response.write(JSON.stringify(list));
                     })
