@@ -14,7 +14,7 @@ function addComment(commentObject, userID) {
   let post_id = commentObject.post_id
   console.log(comment_content, post_id)
   return new Promise((resolve, reject) =>{
-     db.pool.query('INSERT INTO comments SET ?', {commenter_id: userID, comment_content: comment_content, comment_timestamp: NOW(), post_id: post_id},
+     db.pool.query('INSERT INTO comments SET ?', {commenter_id: userID, comment_content: comment_content, post_id: post_id},
       function(error, results) {
         console.log('error:',error)
         console.log('results',results)
@@ -25,9 +25,6 @@ function addComment(commentObject, userID) {
         else {               
           return resolve(results);        
         }
-
-    
-    
 
   });
 })}
