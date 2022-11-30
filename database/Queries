@@ -46,7 +46,7 @@ not just a list of post_ids, but the actual post contents all the stuff you'd ne
 
 
 */API GET GROUP MEMBERS*/
-*/READ*/ (SELECT * FROM group_memberships JOIN users ON group_memberships.user_id=users.user_id WHERE group_id = '${group_id}';
+*/READ*/ (SELECT gm.user_ID FROM group_memberships gm JOIN users ON gm.user_id=users.user_id WHERE group_id = '${group_id}';
 /* will try to get this one set up tonight -C /* 
 
 */AVG USER AGE */
