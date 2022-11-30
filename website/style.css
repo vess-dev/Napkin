@@ -14,13 +14,6 @@ body {
 	width: 100%;
 }
 
-#header h1 {
-	margin: 0;
-	top: 1rem;
-	left: 3rem;
-	position: absolute;
-}
-
 #content {
 	position: relative;
 	top: 5rem;
@@ -64,7 +57,7 @@ body {
 
 .Nav_Menu {
     font-size: 20px;
-    border: 1px solid #ddddb0;
+    border: 2px solid black;
     display: inline-block;
     position: relative;
     left: 2rem;
@@ -76,7 +69,7 @@ body {
 }
 
 .Nav_Menu:hover {
-    background: #ddddb0;
+    background: lightblue;
     cursor: pointer;
 }
 
