@@ -20,7 +20,7 @@ content-type: application/json
 cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
 ###
 
-GET http://cpsc.roanoke.edu:3009/groupmembers?group_id=2
+GET http://cpsc.roanoke.edu:3009/groupmembers?group_id=5
 content-type: application/json
 cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 
@@ -47,7 +47,7 @@ POST http://cpsc.roanoke.edu:3009/group
 content-type: application/json
 cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 
-{"group_name": "Silly noodles", "group_ranking": 3}
+{"group_name": "Tired coders", "group_ranking": 3}
 
 ###
 
@@ -56,15 +56,20 @@ PUT http://cpsc.roanoke.edu:3009/group
 content-type: application/json
 cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 
-{"group_id": 1, "group_ranking": 1}
+{"group_id": 5, "group_ranking": 5}
 
 ###
 POST http://cpsc.roanoke.edu:3009/comment
 content-type: application/json
 cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 
-{"post_id": 1, "comment_content": "hello world!"}
+{"post_id": 1, "comment_content": "making still more comments!!"}
 
+###
+
+GET http://cpsc.roanoke.edu:3009/group
+content-type: application/json
+cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 ###
 
 GET http://cpsc.roanoke.edu:3009/comment?post_id=1

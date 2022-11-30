@@ -70,6 +70,7 @@ function addNewGroup(groupObject) {
         db.pool.query('UPDATE groups SET ? where owner_id = ? and group_id = ?', [groupObject, user_id, group_id],
           function(error, results, fields) {
             console.log(error, results, fields)
+            //TODO:  This code correctly prevents users from changing other users' groups, but doesn't return an error if they try.
             if (error) {
               if (error.code === 'ER_DUP_ENTRY') {          
                 return reject(new BaseError("DB Error", 400, "Group already exists"));

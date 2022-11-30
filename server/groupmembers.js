@@ -10,7 +10,7 @@ const BaseError = require('./BaseError.js');
 function getGroupMembersList(group_id, requester_id) {
   console.log('getGroupMembersList was called and group_id is', group_id)
   return new Promise((resolve, reject) =>{
-     db.pool.query('SELECT * FROM group_memberships JOIN users ON group_memberships.user_id=users.user_id WHERE group_id = ? ', [group_id],
+     db.pool.query('SELECT user_handle, user_image, users.user_id, group_id FROM group_memberships JOIN users ON group_memberships.user_id=users.user_id WHERE group_id = ? ', [group_id],
       function(error, results) {
         console.log(error, results)
         if (error) {                    
