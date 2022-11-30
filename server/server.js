@@ -274,7 +274,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
                     });
                   }
                 }
- //GROUP routes
+ //COMMENT routes
         if (url.pathname === routes.COMMENT) {
           console.log('will serve comment stuff')
     
@@ -282,8 +282,8 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
           if (method === 'POST') {
             console.log('method is post for comment')
             routeFound = true;
-            bodyObject.owner_id = userID
-            group.addComment(bodyObject, userID).then(reply=>{
+            
+            comment.addComment(bodyObject, userID).then(reply=>{
               response.statusCode = 200;
               response.write('{"success":"New comment added with ID ' + reply + '"}');          
             })
