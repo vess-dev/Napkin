@@ -8,6 +8,8 @@ const BaseError = require('./BaseError.js');
  */ 
 function addComment(commentObject, userID) {
   console.log('addComment function called')
+  console.log('commentObject is', commentObject)
+  console.log('userID is', userID)
   return new Promise((resolve, reject) =>{
      db.pool.query('INSERT INTO comments SET ?', {commenter_id: userID, comment_content: commentObject.comment_content, comment_timestamp: NOW(), post_id: commentObject.post_id},
       function(error, results) {
