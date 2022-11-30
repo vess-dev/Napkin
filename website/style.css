@@ -26,9 +26,8 @@ body {
 }
 
 #content {
-	left: 10rem;
 	position: relative;
-	top: 10rem;
+	padding: 2% 0 2%;
 }
 
 #header {
