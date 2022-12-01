@@ -96,7 +96,7 @@ function updatePostWeight(post_id) {
         console.log('results parsed?', JSON.parse(results))
         return resolve(results)
       }
-      
+    })
       })
     }
     
