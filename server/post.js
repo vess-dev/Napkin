@@ -199,4 +199,4 @@ function getPostsFeed(userID) {
   // Taylor working on it!
 }
 
-module.exports = {getPostList, createPost, updatePostWeight, updateAllPostWeights, getPostsFeed}
+module.exports = {getPostList, createPost, updatePostWeightByPost, updatePostWeightByUser, updateAllPostWeights, getPostsFeed}
