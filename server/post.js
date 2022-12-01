@@ -93,10 +93,7 @@ function updatePostWeight(post_id) {
         console.log('error on post_weight', error)
         return reject(new BaseError("DB Error", 500, error));                 
       } else { console.log('here I am') 
-      Object.keys(results).forEach(function(key) {
-        var row = results[key];
-        console.log(row.name)
-      })
+        for (let onerow of results) {console.log(onerow.max_ranking)}
         return resolve(results)
       }
     })
