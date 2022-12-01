@@ -94,21 +94,13 @@ async function updatePostWeight(incoming_post_id) {
         return;                 
       } else { 
         for (let onerow of results) {
-          console.log(onerow.user_id, onerow.post_id)
           let {viewer_id, poster_id, post_id, max_ranking, post_likes_score, post_comment_count, post_timestamp, owner_id, member_id} = onerow
           let post_time = new Date(post_timestamp)
           let now_time = new Date(Date.now())
           let time_elapsed = Math.min(0.05,((now_time-post_time) /(1000*60*60*24) )) 
           let rank = (1/time_elapsed) * (post_comment_count + post_likes_score + 1) * max_ranking
           console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
-          /*date handling idea
-            let data1='2022-11-28T20:45:10.000Z'
-            let data2='2022-11-29T08:45:10.000Z'
-            let better1=new Date(data1)
-            let better2=new Date(data2)
-            console.log((better1-better2)/(1000*60*60))
-            let current_time = new Date(Date.now())
-            */
+          console.log('raw data: ',(time_elapsed, post_comment_count+post_likes_score+1), max_ranking )
         }
         return 
       }
