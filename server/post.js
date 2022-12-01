@@ -63,6 +63,7 @@ function createPost(postObject, userID) {
   // call API, then...
   let post_id = 1
   updatePostWeight(post_id)
+  updatePostWeight(2)
   return true 
 }
 
@@ -100,7 +101,7 @@ async function updatePostWeight(incoming_post_id) {
           let time_elapsed = Math.min(0.05,((now_time-post_time) /(1000*60*60*24) )) 
           let rank = (1/time_elapsed) * (post_comment_count + post_likes_score + 1) * max_ranking
           console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
-          console.log('raw data: ',(time_elapsed, post_comment_count+post_likes_score+1), max_ranking )
+          console.log('raw data: ',time_elapsed, (post_comment_count+post_likes_score+1), max_ranking )
         }
         return 
       }
