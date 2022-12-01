@@ -193,7 +193,7 @@ async function updateAllPostWeights() {
   }
 
 
-}
+
 
 function getPostsFeed(userID) {
   // Taylor working on it!
