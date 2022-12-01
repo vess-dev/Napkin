@@ -95,7 +95,8 @@ CREATE TABLE posts_feed(
   post_id int NOT NULL,
   post_weight int NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(user_id),
-  foreign key (post_id) references posts(post_id)
+  foreign key (post_id) references posts(post_id),
+  primary key (user_id, post_id)
 );
 
 

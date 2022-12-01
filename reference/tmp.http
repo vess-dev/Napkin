@@ -29,7 +29,14 @@ cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 
 GET http://cpsc.roanoke.edu:3009/post
 content-type: application/json
-cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
+cookie: sessionid=f0969177-914e-4884-b7ae-b844c10e8993
+###
+
+POST http://cpsc.roanoke.edu:3009/post
+content-type: application/json
+cookie: sessionid=f0969177-914e-4884-b7ae-b844c10e8993
+
+{"post_title": "my latest post", "post_content": "this is a post"}
 ###
 
 GET http://cpsc.roanoke.edu:3009/group

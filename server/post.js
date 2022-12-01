@@ -66,9 +66,9 @@ function createPost(postObject, userID) {
   return true 
 }
 
-function updatePostWeight(post_id) {
+async function updatePostWeight(incoming_post_id) {
   // note: query returns multiple rows 
-  return new Promise((resolve, reject) =>{
+  
     db.pool.query(`select viewer_id, poster_id, post_id, max_ranking, post_likes_score, post_comment_count, post_timestamp from (
       select owner_id, member_id, max(group_ranking) as max_ranking from 
       (select groups.group_id, user_id as member_id, owner_id, group_ranking  
@@ -84,21 +84,36 @@ function updatePostWeight(post_id) {
       from 
       (post_groups JOIN group_memberships using (group_id)) 
       JOIN posts using (post_id)) as tab2
-      on (tab1.owner_id = tab2.viewer_id AND tab1.member_id = tab2.poster_id) having post_id = ?`, post_id,
-    function(error, results) {
+      on (tab1.owner_id = tab2.viewer_id AND tab1.member_id = tab2.poster_id) having post_id = ?`, incoming_post_id,
+      (error, results) => {
       console.log('error:',error)
       console.log('results:',results)
       
       if (error) {   
         console.log('error on post_weight', error)
-        return reject(new BaseError("DB Error", 500, error));                 
-      } else { console.log('here I am') 
-        for (let onerow of results) {console.log(onerow.max_ranking)}
-        return resolve(results)
+        return;                 
+      } else { 
+        for (let onerow of results) {
+          console.log(onerow.user_id, onerow.post_id)
+          let {viewer_id, poster_id, post_id, max_ranking, post_likes_score, post_comment_count, post_timestamp, owner_id, member_id} = onerow
+          let post_time = new Date(post_timestamp)
+          let now_time = new Date(Date.now())
+          let time_elapsed = Math.min(0.05,((now_time-post_time) /(1000*60*60*24) )) 
+          let rank = (1/time_elapsed) * (post_comment_count + post_likes_score + 1) * max_ranking
+          console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
+          /*date handling idea
+            let data1='2022-11-28T20:45:10.000Z'
+            let data2='2022-11-29T08:45:10.000Z'
+            let better1=new Date(data1)
+            let better2=new Date(data2)
+            console.log((better1-better2)/(1000*60*60))
+            let current_time = new Date(Date.now())
+            */
+        }
+        return 
       }
     })
-      })
-    }
+  }
     
 
 function updateAllPostWeights() {
