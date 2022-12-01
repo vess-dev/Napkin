@@ -61,8 +61,8 @@ function getPostList() {
 function createPost(postObject, userID) {
   //TODO
   // call API, then...
-  let post_id = 1
-  updatePostWeight(post_id)
+  
+  updatePostWeight(1)
   updatePostWeight(2)
   return true 
 }
@@ -87,9 +87,7 @@ async function updatePostWeight(incoming_post_id) {
       JOIN posts using (post_id)) as tab2
       on (tab1.owner_id = tab2.viewer_id AND tab1.member_id = tab2.poster_id) having post_id = ?`, incoming_post_id,
       (error, results) => {
-      console.log('error:',error)
-      console.log('results:',results)
-      
+     
       if (error) {   
         console.log('error on post_weight', error)
         return;                 
@@ -102,12 +100,17 @@ async function updatePostWeight(incoming_post_id) {
           let rank = (1/time_elapsed) * (post_comment_count + post_likes_score + 1) * max_ranking
           console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
           console.log('raw data: ',time_elapsed, (post_comment_count+post_likes_score+1), max_ranking )
+          updatePostWeightTable(user_id, post_id, rank)
         }
         return 
       }
     })
   }
-    
+
+  async function updatePostWeightTable (user_id, post_id, post_weight) {
+    db.pool.query('replace into posts_feed (user_id, post_id, post_weight) values (?,?,?)',user_id, post_id, post_weight)
+    return 
+  }
 
 function updateAllPostWeights() {
   // get all post_ids and call updatePostWeight repeatedly...
