@@ -135,7 +135,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
       // Creating a new POST
       if (method === 'POST') {
         routeFound = true;
-        post.addNewPOST(bodyObject).then(reply=>{
+        post.createPost(bodyObject, userID).then(reply=>{
           response.statusCode = 200;
           response.write('{"success":"New post added with ID ' + reply + '"}');          
         })
