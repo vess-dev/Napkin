@@ -55,6 +55,12 @@ select * from users inner join posts_feed on users.user_id=posts_feed.user_id in
 */READ*/ (SELECT gm.user_ID FROM group_memberships gm JOIN users ON gm.user_id=users.user_id WHERE group_id = '${group_id}';
 /* will try to get this one set up tonight -C /* 
 
+*/USER who has the most likes/*
+select user_id, MAX(likes) FROM reactions 
+
+*/USER who posts the most /*
+select COUNT(user_id) FROM posts WHERE user_id = '${user_id}';
+
 */AVG USER AGE */
 */READ*/ SELECT AVG(user_age) FROM users;
 */READ*/ SELECT AVG(user_age) FROM users where user_age > '15';
