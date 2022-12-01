@@ -61,6 +61,7 @@ function getPostList() {
 function createPost(postObject, userID) {
   //TODO
   // call API, then...
+  let post_id = 1
   updatePostWeight(post_id)
 }
 
