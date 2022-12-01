@@ -62,7 +62,7 @@ function createPost(postObject, userID) {
   //TODO
   // call API, then...
   let post_id = 1
-  updatePostWeight(post_id)
+  updatePostWeight(post_id).then(result=> resolve(result))
 }
 
 function updatePostWeight(post_id) {
