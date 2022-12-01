@@ -1,4 +1,4 @@
-Future query of doom
+Future query of doom work
 
 select * from 
 (
@@ -11,15 +11,16 @@ join
 
 select max(group_ranking) from groups where owner_id = 11 group by owner_id
 
-
-
+=======
+// Final code for groups_merge group
 create view groups_merge as (
 
 select groups.group_id, user_id as member_id, owner_id, group_ranking  
 from group_memberships 
 join 
 groups 
-on (groups.group_id=group_memberships.group_id) ;
+on (groups.group_id=group_memberships.group_id) );
+===============================
 
 // make the visibility VIEW
 select post_groups.post_id, user_id as viewer_id from post_groups JOIN group_memberships using (group_id) 
@@ -28,7 +29,7 @@ select post_groups.post_id, user_id as viewer_id from post_groups JOIN group_mem
 select post_groups.post_id, group_memberships.user_id as viewer_id, posts.user_id as poster_id from 
 (post_groups JOIN group_memberships using (group_id)) 
 JOIN posts using (post_id)
-
+=================================
 
 insert into posts_feed (select viewer_id as user_id, post_id, 0 as post_weight from visibility) ;
 
@@ -71,7 +72,7 @@ JOIN posts using (post_id)) as tab1
 select owner_id, member_id, max(group_ranking) as max_ranking from group_merge group by owner_id, member_id ;
 
 // THIS. THIS RIGHT HERE.
-select * from (
+select viewer_id, poster_id, post_id, max_ranking from (
 select owner_id, member_id, max(group_ranking) as max_ranking from group_merge group by owner_id, member_id 
 ) as tab1
 JOIN 
@@ -79,3 +80,56 @@ JOIN
 (post_groups JOIN group_memberships using (group_id)) 
 JOIN posts using (post_id)) as tab2
 on (tab1.owner_id = tab2.poster_id AND tab1.member_id = tab2.viewer_id);
+
+// rewrite to remove bonus view
+
+select viewer_id, poster_id, post_id, max_ranking from (
+select owner_id, member_id, max(group_ranking) as max_ranking from 
+(select groups.group_id, user_id as member_id, owner_id, group_ranking  
+from group_memberships 
+join 
+groups 
+on (groups.group_id=group_memberships.group_id) ) as tab3
+group by owner_id, member_id 
+) as tab1
+JOIN 
+(select post_groups.post_id, group_memberships.user_id as viewer_id, posts.user_id as poster_id from 
+(post_groups JOIN group_memberships using (group_id)) 
+JOIN posts using (post_id)) as tab2
+on (tab1.owner_id = tab2.poster_id AND tab1.member_id = tab2.viewer_id);
+// ^^ this gets group_rankings swapped.  Trying again, below!
+
+// BAM. This is it! // 
+select viewer_id, poster_id, post_id, max_ranking from (
+select owner_id, member_id, max(group_ranking) as max_ranking from 
+(select groups.group_id, user_id as member_id, owner_id, group_ranking  
+from group_memberships 
+join 
+groups 
+on (groups.group_id=group_memberships.group_id) ) as tab3
+group by owner_id, member_id 
+) as tab1
+JOIN 
+(select post_groups.post_id, group_memberships.user_id as viewer_id, posts.user_id as poster_id from 
+(post_groups JOIN group_memberships using (group_id)) 
+JOIN posts using (post_id)) as tab2
+on (tab1.owner_id = tab2.viewer_id AND tab1.member_id = tab2.poster_id);
+
+// but why not add more?
+
+select viewer_id, poster_id, post_id, max_ranking, post_likes_score, post_comment_count, post_timestamp from (
+select owner_id, member_id, max(group_ranking) as max_ranking from 
+(select groups.group_id, user_id as member_id, owner_id, group_ranking  
+from group_memberships 
+join 
+groups 
+on (groups.group_id=group_memberships.group_id) ) as tab3
+group by owner_id, member_id 
+) as tab1
+JOIN 
+(select post_groups.post_id, group_memberships.user_id as viewer_id, posts.user_id as poster_id,
+posts.post_likes_score, posts.post_comment_count, posts.post_timestamp 
+from 
+(post_groups JOIN group_memberships using (group_id)) 
+JOIN posts using (post_id)) as tab2
+on (tab1.owner_id = tab2.viewer_id AND tab1.member_id = tab2.poster_id);

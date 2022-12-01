@@ -65,19 +65,33 @@ function createPost(postObject, userID) {
 }
 
 function updatePostWeight(post_id) {
-    db.pool.query('select comments_count, post_likes_score, post_timestamp, group_ranking from posts join ', [],
+  // note: query returns multiple rows 
+    db.pool.query(`select viewer_id, poster_id, post_id, max_ranking, post_likes_score, post_comment_count, post_timestamp from (
+      select owner_id, member_id, max(group_ranking) as max_ranking from 
+      (select groups.group_id, user_id as member_id, owner_id, group_ranking  
+      from group_memberships 
+      join 
+      groups 
+      on (groups.group_id=group_memberships.group_id) ) as tab3
+      group by owner_id, member_id 
+      ) as tab1
+      JOIN 
+      (select post_groups.post_id, group_memberships.user_id as viewer_id, posts.user_id as poster_id,
+      posts.post_likes_score, posts.post_comment_count, posts.post_timestamp 
+      from 
+      (post_groups JOIN group_memberships using (group_id)) 
+      JOIN posts using (post_id)) as tab2
+      on (tab1.owner_id = tab2.viewer_id AND tab1.member_id = tab2.poster_id) having post_id = ?`, post_id,
     function(error, results) {
       console.log('error:',error)
       console.log('results',results)
       console.log(results)
       if (error) {   
-        console.log('error on comments', error)                 
+        console.log('error on post_weight', error)                 
         return reject(new BaseError("DB Error", 500, error));
         
       }
-      else { 
-        console.log('comments updated for ',post_id)
-        recalculateComments(post_id);              
+      else {          
         return resolve(results);        
       }
     })
