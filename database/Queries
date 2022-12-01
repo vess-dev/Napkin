@@ -56,7 +56,7 @@ select * from users inner join posts_feed on users.user_id=posts_feed.user_id in
 /* will try to get this one set up tonight -C /* 
 
 */USER who has the most likes/*
-select user_id, MAX(likes) FROM reactions 
+select user_id, MAX(post_likes_score) FROM posts join users on users.user_id=posts.post_id;
 
 */USER who posts the most /*
 select COUNT(user_id) FROM posts WHERE user_id = '${user_id}';
