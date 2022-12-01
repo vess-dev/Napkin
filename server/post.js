@@ -58,54 +58,37 @@ function getPostList() {
   //});
 }
 
-/**
- *  Given a user object, attempts to add that user
- */ 
-/*function addNewUser(userObject) {
-  return new Promise((resolve, reject) =>{
-    // Ensure username and password are present
-    if (!userObject.username || !userObject.password) {
-      return reject(new BaseError("Missing Fields", 400, "Username and Password are required fields"));
+function createPost(postObject, userID) {
+  //TODO
+  // call API, then...
+  updatePostWeight(post_id)
+}
+
+function updatePostWeight(post_id) {
+    db.pool.query('select comments_count, post_likes_score, post_timestamp, group_ranking from posts join ', [],
+    function(error, results) {
+      console.log('error:',error)
+      console.log('results',results)
+      console.log(results)
+      if (error) {   
+        console.log('error on comments', error)                 
+        return reject(new BaseError("DB Error", 500, error));
+        
+      }
+      else { 
+        console.log('comments updated for ',post_id)
+        recalculateComments(post_id);              
+        return resolve(results);        
+      }
+    })
     }
 
-    bcrypt.genSalt(10).then((salt) => {              
-      bcrypt.hash(userObject.password, salt).then((hash) =>{        
-        // Store hash in the database
-        insertUser(userObject.username, hash, userObject.fullname)
-        .then(response=>resolve(response))          
-        .catch((error)=> {          
-            return reject(error);
-        });                 
-      })      
-    })
-  });
+function updateAllPostWeights() {
+  // get all post_ids and call updatePostWeight repeatedly...
 }
-*/
-/**
- *  Given a username, password, and other option details, attempts to insert that user into the 
- *  datbase. 
- *  If user is created successfull, the promise is reolved and userid is returned. 
- *  Else, promise is rejected and an error message is returned.
- */ 
-/*function insertUser(username, password, fullname) {
-  return new Promise((resolve, reject) =>{
-    db.pool.query('INSERT INTO Users SET ?', 
-      {username: username, password: password, fullname: fullname}, 
-      function(error, results, fields) {
-        if (error) {
-          if (error.code === 'ER_DUP_ENTRY') {          
-            return reject(new BaseError("DB Error", 400, "Username already exists"));
-          }
-          else {
-            return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
-          }
-        }
-        else {
-          // rows added          
-          return resolve(results.insertId);        
-        }
-    });
-  });
+
+function getPostsFeed(userID) {
+  // Taylor working on it!
 }
-*/
-module.exports = {getPostList}
+
+module.exports = {getPostList, createPost, updatePostWeight, updateAllPostWeights, getPostsFeed}
