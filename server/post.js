@@ -68,6 +68,7 @@ function createPost(postObject, userID) {
 
 function updatePostWeight(post_id) {
   // note: query returns multiple rows 
+  return new Promise((resolve, reject) =>{
     db.pool.query(`select viewer_id, poster_id, post_id, max_ranking, post_likes_score, post_comment_count, post_timestamp from (
       select owner_id, member_id, max(group_ranking) as max_ranking from 
       (select groups.group_id, user_id as member_id, owner_id, group_ranking  
@@ -89,8 +90,12 @@ function updatePostWeight(post_id) {
       console.log('results:',results)
       
       if (error) {   
-        console.log('error on post_weight', error)                 
-      }  else { console.log(results.json()) }
+        console.log('error on post_weight', error)
+        return reject(new BaseError("DB Error", 500, error));                 
+      } else { console.log('here I am') 
+        console.log('results parsed?', JSON.parse(results))
+        return resolve(results)
+      }
       
       })
     }
