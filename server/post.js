@@ -100,7 +100,7 @@ async function updatePostWeight(incoming_post_id) {
           let rank = (1/time_elapsed) * (post_comment_count + post_likes_score + 1) * max_ranking
           console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
           console.log('raw data: ',time_elapsed, (post_comment_count+post_likes_score+1), max_ranking )
-          updatePostWeightTable(user_id, post_id, rank)
+          updatePostWeightTable(viewer_id, post_id, rank)
         }
         return 
       }
