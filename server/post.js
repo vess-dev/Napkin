@@ -62,7 +62,8 @@ function createPost(postObject, userID) {
   //TODO
   // call API, then...
   let post_id = 1
-  updatePostWeight(post_id).then(result=> resolve(result))
+  updatePostWeight(post_id)
+  return true 
 }
 
 function updatePostWeight(post_id) {
@@ -85,18 +86,15 @@ function updatePostWeight(post_id) {
       on (tab1.owner_id = tab2.viewer_id AND tab1.member_id = tab2.poster_id) having post_id = ?`, post_id,
     function(error, results) {
       console.log('error:',error)
-      console.log('results',results)
-      console.log(results)
+      console.log('results:',results)
+      
       if (error) {   
         console.log('error on post_weight', error)                 
-        return reject(new BaseError("DB Error", 500, error));
-        
-      }
-      else {          
-        return resolve(results);        
-      }
-    })
+      }  else { console.log(results.json()) }
+      
+      })
     }
+    
 
 function updateAllPostWeights() {
   // get all post_ids and call updatePostWeight repeatedly...
