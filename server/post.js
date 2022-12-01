@@ -96,7 +96,7 @@ async function updatePostWeightByPost(incoming_post_id) {
           let {viewer_id, poster_id, post_id, max_ranking, post_likes_score, post_comment_count, post_timestamp, owner_id, member_id} = onerow
           let post_time = new Date(post_timestamp)
           let now_time = new Date(Date.now())
-          let time_elapsed = Math.min(0.05,((now_time-post_time) /(1000*60*60*24) )) 
+          let time_elapsed = Math.max(0.05,((now_time-post_time) /(1000*60*60*24) )) 
           let rank = (1/time_elapsed) * (post_comment_count + post_likes_score + 1) * max_ranking
           console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
           console.log('raw data: ',time_elapsed, (post_comment_count+post_likes_score+1), max_ranking )
@@ -136,7 +136,7 @@ async function updatePostWeightByPost(incoming_post_id) {
             let {viewer_id, poster_id, post_id, max_ranking, post_likes_score, post_comment_count, post_timestamp, owner_id, member_id} = onerow
             let post_time = new Date(post_timestamp)
             let now_time = new Date(Date.now())
-            let time_elapsed = Math.min(0.05,((now_time-post_time) /(1000*60*60*24) )) 
+            let time_elapsed = Math.max(0.05,((now_time-post_time) /(1000*60*60*24) )) 
             let rank = (1/time_elapsed) * (post_comment_count + post_likes_score + 1) * max_ranking
             console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
             console.log('raw data: ',time_elapsed, (post_comment_count+post_likes_score+1), max_ranking )
@@ -181,7 +181,7 @@ async function updateAllPostWeights() {
           let {viewer_id, poster_id, post_id, max_ranking, post_likes_score, post_comment_count, post_timestamp, owner_id, member_id} = onerow
           let post_time = new Date(post_timestamp)
           let now_time = new Date(Date.now())
-          let time_elapsed = Math.min(0.05,((now_time-post_time) /(1000*60*60*24) )) 
+          let time_elapsed = Math.max(0.05,((now_time-post_time) /(1000*60*60*24) )) 
           let rank = (1/time_elapsed) * (post_comment_count + post_likes_score + 1) * max_ranking
           console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
           console.log('raw data: ',time_elapsed, (post_comment_count+post_likes_score+1), max_ranking )
