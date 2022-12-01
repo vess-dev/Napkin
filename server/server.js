@@ -377,6 +377,8 @@ function handleErrorReply(response, errorObj, code, message) {
 
 server.listen(port, () => {
   console.log(`Server running at port ${port}`);
-  // Remove expired sessions every 10 minutes
+  // Remove expired sessions every 16 minutes
   setTimeout(auth.expireSessions, 1000000);
+  // recalculate post weights: (each minute - which is silly)
+  setTimeout(post.updateAllPostWeights, 60000);
 })
