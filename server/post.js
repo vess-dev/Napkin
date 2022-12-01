@@ -93,7 +93,10 @@ function updatePostWeight(post_id) {
         console.log('error on post_weight', error)
         return reject(new BaseError("DB Error", 500, error));                 
       } else { console.log('here I am') 
-        console.log('results parsed?', JSON.parse(results))
+      Object.keys(results).forEach(function(key) {
+        var row = results[key];
+        console.log(row.name)
+      })
         return resolve(results)
       }
     })
