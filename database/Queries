@@ -15,7 +15,7 @@
 */READ API*/ db.pool.query(SELECT comment_id, commenter_id, user_id, user_handle, user_image, comment_content, comment_timestamp FROM comments JOIN posts on comments.post_id=posts.post_id;
 /* Good*/
 
-*/DELETE*/ db.pool.query(`DELETE FROM comments WHERE commenter_id = '${commenter_id}' AND post_id = '${post_id}'`)
+*/DELETE*/ db.pool.query(`DELETE FROM comments WHERE post_id = ANY(select * from comments join users on comments.commenter_id=users.user_id;)
 /* this delete needs some checking - who is allowed to delete a post? Also, could there be multiple comments by the same user on a single post? This would delete
 them all... */
 
