@@ -108,7 +108,7 @@ async function updatePostWeight(incoming_post_id) {
   }
 
   async function updatePostWeightTable (user_id, post_id, post_weight) {
-    db.pool.query('replace into posts_feed (user_id, post_id, post_weight) values (?,?,?)',user_id, post_id, post_weight)
+    db.pool.query('replace into posts_feed (user_id, post_id, post_weight) values (?,?,?)',[user_id, post_id, post_weight])
     return 
   }
 
