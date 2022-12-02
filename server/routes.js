@@ -7,5 +7,6 @@ const GROUP = '/group';
 const FRIEND = '/friend';
 const COMMENT = '/comment';
 const USERPASSWD = '/userpassword';
+const POSTGROUP = '/postgroup';
 
-module.exports={USER, USERPASSWD, LOGIN, LOGOUT, POST, GROUPMEMBERS, GROUP, FRIEND, COMMENT};
+module.exports={USER, USERPASSWD, LOGIN, LOGOUT, POST, GROUPMEMBERS, GROUP, FRIEND, COMMENT, POSTGROUP};

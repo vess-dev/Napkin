@@ -272,22 +272,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         }
   //friend routes
                 if (url.pathname === routes.FRIEND) {
-            
-                  // Creating a new POST
-                  /*if (method === 'POST') {
-                    routeFound = true;
-                    post.addNewPOST(bodyObject).then(reply=>{
-                      response.statusCode = 200;
-                      response.write('{"success":"New post added with ID ' + reply + '"}');          
-                    })
-                    .catch(error=>{
-                      handleErrorReply(response, error, 400);
-                    })
-                    .finally(() => {
-                      response.end();
-                    });
-                  } */
-                  // Get list of all posts
+
                   if (method === 'GET') {
                     console.log('on friends route')
                     routeFound = true;
@@ -305,6 +290,24 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
                     });
                   }
                 }
+  //postgroup routes
+    if (url.pathname === routes.POSTGROUP) {
+
+      if (method === 'POST') {
+        routeFound = true;
+        post.putPostInGroup(userID, bodyObject.group_id, bodyObject.post_id).then(reply=>{
+          response.statusCode = 200;
+          response.write('{"success":"post put in group ' + reply + '"}');          
+        })
+        .catch(error=>{
+          handleErrorReply(response, error, 400);
+        })
+        .finally(() => {
+          response.end();
+        });
+
+      }
+    }
  //COMMENT routes
         if (url.pathname === routes.COMMENT) {
           console.log('will serve comment stuff')

@@ -201,4 +201,4 @@ function getPostList(userID) {
       })})
 }
 
-module.exports = {getPostList, createPost, updatePostWeightByPost, updatePostWeightByUser, updateAllPostWeights}
+module.exports = {putPostInGroup, getPostList, createPost, updatePostWeightByPost, updatePostWeightByUser, updateAllPostWeights}
