@@ -2,8 +2,6 @@ const db = require('./dbi.js');
 const bcrypt = require('bcrypt');
 const BaseError = require('./BaseError.js');
 
-
-
 function createPost(postObject, userID) {
   return new Promise((resolve, reject) =>{
     if (!postObject || !userID || !postObject.post_title || !postObject.post_content) {
@@ -24,7 +22,7 @@ function createPost(postObject, userID) {
           console.log('added post with number', results.insertId)   
           updatePostWeightByPost(results.insertId)
           if (postObject.group_id) {
-            putPostInGroup(userID, postObject.group_id, resultsinsertID)
+            putPostInGroup(userID, postObject.group_id, results.insertID)
           }
           return resolve(results.insertId);        
         }
@@ -34,8 +32,22 @@ function createPost(postObject, userID) {
 }
 
 function putPostInGroup(user_id, group_id, post_id) {
-  //TODO
-}
+  db.pool.query(`insert into post_groups (group_id, post_id)
+  select ?, ?
+  where group_id=? and post_id=? 
+  and group_id IN (select group_id from groups where owner_id=? ) 
+  and post_id IN (select post_id from posts where user_id=?`, [group_id, post_id, user_id, user_id],
+  (error, results) => {
+       
+    if (error) {   
+      console.log('error on put post in group', error)
+      return;                 
+    } else { 
+      console.log('post added to group successfully: ', results)
+      updatePostWeightByPost(post_id) 
+      return(results)
+    }
+})}
 
 async function updatePostWeightByPost(incoming_post_id) {
   // note: query returns multiple rows 
