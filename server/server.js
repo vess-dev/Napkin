@@ -151,7 +151,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         console.log('so far so good')
         routeFound = true;
         // Get list of posts
-        post.getPostList().then(list=>{
+        post.getPostList(userID).then(list=>{
           console.log('list is',list)
           response.statusCode = 200;
           response.write(JSON.stringify(list));
