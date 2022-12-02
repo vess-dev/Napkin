@@ -23,11 +23,18 @@ function createPost(postObject, userID) {
           // rows added     
           console.log('added post with number', results.insertId)   
           updatePostWeightByPost(results.insertId)
+          if (postObject.group_id) {
+            putPostInGroup(userID, postObject.group_id, resultsinsertID)
+          }
           return resolve(results.insertId);        
         }
     });
   });
 
+}
+
+function putPostInGroup(user_id, group_id, post_id) {
+  //TODO
 }
 
 async function updatePostWeightByPost(incoming_post_id) {

@@ -36,7 +36,7 @@ POST http://cpsc.roanoke.edu:3009/post
 content-type: application/json
 cookie: sessionid=f0969177-914e-4884-b7ae-b844c10e8993
 
-{"post_title": "my latest post", "post_content": "this is a post"}
+{"post_title": "Another post by me!", "post_content": "this is a post"}
 ###
 
 GET http://cpsc.roanoke.edu:3009/group
