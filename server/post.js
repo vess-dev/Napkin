@@ -41,7 +41,7 @@ function putPostInGroup(user_id, group_id, post_id) {
   select ?, ?
   where 
   ? IN (select group_id from groups where owner_id=? ) 
-  and ? IN (select post_id from posts where user_id=?`, 
+  and ? IN (select post_id from posts where user_id=? )`, 
   [group_id, post_id, group_id, user_id, post_id, user_id],
   (error, results) => {
        

@@ -6,7 +6,7 @@ content-type: application/json
 
 
 {"user_email": "catsarisky@gmail.com",
-"password": "gottagetapwd"}
+"password": "gottagetanewpwd"}
 
 ###
 
@@ -50,7 +50,7 @@ POST http://cpsc.roanoke.edu:3009/post
 content-type: application/json
 cookie: sessionid=f0969177-914e-4884-b7ae-b844c10e8993
 
-{"post_title": "Another post by me!", "post_content": "this is a post"}
+{"post_title": "nother post 2", "post_content": "Lorem ipsum forever", "group_id": 10}
 ###
 
 GET http://cpsc.roanoke.edu:3009/group
