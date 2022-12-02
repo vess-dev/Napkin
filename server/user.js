@@ -95,7 +95,7 @@ function insertUser(user_first_name, user_last_name, user_email, user_password, 
 }
 function changeUserPassword(newpassword, userID){
   bcrypt.genSalt(10).then((salt) => {              
-    bcrypt.hash(userObject.user_password, salt).then((hash) =>{        
+    bcrypt.hash(password, salt).then((hash) =>{        
       // Store hash in the database
       console.log('hash is ', hash)
       changePasswordDB(hash, userID)
