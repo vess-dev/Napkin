@@ -49,7 +49,7 @@ not just a list of post_ids, but the actual post contents all the stuff you'd ne
 */READ*/ (select * from posts_feed inner join posts on posts_feed.post_id=posts_feed.post_id order by post_weight DESC;)
 */In the read below it returns all the users information from the post they made but it only returns the user_id matching between the three tables users, post_feed, and posts*/
 select * from users inner join posts_feed on users.user_id=posts_feed.user_id inner join posts on posts_feed.user_id=posts.user_id order by post_weight DESC;)
-
+Cathy says:  I've got this one working.
 
 */API GET GROUP MEMBERS*/
 */READ*/ (SELECT gm.user_ID FROM group_memberships gm JOIN users ON gm.user_id=users.user_id WHERE group_id = '${group_id}';
