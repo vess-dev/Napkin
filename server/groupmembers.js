@@ -23,38 +23,25 @@ function getGroupMembersList(group_id, requester_id) {
      
     })
   };
-    
-    
-
-  //});
-
-
-
-/**
- *  Given a username, password, and other option details, attempts to insert that user into the 
- *  datbase. 
- *  If user is created successfull, the promise is reolved and userid is returned. 
- *  Else, promise is rejected and an error message is returned.
- */ 
-/*function insertUser(username, password, fullname) {
-  return new Promise((resolve, reject) =>{
-    db.pool.query('INSERT INTO Users SET ?', 
-      {username: username, password: password, fullname: fullname}, 
-      function(error, results, fields) {
-        if (error) {
-          if (error.code === 'ER_DUP_ENTRY') {          
-            return reject(new BaseError("DB Error", 400, "Username already exists"));
+  function deleteGroupMember(group_id, friend_id, user_id) {
+    return new Promise((resolve, reject) =>{
+       db.pool.query('DELETE FROM group_memberships WHERE group_id = ? AND user_id=? AND exists (select * from groups where group_id=? and owner_id=?', 
+       [group_id, friend_id, group_id, user_id],
+        function(error, results) {
+          console.log(error, results)
+          if (error) {                    
+            return reject(new BaseError("DB Error", 500, error));
           }
-          else {
-            return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
+          else {               
+            return resolve(results);        
           }
-        }
-        else {
-          // rows added          
-          return resolve(results.insertId);        
-        }
-    });
-  });
-}
-*/
-module.exports = {getGroupMembersList}
+        })
+       
+      })
+    };   
+
+
+
+
+
+module.exports = {getGroupMembersList, deleteGroupMember}

@@ -188,6 +188,23 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
           response.end(); 
         });
       }
+      if (method === 'DELETE') {
+        routeFound = true;
+        console.log('group_id is ',queryObject.group_id)
+        
+        groupmembers.deleteGroupMember(queryObject.group_id, queryObject.friend_id, userID).then(list=>{
+          response.statusCode = 200;
+          response.write(JSON.stringify(list));
+        })
+        .catch(error=>{
+          console.log('caught an error', error)
+          handleErrorReply(response, error);
+        })
+        .finally(() => {
+          response.end(); 
+        });
+      }
+    
     }
  //GROUP routes
         if (url.pathname === routes.GROUP) {
