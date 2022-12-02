@@ -22,7 +22,8 @@ function createPost(postObject, userID) {
           console.log('added post with number', results.insertId)   
           updatePostWeightByPost(results.insertId)
           if (postObject.group_id) {
-            putPostInGroup(userID, postObject.group_id, results.insertID)
+            console.log('calling putPostInGroup with', userID, postObject.group_id, results.insertId)
+            putPostInGroup(userID, postObject.group_id, results.insertId)
           }
           return resolve(results.insertId);        
         }
