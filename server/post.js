@@ -5,11 +5,29 @@ const BaseError = require('./BaseError.js');
 
 
 function createPost(postObject, userID) {
-  //TODO
-  // call API, then...
-  
-  updatePostWeightByPost(1)
-  return true 
+  return new Promise((resolve, reject) =>{
+    if (!postObject || !userID || !postObject.post_title || !postObject.post_content) {
+      return reject(new BaseError('wrong parameters', 500, "must pass all params"))
+    }
+    db.pool.query('INSERT INTO posts SET ?', {user_id: userID, 
+      post_title: postObject.post_title, post_content: postObject.post_content, 
+      post_image: postObject.post_image, post_likes_score: 0, post_comment_count: 0, 
+      post_visable: true},
+      function(error, results, fields) {
+        console.log(error, results, fields)
+        if (error) {
+            console.log('error creating post:', error)
+            return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
+        }
+        else {
+          // rows added     
+          console.log('added post with number', results.insertId)   
+          updatePostWeightByPost(results.insertId)
+          return resolve(results.insertId);        
+        }
+    });
+  });
+
 }
 
 async function updatePostWeightByPost(incoming_post_id) {
