@@ -306,8 +306,8 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         .finally(() => {
           response.end();
         });
-
       }
+    
       if (method === 'DELETE') {
         routeFound = true;
         let group_id=queryObject.group_id
@@ -323,7 +323,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
           response.end();
         }); 
       }
-    }
+      }
  //COMMENT routes
         if (url.pathname === routes.COMMENT) {
           console.log('will serve comment stuff')
