@@ -93,5 +93,37 @@ function insertUser(user_first_name, user_last_name, user_email, user_password, 
     });
   });
 }
+function changeUserPassword(newpassword, userID){
+  bcrypt.genSalt(10).then((salt) => {              
+    bcrypt.hash(userObject.user_password, salt).then((hash) =>{        
+      // Store hash in the database
+      console.log('hash is ', hash)
+      changePasswordDB(hash, userID)
+      .then(response=>resolve(response))          
+      .catch((error)=> {          
+          return reject(error);
+      })
+    })})
+}
 
-module.exports = {addNewUser, insertUser, getUserList, searchUsers}
+function changePasswordDB(hash,userID) {
+  return new Promise((resolve, reject) =>{
+    db.pool.query('update users set user_password = ? where user_id= ? }', [hash, userID],
+      function(error, results, fields) {
+        if (error) {
+  //        if (error.code === 'ER_DUP_ENTRY') {          
+  //          return reject(new BaseError("DB Error", 400, "Username already exists"));
+  //        }
+  //        else {
+            return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
+   //       }
+        }
+        else {
+          // rows added          
+          return resolve(results);        
+        }
+    });
+  });
+}
+
+module.exports = {addNewUser, insertUser, getUserList, searchUsers, changeUserPassword}

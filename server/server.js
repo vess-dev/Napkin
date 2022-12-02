@@ -81,7 +81,21 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         response.statusCode = 200;
         response.end();       
     }
-
+    if (url.pathname === routes.USERPASSWD) {
+      if (method === 'POST') {
+        routeFound = true;
+        user.changeUserPassword(bodyObject.newpassword, userID).then(reply=>{
+          response.statusCode = 200;
+          response.write('{"success":"Password change result:' + reply + '"}');          
+        })
+        .catch(error=>{
+          handleErrorReply(response, error, 400);
+        })
+        .finally(() => {
+          response.end();
+        });
+      }
+    }
     // USER routes
     if (url.pathname === routes.USER) {
       // Creating a new user
