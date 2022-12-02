@@ -52,6 +52,7 @@ function handleHTTPRequests(request, response) {
   });
   request.on('end', () => {
     if (data) { 
+      console.log('data is',data)
       parsedRequestBody = JSON.parse(data);
     }
 
