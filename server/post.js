@@ -33,11 +33,7 @@ function createPost(postObject, userID) {
 }
 
 function putPostInGroup(user_id, group_id, post_id) {
-  // insert into post_groups (group_id, post_id) 
-  // select 10, 5 where 
-  // 10 in (select group_id from groups where owner_id=1) 
-  // and 5 in (select post_id from posts where user_id=1) ;
-  db.pool.query(`insert into post_groups (group_id, post_id)
+  db.pool.query(`replace into post_groups (group_id, post_id)
   select ?, ?
   where 
   ? IN (select group_id from groups where owner_id=? ) 
