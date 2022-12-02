@@ -109,7 +109,8 @@ function changeUserPassword(newpassword, userID){
 
 function changePasswordDB(hash,userID) {
   return new Promise((resolve, reject) =>{
-    db.pool.query('update users set user_password = ? where user_id= ? }', [hash, userID],
+    console.log('db got', hash, userID)
+    db.pool.query('update users set user_password = ? where user_id= ? ', [hash, userID],
       function(error, results, fields) {
         if (error) {
   //        if (error.code === 'ER_DUP_ENTRY') {          
