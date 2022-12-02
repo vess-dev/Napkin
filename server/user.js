@@ -94,6 +94,7 @@ function insertUser(user_first_name, user_last_name, user_email, user_password, 
   });
 }
 function changeUserPassword(newpassword, userID){
+  return new Promise((resolve, reject) =>{
   bcrypt.genSalt(10).then((salt) => {              
     bcrypt.hash(newpassword, salt).then((hash) =>{        
       // Store hash in the database
@@ -102,8 +103,9 @@ function changeUserPassword(newpassword, userID){
       .catch((error)=> {          
           return reject(error);
       })
-    })})
-}
+    })
+  })
+})}
 
 function changePasswordDB(hash,userID) {
   return new Promise((resolve, reject) =>{
