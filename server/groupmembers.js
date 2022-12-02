@@ -25,7 +25,7 @@ function getGroupMembersList(group_id, requester_id) {
   };
   function deleteGroupMember(group_id, friend_id, user_id) {
     return new Promise((resolve, reject) =>{
-       db.pool.query('DELETE FROM group_memberships WHERE group_id = ? AND user_id=? AND exists (select * from groups where group_id=? and owner_id=?', 
+       db.pool.query('DELETE FROM group_memberships WHERE group_id = ? AND user_id=? AND exists (select * from groups where group_id=? and owner_id=?)', 
        [group_id, friend_id, group_id, user_id],
         function(error, results) {
           console.log(error, results)
