@@ -298,7 +298,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         routeFound = true;
         post.putPostInGroup(userID, bodyObject.group_id, bodyObject.post_id).then(reply=>{
           response.statusCode = 200;
-          response.write('{"success":"post put in group ' + reply + '"}');          
+          response.write('{"success":"post put in group "}');          
         })
         .catch(error=>{
           handleErrorReply(response, error, 400);
@@ -307,6 +307,21 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
           response.end();
         });
 
+      }
+      if (method === 'DELETE') {
+        routeFound = true;
+        let group_id=queryObject.group_id
+        let post_id = queryObject.post_id
+        post.removePostFromGroup(userID, group_id, post_id).then(reply=>{
+          response.statusCode = 200;
+          response.write('{"success":"post removed"}');          
+        })
+        .catch(error=>{
+          handleErrorReply(response, error, 400);
+        })
+        .finally(() => {
+          response.end();
+        }); 
       }
     }
  //COMMENT routes

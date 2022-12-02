@@ -51,6 +51,24 @@ function putPostInGroup(user_id, group_id, post_id) {
     }
 })}
 
+function removePostFromGroup(user_id, group_id, post_id) {
+  db.pool.query(`delete from post_groups (group_id, post_id)
+  where group_id=? and post_id=? 
+  and
+  group_id IN (select group_id from groups where owner_id=? )`, 
+  [group_id, post_id, user_id ],
+  (error, results) => {
+       
+    if (error) {   
+      console.log('error on remove post in group', error)
+      return;                 
+    } else { 
+      console.log('post removed from group successfully: ', results)
+      updatePostWeightByPost(post_id) 
+      return(results)
+    }
+})}
+
 async function updatePostWeightByPost(incoming_post_id) {
   // note: query returns multiple rows 
   
@@ -197,4 +215,4 @@ function getPostList(userID) {
       })})
 }
 
-module.exports = {putPostInGroup, getPostList, createPost, updatePostWeightByPost, updatePostWeightByUser, updateAllPostWeights}
+module.exports = {putPostInGroup, removePostFromGroup, getPostList, createPost, updatePostWeightByPost, updatePostWeightByUser, updateAllPostWeights}
