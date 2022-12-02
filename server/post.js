@@ -68,7 +68,7 @@ async function updatePostWeightByPost(incoming_post_id) {
           let now_time = new Date(Date.now())
           let time_elapsed = Math.max(0.05,((now_time-post_time) /(1000*60*60*24) )) 
           let rank = (1000/time_elapsed) * (post_comment_count + post_likes_score + 1) * max_ranking
-          console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
+          //console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
           updatePostWeightTable(viewer_id, post_id, rank)
         }
         return 
@@ -107,7 +107,7 @@ async function updatePostWeightByPost(incoming_post_id) {
             let now_time = new Date(Date.now())
             let time_elapsed = Math.max(0.05,((now_time-post_time) /(1000*60*60*24) )) 
             let rank = (1000/time_elapsed) * (post_comment_count + post_likes_score + 1) * max_ranking
-            console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
+            //console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
             //console.log('raw data: ',time_elapsed, (post_comment_count+post_likes_score+1), max_ranking )
             updatePostWeightTable(viewer_id, post_id, rank)
           }
@@ -152,8 +152,8 @@ async function updateAllPostWeights() {
           let now_time = new Date(Date.now())
           let time_elapsed = Math.max(0.05,((now_time-post_time) /(1000*60*60*24) )) 
           let rank = (1000/time_elapsed) * (post_comment_count + post_likes_score + 1) * max_ranking
-          console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
-          console.log('raw data: ',time_elapsed, (post_comment_count+post_likes_score+1), max_ranking )
+          //console.log('for viewer_id, post_id, rank is:', viewer_id, post_id, rank)
+          //console.log('raw data: ',time_elapsed, (post_comment_count+post_likes_score+1), max_ranking )
           updatePostWeightTable(viewer_id, post_id, rank)
         }
         return 
@@ -173,7 +173,7 @@ function getPostList(userID) {
      inner join users on posts.user_id=users.user_id order by post_weight desc;`
      , userID, 
       function(error, results) {
-        console.log(results)
+        //console.log(results)
         if (error) {                    
           return reject(new BaseError("DB Error", 500, error));
         }
