@@ -46,10 +46,12 @@ function getGroupMembersList(group_id) {
 
     function addGroupMember(group_id, friend_id, user_id) {
       return new Promise((resolve, reject) =>{
-         db.pool.query(`INSERT INTO group_memberships WHERE group_id = ? AND user_id=? 
-         AND exists (select * from groups where group_id=? and owner_id=?)
-         AND exists (select * from friendships where user_id=? and friend_id=? and friendship_status='accepted')`, 
-         [group_id, friend_id, group_id, user_id, user_id, friend_id],
+         db.pool.query(`select INTO group_memberships FROM
+         (select ?, ? WHERE
+         ? IN (select group_id from groups where owner_id=?)
+         AND ? IN (select friend_id from friendships where user_id=? and friendship_status='accepted'))`, 
+
+         [group_id, friend_id, group_id, user_id, friend_id, user_id],
           function(error, results) {
             console.log(error, results)
             if (error) {                    
