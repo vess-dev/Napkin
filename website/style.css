@@ -30,6 +30,20 @@ body {
 	padding: 10px;
 }
 
+.inputbox {
+	font-size: 25px;
+	padding: 20px;
+}
+
+.inputfield {
+	background-color: snow;
+	float: right;
+	font-size: 20px;
+	height: 2rem;
+	padding: 5px;
+	width: 50%;
+}
+
 .testcube {
 	background: red;
 	height: 500px;

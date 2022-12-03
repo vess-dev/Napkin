@@ -5,6 +5,8 @@ export function accLogin() {
 	phelp.insertMiniHeader("Log in to Napkin");
 	phelp.insertBigBreak();
 	phelp.insertFullBox();
+	phelp.insertInputBox("User email:", "email");
+	phelp.insertInputBox("User password:", "password", true);
 }
 
 // When you are creating an account.

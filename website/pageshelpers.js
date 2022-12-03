@@ -51,3 +51,19 @@ export function insertFullBox() {
 	elementFullBox.setAttribute("id", "boxfull");
 	elementContent.append(elementFullBox);
 }
+
+// A div that has text on the left, and an input box on the right.
+export function insertInputBox(inputText, inputName, inputPassword) {
+	const elementContent = document.getElementById("boxfull");
+	const elementFullInput = document.createElement("div");
+	elementFullInput.setAttribute("class", "inputbox");
+	elementFullInput.textContent = inputText;
+	const elementFieldInput = document.createElement("input");
+	elementFieldInput.setAttribute("class", "inputfield");
+	elementFieldInput.setAttribute("id", inputName);
+	if (inputPassword) {
+		elementFieldInput.setAttribute("type", "password");
+	}
+	elementFullInput.append(elementFieldInput);
+	elementContent.append(elementFullInput);
+}
