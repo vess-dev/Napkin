@@ -52,6 +52,8 @@ function addNewUser(userObject) {
     if (!userObject.user_email || !userObject.user_password) {
       return reject(new BaseError("Missing Fields", 400, "Email and Password are required fields"));
     }
+    // can't do this here.
+    userObject.remove('admin_flag')
 
     bcrypt.genSalt(10).then((salt) => {              
       bcrypt.hash(userObject.user_password, salt).then((hash) =>{        

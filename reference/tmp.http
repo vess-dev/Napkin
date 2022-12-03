@@ -20,6 +20,15 @@ cookie: sessionid=2e284cda-2a76-49ee-a8ec-67861df05028
 
 ###
 
+PUT http://cpsc.roanoke.edu:3009/user
+content-type: application/json
+cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
+
+{
+"user_email": "catsarisky@gmail.com",
+"user_handle": "catsari's new handle"
+}
+###
 GET http://cpsc.roanoke.edu:3009/user
 content-type: application/json
 cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
