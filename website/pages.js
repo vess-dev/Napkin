@@ -1,7 +1,6 @@
 import * as phelp from "./pageshelpers.js";
 import * as help from "./helpers.js";
 import * as routes from "./routes.js";
-import postCreateAction from "./functions.js";
 
 
 // The header for the regular user pages.
