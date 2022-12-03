@@ -49,13 +49,13 @@ export function accPending() {
 
 // Fill the feed with non-user made posts, or user made posts.
 function feedFill(postType) {
-
+	let endpoint
 if (postType) {
 	// true means the individual user's posts
-	let endpoint = 'myposts'
+	endpoint = 'myposts'
 } else {
 	// false means the 'global' feed.
-	let endpoint = 'post'
+	endpoint = 'post'
 }
 	return new Promise((resolve, reject) => {
 		let options = {
