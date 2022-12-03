@@ -3,10 +3,6 @@ const bcrypt = require('bcrypt');
 const BaseError = require('./BaseError.js');
 
 
-/**
- *  Assumes the user is authenticated to perform this action
- *  If promise is resolved, returns a list of users
- */ 
 function getFriendList(userID) {
   console.log('getFriendList function called')
   return new Promise((resolve, reject) =>{
@@ -27,5 +23,47 @@ function getFriendList(userID) {
   });
 })}
 
+function makeFriendRequest(friend_id, userID) {
+  console.log('starting makefriendrequest route wtih', friend_id, userID)
+  return new Promise((resolve, reject) =>{
+     db.pool.query(`select friendship_status from friendships 
+     WHERE user_id = ? and friend_id = ? `, [userID, friend_id],
+      function(error, results) {
+        console.log(results)
+        if (error) {                    
+          return reject(new BaseError("DB Error", 500, error));
+        }
+        else { 
+          if (results.length == 0) { 
+            // make friends! 
+            console.log('not yet friends - so request!')
+            makeFriendsStatus(friend_id, userID, 'requested')
+            makeFriendsStatus(userID, friend_id, 'pending')
+            return resolve({"Success": "friendship created"})
+          }             
+          if (results.friendship_status == 'accepted')  {
+            return reject(new BaseError("No request needed", 400, "you're already friends"))
+          } else if (results.friendship_status == 'blocked'){
+            return reject(new BaseError("BLOCKED", 400, "you may not make another request for this user"))
+          } 
+          return resolve(results);        
+        }
+  });
+})}
 
-module.exports = {getFriendList}
+async function makeFriendsStatus(friend_id, userID, newStatus) {
+  db.pool.query(`insert into friendships (user_id, friend_id, friendship_status) values
+      ?,?,?`,
+      [userID, friend_id, newStatus],
+      function(error, results) {
+        console.log(results)
+        if (error) {                    
+          return reject(new BaseError("DB Error", 500, error));
+        }
+        else { 
+            return resolve({"Success": "friendship requested"})
+        }
+
+})};
+
+module.exports = {getFriendList, makeFriendRequest}
