@@ -26,11 +26,29 @@ export function insertHeader(headerList, headerFocus) {
 }
 
 // A mini header that is not a full header.
-export function insertMiniHeader(headerName) {
+export function insertMiniHeader(headerName, buttonType) {
 	const elementContent = document.getElementById("content");
 	const elementMiniHeader = document.createElement("div");
 	elementMiniHeader.setAttribute("id", "headermini");
-	elementMiniHeader.textContent = headerName;
+	const elementMiniDiv = document.createElement("div");
+	elementMiniDiv.setAttribute("id", "minidiv");
+	const elementMiniText = document.createElement("div");
+	elementMiniText.textContent = headerName;
+	elementMiniDiv.append(elementMiniText);
+	// Create buttons only on a button type.
+	if (buttonType) {
+		const elementButtonBox = document.createElement("div");
+		elementButtonBox.setAttribute("class", "buttonbox");
+		switch (buttonType) {
+			case "logout":
+				const elementButtonLogout = createButton("logout", ["button", "buttonlogout"], "Logout", "routePage('#accLogin')");
+				elementButtonBox.append(elementButtonLogout);
+				break;
+		}
+		elementMiniDiv.append(elementButtonBox);
+	}
+	
+	elementMiniHeader.append(elementMiniDiv);
 	elementContent.append(elementMiniHeader);
 }
 
@@ -49,7 +67,7 @@ export function insertBoxFull(miniHeader) {
 	elementBoxFull.setAttribute("id", "boxfull");
 	// Account for a page height difference with a mini header.
 	if (miniHeader) {
-		elementBoxFull.style.height = "calc(100vh - 13rem)";
+		elementBoxFull.style.height = "calc(100vh - 15rem)";
 	}
 	elementContent.append(elementBoxFull);
 }
@@ -57,18 +75,18 @@ export function insertBoxFull(miniHeader) {
 // A div that has text on the left, and an input box on the right.
 export function insertInputBox(inputText, inputName, inputPassword) {
 	const elementBoxFull = document.getElementById("boxfull");
-	const elementFullInput = document.createElement("div");
-	elementFullInput.setAttribute("class", "inputbox");
-	elementFullInput.textContent = inputText;
-	const elementFieldInput = document.createElement("input");
-	elementFieldInput.setAttribute("class", "inputfield");
-	elementFieldInput.setAttribute("id", inputName);
+	const elementInputFull = document.createElement("div");
+	elementInputFull.setAttribute("class", "inputbox");
+	elementInputFull.textContent = inputText;
+	const elementInputField = document.createElement("input");
+	elementInputField.setAttribute("class", "inputfield");
+	elementInputField.setAttribute("id", inputName);
 	// If the input should hide a password.
 	if (inputPassword) {
-		elementFieldInput.setAttribute("type", "password");
+		elementInputField.setAttribute("type", "password");
 	}
-	elementFullInput.append(elementFieldInput);
-	elementBoxFull.append(elementFullInput);
+	elementInputFull.append(elementInputField);
+	elementBoxFull.append(elementInputFull);
 }
 
 // Create and add different button types.
@@ -86,13 +104,13 @@ export function createButton(buttonId, buttonClasses, buttonText, buttonCall) {
 // Add buttons to the bottom of a page.
 export function insertBottomButtons(buttonList) {
 	const elementBoxFull = document.getElementById("boxfull");
-	const elementBottomDiv = document.createElement("div");
+	const elementDivBottom = document.createElement("div");
 	for (let itrButton in buttonList) {
 		const elementNewButton = createButton(buttonList[itrButton][0], buttonList[itrButton][1], buttonList[itrButton][2], buttonList[itrButton][3]);
-		elementBottomDiv.append(elementNewButton);
+		elementDivBottom.append(elementNewButton);
 	}
-	elementBottomDiv.setAttribute("class", "buttonbottom");
-	elementBoxFull.append(elementBottomDiv);
+	elementDivBottom.setAttribute("class", "buttonbottom");
+	elementBoxFull.append(elementDivBottom);
 }
 
 // Add a text content to an element.
@@ -112,42 +130,32 @@ export function insertDecorations() {
 	elementBody.append(elementNextButton);
 }
 
-// Add a button to the mini header.
-export function insertMiniButton(buttonType) {
-	const elementMiniHeader = document.getElementById("headermini");
-	let elementNewButton;
-	if (buttonType == "logout") {
-		elementNewButton = createButton("logout", ["button", "buttonright", "buttonlogout"], "Logout", "routePage('#accLogin')");
-	}
-	elementMiniHeader.append(elementNewButton);
-}
-
 // Create an admin user info div. Picture, name, email, date, item type.
 export function insertUserItem(userPicture, userName, userEmail, itemDate, itemType) {
 	const elementBoxFull = document.getElementById("boxfull");
-	const elementUserDiv = document.createElement("div");
-	elementUserDiv.setAttribute("class", "userdiv");
+	const elementDivUser = document.createElement("div");
+	elementDivUser.setAttribute("class", "userdiv");
 	// Format the user picture with the appropriate class.
 	userPicture.setAttribute("class", "userpicture");
-	elementUserDiv.append(userPicture);
+	elementDivUser.append(userPicture);
 	// Create a text block for the name and email.
 	const elementUserName = document.createElement("div");
 	elementUserName.setAttribute("id", "username");
 	elementUserName.setAttribute("class", "usertext");
 	elementUserName.textContent = userName;
-	elementUserDiv.append(elementUserName );
+	elementDivUser.append(elementUserName );
 	const elementUserEmail = document.createElement("div");
 	elementUserEmail.setAttribute("id", "useremail");
 	elementUserEmail.setAttribute("class", "usertext");
 	elementUserEmail.textContent = userEmail;
-	elementUserDiv.append(elementUserEmail);
+	elementDivUser.append(elementUserEmail);
 	// Create a text block for the date info. Also setup buttons.
 	const elementUserDate = document.createElement("div");
 	elementUserDate.setAttribute("class", "usertext date");
 	const elementButtonBox = document.createElement("div");
 	elementButtonBox.setAttribute("class", "buttonbox");
 	let finalText = "";
-	switch(itemType) {
+	switch (itemType) {
 		case "pending":
 			finalText = "Created on: ";
 			const elementButtonApprove = createButton("approve", ["button", "buttonapprove"], "Approve", "TODOAPPROVE");
@@ -173,7 +181,7 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 	}
 	finalText += itemDate;
 	elementUserDate.textContent = finalText;
-	elementUserDiv.append(elementUserDate);
-	elementUserDiv.append(elementButtonBox);
-	elementBoxFull.append(elementUserDiv);
+	elementDivUser.append(elementUserDate);
+	elementDivUser.append(elementButtonBox);
+	elementBoxFull.append(elementDivUser);
 }

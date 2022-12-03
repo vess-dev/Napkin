@@ -27,7 +27,7 @@ function routePage(newPage) {
 		history.pushState({}, "", newPage);
 	}
 	clearPage();
-	switch(currentHash) {
+	switch (currentHash) {
 		case route.PAGE_ACC_LOGIN:
 			page.accLogin();
 			break;

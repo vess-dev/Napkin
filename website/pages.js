@@ -10,7 +10,7 @@ const adminHeader = [["pending", "Pending Accounts", "routePage('#adminPending')
 // When you need to login to Napkin.
 export function accLogin() {
 	phelp.insertContent();
-	phelp.insertMiniHeader("Log in to Napkin");
+	phelp.insertMiniHeader("Log in to Napkin", false);
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(false);
 	phelp.insertInputBox("User email:", "email", false);
@@ -21,7 +21,7 @@ export function accLogin() {
 // When you are creating an account.
 export function accCreate() {
 	phelp.insertContent();
-	phelp.insertMiniHeader("Create a Napkin Account");
+	phelp.insertMiniHeader("Create a Napkin Account", false);
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(false);
 	phelp.insertInputBox("User first name:", "firstname", false);
@@ -36,7 +36,7 @@ export function accCreate() {
 // When your account is now pending.
 export function accPending() {
 	phelp.insertContent();
-	phelp.insertMiniHeader("Account Approval Pending");
+	phelp.insertMiniHeader("Account Approval Pending", false);
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(false);
 	phelp.insertText("Your account is still waiting for approval!");
@@ -98,8 +98,7 @@ export function postEdit() {
 export function accSettings() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "account");
-	phelp.insertMiniHeader("Account Settings");
-	phelp.insertMiniButton("logout");
+	phelp.insertMiniHeader("Account Settings", "logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
 	phelp.insertInputBox("Change email:", "email", false);
@@ -121,8 +120,7 @@ export function adminPending() {
 	const adminPage = "pending";
 	phelp.insertContent();
 	phelp.insertHeader(adminHeader, adminPage);
-	phelp.insertMiniHeader("New User Requests");
-	phelp.insertMiniButton("logout");
+	phelp.insertMiniHeader("New User Requests", "logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
 	adminFill(adminPage);
@@ -133,8 +131,7 @@ export function adminDisabled() {
 	const adminPage = "disabled";
 	phelp.insertContent();
 	phelp.insertHeader(adminHeader, adminPage);
-	phelp.insertMiniHeader("Disabled Accounts");
-	phelp.insertMiniButton("logout");
+	phelp.insertMiniHeader("Disabled Accounts", "logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
 	adminFill(adminPage);
@@ -145,8 +142,7 @@ export function adminActive() {
 	const adminPage = "active";
 	phelp.insertContent();
 	phelp.insertHeader(adminHeader, adminPage);
-	phelp.insertMiniHeader("Active Accounts");
-	phelp.insertMiniButton("logout");
+	phelp.insertMiniHeader("Active Accounts", "logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
 	adminFill(adminPage);
@@ -157,8 +153,7 @@ export function adminBlacklist() {
 	const adminPage = "blacklist";
 	phelp.insertContent();
 	phelp.insertHeader(adminHeader, adminPage);
-	phelp.insertMiniHeader("Blacklisted Emails");
-	phelp.insertMiniButton("logout");
+	phelp.insertMiniHeader("Blacklisted Emails", "logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
 	adminFill(adminPage);

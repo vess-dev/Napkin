@@ -105,6 +105,12 @@ body {
 	padding: 10px;
 }
 
+#minidiv {
+	align-items: center;
+	display: flex;
+	flex-flow: row;
+}
+
 .buttonbottom {
 	align-items: center;
 	bottom: 1rem;
