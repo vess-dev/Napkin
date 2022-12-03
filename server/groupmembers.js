@@ -1,7 +1,7 @@
 const db = require('./dbi.js');
 const bcrypt = require('bcrypt');
 const BaseError = require('./BaseError.js');
-const posts = require('./posts.js');
+const posts = require('./post.js');
 
 /**
  *  Assumes the user is authenticated to perform this action
