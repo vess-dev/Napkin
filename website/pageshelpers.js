@@ -7,35 +7,27 @@ export function insertContent() {
 }
 
 // Insert the WIDE and full Napkin header.
-export function insertNapkinHeader() {
+export function insertNapkinHeader(headerFocus) {
 	const elementBody = document.querySelector("body");
 	const elementHeader = document.createElement("div");
 	elementHeader.setAttribute("id", "header");
 	const listHeaders = [["home", "Napkin"], ["myfeed", "My Feed"], ["addpost", "Add a Post"], ["friends", "Friends"], ["groups", "Groups"], ["account", "My Account"]];
-	// Create each header item box by box.
+	// Create each header button turn by turn.
 	for (let itr_header in listHeaders) {
-		const elementNewHeader = document.createElement("button");
-		elementNewHeader.setAttribute("class", "headerbox");
-		elementNewHeader.setAttribute("id", listHeaders[itr_header][0]);
-		elementNewHeader.textContent = listHeaders[itr_header][1];
+		const elementNewHeader = createButton(listHeaders[itr_header][0], ["headerbox"], listHeaders[itr_header][1], false);
+		if (headerFocus == listHeaders[itr_header][0]) {
+			elementNewHeader.classList.add("colorblue");
+		}
 		elementHeader.append(elementNewHeader);
 	}
 	elementBody.append(elementHeader);
 	// Move the content below the full header.
-	insertContent();
 	const elementContent = document.getElementById("content");
 	elementContent.style.paddingTop = "6rem";
 }
 
-// Set the current header to be highlighted.
-export function highlightHeader(elementId) {
-	const elementHeaderItem = document.getElementById(elementId);
-	elementHeaderItem.style.backgroundColor = "dodgerblue";
-}
-
 // A mini header that is not a full header.
 export function insertMiniHeader(headerName) {
-	insertContent();
 	const elementContent = document.getElementById("content");
 	const elementMiniHeader = document.createElement("div");
 	elementMiniHeader.setAttribute("class", "headermini");
@@ -61,7 +53,7 @@ export function insertFullBox() {
 
 // A div that has text on the left, and an input box on the right.
 export function insertInputBox(inputText, inputName, inputPassword) {
-	const elementContent = document.getElementById("boxfull");
+	const elementBoxFull = document.getElementById("boxfull");
 	const elementFullInput = document.createElement("div");
 	elementFullInput.setAttribute("class", "inputbox");
 	elementFullInput.textContent = inputText;
@@ -73,5 +65,28 @@ export function insertInputBox(inputText, inputName, inputPassword) {
 		elementFieldInput.setAttribute("type", "password");
 	}
 	elementFullInput.append(elementFieldInput);
-	elementContent.append(elementFullInput);
+	elementBoxFull.append(elementFullInput);
+}
+
+// Create and add different button types.
+export function createButton(buttonId, buttonClasses, buttonText) {
+	const elementButton = document.createElement("button");
+	elementButton.setAttribute("id", buttonId);
+	for (let itr_class in buttonClasses) {
+		elementButton.classList.add(buttonClasses[itr_class]);
+	}
+	elementButton.textContent = buttonText;
+	return elementButton;
+}
+
+// Add buttons to the bottom of a page.
+export function bottomButtons(buttonList) {
+	const elementBoxFull = document.getElementById("boxfull");
+	const elementBottomDiv = document.createElement("div");
+	for (let itr_button in buttonList) {
+		const elementNewButton = createButton(buttonList[itr_button][0], buttonList[itr_button][1], buttonList[itr_button][2]);
+		elementBottomDiv.append(elementNewButton);
+	}
+	elementBottomDiv.setAttribute("class", "buttonbox");
+	elementBoxFull.append(elementBottomDiv);
 }
