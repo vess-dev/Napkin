@@ -87,15 +87,6 @@ if (postType) {
 	});
 }
 
-
-/*	phelp.insertPost(help.loadImage("./assets/test1.jpg"), "Post 1", "Will Smith", "Nov 10th 2022", "I am will Smith.", help.loadImage("./assets/test1.jpg"), postType);
-	phelp.insertBigBreak();
-	phelp.insertPost(help.loadImage("./assets/test2.jpg"), "Post 2", "Will Smith", "Nov 10th 2022", ".", help.loadImage("./assets/test2.jpg"), postType);
-	phelp.insertBigBreak();
-	phelp.insertPost(help.loadImage("./assets/test3.jpg"), "Post 3", "Will Smith", "Nov 10th 2022", help.longText(), help.loadImage("./assets/test3.jpg"), postType);
-*/
-
-
 // When you are looking at the global feed.
 export function feedGlobal() {
 	phelp.insertContent();
@@ -181,6 +172,13 @@ export function postCreate() {
 export function postEdit() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader);
+	phelp.insertBigBreak();
+	phelp.insertFullBox(true);
+	phelp.insertInputBox("Post title:", "post_title", false);
+	phelp.insertTextAreaBox("Post content:", "post_content", false);
+	phelp.insertInputBox("Post image URL:", "post_image", false);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#myFeed')"]]);
+
 }
 
 // When you look at your account settings.

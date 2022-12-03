@@ -142,6 +142,24 @@ export function insertInputBox(inputText, inputName, inputPassword) {
 	elementBoxFull.append(elementInputFull);
 }
 
+export function insertTextAreaBox(inputText, inputName, inputPassword) {
+	const elementBoxFull = document.getElementById("boxfull");
+	const elementInputFull = document.createElement("div");
+	elementInputFull.setAttribute("class", "inputbox");
+	elementInputFull.textContent = inputText;
+	const elementInputField = document.createElement("textarea");
+	elementInputField.setAttribute("class", "inputfield");
+	elementInputField.setAttribute('rows', 5);
+	elementInputField.setAttribute('cols', 50);
+	elementInputField.setAttribute("id", inputName);
+	// If the input should hide a password.
+	if (inputPassword) {
+		elementInputField.setAttribute("type", "password");
+	}
+	elementInputFull.append(elementInputField);
+	elementBoxFull.append(elementInputFull);
+}
+
 // Create and add different button types.
 export function createButton(buttonId, buttonClasses, buttonText, buttonCall) {
 	const elementButton = document.createElement("button");
