@@ -70,6 +70,11 @@ export function insertBigBreak() {
 	elementContent.append(elementBigBreak);
 }
 
+// Add a post to the page.
+export function insertPost(userPicture, userName, postDate, postImage) {
+
+}
+
 // A box for content that almost hits the bottom height.
 export function insertFullBox(miniHeader) {
 	const elementContent = document.getElementById("content");

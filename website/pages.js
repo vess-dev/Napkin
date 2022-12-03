@@ -46,11 +46,18 @@ export function accPending() {
 	phelp.insertBottomButtons([["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
 }
 
+function feedFill(postType) {
+	for (let itrFill = 3; itrFill--;)
+		phelp.insertPost(help.loadImage("./assets/test.jpg"), "Will Smith", "Nov 10th 2022", help.loadImage("./assets/test.jpg"), postType);
+		phelp.insertBigBreak();
+}
+
 // When you are looking at the global feed.
 export function feedGlobal() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedglobal");
 	phelp.insertNextButton();
+	feedFill(false);
 }
 
 // When you are looking at just your feed.
@@ -58,6 +65,7 @@ export function feedMy() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedmy");
 	phelp.insertNextButton();
+	feedFill(true);
 }
 
 // When you look at your list of friends.
@@ -149,7 +157,7 @@ export function accSettings() {
 // Fill the admin pages with bunk data.
 function adminFill(adminPage) {
 	for (let itrFill = 10; itrFill--;)
-			phelp.insertUserItem(help.loadImage("./assets/test.jpg"), "Will Smith " + itrFill, "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
+		phelp.insertUserItem(help.loadImage("./assets/test.jpg"), "Will Smith " + itrFill, "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
 }
 
 // For admins to look at pending accounts.
