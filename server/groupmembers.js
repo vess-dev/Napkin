@@ -36,7 +36,7 @@ function getGroupMembersList(group_id) {
             return reject(new BaseError("DB Error", 500, error));
           }
           else {       
-            db.pool.query('DELETE from posts_feed where user_id=?', user_id).then(()=> updatePostWeightByUser(friend_id))        
+            db.pool.query('DELETE from posts_feed where user_id=?', user_id, updatePostWeightByUser(friend_id))        
             return resolve(results);        
           }
         })
