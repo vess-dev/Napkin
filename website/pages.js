@@ -171,7 +171,9 @@ export function postCreate() {
 	phelp.insertInputBox("Post title:", "post_title", false);
 	phelp.insertInputBox("Post image URL:", "post_image", false);
 	phelp.insertTextAreaBox("Post content:", "post_content", false);
+	phelp.getGroupsSelector()
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#myFeed')"]]);
+	
 
 }
 

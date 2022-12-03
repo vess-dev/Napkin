@@ -303,3 +303,35 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 	elementDivUser.append(elementButtonBox);
 	elementBoxFull.append(elementDivUser);
 }
+export function getGroupsSelector() {
+	let selector = document.createElement('select')
+	selector.setAttribute('multiple', true)
+	selector.selectAttribute('id,','group_selector')
+
+	let endpoint='group'
+	let options = {
+		method: "GET",
+		credentials: "include",
+		headers: {
+		"Content-Type": "application/json"}
+	};
+	fetch(routes.SERVER+endpoint, options)
+	.then((response) => {
+		if (response.ok) {
+			return response.json();
+		}
+		else {
+			throw new Error('error', response)
+		}
+	})
+	.then(data => {
+		for (let onegroup of data) {
+			let oneoption=document.createElement('option')
+			oneoption.setAttribute('value',data.group_id)
+			oneoption.textContent = data.group_name
+			selector.appendChild(oneoption)
+		}
+		elementBoxFull.append(selector)
+	}
+	)
+}
