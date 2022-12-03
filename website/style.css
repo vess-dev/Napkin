@@ -35,6 +35,7 @@ body {
 
 .inputfield {
 	background-color: snow;
+	border: 2px solid gray;
 	float: right;
 	font-size: 20px;
 	height: 2rem;
@@ -78,23 +79,41 @@ body {
 
 .buttonbox {
 	align-items: center;
-	bottom: 1rem;
+	bottom: 2rem;
 	display: flex;
+	gap: 2rem;
 	justify-content: center;
 	position: absolute;
 	width: 100%;
 }
 
 .button {
+	background-color: white;
+	border: 2px solid gray;
+	color: royalblue;
+	padding: 10px;
+}
 
+.button:hover {
+	background-color: lightblue;
+	border: 2px solid lightblue;
+	color: white;
+	cursor: pointer;
+}
+
+.buttonother{
+	font-size: 25px;
+	text-align: center;
+	width: 25%;
 }
 
 .buttonsubmit {
-	background-color: green;
-	border: none;
+	background-color: dodgerblue;
+	border: 2px solid dodgerblue;
 	color: white;
 	font-size: 25px;
 	text-align: center;
+	width: 25%;
 }
 
 .colorblue {

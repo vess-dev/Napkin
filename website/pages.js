@@ -11,7 +11,7 @@ export function accLogin() {
 	phelp.insertFullBox();
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
-	phelp.bottomButtons([["submit", ["button", "buttonsubmit"], "Submit"]]);
+	phelp.bottomButtons([["submit", ["button", "buttonsubmit"], "Submit"], ["create", ["button", "buttonother"], "Create Account"]]);
 }
 
 // When you are creating an account.
