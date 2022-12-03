@@ -1,5 +1,8 @@
 import * as phelp from "./pageshelpers.js";
 
+const userHeader = [["home", "Napkin"], ["myfeed", "My Feed"], ["addpost", "Add a Post"], ["friends", "Friends"], ["groups", "Groups"], ["account", "My Account"]]
+const adminHeader = [["pending", "Pending Accounts"], ["disabled", "Disabled Accounts"], ["active", "Active Accounts"], ["blacklist", "Blacklisted Accounts"]];
+
 // Always insert the content box first,
 // And then the header type.
 
@@ -8,10 +11,10 @@ export function accLogin() {
 	phelp.insertContent();
 	phelp.insertMiniHeader("Log in to Napkin");
 	phelp.insertBigBreak();
-	phelp.insertFullBox();
+	phelp.insertFullBox(false);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit"], ["create", ["button", "buttonother"], "Create Account"]]);
+	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login"], ["create", ["button", "buttonother"], "Create Account"]]);
 }
 
 // When you are creating an account.
@@ -19,7 +22,7 @@ export function accCreate() {
 	phelp.insertContent();
 	phelp.insertMiniHeader("Create a Napkin Account");
 	phelp.insertBigBreak();
-	phelp.insertFullBox();
+	phelp.insertFullBox(false);
 	phelp.insertInputBox("User first name:", "firstname", false);
 	phelp.insertInputBox("User last name:", "lastname", false);
 	phelp.insertInputBox("User screen name:", "screenname", false);
@@ -34,7 +37,7 @@ export function accPending() {
 	phelp.insertContent();
 	phelp.insertMiniHeader("Account Approval Pending");
 	phelp.insertBigBreak();
-	phelp.insertFullBox();
+	phelp.insertFullBox(false);
 	phelp.addText("boxfull", "Your account is still waiting for approval!");
 	phelp.addText("boxfull", "Please check back later.");
 	phelp.insertBottomButtons([["tologin", ["button", "buttonother"], "Back to Login"]]);
@@ -43,74 +46,94 @@ export function accPending() {
 // When you are looking at the ALL feed.
 export function myFeed() {
 	phelp.insertContent();
-	phelp.insertNapkinHeader("myfeed");
-	phelp.insertNextPage();
+	phelp.insertHeader(userHeader, "myfeed");
+	phelp.insertDecorations();
 }
 
 // When you are looking at the JUST YOU feed.
 export function accFeed() {
 	phelp.insertContent();
-	phelp.insertNapkinHeader("account");
+	phelp.insertHeader(userHeader, "account");
 }
 
 // When you look at your list of friends.
 export function accFriends() {
 	phelp.insertContent();
-	phelp.insertNapkinHeader("friends");
+	phelp.insertHeader(userHeader, "friends");
 }
 
 // When you look at who you have blocked.
 export function accBlocked() {
 	phelp.insertContent();
-	phelp.insertNapkinHeader("friends");
+	phelp.insertHeader(userHeader, "friends");
 }
 
 // When you're searching for a friend.
 export function friendSearch() {
 	phelp.insertContent();
-	phelp.insertNapkinHeader("friends");
+	phelp.insertHeader(userHeader, "friends");
 }
 
 // When you look at your groups.
 export function accGroups() {
 	phelp.insertContent();
-	phelp.insertNapkinHeader("groups");
+	phelp.insertHeader(userHeader, "groups");
 }
 
 // When you want to create a post.
 export function postCreate() {
 	phelp.insertContent();
-	phelp.insertNapkinHeader("addpost");
+	phelp.insertHeader(userHeader, "addpost");
 }
 
 // When you want to edit a post.
 export function postEdit() {
 	phelp.insertContent();
-	phelp.insertNapkinHeader("addpost"); // Should this be on addpost for editpost?
+	phelp.insertHeader(userHeader, "addpost"); // Should this be on addpost for editpost?
 }
 
 // When you look at your account settings.
 export function accSettings() {
 	phelp.insertContent();
-	phelp.insertNapkinHeader("account");
+	phelp.insertHeader(userHeader, "account");
 }
 
 // For admins to look at pending accounts.
 export function adminPending() {
-	//phelp.highlightItem("pending");
+	phelp.insertContent();
+	phelp.insertHeader(adminHeader, "pending");
+	phelp.insertMiniHeader("New User Requests");
+	phelp.insertMiniButton("logout");
+	phelp.insertBigBreak();
+	phelp.insertFullBox(true);
 }
 
 // For admins to look at disabled accounts.
 export function adminDisabled() {
-	//phelp.highlightItem("disabled");
+	phelp.insertContent();
+	phelp.insertHeader(adminHeader, "disabled");
+	phelp.insertMiniHeader("Disabled Accounts");
+	phelp.insertMiniButton("logout");
+	phelp.insertBigBreak();
+	phelp.insertFullBox(true);
 }
 
 // For admins to look at active accounts.
 export function adminActive() {
-	//phelp.highlightItem("active");
+	phelp.insertContent();
+	phelp.insertHeader(adminHeader, "active");
+	phelp.insertMiniHeader("Active Accounts");
+	phelp.insertMiniButton("logout");
+	phelp.insertBigBreak();
+	phelp.insertFullBox(true);
 }
 
 // For admins to look at blacklisted accounts.
 export function adminBlacklist() {
-	//phelp.highlightItem("blacklist");
+	phelp.insertContent();
+	phelp.insertHeader(adminHeader, "blacklist");
+	phelp.insertMiniHeader("Blacklisted Emails");
+	phelp.insertMiniButton("logout");
+	phelp.insertBigBreak();
+	phelp.insertFullBox(true);
 }

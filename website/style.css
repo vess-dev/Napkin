@@ -21,13 +21,6 @@ body {
 	cursor: pointer;
 }
 
-.headermini {
-	background-color: white;
-	border: 2px solid gray;
-	font-size: 30px;
-	padding: 10px;
-}
-
 .inputbox {
 	font-size: 25px;
 	padding: 20px;
@@ -84,6 +77,13 @@ body {
 	z-index: 10;
 }
 
+#headermini {
+	background-color: white;
+	border: 2px solid gray;
+	font-size: 30px;
+	padding: 10px;
+}
+
 .buttonbox {
 	align-items: center;
 	bottom: 1rem;
@@ -121,6 +121,19 @@ body {
 	font-size: 25px;
 	text-align: center;
 	width: 25%;
+}
+
+.buttonlogout {
+	background-color: red;
+	border: 2px solid red;
+	color: white;
+	font-size: 25px;
+	padding: 5px;
+	position: absolute;
+	right: 1rem;
+	text-align: center;
+	top: 2.5rem;
+	width: 15%;
 }
 
 .buttonnext {

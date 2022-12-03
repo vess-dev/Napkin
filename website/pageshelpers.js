@@ -7,15 +7,14 @@ export function insertContent() {
 }
 
 // Insert the WIDE and full Napkin header.
-export function insertNapkinHeader(headerFocus) {
+export function insertHeader(headerList, headerFocus) {
 	const elementBody = document.querySelector("body");
 	const elementHeader = document.createElement("div");
 	elementHeader.setAttribute("id", "header");
-	const listHeaders = [["home", "Napkin"], ["myfeed", "My Feed"], ["addpost", "Add a Post"], ["friends", "Friends"], ["groups", "Groups"], ["account", "My Account"]];
 	// Create each header button turn by turn.
-	for (let itr_header in listHeaders) {
-		const elementNewHeader = createButton(listHeaders[itr_header][0], ["headerbox"], listHeaders[itr_header][1], false);
-		if (headerFocus == listHeaders[itr_header][0]) {
+	for (let itr_header in headerList) {
+		const elementNewHeader = createButton(headerList[itr_header][0], ["headerbox"], headerList[itr_header][1], false);
+		if (headerFocus == headerList[itr_header][0]) {
 			elementNewHeader.classList.add("colorblue");
 		}
 		elementHeader.append(elementNewHeader);
@@ -23,14 +22,14 @@ export function insertNapkinHeader(headerFocus) {
 	elementBody.append(elementHeader);
 	// Move the content below the full header.
 	const elementContent = document.getElementById("content");
-	elementContent.style.marginTop = "6rem";
+	elementContent.style.marginTop = "4rem";
 }
 
 // A mini header that is not a full header.
 export function insertMiniHeader(headerName) {
 	const elementContent = document.getElementById("content");
 	const elementMiniHeader = document.createElement("div");
-	elementMiniHeader.setAttribute("class", "headermini");
+	elementMiniHeader.setAttribute("id", "headermini");
 	elementMiniHeader.textContent = headerName;
 	elementContent.append(elementMiniHeader);
 }
@@ -44,10 +43,14 @@ export function insertBigBreak() {
 }
 
 // A box for content that almost hits the bottom height.
-export function insertFullBox() {
+export function insertFullBox(miniHeader) {
 	const elementContent = document.getElementById("content");
 	const elementFullBox = document.createElement("div");
 	elementFullBox.setAttribute("id", "boxfull");
+	// Account for a page height difference with a mini header.
+	if (miniHeader) {
+		elementFullBox.style.height = "calc(100vh - 13rem)";
+	}
 	elementContent.append(elementFullBox);
 }
 
@@ -101,8 +104,19 @@ export function addText(elementId, divText) {
 }
 
 // Add a next page button to the bottom right of the page.
-export function insertNextPage() {
+// Also add the search feed and sort feed buttons.
+export function insertDecorations() {
 	const elementBody = document.querySelector("body");
 	const elementNextButton = createButton("nextpage", ["button", "buttonnext", "buttonsubmit"], "Next Page");
 	elementBody.append(elementNextButton);
+}
+
+// Add a button to the mini header.
+export function insertMiniButton(buttonType) {
+	const elementMiniHeader = document.getElementById("headermini");
+	let elementNewButton;
+	if (buttonType == "logout") {
+		elementNewButton = createButton("logout", ["button", "buttonlogout"], "Logout");
+	}
+	elementMiniHeader.append(elementNewButton);
 }
