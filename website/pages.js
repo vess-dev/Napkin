@@ -176,7 +176,7 @@ export function postCreate() {
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", ""]]);
 	let tmpbutton = document.querySelector('#submit')
 	//KLUDGE
-	tmpbutton.addEventListener('click',() => postCreateAction)
+	tmpbutton.addEventListener('click', postCreateAction)
 	
 }
 
