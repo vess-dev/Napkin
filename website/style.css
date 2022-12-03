@@ -53,9 +53,10 @@ body {
 }
 
 .userdiv {
+	align-items: center;
 	display: flex;
-	gap: 1rem;
 	flex-flow: row;
+	gap: 1rem;
 	margin: 1rem;
 }
 
@@ -118,6 +119,7 @@ body {
 	background-color: white;
 	border: 2px solid gray;
 	color: royalblue;
+	font-size: 20px;
 	padding: 10px;
 }
 
@@ -129,7 +131,11 @@ body {
 }
 
 .buttonbox {
-	
+	align-items: right;
+	display: flex;
+	flex-flow: row;
+	gap: 1rem;
+	margin-left: auto;
 }
 
 .buttonother {
@@ -155,6 +161,12 @@ body {
 	text-align: center;
 	top: 2.5rem;
 	width: 15%;
+}
+
+.buttonapprove {
+	background-color: green;
+	border: 2px solid green;
+	color: white;
 }
 
 .buttonlogout {

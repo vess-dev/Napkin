@@ -1,10 +1,8 @@
 import * as phelp from "./pageshelpers.js";
-import * as test from "./helpers.js";
+import * as help from "./helpers.js";
 
 const userHeader = [["home", "Napkin", "routePage('#myFeed')"], ["myfeed", "My Feed", "routePage('#myFeed')"], ["addpost", "Add a Post", "routePage('#postCreate')"], ["friends", "Friends", "routePage('#accFriends')"], ["groups", "Groups", "routePage('#accGroups')"], ["account", "My Account", "routePage('#accFeed')"]]
 const adminHeader = [["pending", "Pending Accounts", "routePage('#adminPending')"], ["disabled", "Disabled Accounts", "routePage('#adminDisabled')"], ["active", "Active Accounts", "routePage('#adminActive')"], ["blacklist", "Blacklisted Accounts", "routePage('#adminBlacklist')"]];
-
-const testImage = test.loadImage("./assets/test.jpg");
 
 // Always insert the content box first,
 // And then the header type.
@@ -101,6 +99,12 @@ export function accSettings() {
 	phelp.insertHeader(userHeader, "account");
 }
 
+// Fill the admin pages with bunk data.
+function adminTest(adminPage) {
+	for (let itrFill = 10; itrFill--;)
+			phelp.insertUserItem(help.loadImage("./assets/test.jpg"), "Will Smith " + itrFill, "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
+}
+
 // For admins to look at pending accounts.
 export function adminPending() {
 	const adminPage = "pending";
@@ -110,7 +114,7 @@ export function adminPending() {
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
-	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
+	adminTest(adminPage);
 }
 
 // For admins to look at disabled accounts.
@@ -122,7 +126,7 @@ export function adminDisabled() {
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
-	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
+	adminTest(adminPage);
 }
 
 // For admins to look at active accounts.
@@ -134,7 +138,7 @@ export function adminActive() {
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
-	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
+	adminTest(adminPage);
 }
 
 // For admins to look at blacklisted accounts.
@@ -146,5 +150,5 @@ export function adminBlacklist() {
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
-	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
+	adminTest(adminPage);
 }

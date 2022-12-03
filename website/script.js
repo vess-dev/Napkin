@@ -78,7 +78,7 @@ function routePage(newPage) {
 			break;
 		default:
 			// If the route is unknown, redirect.
-			// #myFeed routing should kick back to #accLogin if no session cookie exists.
+			// TODO: #myFeed routing should kick back to #accLogin if no session cookie exists.
 			routePage("#myFeed");
 			break;
 	}

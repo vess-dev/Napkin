@@ -108,7 +108,7 @@ export function insertText(divText) {
 // Also add the search feed and sort feed buttons.
 export function insertDecorations() {
 	const elementBody = document.querySelector("body");
-	const elementNextButton = createButton("nextpage", ["button", "buttonnext", "buttonsubmit"], "Next Page", "TODO: GET NEXT PAGE");
+	const elementNextButton = createButton("nextpage", ["button", "buttonnext", "buttonsubmit"], "Next Page", "TODONEXTPAGE");
 	elementBody.append(elementNextButton);
 }
 
@@ -141,30 +141,39 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 	elementUserEmail.setAttribute("class", "usertext");
 	elementUserEmail.textContent = userEmail;
 	elementUserDiv.append(elementUserEmail);
-	// Create a text block for the date info.
+	// Create a text block for the date info. Also setup buttons.
 	const elementUserDate = document.createElement("div");
 	elementUserDate.setAttribute("class", "usertext date");
+	const elementButtonBox = document.createElement("div");
+	elementButtonBox.setAttribute("class", "buttonbox");
 	let finalText = "";
 	switch(itemType) {
 		case "pending":
 			finalText = "Created on: ";
+			const elementButtonApprove = createButton("approve", ["button", "buttonapprove"], "Approve", "TODOAPPROVE");
+			elementButtonBox.append(elementButtonApprove);
+			const elementButtonDecline = createButton("decline", ["button", "buttonlogout"], "Decline", "TODODECLINE");
+			elementButtonBox.append(elementButtonDecline);
 			break;
 		case "disabled":
 			finalText = "Disabled on: ";
+			const elementButtonEnable = createButton("enable", ["button", "buttonapprove"], "Enable", "TODOENABLE");
+			elementButtonBox.append(elementButtonEnable);
 			break;
 		case "active":
 			finalText = "Approved on: ";
+			const elementButtonDisable = createButton("disable", ["button", "buttonlogout"], "Disable", "TODODISABLE");
+			elementButtonBox.append(elementButtonDisable);
 			break;
 		case "blacklist":
 			finalText = "Blacklisted on: ";
+			const elementButtonUnblack = createButton("unblacklist", ["button", "buttonapprove"], "Unblacklist", "TODOUNBLACKLIST");
+			elementButtonBox.append(elementButtonUnblack);
 			break;
 	}
 	finalText += itemDate;
 	elementUserDate.textContent = finalText;
 	elementUserDiv.append(elementUserDate);
-	// Create and add the appropriate buttons.
-	const elementButtonBox = document.createElement("div");
-	elementButtonBox.setAttribute("class", "buttonbox");
 	elementUserDiv.append(elementButtonBox);
 	elementBoxFull.append(elementUserDiv);
 }
