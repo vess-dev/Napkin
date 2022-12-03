@@ -1,7 +1,10 @@
 import * as phelp from "./pageshelpers.js";
+import * as test from "./helpers.js";
 
 const userHeader = [["home", "Napkin"], ["myfeed", "My Feed"], ["addpost", "Add a Post"], ["friends", "Friends"], ["groups", "Groups"], ["account", "My Account"]]
 const adminHeader = [["pending", "Pending Accounts"], ["disabled", "Disabled Accounts"], ["active", "Active Accounts"], ["blacklist", "Blacklisted Accounts"]];
+
+const testImage = test.loadImage("./assets/test.jpg");
 
 // Always insert the content box first,
 // And then the header type.
@@ -38,8 +41,8 @@ export function accPending() {
 	phelp.insertMiniHeader("Account Approval Pending");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(false);
-	phelp.addText("boxfull", "Your account is still waiting for approval!");
-	phelp.addText("boxfull", "Please check back later.");
+	phelp.insertText("Your account is still waiting for approval!");
+	phelp.insertText("Please check back later.");
 	phelp.insertBottomButtons([["tologin", ["button", "buttonother"], "Back to Login"]]);
 }
 
@@ -100,40 +103,48 @@ export function accSettings() {
 
 // For admins to look at pending accounts.
 export function adminPending() {
+	const adminPage = "pending";
 	phelp.insertContent();
-	phelp.insertHeader(adminHeader, "pending");
+	phelp.insertHeader(adminHeader, adminPage);
 	phelp.insertMiniHeader("New User Requests");
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
+	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
 }
 
 // For admins to look at disabled accounts.
 export function adminDisabled() {
+	const adminPage = "disabled";
 	phelp.insertContent();
-	phelp.insertHeader(adminHeader, "disabled");
+	phelp.insertHeader(adminHeader, adminPage);
 	phelp.insertMiniHeader("Disabled Accounts");
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
+	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
 }
 
 // For admins to look at active accounts.
 export function adminActive() {
+	const adminPage = "active";
 	phelp.insertContent();
-	phelp.insertHeader(adminHeader, "active");
+	phelp.insertHeader(adminHeader, adminPage);
 	phelp.insertMiniHeader("Active Accounts");
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
+	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
 }
 
 // For admins to look at blacklisted accounts.
 export function adminBlacklist() {
+	const adminPage = "blacklist";
 	phelp.insertContent();
-	phelp.insertHeader(adminHeader, "blacklist");
+	phelp.insertHeader(adminHeader, adminPage);
 	phelp.insertMiniHeader("Blacklisted Emails");
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
+	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
 }

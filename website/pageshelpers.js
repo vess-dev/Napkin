@@ -12,9 +12,9 @@ export function insertHeader(headerList, headerFocus) {
 	const elementHeader = document.createElement("div");
 	elementHeader.setAttribute("id", "header");
 	// Create each header button turn by turn.
-	for (let itr_header in headerList) {
-		const elementNewHeader = createButton(headerList[itr_header][0], ["headerbox"], headerList[itr_header][1], false);
-		if (headerFocus == headerList[itr_header][0]) {
+	for (let itrHeader in headerList) {
+		const elementNewHeader = createButton(headerList[itrHeader][0], ["headerbox"], headerList[itrHeader][1], false);
+		if (headerFocus == headerList[itrHeader][0]) {
 			elementNewHeader.classList.add("colorblue");
 		}
 		elementHeader.append(elementNewHeader);
@@ -45,13 +45,13 @@ export function insertBigBreak() {
 // A box for content that almost hits the bottom height.
 export function insertFullBox(miniHeader) {
 	const elementContent = document.getElementById("content");
-	const elementFullBox = document.createElement("div");
-	elementFullBox.setAttribute("id", "boxfull");
+	const elementBoxFull = document.createElement("div");
+	elementBoxFull.setAttribute("id", "boxfull");
 	// Account for a page height difference with a mini header.
 	if (miniHeader) {
-		elementFullBox.style.height = "calc(100vh - 13rem)";
+		elementBoxFull.style.height = "calc(100vh - 13rem)";
 	}
-	elementContent.append(elementFullBox);
+	elementContent.append(elementBoxFull);
 }
 
 // A div that has text on the left, and an input box on the right.
@@ -75,8 +75,8 @@ export function insertInputBox(inputText, inputName, inputPassword) {
 export function createButton(buttonId, buttonClasses, buttonText) {
 	const elementButton = document.createElement("button");
 	elementButton.setAttribute("id", buttonId);
-	for (let itr_class in buttonClasses) {
-		elementButton.classList.add(buttonClasses[itr_class]);
+	for (let itrClass in buttonClasses) {
+		elementButton.classList.add(buttonClasses[itrClass]);
 	}
 	elementButton.textContent = buttonText;
 	return elementButton;
@@ -86,8 +86,8 @@ export function createButton(buttonId, buttonClasses, buttonText) {
 export function insertBottomButtons(buttonList) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementBottomDiv = document.createElement("div");
-	for (let itr_button in buttonList) {
-		const elementNewButton = createButton(buttonList[itr_button][0], buttonList[itr_button][1], buttonList[itr_button][2]);
+	for (let itrButton in buttonList) {
+		const elementNewButton = createButton(buttonList[itrButton][0], buttonList[itrButton][1], buttonList[itrButton][2]);
 		elementBottomDiv.append(elementNewButton);
 	}
 	elementBottomDiv.setAttribute("class", "buttonbox");
@@ -95,12 +95,12 @@ export function insertBottomButtons(buttonList) {
 }
 
 // Add a text content to an element.
-export function addText(elementId, divText) {
-	const elementTarget = document.getElementById(elementId);
+export function insertText(divText) {
+	const elementBoxFull = document.getElementById("boxfull");
 	const elementTextDiv = document.createElement("div");
 	elementTextDiv.setAttribute("class", "textdiv");
 	elementTextDiv.textContent = divText;
-	elementTarget.append(elementTextDiv);
+	elementBoxFull.append(elementTextDiv);
 }
 
 // Add a next page button to the bottom right of the page.
@@ -119,4 +119,41 @@ export function insertMiniButton(buttonType) {
 		elementNewButton = createButton("logout", ["button", "buttonlogout"], "Logout");
 	}
 	elementMiniHeader.append(elementNewButton);
+}
+
+// Create an admin user info div. Picture, name, email, date, item type.
+export function insertUserItem(userPicture, userName, userEmail, itemDate, itemType) {
+	const elementBoxFull = document.getElementById("boxfull");
+	const elementUserDiv = document.createElement("div");
+	elementUserDiv.setAttribute("class", "userdiv");
+	// Format the user picture with the appropriate class.
+	userPicture.setAttribute("class", "userpicture");
+	elementUserDiv.append(userPicture);
+	// Create a text block for the name and email.
+	const elementUserText = document.createElement("div");
+	elementUserText.setAttribute("class", "usertext");
+	elementUserText.textContent = userName + ", " + userEmail;
+	elementUserDiv.append(elementUserText);
+	// Create a text block for the date info.
+	const elementUserDate = document.createElement("div");
+	elementUserDate.setAttribute("class", "usertext");
+	let finalText = "";
+	switch(itemType) {
+		case "pending":
+			finalText = "Created on: ";
+			break;
+		case "disabled":
+			finalText = "Disabled on: ";
+			break;
+		case "active":
+			finalText = "Approved on: ";
+			break;
+		case "blacklist":
+			finalText = "Blacklisted on: ";
+			break;
+	}
+	finalText += itemDate;
+	elementUserDate.textContent = finalText;
+	elementUserDiv.append(elementUserDate);
+	elementBoxFull.append(elementUserDiv);
 }

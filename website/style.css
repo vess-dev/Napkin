@@ -48,6 +48,22 @@ body {
 	margin: 1rem;
 }
 
+.userdiv {
+	display: flex;
+	gap: 1rem;
+	flex-flow: row;
+	margin: 1rem;
+}
+
+.usertext {
+	margin: 5px;
+}
+
+.userpicture {
+	height: 30px;
+	width: 30px;
+}
+
 #boxfull {
 	background-color: white;
 	border: 2px solid gray;
