@@ -101,6 +101,16 @@ export function accBlocked() {
 export function friendSearch() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "friends");
+	phelp.insertMiniHeader("Search for a New Friend", "blocked");
+	phelp.insertBigBreak();
+	phelp.insertFullBox(true);
+	phelp.insertInputBox("Search by Name:", "screenname", false);
+	phelp.insertText("Search Results");
+	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+		"search");
+	phelp.insertText("Additional Results");
+	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+		"search");
 }
 
 // When you look at your groups.

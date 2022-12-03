@@ -177,6 +177,8 @@ export function insertFriendItem(userPicture, userName, itemType) {
 			elementButtonBox.append(elementButtonUnblock);
 			break;
 		case "search":
+			const elementButtonSend = createButton("send", ["button", "buttongreen"], "Send Friend Request", "TODOREQUEST");
+			elementButtonBox.append(elementButtonSend);
 			break;
 	}
 	elementDivFriend.append(elementButtonBox);
