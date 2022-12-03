@@ -1,6 +1,6 @@
 export const SERVER = "http://cpsc.roanoke.edu:3009/";
 
-// User Paths
+// User paths.
 export const PAGE_ACC_LOGIN = "#accLogin";
 export const PAGE_ACC_CREATE = "#accCreate";
 export const PAGE_ACC_PENDING = "#accPending";
@@ -14,8 +14,8 @@ export const PAGE_POST_CREATE = "#postCreate";
 export const PAGE_POST_EDIT = "#postEdit";
 export const PAGE_ACC_SETTINGS = "#accSettings";
 
-// Admin Paths
+// Admin paths.
 export const PAGE_ADMIN_PENDING = "#adminPending";
 export const PAGE_ADMIN_DISABLED = "#adminDisabled";
 export const PAGE_ADMIN_ACTIVE = "#adminActive";
-export const PAGE_ADMIN_PENDING = "#adminBlacklist";
+export const PAGE_ADMIN_BLACKLIST = "#adminBlacklist";
