@@ -115,7 +115,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
       }
       if (method === 'PUT') {
         routeFound = true;
-        user.updateUser(bodyObject).then(reply=>{
+        user.updateUser(bodyObject, userID).then(reply=>{
           response.statusCode = 200;
           response.write('{"success":"User updated for user' + reply + '"}');          
         })
