@@ -20,8 +20,8 @@ export function insertNapkinHeader() {
 
 // Set the current header to be highlighted.
 export function highlightHeader(elementId) {
-	const elementBox = document.getElementById(elementId);
-	elementBox.style.backgroundColor = "DodgerBlue";
+	const elementHeaderItem = document.getElementById(elementId);
+	elementHeaderItem.style.backgroundColor = "dodgerblue";
 }
 
 // A mini header that is not a full header.
@@ -37,9 +37,17 @@ export function insertMiniHeader(headerName) {
 }
 
 // Add a small break between content.
-export function insertBreak() {
+export function insertBigBreak() {
 	const elementContent = document.getElementById("content");
-	const elementBreak = document.createElement("div");
-	elementBreak.setAttribute("class", "break");
-	//elementContent.append()
+	const elementBigBreak = document.createElement("div");
+	elementBigBreak.setAttribute("class", "bigbreak");
+	elementContent.append(elementBigBreak);
+}
+
+// A box for content that almost hits the bottom height.
+export function insertFullBox() {
+	const elementContent = document.getElementById("content");
+	const elementFullBox = document.createElement("div");
+	elementFullBox.setAttribute("id", "boxfull");
+	elementContent.append(elementFullBox);
 }

@@ -1,12 +1,12 @@
-import * as pages from "./pages.js";
-import * as routes from "./routes.js";
+import * as page from "./pages.js";
+import * as route from "./routes.js";
 
 onPageLoad();
 
 function onPageLoad() {
 	// Route to the page login if no route is specified.
 	if (window.location.hash == "") {
-		window.location.hash = routes.PAGE_ACC_LOGIN;
+		window.location.hash = route.PAGE_ACC_LOGIN;
 	}
 	// Route them to the correct page.
 	routePage();
@@ -27,53 +27,53 @@ function routePage(newPage) {
 	}
 	clearPage();
 	switch(currentHash) {
-		case routes.PAGE_ACC_LOGIN:
-			pages.accLogin();
+		case route.PAGE_ACC_LOGIN:
+			page.accLogin();
 			break;
-		case routes.PAGE_ACC_CREATE:
-			pages.accCreate();
+		case route.PAGE_ACC_CREATE:
+			page.accCreate();
 			break;
-		case routes.PAGE_ACC_PENDING:
-			pages.accPending();
+		case route.PAGE_ACC_PENDING:
+			page.accPending();
 			break;
-		case routes.PAGE_MY_FEED:
-			pages.myFeed();
+		case route.PAGE_MY_FEED:
+			page.myFeed();
 			break;
-		case routes.PAGE_ACC_FEED:
-			pages.accFeed();
+		case route.PAGE_ACC_FEED:
+			page.accFeed();
 			break;
-		case routes.PAGE_ACC_FRIENDS:
-			pages.accFriends();
+		case route.PAGE_ACC_FRIENDS:
+			page.accFriends();
 			break;
-		case routes.PAGE_ACC_BLOCKED:
-			pages.accBlocked();
+		case route.PAGE_ACC_BLOCKED:
+			page.accBlocked();
 			break;
-		case routes.PAGE_SEARCH:
-			pages.friendSearch();
+		case route.PAGE_SEARCH:
+			page.friendSearch();
 			break;
-		case routes.PAGE_ACC_GROUPS:
-			pages.accGroups();
+		case route.PAGE_ACC_GROUPS:
+			page.accGroups();
 			break;
-		case routes.PAGE_POST_CREATE:
-			pages.postCreate();
+		case route.PAGE_POST_CREATE:
+			page.postCreate();
 			break;
-		case routes.PAGE_POST_EDIT:
-			pages.postEdit();
+		case route.PAGE_POST_EDIT:
+			page.postEdit();
 			break;
-		case routes.PAGE_ACC_SETTINGS:
-			pages.accSettings();
+		case route.PAGE_ACC_SETTINGS:
+			page.accSettings();
 			break;
-		case routes.PAGE_ADMIN_PENDING:
-			pages.adminPending();
+		case route.PAGE_ADMIN_PENDING:
+			page.adminPending();
 			break;
-		case routes.PAGE_ADMIN_DISABLED:
-			pages.adminDisabled();
+		case route.PAGE_ADMIN_DISABLED:
+			page.adminDisabled();
 			break;
-		case routes.PAGE_ADMIN_ACTIVE:
-			pages.adminActive();
+		case route.PAGE_ADMIN_ACTIVE:
+			page.adminActive();
 			break;
-		case routes.PAGE_ADMIN_BLACKLIST:
-			pages.adminBlacklist();
+		case route.PAGE_ADMIN_BLACKLIST:
+			page.adminBlacklist();
 			break;
 		default:
 			console.log("Unhandled route.");
