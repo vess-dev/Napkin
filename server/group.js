@@ -12,7 +12,7 @@ function getGroupList(user_id) {
   return new Promise((resolve, reject) =>{
     db.pool.query(`SELECT group_id, group_name, group_ranking FROM groups WHERE owner_id ='${user_id}'`,
       function(error, results, fields) {
-        console.log(error, results, fields)
+
         if (error) {                    
           return reject(new BaseError("DB Error", 500, error));
         }
@@ -46,7 +46,6 @@ function addNewGroup(groupObject) {
   };
 
   function updateGroup(groupObject, owner_id) {
-    console.log('called updateGroup with ',groupObject, owner_id)
     return new Promise((resolve, reject) =>{
       // Ensure required fields are included
       if (!groupObject.group_id ) {
@@ -69,7 +68,6 @@ function addNewGroup(groupObject) {
     //    db.pool.query('INSERT INTO groups SET ?', {group_name: group_name, owner_id: owner_id, group_ranking: group_ranking},
         db.pool.query('UPDATE groups SET ? where owner_id = ? and group_id = ?', [groupObject, user_id, group_id],
           function(error, results, fields) {
-            console.log(error, results, fields)
             //TODO:  This code correctly prevents users from changing other users' groups, but doesn't return an error if they try.
             if (error) {
               if (error.code === 'ER_DUP_ENTRY') {          
@@ -92,7 +90,6 @@ function insertGroup(group_name, owner_id, group_ranking) {
 
     db.pool.query('INSERT INTO groups SET ?', {group_name: group_name, owner_id: owner_id, group_ranking: group_ranking},
       function(error, results, fields) {
-        console.log(error, results, fields)
         if (error) {
           if (error.code === 'ER_DUP_ENTRY') {          
             return reject(new BaseError("DB Error", 400, "Group already exists"));

@@ -263,10 +263,11 @@ function postCreateAction() {
     let post_content = document.querySelector('#post_content').value;
     let post_image = document.querySelector('#post_image').value;
     let selected  = document.querySelectorAll('#group_selector option:checked');
+	console.log('have ',post_title, post_content, post_image)
     let group_ids = Array.from(selected).map(el => el.value);
     let groupList 
     for (let one of group_ids) {groupList += one+','}
-
+	console.log('have groupList',groupList)
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "POST",
