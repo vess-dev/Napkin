@@ -300,25 +300,41 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
           }
         }
   //friend routes
-                if (url.pathname === routes.FRIEND) {
+      if (url.pathname === routes.FRIEND) {
 
-                  if (method === 'GET') {
-                    console.log('on friends route')
-                    routeFound = true;
-                    // Get list of groups
-                    friend.getFriendList(userID).then(list=>{
-                      response.statusCode = 200;
-                      response.write(JSON.stringify(list));
-                    })
-                    .catch(error=>{
-                      console.log('caught an error ', error)
-                      handleErrorReply(response, error);
-                    })
-                    .finally(() => {
-                      response.end(); 
-                    });
-                  }
-                }
+        if (method === 'GET') {
+          console.log('on friends route')
+          routeFound = true;
+
+          friend.getFriendList(userID).then(list=>{
+            response.statusCode = 200;
+            response.write(JSON.stringify(list));
+          })
+          .catch(error=>{
+            console.log('caught an error ', error)
+            handleErrorReply(response, error);
+          })
+          .finally(() => {
+            response.end(); 
+          });
+        }
+
+        if (method === 'POST') {
+          routeFound = true;
+
+          friend.makeFriendRequest(postObject.friend_id, userID).then(()=>{
+            response.statusCode = 200;
+            response.write({"success": "make a friend request"});
+          })
+          .catch(error=>{
+            console.log('caught an error ', error)
+            handleErrorReply(response, error);
+          })
+          .finally(() => {
+            response.end(); 
+          });
+        }
+      }
   //postgroup routes
     if (url.pathname === routes.POSTGROUP) {
 
