@@ -1,8 +1,8 @@
 import * as phelp from "./pageshelpers.js";
 import * as test from "./helpers.js";
 
-const userHeader = [["home", "Napkin"], ["myfeed", "My Feed"], ["addpost", "Add a Post"], ["friends", "Friends"], ["groups", "Groups"], ["account", "My Account"]]
-const adminHeader = [["pending", "Pending Accounts"], ["disabled", "Disabled Accounts"], ["active", "Active Accounts"], ["blacklist", "Blacklisted Accounts"]];
+const userHeader = [["home", "Napkin", "routePage('#myFeed')"], ["myfeed", "My Feed", "routePage('#myFeed')"], ["addpost", "Add a Post", "routePage('#postCreate')"], ["friends", "Friends", "routePage('#accFriends')"], ["groups", "Groups", "routePage('#accGroups')"], ["account", "My Account", "routePage('#accFeed')"]]
+const adminHeader = [["pending", "Pending Accounts", "routePage('#adminPending')"], ["disabled", "Disabled Accounts", "routePage('#adminDisabled')"], ["active", "Active Accounts", "routePage('#adminActive')"], ["blacklist", "Blacklisted Accounts", "routePage('#adminBlacklist')"]];
 
 const testImage = test.loadImage("./assets/test.jpg");
 
@@ -14,7 +14,7 @@ export function accLogin() {
 	phelp.insertContent();
 	phelp.insertMiniHeader("Log in to Napkin");
 	phelp.insertBigBreak();
-	phelp.insertFullBox(false);
+	phelp.insertBoxFull(false);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login"], ["create", ["button", "buttonother"], "Create Account"]]);
@@ -25,7 +25,7 @@ export function accCreate() {
 	phelp.insertContent();
 	phelp.insertMiniHeader("Create a Napkin Account");
 	phelp.insertBigBreak();
-	phelp.insertFullBox(false);
+	phelp.insertBoxFull(false);
 	phelp.insertInputBox("User first name:", "firstname", false);
 	phelp.insertInputBox("User last name:", "lastname", false);
 	phelp.insertInputBox("User screen name:", "screenname", false);
@@ -40,7 +40,7 @@ export function accPending() {
 	phelp.insertContent();
 	phelp.insertMiniHeader("Account Approval Pending");
 	phelp.insertBigBreak();
-	phelp.insertFullBox(false);
+	phelp.insertBoxFull(false);
 	phelp.insertText("Your account is still waiting for approval!");
 	phelp.insertText("Please check back later.");
 	phelp.insertBottomButtons([["tologin", ["button", "buttonother"], "Back to Login"]]);
@@ -109,7 +109,7 @@ export function adminPending() {
 	phelp.insertMiniHeader("New User Requests");
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
-	phelp.insertFullBox(true);
+	phelp.insertBoxFull(true);
 	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
 }
 
@@ -121,7 +121,7 @@ export function adminDisabled() {
 	phelp.insertMiniHeader("Disabled Accounts");
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
-	phelp.insertFullBox(true);
+	phelp.insertBoxFull(true);
 	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
 }
 
@@ -133,7 +133,7 @@ export function adminActive() {
 	phelp.insertMiniHeader("Active Accounts");
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
-	phelp.insertFullBox(true);
+	phelp.insertBoxFull(true);
 	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
 }
 
@@ -145,6 +145,6 @@ export function adminBlacklist() {
 	phelp.insertMiniHeader("Blacklisted Emails");
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
-	phelp.insertFullBox(true);
+	phelp.insertBoxFull(true);
 	phelp.insertUserItem(testImage, "Will Smith", "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
 }

@@ -2,6 +2,7 @@ import * as page from "./pages.js";
 import * as route from "./routes.js";
 
 onPageLoad();
+window.routePage = routePage; // This is horrible. I'm sorry.
 
 function onPageLoad() {
 	// Route to the page login if no route is specified.

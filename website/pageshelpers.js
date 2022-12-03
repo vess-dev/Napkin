@@ -13,7 +13,7 @@ export function insertHeader(headerList, headerFocus) {
 	elementHeader.setAttribute("id", "header");
 	// Create each header button turn by turn.
 	for (let itrHeader in headerList) {
-		const elementNewHeader = createButton(headerList[itrHeader][0], ["headerbox"], headerList[itrHeader][1], false);
+		const elementNewHeader = createButton(headerList[itrHeader][0], ["headerbox"], headerList[itrHeader][1], headerList[itrHeader][2]);
 		if (headerFocus == headerList[itrHeader][0]) {
 			elementNewHeader.classList.add("colorblue");
 		}
@@ -43,7 +43,7 @@ export function insertBigBreak() {
 }
 
 // A box for content that almost hits the bottom height.
-export function insertFullBox(miniHeader) {
+export function insertBoxFull(miniHeader) {
 	const elementContent = document.getElementById("content");
 	const elementBoxFull = document.createElement("div");
 	elementBoxFull.setAttribute("id", "boxfull");
@@ -72,13 +72,14 @@ export function insertInputBox(inputText, inputName, inputPassword) {
 }
 
 // Create and add different button types.
-export function createButton(buttonId, buttonClasses, buttonText) {
+export function createButton(buttonId, buttonClasses, buttonText, buttonCall) {
 	const elementButton = document.createElement("button");
 	elementButton.setAttribute("id", buttonId);
 	for (let itrClass in buttonClasses) {
 		elementButton.classList.add(buttonClasses[itrClass]);
 	}
 	elementButton.textContent = buttonText;
+	elementButton.setAttribute("onclick", buttonCall);
 	return elementButton;
 }
 
@@ -87,10 +88,10 @@ export function insertBottomButtons(buttonList) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementBottomDiv = document.createElement("div");
 	for (let itrButton in buttonList) {
-		const elementNewButton = createButton(buttonList[itrButton][0], buttonList[itrButton][1], buttonList[itrButton][2]);
+		const elementNewButton = createButton(buttonList[itrButton][0], buttonList[itrButton][1], buttonList[itrButton][2], buttonList[itrButton][3]);
 		elementBottomDiv.append(elementNewButton);
 	}
-	elementBottomDiv.setAttribute("class", "buttonbox");
+	elementBottomDiv.setAttribute("class", "buttonbottom");
 	elementBoxFull.append(elementBottomDiv);
 }
 
@@ -107,7 +108,7 @@ export function insertText(divText) {
 // Also add the search feed and sort feed buttons.
 export function insertDecorations() {
 	const elementBody = document.querySelector("body");
-	const elementNextButton = createButton("nextpage", ["button", "buttonnext", "buttonsubmit"], "Next Page");
+	const elementNextButton = createButton("nextpage", ["button", "buttonnext", "buttonsubmit"], "Next Page", "TODO");
 	elementBody.append(elementNextButton);
 }
 
@@ -116,7 +117,7 @@ export function insertMiniButton(buttonType) {
 	const elementMiniHeader = document.getElementById("headermini");
 	let elementNewButton;
 	if (buttonType == "logout") {
-		elementNewButton = createButton("logout", ["button", "buttonlogout"], "Logout");
+		elementNewButton = createButton("logout", ["button", "buttonright", "buttonlogout"], "Logout", "TODO");
 	}
 	elementMiniHeader.append(elementNewButton);
 }
@@ -130,13 +131,19 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 	userPicture.setAttribute("class", "userpicture");
 	elementUserDiv.append(userPicture);
 	// Create a text block for the name and email.
-	const elementUserText = document.createElement("div");
-	elementUserText.setAttribute("class", "usertext");
-	elementUserText.textContent = userName + ", " + userEmail;
-	elementUserDiv.append(elementUserText);
+	const elementUserName = document.createElement("div");
+	elementUserName.setAttribute("id", "username");
+	elementUserName.setAttribute("class", "usertext");
+	elementUserName.textContent = userName;
+	elementUserDiv.append(elementUserName );
+	const elementUserEmail = document.createElement("div");
+	elementUserEmail.setAttribute("id", "useremail");
+	elementUserEmail.setAttribute("class", "usertext");
+	elementUserEmail.textContent = userEmail;
+	elementUserDiv.append(elementUserEmail);
 	// Create a text block for the date info.
 	const elementUserDate = document.createElement("div");
-	elementUserDate.setAttribute("class", "usertext");
+	elementUserDate.setAttribute("class", "usertext date");
 	let finalText = "";
 	switch(itemType) {
 		case "pending":
@@ -155,5 +162,9 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 	finalText += itemDate;
 	elementUserDate.textContent = finalText;
 	elementUserDiv.append(elementUserDate);
+	// Create and add the appropriate buttons.
+	const elementButtonBox = document.createElement("div");
+	elementButtonBox.setAttribute("class", "buttonbox");
+	elementUserDiv.append(elementButtonBox);
 	elementBoxFull.append(elementUserDiv);
 }
