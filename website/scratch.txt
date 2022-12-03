@@ -1,3 +1,12 @@
+<div id="header">
+	<div class="headerbox" id="home">Napkin</div>
+	<div class="headerbox" id="myfeed">My Feed</div>
+	<div class="headerbox" id="addpost">Add a Post</div>
+	<div class="headerbox" id="friends">Friends</div>
+	<div class="headerbox" id="groups">Groups</div>
+	<div class="headerbox" id="account">My Account</div>
+</div>
+
 <div id="menu" class="hidden">
 	<ul>
 		<li id="home_link">Home</li>

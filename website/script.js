@@ -12,6 +12,12 @@ function onPageLoad() {
 	routePage();
 }
 
+// Clear the page clean of content.
+function clearPage() {
+	const contentDOM = document.querySelector("body");
+	contentDOM.textContent = "";
+}
+
 // If given a page anchor, will load the appropriate page.
 // If not passed anything, will look at current URL anchor and load that page.
 function routePage(newPage) {
@@ -19,47 +25,39 @@ function routePage(newPage) {
 	if (newPage) {
 		history.pushState({}, "", newPage);
 	}
-	//clearPage();
+	clearPage();
 	switch(currentHash) {
 		case routes.PAGE_ACC_LOGIN:
-			break;
+			pages.accLogin();
 		case routes.PAGE_ACC_CREATE:
-			break;
+			pages.accCreate();
 		case routes.PAGE_ACC_PENDING:
-			break;
+			pages.accPending();
 		case routes.PAGE_MY_FEED:
-			break;
+			pages.myFeed();
 		case routes.PAGE_ACC_FEED:
-			break;
+			pages.accFeed();
 		case routes.PAGE_ACC_FRIENDS:
-			break;
+			pages.accFriends();
 		case routes.PAGE_ACC_BLOCKED:
-			break;
+			pages.accBlocked();
 		case routes.PAGE_SEARCH:
-			break;
+			pages.friendSearch();
 		case routes.PAGE_ACC_GROUPS:
-			break;
+			pages.accGroups();
 		case routes.PAGE_POST_CREATE:
-			break;
+			pages.postCreate();
 		case routes.PAGE_POST_EDIT:
-			break;
+			pages.postEdit();
 		case routes.PAGE_ACC_SETTINGS:
-			break;
+			pages.accSettings();
 		case routes.PAGE_ADMIN_PENDING:
-			break;
+			pages.adminPending();
 		case routes.PAGE_ADMIN_DISABLED:
-			break;
+			pages.adminDisabled();
 		case routes.PAGE_ADMIN_ACTIVE:
-			break;
+			pages.adminActive();
 		case routes.PAGE_ADMIN_BLACKLIST:
-			break;
-		default:
-			loadLoginPage();
+			pages.adminBlacklist();
 	}	
-}
-
-// Clear the page clean of content.
-function clearPage() {
-	const contentDOM = document.querySelector("body");
-	contentDOM.textContent = "";
 }
