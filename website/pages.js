@@ -61,14 +61,14 @@ if (postType) {
 			headers: {
 			"Content-Type": "application/json"}
 		};
-		fetch(routes.SERVER+'post/', options)
+		fetch(routes.SERVER+'post', options)
 		.then((response) => {
 			if (response.ok) {
 				return response.json();
 			}
 			else {
 				//throw new ClientError("User Error", response.status,"Unable to retrieve posts");
-				throw new Error('error', response.error)
+				throw new Error('error', response)
 			}
 		})
 		.then((postsList) => {
