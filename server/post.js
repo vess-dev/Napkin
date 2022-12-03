@@ -23,7 +23,13 @@ function createPost(postObject, userID) {
           updatePostWeightByPost(results.insertId)
           if (postObject.group_id) {
             console.log('calling putPostInGroup with', userID, postObject.group_id, results.insertId)
-            putPostInGroup(userID, postObject.group_id, results.insertId)
+            if (Number.isInteger(postObject.group_id)) {putPostInGroup(userID, postObject.group_id, results.insertId)}
+            else {
+              let allgroups = postObject.group_id.split(/[, ]+/)
+              for (let onegroup of allgroups) {
+                putPostInGroup(userID, onegroup, results.insertId)
+              }
+            }
           }
           return resolve(results.insertId);        
         }

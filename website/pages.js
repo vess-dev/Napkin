@@ -1,6 +1,8 @@
 import * as phelp from "./pageshelpers.js";
 import * as help from "./helpers.js";
 import * as routes from "./routes.js";
+import * as fns from "./functions.js";
+
 
 // The header for the regular user pages.
 const userHeader = [["feedglobal", "Global Feed", "routePage('#feedGlobal')"], ["feedmy", "My Feed", "routePage('#feedMy')"], ["createpost", "Create Post", "routePage('#postCreate')"], ["friends", "Friends", "routePage('#accFriends')"], ["groups", "Groups", "routePage('#accGroups')"], ["account", "Settings", "routePage('#accSettings')"]]
@@ -172,9 +174,8 @@ export function postCreate() {
 	phelp.insertInputBox("Post image URL:", "post_image", false);
 	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.getGroupsSelector()
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#myFeed')"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "fns.postCreateAction()"]]);
 	
-
 }
 
 // When you want to edit a post.
