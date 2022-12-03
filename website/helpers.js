@@ -2,7 +2,7 @@
 export function loadImage(imagePath) {
 	if (!imagePath) { return null } else {
 		const elementImage = document.createElement("img");
-		elementImage.setAttribute("src", imagePath)
+		elementImage.setAttribute("src", imagePath);
 		return elementImage;
 	}
 }

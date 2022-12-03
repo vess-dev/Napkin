@@ -1,6 +1,6 @@
 import * as phelp from "./pageshelpers.js";
 import * as help from "./helpers.js";
-import * as routes from "./routes.js";
+import * as route from "./routes.js";
 
 
 // The header for the regular user pages.
@@ -65,7 +65,7 @@ function feedFill(postType) {
 			headers: {
 			"Content-Type": "application/json"}
 		};
-		fetch(routes.SERVER + endpoint, options)
+		fetch(route.SERVER + endpoint, options)
 		.then((response) => {
 			if (response.ok) {
 				return response.json();
@@ -281,7 +281,7 @@ function postCreateAction() {
                 group_id: groupList
               })
 		};
-		fetch(routes.SERVER+'post', options)
+		fetch(route.SERVER+'post', options)
 		.then((response) => {
 			if (response.ok) {
 				return response.json();
