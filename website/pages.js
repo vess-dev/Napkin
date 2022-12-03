@@ -15,6 +15,12 @@ function insertNapkinHeader() {
 	elementBody.append(elementHeader);
 }
 
+// Set the current header to be highlighted.
+function highlightHeader(elementId) {
+	const elementBox = document.getElementById(elementId);
+	elementBox.style.backgroundColor = "DodgerBlue";
+}
+
 // When you need to login to Napkin.
 export function accLogin() {
 	console.log("Login");
@@ -33,64 +39,73 @@ export function accPending() {
 // When you are looking at the ALL feed.
 export function myFeed() {
 	insertNapkinHeader();
+	highlightHeader("myfeed");
 }
 
 // When you are looking at the JUST YOU feed.
 export function accFeed() {
 	insertNapkinHeader();
+	highlightHeader("account");
 }
 
 // When you look at your list of friends.
 export function accFriends() {
 	insertNapkinHeader();
+	highlightHeader("friends");
 }
 
 // When you look at who you have blocked.
 export function accBlocked() {
 	insertNapkinHeader();
+	highlightHeader("friends");
 }
 
 // When you're searching for a friend.
 export function friendSearch() {
 	insertNapkinHeader();
+	highlightHeader("friends");
 }
 
 // When you look at your groups.
 export function accGroups() {
 	insertNapkinHeader();
+	highlightHeader("groups");
 }
 
 // When you want to create a post.
 export function postCreate() {
 	insertNapkinHeader();
+	highlightHeader("addpost");
 }
 
 // When you want to edit a post.
 export function postEdit() {
 	insertNapkinHeader();
+	highlightHeader("addpost"); // Should this be on addpost for editpost?
 }
 
 // When you look at your account settings.
 export function accSettings() {
 	insertNapkinHeader();
+	highlightHeader("account");
 }
 
 // For admins to look at pending accounts.
 export function adminPending() {
-	console.log("Pending");
+	highlightHeader("pending");
 }
 
 // For admins to look at disabled accounts.
 export function adminDisabled() {
-	console.log("Disabled");
+	highlightHeader("disabled");
 }
 
 // For admins to look at active accounts.
 export function adminActive() {
-	console.log("Active");
+	highlightHeader("active");
 }
 
 // For admins to look at blacklisted accounts.
 export function adminBlacklist() {
-	console.log("Blacklist");
+	highlightHeader("blacklist");
 }
