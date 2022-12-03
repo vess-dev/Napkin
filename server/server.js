@@ -322,8 +322,8 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         if (method === 'POST') {
           console.log('friends post route:')
           routeFound = true;
-          console.log('values', postObject.friend_id, userID)
-          friend.makeFriendRequest(postObject.friend_id, userID).then(()=>{
+          console.log('values', bodyObject.friend_id, userID)
+          friend.makeFriendRequest(bodyObject.friend_id, userID).then(()=>{
             response.statusCode = 200;
             response.write({"success": "make a friend request"});
           })
