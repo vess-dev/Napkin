@@ -78,7 +78,7 @@ function routePage(newPage) {
 			break;
 		default:
 			// If the route is unknown, redirect.
-			// TODO: #feedMy routing should kick back to #accLogin if no session cookie exists.
+			// TODO: #feedGlobal routing should kick back to #accLogin if no session cookie exists.
 			routePage("#feedGlobal");
 			break;
 	}

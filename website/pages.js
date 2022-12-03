@@ -50,14 +50,14 @@ export function accPending() {
 
 // Fill the feed with non-user made posts, or user made posts.
 function feedFill(postType) {
-	let endpoint
-if (postType) {
-	// true means the individual user's posts
-	endpoint = 'myposts'
-} else {
-	// false means the 'global' feed.
-	endpoint = 'post'
-}
+	let endpoint;
+	if (postType) {
+		// True means the individual user's posts.
+		endpoint = "myposts";
+	} else {
+		// False means the "global" feed.
+		endpoint = "post";
+	}
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "GET",
@@ -65,7 +65,7 @@ if (postType) {
 			headers: {
 			"Content-Type": "application/json"}
 		};
-		fetch(routes.SERVER+endpoint, options)
+		fetch(routes.SERVER + endpoint, options)
 		.then((response) => {
 			if (response.ok) {
 				return response.json();
