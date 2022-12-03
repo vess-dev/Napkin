@@ -82,8 +82,9 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	const elementDivInfo = document.createElement("div");
 	elementDivInfo.setAttribute("class", "userdiv");
 	// Add the user picture.
+	if (userPicture) {
 	userPicture.setAttribute("class", "userpicture");
-	elementDivInfo.append(userPicture);
+	elementDivInfo.append(userPicture); }
 	// Add the post title.
 	const elementPostTitle = document.createElement("div");
 	elementPostTitle.setAttribute("id", "title");
