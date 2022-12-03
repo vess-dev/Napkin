@@ -1,8 +1,10 @@
 // Load an image to use.
 export function loadImage(imagePath) {
+	if (!imagePath) { return ""} else {
 	const elementImage = document.createElement("img");
 	elementImage.setAttribute("src", imagePath)
 	return elementImage;
+	}
 }
 
 // Return a long string of text.
