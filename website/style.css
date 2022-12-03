@@ -57,7 +57,7 @@ body {
 	height: calc(100vh - 10rem);
 }
 
-#content #testing {
+#content, #testing {
 	display: flex;
 	flex-flow: column;
 	padding-left: 2rem;
