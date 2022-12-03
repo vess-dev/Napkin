@@ -52,18 +52,21 @@ function makeFriendRequest(friend_id, userID) {
 })}
 
 async function makeFriendsStatus(friend_id, userID, newStatus) {
+  return new Promise((resolve, reject) =>{
   db.pool.query(`insert into friendships (user_id, friend_id, friendship_status) values
       ?,?,?`,
       [userID, friend_id, newStatus],
       function(error, results) {
         console.log(results)
-        if (error) {                    
+        if (error) {    
+          console.log('error on makeFriendsStatus', error)                
           return reject(new BaseError("DB Error", 500, error));
         }
         else { 
             return resolve({"Success": "friendship requested"})
         }
 
+})
 })};
 
 module.exports = {getFriendList, makeFriendRequest}
