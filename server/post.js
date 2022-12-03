@@ -52,7 +52,7 @@ function putPostInGroup(user_id, group_id, post_id) {
 })}
 
 function removePostFromGroup(user_id, group_id, post_id) {
-  db.pool.query(`delete from post_groups (group_id, post_id)
+  db.pool.query(`delete from post_groups
   where group_id=? and post_id=? 
   and
   group_id IN (select group_id from groups where owner_id=? )`, 
