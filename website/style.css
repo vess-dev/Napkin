@@ -42,6 +42,10 @@ body {
 	width: 50%;
 }
 
+textarea.inputfield {
+	height: 6rem;
+}
+
 .testcube {
 	background: red;
 	height: 500px;
