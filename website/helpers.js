@@ -1,3 +1,5 @@
+import * as fns from "./functions.js";
+
 // Load an image to use.
 export function loadImage(imagePath) {
 	if (!imagePath) { return null} else {

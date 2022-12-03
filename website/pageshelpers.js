@@ -1,4 +1,6 @@
 import * as routes from "./routes.js";
+import * as fns from "./functions.js";
+
 
 // Insert a content box where... Content is displayed. Haha.
 export function insertContent() {
