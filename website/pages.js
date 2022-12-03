@@ -52,8 +52,11 @@ function feedFill(postType) {
 
 if (postType) {
 	// true means the individual user's posts
+	let endpoint = 'myposts'
 } else {
 	// false means the 'global' feed.
+	let endpoint = 'post'
+}
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "GET",
@@ -61,7 +64,7 @@ if (postType) {
 			headers: {
 			"Content-Type": "application/json"}
 		};
-		fetch(routes.SERVER+'post', options)
+		fetch(routes.SERVER+endpoint, options)
 		.then((response) => {
 			if (response.ok) {
 				return response.json();
@@ -83,7 +86,7 @@ if (postType) {
 		});
 	});
 }
-}
+
 
 /*	phelp.insertPost(help.loadImage("./assets/test1.jpg"), "Post 1", "Will Smith", "Nov 10th 2022", "I am will Smith.", help.loadImage("./assets/test1.jpg"), postType);
 	phelp.insertBigBreak();
