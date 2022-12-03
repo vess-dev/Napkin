@@ -325,7 +325,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
           console.log('values', bodyObject.friend_id, userID)
           friend.makeFriendRequest(bodyObject.friend_id, userID).then(()=>{
             response.statusCode = 200;
-            response.write({"success": "make a friend request"});
+            response.write(JSON.stringify({"success": "make a friend request"}));
           })
           .catch(error=>{
             console.log('caught an error ', error)
