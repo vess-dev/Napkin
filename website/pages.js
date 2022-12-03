@@ -1,11 +1,13 @@
 import * as phelp from "./pageshelpers.js";
 import * as help from "./helpers.js";
 
+// The header for the regular user pages.
 const userHeader = [["feedglobal", "Global Feed", "routePage('#feedGlobal')"], ["feedmy", "My Feed", "routePage('#feedMy')"], ["createpost", "Create Post", "routePage('#postCreate')"], ["friends", "Friends", "routePage('#accFriends')"], ["groups", "Groups", "routePage('#accGroups')"], ["account", "Settings", "routePage('#accSettings')"]]
+
+// The header for the admin pages.
 const adminHeader = [["pending", "Pending Accounts", "routePage('#adminPending')"], ["disabled", "Disabled Accounts", "routePage('#adminDisabled')"], ["active", "Active Accounts", "routePage('#adminActive')"], ["blacklist", "Blacklisted Accounts", "routePage('#adminBlacklist')"]];
 
-// Always insert the content box first,
-// And then the header type.
+// Always insert the content box first, and then the header type.
 
 // When you need to login to Napkin.
 export function accLogin() {
@@ -66,8 +68,20 @@ export function accFriends() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertText("Current Friends");
+	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+		"current");
+	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+		"current");
 	phelp.insertText("Outgoing requests");
+	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+		"outgoing");
+	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+		"outgoing");
 	phelp.insertText("Incoming requests");
+	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+		"incoming");
+	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+		"incoming");
 }
 
 // When you look at who you have blocked.

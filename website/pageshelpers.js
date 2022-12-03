@@ -137,6 +137,47 @@ export function insertNextButton() {
 	elementBody.append(elementNextButton);
 }
 
+// Create a friend user info div. Picture, name, and type.
+export function insertFriendItem(userPicture, userName, itemType) {
+	const elementBoxFull = document.getElementById("boxfull");
+	const elementDivFriend = document.createElement("div");
+	elementDivFriend.setAttribute("class", "userdiv");
+	// Format the user picture with the appropriate class.
+	userPicture.setAttribute("class", "userpicture");
+	elementDivFriend.append(userPicture);
+	// Create a text block for the name.
+	const elementUserName = document.createElement("div");
+	elementUserName.setAttribute("id", "username");
+	elementUserName.setAttribute("class", "usertext");
+	elementUserName.textContent = userName;
+	elementDivFriend.append(elementUserName);
+	// Setup the buttons properly.
+	const elementButtonBox = document.createElement("div");
+	elementButtonBox.setAttribute("class", "buttonbox");
+	switch (itemType) {
+		case "current":
+			const elementButtonRemove = createButton("remove", ["button", "buttonred"], "Remove", "TODOREMOVE");
+			elementButtonBox.append(elementButtonRemove);
+			break;
+		case "outgoing":
+			const elementButtonCancel = createButton("cancel", ["button", "buttonred"], "Cancel Request", "TODOCANCEL");
+			elementButtonBox.append(elementButtonCancel);
+			break;
+		case "incoming":
+			const elementButtonApprove = createButton("approve", ["button", "buttongreen"], "Approve", "TODOAPPROVE");
+			elementButtonBox.append(elementButtonApprove);
+			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", "TODODECLINE");
+			elementButtonBox.append(elementButtonDecline);
+			break;
+		case "blocked":
+			break;
+		case "search":
+			break;
+	}
+	elementDivFriend.append(elementButtonBox);
+	elementBoxFull.append(elementDivFriend);
+}
+
 // Create an admin user info div. Picture, name, email, date, item type.
 export function insertUserItem(userPicture, userName, userEmail, itemDate, itemType) {
 	const elementBoxFull = document.getElementById("boxfull");
@@ -150,7 +191,7 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 	elementUserName.setAttribute("id", "username");
 	elementUserName.setAttribute("class", "usertext");
 	elementUserName.textContent = userName;
-	elementDivUser.append(elementUserName );
+	elementDivUser.append(elementUserName);
 	// Create a text block for the email.
 	const elementUserEmail = document.createElement("div");
 	elementUserEmail.setAttribute("id", "useremail");
