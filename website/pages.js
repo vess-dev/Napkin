@@ -290,7 +290,7 @@ function postCreateAction() {
 			}
 		})
 		.then(() => {
-            routes.routePage('#myFeed')
+            routePage('#myFeed')
 			return resolve(true)
 		})
 		.catch((error) => {
