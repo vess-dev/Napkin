@@ -3,10 +3,6 @@ const bcrypt = require('bcrypt');
 const BaseError = require('./BaseError.js');
 
 
-/**
- *  Assumes the user is authenticated to perform this action
- *  If promise is resolved, returns a list of users
- */ 
 function getFriendList(userID) {
   console.log('getFriendList function called')
   return new Promise((resolve, reject) =>{
@@ -28,6 +24,7 @@ function getFriendList(userID) {
 })}
 
 function makeFriendRequest(friend_id, userID) {
+  console.log('starting makefriendrequest route wtih', friend_id, userID)
   return new Promise((resolve, reject) =>{
      db.pool.query(`select friendship_status from friendships 
      WHERE user_id = ? and friend_id = ? `, [userID, friend_id],
@@ -39,6 +36,7 @@ function makeFriendRequest(friend_id, userID) {
         else { 
           if (results.length == 0) { 
             // make friends! 
+            console.log('not yet friends - so request!')
             makeFriendsStatus(friend_id, userID, 'requested')
             makeFriendsStatus(userID, friend_id, 'pending')
             return resolve({"Success": "friendship created"})
@@ -48,7 +46,6 @@ function makeFriendRequest(friend_id, userID) {
           } else if (results.friendship_status == 'blocked'){
             return reject(new BaseError("BLOCKED", 400, "you may not make another request for this user"))
           } 
-
           return resolve(results);        
         }
   });
