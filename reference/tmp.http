@@ -34,9 +34,16 @@ cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
 GET http://cpsc.roanoke.edu:3009/groupmembers?group_id=2
 content-type: application/json
 cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
+###
+
+POST http://cpsc.roanoke.edu:3009/groupmembers
+content-type: application/json
+cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
+
+{"group_id": 10, "friend_id": 11}
 
 ###
-DELETE http://cpsc.roanoke.edu:3009/groupmembers?group_id=2&friend_id=2
+DELETE http://cpsc.roanoke.edu:3009/groupmembers?group_id=10&friend_id=11
 content-type: application/json
 cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
 ### 
@@ -64,6 +71,13 @@ content-type: application/json
 cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
 ###
 
+POST http://cpsc.roanoke.edu:3009/friend
+content-type: application/json
+cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
+
+{"friend_id": 8}
+
+###
 GET http://cpsc.roanoke.edu:3009/friend
 content-type: application/json
 cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301

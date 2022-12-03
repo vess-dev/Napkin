@@ -133,3 +133,12 @@ from
 (post_groups JOIN group_memberships using (group_id)) 
 JOIN posts using (post_id)) as tab2
 on (tab1.owner_id = tab2.viewer_id AND tab1.member_id = tab2.poster_id);
+
+
+replace INTO group_memberships (group_id, user_id)
+         select 10, 11
+         WHERE
+         10 IN (select group_id from groups where owner_id=1)
+         AND 11 IN (select friend_id from friendships where user_id=1 and friendship_status='accepted') 
+
+         [group_id, friend_id, group_id, user_id, friend_id, user_id]

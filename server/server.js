@@ -113,6 +113,19 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
           response.end();
         });
       }
+      if (method === 'PUT') {
+        routeFound = true;
+        user.updateUser(bodyObject).then(reply=>{
+          response.statusCode = 200;
+          response.write('{"success":"User updated for user' + reply + '"}');          
+        })
+        .catch(error=>{
+          handleErrorReply(response, error, 400);
+        })
+        .finally(() => {
+          response.end();
+        });
+      }
       // Get list of all users
       if (method === 'GET' && (!queryObject || !queryObject.search)) {
         routeFound = true;

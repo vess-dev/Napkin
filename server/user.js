@@ -70,7 +70,7 @@ function addNewUser(userObject) {
 /**
  *  Given a username, password, and other option details, attempts to insert that user into the 
  *  database. 
- *  If user is created successfull, the promise is reolved and userid is returned. 
+ *  If user is created successfull, the promise is resolved and userid is returned. 
  *  Else, promise is rejected and an error message is returned.
  */ 
 function insertUser(user_first_name, user_last_name, user_email, user_password, user_handle, user_status) {
@@ -124,4 +124,21 @@ function changePasswordDB(hash,userID) {
   });
 }
 
-module.exports = {addNewUser, insertUser, getUserList, searchUsers, changeUserPassword}
+function updateUser(userObject,userID) {
+  return new Promise((resolve, reject) =>{
+    if (userObject && userObject.admin_flag ) { userObject.remove(admin_flag)}
+    db.pool.query('update users set ? where user_id= ? ', [userObject, userID],
+      function(error, results, fields) {
+        if (error) {
+
+            return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
+        }
+        else {
+          // rows added          
+          return resolve(results);        
+        }
+    });
+  });
+}
+
+module.exports = {addNewUser, insertUser, getUserList, searchUsers, changeUserPassword, updateUser}
