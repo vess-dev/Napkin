@@ -16,7 +16,16 @@ export function accLogin() {
 
 // When you are creating an account.
 export function accCreate() {
-	console.log("Create");
+	phelp.insertContent();
+	phelp.insertMiniHeader("Create a Napkin Account");
+	phelp.insertBigBreak();
+	phelp.insertFullBox();
+	phelp.insertInputBox("User first name:", "firstname", false);
+	phelp.insertInputBox("User last name:", "lastname", false);
+	phelp.insertInputBox("User screen name:", "screenname", false);
+	phelp.insertInputBox("User email:", "email", false);
+	phelp.insertInputBox("User password:", "password", true);
+	phelp.insertInputBox("Confirm password:", "password", true);
 }
 
 // When your account is now pending.

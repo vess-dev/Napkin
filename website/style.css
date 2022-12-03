@@ -40,6 +40,8 @@ body {
 	font-size: 20px;
 	height: 2rem;
 	padding: 5px 10px 5px 10px;
+	position: relative;
+	top: -0.5rem;
 	width: 50%;
 }
 
@@ -53,6 +55,7 @@ body {
 	background-color: white;
 	border: 2px solid gray;
 	height: calc(100vh - 10rem);
+	overflow: auto;
 }
 
 #content, #testing {
