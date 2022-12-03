@@ -71,14 +71,38 @@ export function insertBigBreak() {
 }
 
 // Add a post to the page.
-export function insertPost(userPicture, userName, postDate, postImage, postType) {
+export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postType) {
 	const elementContent = document.getElementById("content");
 	const elementBoxPost = document.createElement("div");
 	elementBoxPost.setAttribute("class", "postbox");
 	// Where all of the text of a post lies.
 	const elementBoxMain = document.createElement("div");
 	elementBoxMain.setAttribute("class", "postmain");
-	elementBoxMain.textContent = "Testing"
+	// Where the user picture, title, name, and date lives.
+	const elementDivInfo = document.createElement("div");
+	elementDivInfo.setAttribute("class", "userdiv");
+	// Add the user picture.
+	userPicture.setAttribute("class", "userpicture");
+	elementDivInfo.append(userPicture);
+	// Add the post title.
+	const elementPostTitle = document.createElement("div");
+	elementPostTitle.setAttribute("id", "title");
+	elementPostTitle.setAttribute("class", "usertext");
+	elementPostTitle.textContent = postTitle;
+	elementDivInfo.append(elementPostTitle);
+	// Add the various post info.
+	const elementPostInfo = document.createElement("div");
+	elementPostInfo.setAttribute("id", "info");
+	elementPostInfo.setAttribute("class", "usertext textright");
+	elementPostInfo.textContent = "Posted by " + userName + " on " + postDate;
+	elementDivInfo.append(elementPostInfo);
+	elementBoxMain.append(elementDivInfo);
+	// Add the actual post's content.
+	const elementPostContent = document.createElement("div");
+	elementPostContent.setAttribute("id", "block");
+	elementPostContent.setAttribute("class", "block");
+	elementPostContent.textContent = postContent;
+	elementBoxMain.append(elementPostContent);
 	elementBoxPost.append(elementBoxMain);
 	// Where the picture of a post lies.
 	postImage.setAttribute("class", "postpicture");

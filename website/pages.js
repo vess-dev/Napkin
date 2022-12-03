@@ -48,11 +48,11 @@ export function accPending() {
 
 // Fill the feed with non-user made posts, or user made posts.
 function feedFill(postType) {
-	phelp.insertPost(help.loadImage("./assets/test1.jpg"), "Will Smith", "Nov 10th 2022", help.loadImage("./assets/test1.jpg"), postType);
+	phelp.insertPost(help.loadImage("./assets/test1.jpg"), "Post 1", "Will Smith", "Nov 10th 2022", "I am will Smith.", help.loadImage("./assets/test1.jpg"), postType);
 	phelp.insertBigBreak();
-	phelp.insertPost(help.loadImage("./assets/test2.jpg"), "Will Smith", "Nov 10th 2022", help.loadImage("./assets/test2.jpg"), postType);
+	phelp.insertPost(help.loadImage("./assets/test2.jpg"), "Post 2", "Will Smith", "Nov 10th 2022", ".", help.loadImage("./assets/test2.jpg"), postType);
 	phelp.insertBigBreak();
-	phelp.insertPost(help.loadImage("./assets/test3.jpg"), "Will Smith", "Nov 10th 2022", help.loadImage("./assets/test3.jpg"), postType);
+	phelp.insertPost(help.loadImage("./assets/test3.jpg"), "Post 3", "Will Smith", "Nov 10th 2022", help.longText(), help.loadImage("./assets/test3.jpg"), postType);
 }
 
 // When you are looking at the global feed.
