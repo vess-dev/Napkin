@@ -64,6 +64,12 @@ body {
 	margin: 5px;
 }
 
+.textright {
+	align-items: right;
+	margin-left: auto;
+}
+
+
 .userpicture {
 	height: 30px;
 	width: 30px;
@@ -159,23 +165,19 @@ body {
 	width: 25%;
 }
 
-.buttonright {
-	font-size: 25px;
-	padding: 5px;
-	position: absolute;
-	right: 1rem;
-	text-align: center;
-	top: 2.3rem;
-	width: 15%;
+.buttonblue {
+	background-color: dodgerblue;
+	border: 2px solid dodgerblue;
+	color: white;
 }
 
-.buttonapprove {
+.buttongreen {
 	background-color: green;
 	border: 2px solid green;
 	color: white;
 }
 
-.buttonlogout {
+.buttonred {
 	background-color: red;
 	border: 2px solid red;
 	color: white;
@@ -183,7 +185,7 @@ body {
 
 .buttonnext {
 	bottom: 0px;
-	position: absolute;
+	position: fixed;
 	right: 0px;
 	width: 15%;
 }
@@ -191,4 +193,37 @@ body {
 .colorblue {
 	background-color: dodgerblue;
 	color: white;
+}
+
+.colorblue:hover {
+	color: black;
+}
+
+.postbox {
+	background-color: white;
+	border: 2px solid gray;
+	display: flex;
+	flex-flow: row;
+	max-height: 50%;
+	width: 100%;
+}
+
+.postmain {
+	display: flex;
+	flex-flow: column;
+	flex-grow: 1;
+	padding: 0.5rem;
+}
+
+.block {
+	overflow: auto;
+	height: calc(300px - 6rem);
+}
+
+.postpicture {
+	align-items: right;
+	height: 300px;
+	margin-left: auto;
+	object-fit: fill;
+	width: 300px;
 }

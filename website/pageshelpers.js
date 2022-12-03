@@ -41,8 +41,18 @@ export function insertMiniHeader(headerName, buttonType) {
 		elementButtonBox.setAttribute("class", "buttonbox");
 		switch (buttonType) {
 			case "logout":
-				const elementButtonLogout = createButton("logout", ["button", "buttonlogout"], "Logout", "routePage('#accLogin')");
+				const elementButtonLogout = createButton("logout", ["button", "buttonred"], "Logout", "routePage('#accLogin')");
 				elementButtonBox.append(elementButtonLogout);
+				break;
+			case "manage":
+				const elementButtonBlocked = createButton("toblocked", ["button", "buttonblue"], "Manage Blocked", "routePage('#accBlocked')");
+				elementButtonBox.append(elementButtonBlocked);
+				const elementButtonSearch = createButton("search", ["button", "buttonblue"], "Search for Friend", "routePage('#friendSearch')");
+				elementButtonBox.append(elementButtonSearch);
+				break;
+			case "blocked":
+				const elementButtonBack= createButton("tofriends", ["button", "buttonblue"], "Back to Friends", "routePage('#accFriends')");
+				elementButtonBox.append(elementButtonBack);
 				break;
 		}
 		elementMiniDiv.append(elementButtonBox);
@@ -60,8 +70,48 @@ export function insertBigBreak() {
 	elementContent.append(elementBigBreak);
 }
 
+// Add a post to the page.
+export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postType) {
+	const elementContent = document.getElementById("content");
+	const elementBoxPost = document.createElement("div");
+	elementBoxPost.setAttribute("class", "postbox");
+	// Where all of the text of a post lies.
+	const elementBoxMain = document.createElement("div");
+	elementBoxMain.setAttribute("class", "postmain");
+	// Where the user picture, title, name, and date lives.
+	const elementDivInfo = document.createElement("div");
+	elementDivInfo.setAttribute("class", "userdiv");
+	// Add the user picture.
+	userPicture.setAttribute("class", "userpicture");
+	elementDivInfo.append(userPicture);
+	// Add the post title.
+	const elementPostTitle = document.createElement("div");
+	elementPostTitle.setAttribute("id", "title");
+	elementPostTitle.setAttribute("class", "usertext");
+	elementPostTitle.textContent = postTitle;
+	elementDivInfo.append(elementPostTitle);
+	// Add the various post info.
+	const elementPostInfo = document.createElement("div");
+	elementPostInfo.setAttribute("id", "info");
+	elementPostInfo.setAttribute("class", "usertext textright");
+	elementPostInfo.textContent = "Posted by " + userName + " on " + postDate;
+	elementDivInfo.append(elementPostInfo);
+	elementBoxMain.append(elementDivInfo);
+	// Add the actual post's content.
+	const elementPostContent = document.createElement("div");
+	elementPostContent.setAttribute("id", "block");
+	elementPostContent.setAttribute("class", "block");
+	elementPostContent.textContent = postContent;
+	elementBoxMain.append(elementPostContent);
+	elementBoxPost.append(elementBoxMain);
+	// Where the picture of a post lies.
+	postImage.setAttribute("class", "postpicture");
+	elementBoxPost.append(postImage);
+	elementContent.append(elementBoxPost);
+}
+
 // A box for content that almost hits the bottom height.
-export function insertBoxFull(miniHeader) {
+export function insertFullBox(miniHeader) {
 	const elementContent = document.getElementById("content");
 	const elementBoxFull = document.createElement("div");
 	elementBoxFull.setAttribute("id", "boxfull");
@@ -124,10 +174,55 @@ export function insertText(divText) {
 
 // Add a next page button to the bottom right of the page.
 // Also add the search feed and sort feed buttons.
-export function insertDecorations() {
+export function insertNextButton() {
 	const elementBody = document.querySelector("body");
 	const elementNextButton = createButton("nextpage", ["button", "buttonnext", "buttonsubmit"], "Next Page", "TODONEXTPAGE");
 	elementBody.append(elementNextButton);
+}
+
+// Create a friend user info div. Picture, name, and type.
+export function insertFriendItem(userPicture, userName, itemType) {
+	const elementBoxFull = document.getElementById("boxfull");
+	const elementDivFriend = document.createElement("div");
+	elementDivFriend.setAttribute("class", "userdiv");
+	// Format the user picture with the appropriate class.
+	userPicture.setAttribute("class", "userpicture");
+	elementDivFriend.append(userPicture);
+	// Create a text block for the name.
+	const elementUserName = document.createElement("div");
+	elementUserName.setAttribute("id", "username");
+	elementUserName.setAttribute("class", "usertext");
+	elementUserName.textContent = userName;
+	elementDivFriend.append(elementUserName);
+	// Setup the buttons properly.
+	const elementButtonBox = document.createElement("div");
+	elementButtonBox.setAttribute("class", "buttonbox");
+	switch (itemType) {
+		case "current":
+			const elementButtonRemove = createButton("remove", ["button", "buttonred"], "Remove", "TODOREMOVE");
+			elementButtonBox.append(elementButtonRemove);
+			break;
+		case "outgoing":
+			const elementButtonCancel = createButton("cancel", ["button", "buttonred"], "Cancel Request", "TODOCANCEL");
+			elementButtonBox.append(elementButtonCancel);
+			break;
+		case "incoming":
+			const elementButtonApprove = createButton("approve", ["button", "buttongreen"], "Approve", "TODOAPPROVE");
+			elementButtonBox.append(elementButtonApprove);
+			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", "TODODECLINE");
+			elementButtonBox.append(elementButtonDecline);
+			break;
+		case "blocked":
+			const elementButtonUnblock = createButton("unblock", ["button", "buttonred"], "Unblock", "TODOUNBLOCK");
+			elementButtonBox.append(elementButtonUnblock);
+			break;
+		case "search":
+			const elementButtonSend = createButton("send", ["button", "buttongreen"], "Send Friend Request", "TODOREQUEST");
+			elementButtonBox.append(elementButtonSend);
+			break;
+	}
+	elementDivFriend.append(elementButtonBox);
+	elementBoxFull.append(elementDivFriend);
 }
 
 // Create an admin user info div. Picture, name, email, date, item type.
@@ -138,44 +233,46 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 	// Format the user picture with the appropriate class.
 	userPicture.setAttribute("class", "userpicture");
 	elementDivUser.append(userPicture);
-	// Create a text block for the name and email.
+	// Create a text block for the name.
 	const elementUserName = document.createElement("div");
 	elementUserName.setAttribute("id", "username");
 	elementUserName.setAttribute("class", "usertext");
 	elementUserName.textContent = userName;
-	elementDivUser.append(elementUserName );
+	elementDivUser.append(elementUserName);
+	// Create a text block for the email.
 	const elementUserEmail = document.createElement("div");
 	elementUserEmail.setAttribute("id", "useremail");
 	elementUserEmail.setAttribute("class", "usertext");
 	elementUserEmail.textContent = userEmail;
 	elementDivUser.append(elementUserEmail);
-	// Create a text block for the date info. Also setup buttons.
+	// Create a text block for the date info.
 	const elementUserDate = document.createElement("div");
 	elementUserDate.setAttribute("class", "usertext date");
+	// Setup the buttons properly, along with the date text.
 	const elementButtonBox = document.createElement("div");
 	elementButtonBox.setAttribute("class", "buttonbox");
 	let finalText = "";
 	switch (itemType) {
 		case "pending":
 			finalText = "Created on: ";
-			const elementButtonApprove = createButton("approve", ["button", "buttonapprove"], "Approve", "TODOAPPROVE");
+			const elementButtonApprove = createButton("approve", ["button", "buttongreen"], "Approve", "TODOAPPROVE");
 			elementButtonBox.append(elementButtonApprove);
-			const elementButtonDecline = createButton("decline", ["button", "buttonlogout"], "Decline", "TODODECLINE");
+			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", "TODODECLINE");
 			elementButtonBox.append(elementButtonDecline);
 			break;
 		case "disabled":
 			finalText = "Disabled on: ";
-			const elementButtonEnable = createButton("enable", ["button", "buttonapprove"], "Enable", "TODOENABLE");
+			const elementButtonEnable = createButton("enable", ["button", "buttongreen"], "Enable", "TODOENABLE");
 			elementButtonBox.append(elementButtonEnable);
 			break;
 		case "active":
 			finalText = "Approved on: ";
-			const elementButtonDisable = createButton("disable", ["button", "buttonlogout"], "Disable", "TODODISABLE");
+			const elementButtonDisable = createButton("disable", ["button", "buttonred"], "Disable", "TODODISABLE");
 			elementButtonBox.append(elementButtonDisable);
 			break;
 		case "blacklist":
 			finalText = "Blacklisted on: ";
-			const elementButtonUnblack = createButton("unblacklist", ["button", "buttonapprove"], "Unblacklist", "TODOUNBLACKLIST");
+			const elementButtonUnblack = createButton("unblacklist", ["button", "buttongreen"], "Unblacklist", "TODOUNBLACKLIST");
 			elementButtonBox.append(elementButtonUnblack);
 			break;
 	}
