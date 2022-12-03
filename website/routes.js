@@ -4,8 +4,8 @@ export const SERVER = "http://cpsc.roanoke.edu:3009/";
 export const PAGE_ACC_LOGIN = "#accLogin";
 export const PAGE_ACC_CREATE = "#accCreate";
 export const PAGE_ACC_PENDING = "#accPending";
-export const PAGE_MY_FEED = "#myFeed"; // myFeed = Friends
-export const PAGE_ACC_FEED = "#accFeed"; // accFeed = My Account
+export const PAGE_FEED_GLOBAL = "#feedGlobal";
+export const PAGE_FEED_MY = "#feedMy";
 export const PAGE_ACC_FRIENDS = "#accFriends";
 export const PAGE_ACC_BLOCKED = "#accBlocked";
 export const PAGE_SEARCH = "#friendSearch";

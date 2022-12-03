@@ -16,7 +16,7 @@ body {
 	text-align: center;
 	background-color: white;
 	border: 1px solid gray;
-	font-size: 30px;
+	font-size: 25px;
 	width: 100%;
 }
 
@@ -101,7 +101,7 @@ body {
 #headermini {
 	background-color: white;
 	border: 2px solid gray;
-	font-size: 30px;
+	font-size: 25px;
 	padding: 10px;
 }
 

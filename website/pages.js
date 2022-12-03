@@ -1,7 +1,7 @@
 import * as phelp from "./pageshelpers.js";
 import * as help from "./helpers.js";
 
-const userHeader = [["home", "Napkin", "routePage('#myFeed')"], ["myfeed", "My Feed", "routePage('#myFeed')"], ["addpost", "Add a Post", "routePage('#postCreate')"], ["friends", "Friends", "routePage('#accFriends')"], ["groups", "Groups", "routePage('#accGroups')"], ["account", "My Account", "routePage('#accFeed')"]]
+const userHeader = [["feedglobal", "Global Feed", "routePage('#feedGlobal')"], ["feedmy", "My Feed", "routePage('#feedMy')"], ["addpost", "Add a Post", "routePage('#postCreate')"], ["friends", "Friends", "routePage('#accFriends')"], ["groups", "Groups", "routePage('#accGroups')"], ["account", "Settings", "routePage('#accSettings')"]]
 const adminHeader = [["pending", "Pending Accounts", "routePage('#adminPending')"], ["disabled", "Disabled Accounts", "routePage('#adminDisabled')"], ["active", "Active Accounts", "routePage('#adminActive')"], ["blacklist", "Blacklisted Accounts", "routePage('#adminBlacklist')"]];
 
 // Always insert the content box first,
@@ -15,7 +15,7 @@ export function accLogin() {
 	phelp.insertBoxFull(false);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
-	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", "routePage('#myFeed')"], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"]]);
+	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", "routePage('#feedGlobal')"], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"]]);
 }
 
 // When you are creating an account.
@@ -44,17 +44,18 @@ export function accPending() {
 	phelp.insertBottomButtons([["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
 }
 
-// When you are looking at the ALL feed.
-export function myFeed() {
+// When you are looking at the global feed.
+export function feedGlobal() {
 	phelp.insertContent();
-	phelp.insertHeader(userHeader, "myfeed");
+	phelp.insertHeader(userHeader, "feedglobal");
 	phelp.insertDecorations();
 }
 
-// When you are looking at the JUST YOU feed.
-export function accFeed() {
+// When you are looking at just your feed.
+export function feedMy() {
 	phelp.insertContent();
-	phelp.insertHeader(userHeader, "account");
+	phelp.insertHeader(userHeader, "feedmy");
+	phelp.insertDecorations();
 }
 
 // When you look at your list of friends.
@@ -97,10 +98,20 @@ export function postEdit() {
 export function accSettings() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "account");
+	phelp.insertMiniHeader("Account Settings");
+	phelp.insertMiniButton("logout");
+	phelp.insertBigBreak();
+	phelp.insertBoxFull(true);
+	phelp.insertInputBox("Change email:", "email", false);
+	phelp.insertInputBox("Change first name:", "firstname", false);
+	phelp.insertInputBox("Change last name:", "lastname", false);
+	phelp.insertInputBox("Change password:", "password", true);
+	phelp.insertInputBox("Confirm password:", "confirm", true);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#accSettings')"], ["image", ["button", "buttonother"], "Change Image", "TODOCHANGEIMAGE"]]);
 }
 
 // Fill the admin pages with bunk data.
-function adminTest(adminPage) {
+function adminFill(adminPage) {
 	for (let itrFill = 10; itrFill--;)
 			phelp.insertUserItem(help.loadImage("./assets/test.jpg"), "Will Smith " + itrFill, "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
 }
@@ -114,7 +125,7 @@ export function adminPending() {
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
-	adminTest(adminPage);
+	adminFill(adminPage);
 }
 
 // For admins to look at disabled accounts.
@@ -126,7 +137,7 @@ export function adminDisabled() {
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
-	adminTest(adminPage);
+	adminFill(adminPage);
 }
 
 // For admins to look at active accounts.
@@ -138,7 +149,7 @@ export function adminActive() {
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
-	adminTest(adminPage);
+	adminFill(adminPage);
 }
 
 // For admins to look at blacklisted accounts.
@@ -150,5 +161,5 @@ export function adminBlacklist() {
 	phelp.insertMiniButton("logout");
 	phelp.insertBigBreak();
 	phelp.insertBoxFull(true);
-	adminTest(adminPage);
+	adminFill(adminPage);
 }

@@ -37,11 +37,11 @@ function routePage(newPage) {
 		case route.PAGE_ACC_PENDING:
 			page.accPending();
 			break;
-		case route.PAGE_MY_FEED:
-			page.myFeed();
+		case route.PAGE_FEED_GLOBAL:
+			page.feedGlobal();
 			break;
-		case route.PAGE_ACC_FEED:
-			page.accFeed();
+		case route.PAGE_FEED_MY:
+			page.feedMy();
 			break;
 		case route.PAGE_ACC_FRIENDS:
 			page.accFriends();
@@ -78,8 +78,8 @@ function routePage(newPage) {
 			break;
 		default:
 			// If the route is unknown, redirect.
-			// TODO: #myFeed routing should kick back to #accLogin if no session cookie exists.
-			routePage("#myFeed");
+			// TODO: #feedMy routing should kick back to #accLogin if no session cookie exists.
+			routePage("#feedGlobal");
 			break;
 	}
 }
