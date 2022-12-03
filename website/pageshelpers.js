@@ -306,7 +306,7 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 export function getGroupsSelector() {
 	let selector = document.createElement('select')
 	selector.setAttribute('multiple', true)
-	selector.selectAttribute('id,','group_selector')
+	selector.setAttribute('id,','group_selector')
 
 	let endpoint='group'
 	let options = {
