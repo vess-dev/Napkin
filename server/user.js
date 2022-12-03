@@ -113,12 +113,8 @@ function changePasswordDB(hash,userID) {
     db.pool.query('update users set user_password = ? where user_id= ? ', [hash, userID],
       function(error, results, fields) {
         if (error) {
-  //        if (error.code === 'ER_DUP_ENTRY') {          
-  //          return reject(new BaseError("DB Error", 400, "Username already exists"));
-  //        }
-  //        else {
+
             return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
-   //       }
         }
         else {
           // rows added          

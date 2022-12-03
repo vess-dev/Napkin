@@ -179,6 +179,26 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         });
       }
     }
+// MYPOST routes
+    if (url.pathname === routes.MYPOSTS) {
+       // Get list of all posts
+      if (method === 'GET') {
+        console.log('so far so good')
+        routeFound = true;
+        // Get list of posts
+        post.getMyPostList(userID).then(list=>{
+          console.log('list is',list)
+          response.statusCode = 200;
+          response.write(JSON.stringify(list));
+        })
+        .catch(error=>{
+          handleErrorReply(response, error);
+        })
+        .finally(() => {
+          response.end(); 
+        });
+      }  
+    }
     //GROUPMEMBERS routes
     if (url.pathname === routes.GROUPMEMBERS) {
       console.log('will serve groupmembers stuff')

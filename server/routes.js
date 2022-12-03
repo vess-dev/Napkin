@@ -8,5 +8,6 @@ const FRIEND = '/friend';
 const COMMENT = '/comment';
 const USERPASSWD = '/userpassword';
 const POSTGROUP = '/postgroup';
+const MYPOSTS = '/myposts';
 
-module.exports={USER, USERPASSWD, LOGIN, LOGOUT, POST, GROUPMEMBERS, GROUP, FRIEND, COMMENT, POSTGROUP};
+module.exports={MYPOSTS, USER, USERPASSWD, LOGIN, LOGOUT, POST, GROUPMEMBERS, GROUP, FRIEND, COMMENT, POSTGROUP};

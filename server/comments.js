@@ -1,6 +1,6 @@
 const db = require('./dbi.js');
 const BaseError = require('./BaseError.js');
-
+const posts = require('./post.js');
 
 /**
  *  Assumes the user is authenticated to perform this action
@@ -43,7 +43,7 @@ function(error, results) {
   }
   else { 
     console.log('comments updated for ',post_id)
-    recalculateComments(post_id);              
+    posts.updatePostWeightByPost(post_id)            
     return resolve(results);        
   }
 })
@@ -61,10 +61,6 @@ function getCommentsOnPost(post_id) {
         else {               
           return resolve(results);        
         }
-
-    
-    
-
   });
 })}
 

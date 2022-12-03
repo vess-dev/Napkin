@@ -40,8 +40,25 @@ function getGroupMembersList(group_id, requester_id) {
       })
     };   
 
+    function addGroupMember(group_id, friend_id, user_id) {
+      return new Promise((resolve, reject) =>{
+         db.pool.query(`INSERT INTO group_memberships WHERE group_id = ? AND user_id=? 
+         AND exists (select * from groups where group_id=? and owner_id=?)
+         AND exists (select * from groups where user_id=? and friend_id=?)`, 
+         [group_id, friend_id, group_id, user_id, user_id, friend_id],
+          function(error, results) {
+            console.log(error, results)
+            if (error) {                    
+              return reject(new BaseError("DB Error", 500, error));
+            }
+            else {               
+              return resolve(results);        
+            }
+          })
+         
+        })
+      };  
 
 
 
-
-module.exports = {getGroupMembersList, deleteGroupMember}
+module.exports = {getGroupMembersList, deleteGroupMember, addGroupMember}
