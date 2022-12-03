@@ -23,7 +23,7 @@ export function insertNapkinHeader(headerFocus) {
 	elementBody.append(elementHeader);
 	// Move the content below the full header.
 	const elementContent = document.getElementById("content");
-	elementContent.style.paddingTop = "6rem";
+	elementContent.style.marginTop = "6rem";
 }
 
 // A mini header that is not a full header.
@@ -80,7 +80,7 @@ export function createButton(buttonId, buttonClasses, buttonText) {
 }
 
 // Add buttons to the bottom of a page.
-export function bottomButtons(buttonList) {
+export function insertBottomButtons(buttonList) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementBottomDiv = document.createElement("div");
 	for (let itr_button in buttonList) {
@@ -89,4 +89,20 @@ export function bottomButtons(buttonList) {
 	}
 	elementBottomDiv.setAttribute("class", "buttonbox");
 	elementBoxFull.append(elementBottomDiv);
+}
+
+// Add a text content to an element.
+export function addText(elementId, divText) {
+	const elementTarget = document.getElementById(elementId);
+	const elementTextDiv = document.createElement("div");
+	elementTextDiv.setAttribute("class", "textdiv");
+	elementTextDiv.textContent = divText;
+	elementTarget.append(elementTextDiv);
+}
+
+// Add a next page button to the bottom right of the page.
+export function insertNextPage() {
+	const elementBody = document.querySelector("body");
+	const elementNextButton = createButton("nextpage", ["button", "buttonnext", "buttonsubmit"], "Next Page");
+	elementBody.append(elementNextButton);
 }

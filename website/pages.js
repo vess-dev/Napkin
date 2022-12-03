@@ -11,7 +11,7 @@ export function accLogin() {
 	phelp.insertFullBox();
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
-	phelp.bottomButtons([["submit", ["button", "buttonsubmit"], "Submit"], ["create", ["button", "buttonother"], "Create Account"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit"], ["create", ["button", "buttonother"], "Create Account"]]);
 }
 
 // When you are creating an account.
@@ -25,18 +25,26 @@ export function accCreate() {
 	phelp.insertInputBox("User screen name:", "screenname", false);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
-	phelp.insertInputBox("Confirm password:", "password", true);
+	phelp.insertInputBox("Confirm password:", "confirm", true);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit"], ["tologin", ["button", "buttonother"], "Back to Login"]]);
 }
 
 // When your account is now pending.
 export function accPending() {
-	console.log("Pending");
+	phelp.insertContent();
+	phelp.insertMiniHeader("Account Approval Pending");
+	phelp.insertBigBreak();
+	phelp.insertFullBox();
+	phelp.addText("boxfull", "Your account is still waiting for approval!");
+	phelp.addText("boxfull", "Please check back later.");
+	phelp.insertBottomButtons([["tologin", ["button", "buttonother"], "Back to Login"]]);
 }
 
 // When you are looking at the ALL feed.
 export function myFeed() {
 	phelp.insertContent();
 	phelp.insertNapkinHeader("myfeed");
+	phelp.insertNextPage();
 }
 
 // When you are looking at the JUST YOU feed.
