@@ -10,6 +10,7 @@ body {
 
 .headerbox {
     align-items: center;
+    background-color: white;
     border: 2px solid gray;
     display: flex;
     font-size: 30px;
@@ -19,7 +20,7 @@ body {
 }
 
 .headerbox:hover {
-    background: lightblue;
+    background-color: lightblue;
     cursor: pointer;
 }
 
@@ -56,7 +57,7 @@ body {
 	height: calc(100vh - 10rem);
 }
 
-#content {
+#content #testing {
 	display: flex;
 	flex-flow: column;
 	padding-left: 2rem;
