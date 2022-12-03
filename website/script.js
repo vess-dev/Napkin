@@ -1,5 +1,6 @@
 import * as page from "./pages.js";
 import * as route from "./routes.js";
+import postCreateAction from "./pageshelpers.js"
 
 onPageLoad();
 window.routePage = routePage; // This is horrible. I'm sorry. But it works.
