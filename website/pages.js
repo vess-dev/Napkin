@@ -76,7 +76,7 @@ if (postType) {
 		})
 		.then((postsList) => {
 			for (let post of postsList) {
-				phelp.insertPost(help.loadImage(post.user_image), post.post_title, post.user_handle, post.post_date, post.post_content, help.loadImage(post.post_image), postType);
+				phelp.insertPost(help.loadImage(post.user_image), post.post_title, post.user_handle, post.post_timestamp, post.post_content, help.loadImage(post.post_image), postType);
 				phelp.insertBigBreak();
 			}
 			return resolve(true)
