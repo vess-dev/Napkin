@@ -159,23 +159,19 @@ body {
 	width: 25%;
 }
 
-.buttonright {
-	font-size: 25px;
-	padding: 5px;
-	position: absolute;
-	right: 1rem;
-	text-align: center;
-	top: 2.3rem;
-	width: 15%;
+.buttonblue {
+	background-color: dodgerblue;
+	border: 2px solid dodgerblue;
+	color: white;
 }
 
-.buttonapprove {
+.buttongreen {
 	background-color: green;
 	border: 2px solid green;
 	color: white;
 }
 
-.buttonlogout {
+.buttonred {
 	background-color: red;
 	border: 2px solid red;
 	color: white;
@@ -191,4 +187,8 @@ body {
 .colorblue {
 	background-color: dodgerblue;
 	color: white;
+}
+
+.colorblue:hover {
+	color: black;
 }

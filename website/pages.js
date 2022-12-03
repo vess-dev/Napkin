@@ -12,7 +12,7 @@ export function accLogin() {
 	phelp.insertContent();
 	phelp.insertMiniHeader("Log in to Napkin", false);
 	phelp.insertBigBreak();
-	phelp.insertBoxFull(false);
+	phelp.insertFullBox(false);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", "routePage('#feedGlobal')"], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"], ["test", ["button", "buttonother"], "adminTest", "routePage('#adminPending')"]]);
@@ -23,7 +23,7 @@ export function accCreate() {
 	phelp.insertContent();
 	phelp.insertMiniHeader("Create a Napkin Account", false);
 	phelp.insertBigBreak();
-	phelp.insertBoxFull(false);
+	phelp.insertFullBox(false);
 	phelp.insertInputBox("User first name:", "firstname", false);
 	phelp.insertInputBox("User last name:", "lastname", false);
 	phelp.insertInputBox("User screen name:", "screenname", false);
@@ -38,7 +38,7 @@ export function accPending() {
 	phelp.insertContent();
 	phelp.insertMiniHeader("Account Approval Pending", false);
 	phelp.insertBigBreak();
-	phelp.insertBoxFull(false);
+	phelp.insertFullBox(false);
 	phelp.insertText("Your account is still waiting for approval!");
 	phelp.insertText("Please check back later.");
 	phelp.insertBottomButtons([["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
@@ -62,6 +62,12 @@ export function feedMy() {
 export function accFriends() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "friends");
+	phelp.insertMiniHeader("Manage Friends", "manage");
+	phelp.insertBigBreak();
+	phelp.insertFullBox(true);
+	phelp.insertText("Current Friends");
+	phelp.insertText("Outgoing requests");
+	phelp.insertText("Incoming requests");
 }
 
 // When you look at who you have blocked.
@@ -100,7 +106,7 @@ export function accSettings() {
 	phelp.insertHeader(userHeader, "account");
 	phelp.insertMiniHeader("Account Settings", "logout");
 	phelp.insertBigBreak();
-	phelp.insertBoxFull(true);
+	phelp.insertFullBox(true);
 	phelp.insertInputBox("Change email:", "email", false);
 	phelp.insertInputBox("Change first name:", "firstname", false);
 	phelp.insertInputBox("Change last name:", "lastname", false);
@@ -122,7 +128,7 @@ export function adminPending() {
 	phelp.insertHeader(adminHeader, adminPage);
 	phelp.insertMiniHeader("New User Requests", "logout");
 	phelp.insertBigBreak();
-	phelp.insertBoxFull(true);
+	phelp.insertFullBox(true);
 	adminFill(adminPage);
 }
 
@@ -133,7 +139,7 @@ export function adminDisabled() {
 	phelp.insertHeader(adminHeader, adminPage);
 	phelp.insertMiniHeader("Disabled Accounts", "logout");
 	phelp.insertBigBreak();
-	phelp.insertBoxFull(true);
+	phelp.insertFullBox(true);
 	adminFill(adminPage);
 }
 
@@ -144,7 +150,7 @@ export function adminActive() {
 	phelp.insertHeader(adminHeader, adminPage);
 	phelp.insertMiniHeader("Active Accounts", "logout");
 	phelp.insertBigBreak();
-	phelp.insertBoxFull(true);
+	phelp.insertFullBox(true);
 	adminFill(adminPage);
 }
 
@@ -155,6 +161,6 @@ export function adminBlacklist() {
 	phelp.insertHeader(adminHeader, adminPage);
 	phelp.insertMiniHeader("Blacklisted Emails", "logout");
 	phelp.insertBigBreak();
-	phelp.insertBoxFull(true);
+	phelp.insertFullBox(true);
 	adminFill(adminPage);
 }
