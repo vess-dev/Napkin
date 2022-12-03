@@ -108,7 +108,7 @@ export function insertText(divText) {
 // Also add the search feed and sort feed buttons.
 export function insertDecorations() {
 	const elementBody = document.querySelector("body");
-	const elementNextButton = createButton("nextpage", ["button", "buttonnext", "buttonsubmit"], "Next Page", "TODO");
+	const elementNextButton = createButton("nextpage", ["button", "buttonnext", "buttonsubmit"], "Next Page", "TODO: GET NEXT PAGE");
 	elementBody.append(elementNextButton);
 }
 
@@ -117,7 +117,7 @@ export function insertMiniButton(buttonType) {
 	const elementMiniHeader = document.getElementById("headermini");
 	let elementNewButton;
 	if (buttonType == "logout") {
-		elementNewButton = createButton("logout", ["button", "buttonright", "buttonlogout"], "Logout", "TODO");
+		elementNewButton = createButton("logout", ["button", "buttonright", "buttonlogout"], "Logout", "routePage('#accLogin')");
 	}
 	elementMiniHeader.append(elementNewButton);
 }

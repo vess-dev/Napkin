@@ -2,7 +2,7 @@ import * as page from "./pages.js";
 import * as route from "./routes.js";
 
 onPageLoad();
-window.routePage = routePage; // This is horrible. I'm sorry.
+window.routePage = routePage; // This is horrible. I'm sorry. But it works.
 
 function onPageLoad() {
 	// Route to the page login if no route is specified.
@@ -78,6 +78,7 @@ function routePage(newPage) {
 			break;
 		default:
 			// If the route is unknown, redirect.
+			// #myFeed routing should kick back to #accLogin if no session cookie exists.
 			routePage("#myFeed");
 			break;
 	}
