@@ -298,7 +298,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         routeFound = true;
         post.putPostInGroup(userID, bodyObject.group_id, bodyObject.post_id).then(reply=>{
           response.statusCode = 200;
-          response.write(JSON.stringify({success: "post put in group"}));          
+          response.write(JSON.stringify({"success": "post put in group"}));          
         })
         .catch(error=>{
           handleErrorReply(response, error, 400);
@@ -314,7 +314,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         let post_id = queryObject.post_id
         post.removePostFromGroup(userID, group_id, post_id).then(reply=>{
           response.statusCode = 200;
-          response.write(JSON.stringify({success: "post removed"}));          
+          response.write(JSON.stringify({"success": "post removed"}));          
         })
         .catch(error=>{
           handleErrorReply(response, error, 400);
