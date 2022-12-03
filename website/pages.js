@@ -50,14 +50,14 @@ export function accPending() {
 export function feedGlobal() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedglobal");
-	phelp.insertDecorations();
+	phelp.insertNextButton();
 }
 
 // When you are looking at just your feed.
 export function feedMy() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedmy");
-	phelp.insertDecorations();
+	phelp.insertNextButton();
 }
 
 // When you look at your list of friends.
