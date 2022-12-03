@@ -33,6 +33,7 @@ function createPost(postObject, userID) {
 }
 
 function putPostInGroup(user_id, group_id, post_id) {
+  return new Promise((resolve, reject) =>{
   db.pool.query(`replace into post_groups (group_id, post_id)
   select ?, ?
   where 
@@ -43,15 +44,17 @@ function putPostInGroup(user_id, group_id, post_id) {
        
     if (error) {   
       console.log('error on put post in group', error)
-      return;                 
+      return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));                
     } else { 
       console.log('post added to group successfully: ')
       updatePostWeightByPost(post_id) 
-      return(results.insertId)
+      return resolve(results.insertId);
+   
     }
-})}
+})})}
 
 function removePostFromGroup(user_id, group_id, post_id) {
+  return new Promise((resolve, reject) =>{
   db.pool.query(`delete from post_groups
   where group_id=? and post_id=? 
   and
@@ -61,13 +64,14 @@ function removePostFromGroup(user_id, group_id, post_id) {
        
     if (error) {   
       console.log('error on remove post in group', error)
-      return;                 
+      return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
+                     
     } else { 
       console.log('post removed from group successfully: ', results)
       updatePostWeightByPost(post_id) 
-      return(results.message)
+      return resolve(results); 
     }
-})}
+})})}
 
 async function updatePostWeightByPost(incoming_post_id) {
   // note: query returns multiple rows 
