@@ -1,4 +1,5 @@
-import * as routes from "./routes.js"
+import * as pages from "./pages.js";
+import * as routes from "./routes.js";
 
 onPageLoad();
 
@@ -18,20 +19,40 @@ function routePage(newPage) {
 	if (newPage) {
 		history.pushState({}, "", newPage);
 	}
+	//clearPage();
 	switch(currentHash) {
-		case HOME_PAGE:
-			loadHomePage();
+		case routes.PAGE_ACC_LOGIN:
 			break;
-		case ADD_USER_PAGE:
-			Users.loadAddUserPage();
+		case routes.PAGE_ACC_CREATE:
 			break;
-		case LIST_USERS_PAGE:
-			Users.loadListUsersPage();
-			break;	
-		case GET_POSTS_PAGE:
-			console.log("asked for post page")
-			Posts.loadListPostsPage();
-			break;			
+		case routes.PAGE_ACC_PENDING:
+			break;
+		case routes.PAGE_MY_FEED:
+			break;
+		case routes.PAGE_ACC_FEED:
+			break;
+		case routes.PAGE_ACC_FRIENDS:
+			break;
+		case routes.PAGE_ACC_BLOCKED:
+			break;
+		case routes.PAGE_SEARCH:
+			break;
+		case routes.PAGE_ACC_GROUPS:
+			break;
+		case routes.PAGE_POST_CREATE:
+			break;
+		case routes.PAGE_POST_EDIT:
+			break;
+		case routes.PAGE_ACC_SETTINGS:
+			break;
+		case routes.PAGE_ADMIN_PENDING:
+			break;
+		case routes.PAGE_ADMIN_DISABLED:
+			break;
+		case routes.PAGE_ADMIN_ACTIVE:
+			break;
+		case routes.PAGE_ADMIN_BLACKLIST:
+			break;
 		default:
 			loadLoginPage();
 	}	
