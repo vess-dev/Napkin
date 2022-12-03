@@ -301,7 +301,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         }
   //friend routes
       if (url.pathname === routes.FRIEND) {
-
+        console.log('friends path')
         if (method === 'GET') {
           console.log('on friends route')
           routeFound = true;
