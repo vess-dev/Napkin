@@ -77,7 +77,8 @@ function routePage(newPage) {
 			page.adminBlacklist();
 			break;
 		default:
-			console.log("Unhandled route.");
+			// If the route is unknown, redirect.
+			routePage("#myFeed");
 			break;
-	}	
+	}
 }

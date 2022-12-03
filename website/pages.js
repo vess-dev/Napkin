@@ -17,7 +17,7 @@ export function accLogin() {
 	phelp.insertBoxFull(false);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
-	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login"], ["create", ["button", "buttonother"], "Create Account"]]);
+	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", "routePage('#myFeed')"], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"]]);
 }
 
 // When you are creating an account.
@@ -32,7 +32,7 @@ export function accCreate() {
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertInputBox("Confirm password:", "confirm", true);
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit"], ["tologin", ["button", "buttonother"], "Back to Login"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#accPending')"], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
 }
 
 // When your account is now pending.
@@ -43,7 +43,7 @@ export function accPending() {
 	phelp.insertBoxFull(false);
 	phelp.insertText("Your account is still waiting for approval!");
 	phelp.insertText("Please check back later.");
-	phelp.insertBottomButtons([["tologin", ["button", "buttonother"], "Back to Login"]]);
+	phelp.insertBottomButtons([["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
 }
 
 // When you are looking at the ALL feed.
