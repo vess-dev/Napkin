@@ -45,12 +45,15 @@ export function insertMiniHeader(headerName, buttonType) {
 				elementButtonBox.append(elementButtonLogout);
 				break;
 			case "manage":
-				const elementButtonBlocked= createButton("blocked", ["button", "buttonblue"], "Manage Blocked", "routePage('#accBlocked')");
+				const elementButtonBlocked = createButton("toblocked", ["button", "buttonblue"], "Manage Blocked", "routePage('#accBlocked')");
 				elementButtonBox.append(elementButtonBlocked);
-				const elementButtonSearch= createButton("search", ["button", "buttonblue"], "Search for Friend", "routePage('#friendSearch')");
+				const elementButtonSearch = createButton("search", ["button", "buttonblue"], "Search for Friend", "routePage('#friendSearch')");
 				elementButtonBox.append(elementButtonSearch);
 				break;
-
+			case "blocked":
+				const elementButtonBack= createButton("tofriends", ["button", "buttonblue"], "Back to Friends", "routePage('#accFriends')");
+				elementButtonBox.append(elementButtonBack);
+				break;
 		}
 		elementMiniDiv.append(elementButtonBox);
 	}
@@ -170,6 +173,8 @@ export function insertFriendItem(userPicture, userName, itemType) {
 			elementButtonBox.append(elementButtonDecline);
 			break;
 		case "blocked":
+			const elementButtonUnblock = createButton("unblock", ["button", "buttonred"], "Unblock", "TODOUNBLOCK");
+			elementButtonBox.append(elementButtonUnblock);
 			break;
 		case "search":
 			break;

@@ -88,6 +88,13 @@ export function accFriends() {
 export function accBlocked() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "friends");
+	phelp.insertMiniHeader("Manage Blocked", "blocked");
+	phelp.insertBigBreak();
+	phelp.insertFullBox(true);
+	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+		"blocked");
+	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+		"blocked");
 }
 
 // When you're searching for a friend.
