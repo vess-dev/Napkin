@@ -329,10 +329,11 @@ export function getGroupsSelector() {
 	.then(data => {
 		for (let onegroup of data) {
 			let oneoption=document.createElement('option')
-			oneoption.setAttribute('value',data.group_id)
-			oneoption.textContent = data.group_name
+			oneoption.setAttribute('value',onegroup.group_id)
+			oneoption.textContent = onegroup.group_name
 			selector.appendChild(oneoption)
 		}
+		const elementBoxFull = document.getElementById("boxfull");
 		elementBoxFull.append(selector)
 	}
 	)
