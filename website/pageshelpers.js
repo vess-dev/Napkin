@@ -379,7 +379,7 @@ function postCreateAction() {
 			return reject(error);
 		});
 	});
-}
+};
 
     
 
