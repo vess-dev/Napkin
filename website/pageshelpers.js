@@ -149,6 +149,7 @@ export function insertTextAreaBox(inputText, inputName, inputPassword) {
 	elementInputFull.textContent = inputText;
 	const elementInputField = document.createElement("textarea");
 	elementInputField.setAttribute("class", "inputfield");
+	elementInputField.setAttribute('height', 'unset');
 	elementInputField.setAttribute('rows', 5);
 	elementInputField.setAttribute('cols', 50);
 	elementInputField.setAttribute("id", inputName);

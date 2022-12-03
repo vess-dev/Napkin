@@ -169,8 +169,8 @@ export function postCreate() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Post title:", "post_title", false);
-	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.insertInputBox("Post image URL:", "post_image", false);
+	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#myFeed')"]]);
 
 }
@@ -182,8 +182,8 @@ export function postEdit() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Post title:", "post_title", false);
-	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.insertInputBox("Post image URL:", "post_image", false);
+	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#myFeed')"]]);
 
 }
