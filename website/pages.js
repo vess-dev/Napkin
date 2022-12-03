@@ -3,6 +3,8 @@ import * as phelp from "./pageshelpers.js";
 // When you need to login to Napkin.
 export function accLogin() {
 	phelp.insertMiniHeader("Log in to Napkin");
+	phelp.insertBigBreak();
+	phelp.insertFullBox();
 }
 
 // When you are creating an account.
