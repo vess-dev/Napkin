@@ -166,6 +166,13 @@ export function accGroups() {
 export function postCreate() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "createpost");
+	phelp.insertBigBreak();
+	phelp.insertFullBox(true);
+	phelp.insertInputBox("Post title:", "post_title", false);
+	phelp.insertTextAreaBox("Post content:", "post_content", false);
+	phelp.insertInputBox("Post image URL:", "post_image", false);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#myFeed')"]]);
+
 }
 
 // When you want to edit a post.
