@@ -72,7 +72,7 @@ POST http://cpsc.roanoke.edu:3009/post
 content-type: application/json
 cookie: sessionid=f0969177-914e-4884-b7ae-b844c10e8993
 
-{"post_title": "nother post 4", "post_content": "Lorem ipsum forever", "group_id": 10}
+{"post_title": "This is a super awesome post", "post_content": "Lorem ipsum forever", "group_id": "10,2" }
 ###
 
 GET http://cpsc.roanoke.edu:3009/group
