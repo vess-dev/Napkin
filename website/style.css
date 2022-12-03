@@ -19,6 +19,13 @@ body {
     cursor: pointer;
 }
 
+.headermini {
+	border: 2px solid gray;
+	background-color: white;
+	font-size: 30px;
+	padding: 10px;
+}
+
 .testcube {
 	background: red;
 	height: 500px;
@@ -26,9 +33,10 @@ body {
 }
 
 #content {
-	position: relative;
 	padding-left: 2rem;
-	padding-top: 6rem;
+	padding-top: 2rem;
+	position: relative;
+	width: 75%;
 }
 
 #header {
