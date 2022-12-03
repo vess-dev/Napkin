@@ -46,10 +46,13 @@ export function accPending() {
 	phelp.insertBottomButtons([["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
 }
 
+// Fill the feed with non-user made posts, or user made posts.
 function feedFill(postType) {
-	for (let itrFill = 3; itrFill--;)
-		phelp.insertPost(help.loadImage("./assets/test.jpg"), "Will Smith", "Nov 10th 2022", help.loadImage("./assets/test.jpg"), postType);
-		phelp.insertBigBreak();
+	phelp.insertPost(help.loadImage("./assets/test1.jpg"), "Will Smith", "Nov 10th 2022", help.loadImage("./assets/test1.jpg"), postType);
+	phelp.insertBigBreak();
+	phelp.insertPost(help.loadImage("./assets/test2.jpg"), "Will Smith", "Nov 10th 2022", help.loadImage("./assets/test2.jpg"), postType);
+	phelp.insertBigBreak();
+	phelp.insertPost(help.loadImage("./assets/test3.jpg"), "Will Smith", "Nov 10th 2022", help.loadImage("./assets/test3.jpg"), postType);
 }
 
 // When you are looking at the global feed.
@@ -76,19 +79,19 @@ export function accFriends() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertText("Current Friends");
-	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
 		"current");
-	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
 		"current");
 	phelp.insertText("Outgoing requests");
-	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
 		"outgoing");
-	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
 		"outgoing");
 	phelp.insertText("Incoming requests");
-	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
 		"incoming");
-	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
 		"incoming");
 }
 
@@ -99,9 +102,9 @@ export function accBlocked() {
 	phelp.insertMiniHeader("Manage Blocked", "blocked");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
-	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
 		"blocked");
-	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
 		"blocked");
 }
 
@@ -114,10 +117,10 @@ export function friendSearch() {
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Search by Name:", "screenname", false);
 	phelp.insertText("Search Results");
-	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
 		"search");
 	phelp.insertText("Additional Results");
-	phelp.insertFriendItem(help.loadImage("./assets/test.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
 		"search");
 }
 
@@ -157,7 +160,7 @@ export function accSettings() {
 // Fill the admin pages with bunk data.
 function adminFill(adminPage) {
 	for (let itrFill = 10; itrFill--;)
-		phelp.insertUserItem(help.loadImage("./assets/test.jpg"), "Will Smith " + itrFill, "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
+		phelp.insertUserItem(help.loadImage("./assets/test1.jpg"), "Will Smith " + itrFill, "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
 }
 
 // For admins to look at pending accounts.

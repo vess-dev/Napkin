@@ -179,7 +179,7 @@ body {
 
 .buttonnext {
 	bottom: 0px;
-	position: absolute;
+	position: fixed;
 	right: 0px;
 	width: 15%;
 }
@@ -191,4 +191,30 @@ body {
 
 .colorblue:hover {
 	color: black;
+}
+
+.postbox {
+	background-color: white;
+	border: 2px solid gray;
+	display: flex;
+	flex-flow: row;
+	height: 50%;
+	width: 100%;
+}
+
+.postmain {
+	flex-grow: 1;
+	padding: 0.5rem;
+}
+
+.postpicture {
+	align-items: right;
+	height: 300px;
+	margin-left: auto;
+	object-fit: fill;
+	width: 300px;
+}
+
+.picture {
+	
 }

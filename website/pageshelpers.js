@@ -71,8 +71,19 @@ export function insertBigBreak() {
 }
 
 // Add a post to the page.
-export function insertPost(userPicture, userName, postDate, postImage) {
-
+export function insertPost(userPicture, userName, postDate, postImage, postType) {
+	const elementContent = document.getElementById("content");
+	const elementBoxPost = document.createElement("div");
+	elementBoxPost.setAttribute("class", "postbox");
+	// Where all of the text of a post lies.
+	const elementBoxMain = document.createElement("div");
+	elementBoxMain.setAttribute("class", "postmain");
+	elementBoxMain.textContent = "Testing"
+	elementBoxPost.append(elementBoxMain);
+	// Where the picture of a post lies.
+	postImage.setAttribute("class", "postpicture");
+	elementBoxPost.append(postImage);
+	elementContent.append(elementBoxPost);
 }
 
 // A box for content that almost hits the bottom height.
