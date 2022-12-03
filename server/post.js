@@ -45,9 +45,9 @@ function putPostInGroup(user_id, group_id, post_id) {
       console.log('error on put post in group', error)
       return;                 
     } else { 
-      console.log('post added to group successfully: ', results)
+      console.log('post added to group successfully: ')
       updatePostWeightByPost(post_id) 
-      return(results)
+      return(results.insertId)
     }
 })}
 
@@ -65,7 +65,7 @@ function removePostFromGroup(user_id, group_id, post_id) {
     } else { 
       console.log('post removed from group successfully: ', results)
       updatePostWeightByPost(post_id) 
-      return(results)
+      return(results.message)
     }
 })}
 
