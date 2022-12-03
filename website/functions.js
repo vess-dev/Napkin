@@ -1,6 +1,6 @@
 import * as routes from './routes.js'
 
-export function postCreateAction() {
+export default function postCreateAction() {
     let post_title = document.querySelector('#post_title');
     let post_content = document.querySelector('#post_content');
     let post_image = document.querySelector('#post_image');
