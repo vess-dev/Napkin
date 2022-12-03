@@ -1,7 +1,7 @@
 import * as phelp from "./pageshelpers.js";
 import * as help from "./helpers.js";
 import * as routes from "./routes.js";
-import * as fns from "./functions.js";
+import postCreateAction from "./functions.js";
 
 
 // The header for the regular user pages.
@@ -174,7 +174,7 @@ export function postCreate() {
 	phelp.insertInputBox("Post image URL:", "post_image", false);
 	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.getGroupsSelector()
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "fns.postCreateAction()"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"]]);
 	
 }
 
