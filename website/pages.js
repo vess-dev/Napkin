@@ -1,5 +1,6 @@
 import * as phelp from "./pageshelpers.js";
 import * as help from "./helpers.js";
+import * as routes from "./routes.js";
 
 // The header for the regular user pages.
 const userHeader = [["feedglobal", "Global Feed", "routePage('#feedGlobal')"], ["feedmy", "My Feed", "routePage('#feedMy')"], ["createpost", "Create Post", "routePage('#postCreate')"], ["friends", "Friends", "routePage('#accFriends')"], ["groups", "Groups", "routePage('#accGroups')"], ["account", "Settings", "routePage('#accSettings')"]]
@@ -48,12 +49,48 @@ export function accPending() {
 
 // Fill the feed with non-user made posts, or user made posts.
 function feedFill(postType) {
-	phelp.insertPost(help.loadImage("./assets/test1.jpg"), "Post 1", "Will Smith", "Nov 10th 2022", "I am will Smith.", help.loadImage("./assets/test1.jpg"), postType);
+
+if (postType) {
+	// true means the individual user's posts
+} else {
+	// false means the 'global' feed.
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "GET",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"}
+		};
+		fetch(routes.SERVER+'/post/', options)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				throw new ClientError("User Error", response.status,"Unable to retrieve posts");
+			}
+		})
+		.then((postsList) => {
+			for (let post of postsList) {
+				phelp.insertPost(help.loadImage(post.user_image), post.post_title, post.post_date, post.post_content, help.loadImage(post.post_image), postType);
+				phelp.insertBigBreak();
+			}
+			return resolve(true)
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+}
+}
+
+/*	phelp.insertPost(help.loadImage("./assets/test1.jpg"), "Post 1", "Will Smith", "Nov 10th 2022", "I am will Smith.", help.loadImage("./assets/test1.jpg"), postType);
 	phelp.insertBigBreak();
 	phelp.insertPost(help.loadImage("./assets/test2.jpg"), "Post 2", "Will Smith", "Nov 10th 2022", ".", help.loadImage("./assets/test2.jpg"), postType);
 	phelp.insertBigBreak();
 	phelp.insertPost(help.loadImage("./assets/test3.jpg"), "Post 3", "Will Smith", "Nov 10th 2022", help.longText(), help.loadImage("./assets/test3.jpg"), postType);
-}
+*/
+
 
 // When you are looking at the global feed.
 export function feedGlobal() {
