@@ -22,7 +22,7 @@ export function insertHeader(headerList, headerFocus) {
 	elementBody.append(elementHeader);
 	// Move the content below the full header.
 	const elementContent = document.getElementById("content");
-	elementContent.style.marginTop = "4rem";
+	elementContent.style.marginTop = "4.5rem";
 }
 
 // A mini header that is not a full header.

@@ -1,7 +1,7 @@
 import * as phelp from "./pageshelpers.js";
 import * as help from "./helpers.js";
 
-const userHeader = [["feedglobal", "Global Feed", "routePage('#feedGlobal')"], ["feedmy", "My Feed", "routePage('#feedMy')"], ["addpost", "Add a Post", "routePage('#postCreate')"], ["friends", "Friends", "routePage('#accFriends')"], ["groups", "Groups", "routePage('#accGroups')"], ["account", "Settings", "routePage('#accSettings')"]]
+const userHeader = [["feedglobal", "Global Feed", "routePage('#feedGlobal')"], ["feedmy", "My Feed", "routePage('#feedMy')"], ["createpost", "Create Post", "routePage('#postCreate')"], ["friends", "Friends", "routePage('#accFriends')"], ["groups", "Groups", "routePage('#accGroups')"], ["account", "Settings", "routePage('#accSettings')"]]
 const adminHeader = [["pending", "Pending Accounts", "routePage('#adminPending')"], ["disabled", "Disabled Accounts", "routePage('#adminDisabled')"], ["active", "Active Accounts", "routePage('#adminActive')"], ["blacklist", "Blacklisted Accounts", "routePage('#adminBlacklist')"]];
 
 // Always insert the content box first,
@@ -15,7 +15,7 @@ export function accLogin() {
 	phelp.insertBoxFull(false);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
-	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", "routePage('#feedGlobal')"], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"]]);
+	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", "routePage('#feedGlobal')"], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"], ["test", ["button", "buttonother"], "adminTest", "routePage('#adminPending')"]]);
 }
 
 // When you are creating an account.
@@ -85,13 +85,13 @@ export function accGroups() {
 // When you want to create a post.
 export function postCreate() {
 	phelp.insertContent();
-	phelp.insertHeader(userHeader, "addpost");
+	phelp.insertHeader(userHeader, "createpost");
 }
 
 // When you want to edit a post.
 export function postEdit() {
 	phelp.insertContent();
-	phelp.insertHeader(userHeader, "addpost"); // Should this be on addpost for editpost?
+	phelp.insertHeader(userHeader);
 }
 
 // When you look at your account settings.
