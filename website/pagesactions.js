@@ -157,6 +157,7 @@ export async function postCreateAction() {
 
 // Send a user create to the server. 
 export function userCreateAction() {
+	console.log('userCreateAction called')
 	let user_first_name = document.querySelector("#firstname").value;
 	let user_last_name = document.querySelector("#lastname").value;
 	let user_handle = document.querySelector("#screenname").value;
