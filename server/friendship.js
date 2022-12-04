@@ -70,6 +70,7 @@ function makeFriendRequest(friend_id, userID) {
 
 async function makeFriendsStatus(friend_id, userID, newStatus) {
   return new Promise((resolve, reject) =>{
+    console.log('makeFriendStatus called')
   db.pool.query(`replace into friendships (user_id, friend_id, friendship_status) values
       (?,?,?)`,
       [userID, friend_id, newStatus],
