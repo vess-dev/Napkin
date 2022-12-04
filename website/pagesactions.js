@@ -299,7 +299,7 @@ export function friendSearchAction () {
 	let searchString=document.querySelector('#screenname').value
 
 	let endpoint = 'user'
-	if (searchString) { endpoint= `user?search=${encodeURIComponent('searchString')}` }
+	if (searchString) { endpoint= `user?search=` + encodeURIComponent(searchString) }
 
 	return new Promise((resolve, reject) => {
 		let options = {
