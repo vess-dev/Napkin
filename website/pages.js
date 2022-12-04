@@ -119,6 +119,7 @@ export function friendSearch() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Search by Name:", "screenname", false);
+	phelp.createButton('submit',"Search","")
 	phelp.insertText("Search Results");
 	if (testing) test.testFriends("search");
 	phelp.insertText("Additional Results");
