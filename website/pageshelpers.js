@@ -384,12 +384,13 @@ export function insertUploadForm() {
 	
 	const fileUploadElement = document.createElement('input');
 	fileUploadElement.setAttribute("accept", "image/*");
-	//fileUploadElement.click();
-	fileUploadElement.onchange = e => {
-		elementImageForm.submit() }
 	fileUploadElement.setAttribute('type','file');
 	fileUploadElement.setAttribute('name', 'filetoupload')
+	const submitButton = document.createElement('input')
+	submitButton.setAttribute('type', 'submit')
+	submitButton.setAttribute('value', 'submit')
 	elementImageForm.appendChild(fileUploadElement);
+	elementImageForm.appendChild(submitButton)
 	elementBoxFull.appendChild(elementImageForm)
 	
 }
