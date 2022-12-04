@@ -87,11 +87,15 @@ export function accFriends() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertText("Current Friends");
+	pact.getFriends('active')
 	if (testing) test.testFriends("current");
 	phelp.insertText("Outgoing requests");
+	pact.getFriends('requested')
 	if (testing) test.testFriends("outgoing");
 	phelp.insertText("Incoming requests");
+	pact.getFriends('pending')
 	if (testing) test.testFriends("incoming");
+	
 }
 
 // When you look at who you have blocked.

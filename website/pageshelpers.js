@@ -232,7 +232,8 @@ export function insertNextButton() {
 }
 
 // Create a friend user info div. Picture, name, and type.
-export function insertFriendItem(userPicture, userName, itemType) {
+// added friend_ID, going to need it for functionality later -C
+export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementDivFriend = document.createElement("div");
 	elementDivFriend.setAttribute("class", "userdiv");
@@ -249,15 +250,15 @@ export function insertFriendItem(userPicture, userName, itemType) {
 	const elementButtonBox = document.createElement("div");
 	elementButtonBox.setAttribute("class", "buttonbox");
 	switch (itemType) {
-		case "current":
+		case "active":
 			const elementButtonRemove = createButton("remove", ["button", "buttonred"], "Remove", "TODOREMOVE");
 			elementButtonBox.append(elementButtonRemove);
 			break;
-		case "outgoing":
+		case "requested":
 			const elementButtonCancel = createButton("cancel", ["button", "buttonred"], "Cancel Request", "TODOCANCEL");
 			elementButtonBox.append(elementButtonCancel);
 			break;
-		case "incoming":
+		case "pending":
 			const elementButtonApprove = createButton("approve", ["button", "buttongreen"], "Approve", "TODOAPPROVE");
 			elementButtonBox.append(elementButtonApprove);
 			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", "TODODECLINE");
