@@ -52,16 +52,19 @@ function handleHTTPRequests(request, response) {
 // trying to graft in formidable processing
 
 if (request.method === 'POST' && parsedURL.pathname == '/upload' ) {
-
+    console.log('start form processing')
     var form = new formidable.IncomingForm();
     form.parse(request, function (err, fields, files) {
+      if (err) {console.log(err)}
       var oldpath = files.filetoupload.filepath;
       var newpath = 'website/usercontent/' + files.filetoupload.originalFilename;
+      console.log('newpath is', newpath)
+      console.log('oldpath is',oldpath)
       fs.rename(oldpath, newpath, function (err) {
         console.log('error is ',err)
         if (err) throw err;
-        res.write('File uploaded and moved!');
-        res.end();
+        response.write('File uploaded and moved!');
+        response.end();
       });
     });
     return 
@@ -205,7 +208,6 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
         routeFound = true;
         // Get list of posts
         post.getPostList(userID).then(list=>{
-          console.log('list is',list)
           response.statusCode = 200;
           response.write(JSON.stringify(list));
         })
@@ -225,7 +227,6 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
         routeFound = true;
         // Get list of posts
         post.getMyPostList(userID).then(list=>{
-          console.log('list is',list)
           response.statusCode = 200;
           response.write(JSON.stringify(list));
         })
