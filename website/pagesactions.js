@@ -328,4 +328,4 @@ export function friendSearchAction () {
 			return reject(error);
 		});
 	});
-
+};
