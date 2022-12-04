@@ -18,7 +18,7 @@ window.userCreateAction = pact.userCreateAction;
 window.userLoginAction = pact.userLoginAction;
 window.userLogoutAction = pact.userLogoutAction;
 window.createCloudinaryWidget = pact.createCloudinaryWidget;
-window.makeCloudinaryLink = phelp.makeCloudinarylink;
+window.makeCloudinarylink = phelp.makeCloudinarylink;
 
 
 // Disable or enable testing.
