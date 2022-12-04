@@ -231,9 +231,9 @@ function getMyPostList(userID) {
      post_title, post_content, post_image, post_likes_score, post_comment_count, group_name, groups.group_id
      from posts 
      inner join users on posts.user_id=users.user_id 
-     JOIN post_groups on posts.post_id = post_groups.post_id
-     JOIN groups on groups.group_id=post_groups.group_id
-     where posts.user_id=?
+     left JOIN post_groups on posts.post_id = post_groups.post_id
+     left JOIN groups on groups.group_id=post_groups.group_id
+     where posts.user_id= ?
      order by post_timestamp desc;`
      , userID, 
       function(error, results) {
