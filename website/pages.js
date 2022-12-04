@@ -407,8 +407,8 @@ function userLoginAction () {
 			}
 		})
 		.then((json) => {      
-			sessionId = json.sessionid;
-			setCookie("sessionid", sessionId, 7);   
+			let sessionid = json.sessionid;
+			setCookie("sessionid", sessionid, 7);   
 			routePage('#feedGlobal')
 			return resolve('login successful')
 		})
