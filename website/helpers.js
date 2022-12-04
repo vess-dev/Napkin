@@ -12,6 +12,15 @@ export function loadImage(imageName) {
 		return elementImage;
 	}
 }
+// note to Vess - post image URLs are absolute, not relative.  Going to run loadPostImage on feed drawing to 
+// avoid breaking your relative images elsewhere. -C
+
+export function loadPostImage(imageURL)
+if (!imageURL) {return null } else {
+	const elementImage = document.createElement("img");
+	elementImage.setAttribute("src", imageURL);
+	return elementImage;
+}
 
 // Return a long string of text.
 export function longText() {
