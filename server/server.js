@@ -30,8 +30,8 @@ server.on('request', handleHTTPRequests);
  */ 
 function handleHTTPRequests(request, response) {
 
-//  console.log('Method: ' + request.method + "\nURL: " + request.url);
-//  console.log('Headers: ' + request.headers.cookie);
+  console.log('Method: ' + request.method + "\nURL: " + request.url);
+  console.log('Headers: ' + request.headers.cookie);
 
   // Setup CORS
   response.setHeader('Access-Control-Allow-Origin', 'http://cpsc.roanoke.edu');
@@ -41,15 +41,18 @@ function handleHTTPRequests(request, response) {
   response.setHeader('content-type', 'application/json');  
   const method = request.method;
   const parsedURL = url.parse(request.url);
-//  console.log('parsedURL is',parsedURL)
+  console.log('parsedURL is',parsedURL)
   let URLquery = parsedURL.query
   let queryObject = querystring.parse(URLquery)
-//  console.log('queryObject:', queryObject)
+  console.log('queryObject:', queryObject)
 
-//  let parsedRequestBody = "";
+  let parsedRequestBody = "";
   let userId = null;
 
 
+
+
+//
 
   let data = '';
   request.on('data', chunk => {
@@ -80,6 +83,7 @@ function handleHTTPRequests(request, response) {
 function routeRequests(url, method, bodyObject, response, userID, queryObject, inbound_file_data) {
   let routeFound = false;
   console.log('urlpathname is', url.pathname)
+  console.log('queryObject is', queryObject)
   try {
     // OPTIONS handling
     if (method === 'OPTIONS') {

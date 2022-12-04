@@ -46,6 +46,8 @@ function makeFriendRequest(friend_id, userID) {
           return reject(new BaseError("DB Error", 500, error));
         }
         else { 
+          console.log(results)
+          console.log('results.friendship_status is', results.friendship_status)
           if (results.length == 0) { 
             // make friends! 
             console.log('not yet friends - so request!')
