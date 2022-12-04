@@ -60,7 +60,7 @@ if (request.method === 'POST' && parsedURL.pathname == '/upload' ) {
       let filename ='testdata.png'
       const saveTo = 'website/usercontent/' + filename;
       console.log('saveTo is', saveTo)
-      fs.writeFile(saveTo, data, function(err) {
+      fs.writeFile(saveTo, data, 'binary', function(err) {
         if (err) { return console.log(err)} else {
           console.log('success?')
         }
