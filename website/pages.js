@@ -34,7 +34,7 @@ export function accCreate() {
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertInputBox("Confirm password:", "confirm", true);
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#accPending')"], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "userCreateAction"], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
 }
 
 // When your account is now pending.
@@ -301,5 +301,47 @@ function postCreateAction() {
 };
 
     
+function userCreateAction() {
+    let user_first_name = document.querySelector('#firstname').value;
+    let user_last_name = document.querySelector('#lastname').value;
+    let user_handle = document.querySelector('#screenname').value;
+	let user_email = document.querySelector('#email').value;
+	let user_password = document.querySelector('#password').value;
+	let user_confirm = document.querySelector('#confirm').value;
+	
+	// TODO: client side error checking for password and confirm not matching. (Do you have an error popup, Vess?)
 
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "POST",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+            body: JSON.stringify({
+                user_first_name: user_first_name,
+				user_last_name: user_last_name,
+				user_handle: user_handle,
+				user_email: user_email,
+				user_password: user_password
+			})
+		};
+		fetch(route.SERVER+'user', options)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				throw new Error('error', response)
+			}
+		})
+		.then(() => {
+            
+			routePage('#accLogin')
+			return resolve(true)
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+};
 
