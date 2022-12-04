@@ -203,7 +203,7 @@ export function userLogoutAction() {
 		});
 	});
 }
-export function getFriends(friend_status) {
+export async function getFriends(friend_status) {
 	let endpoint
 	if (friend_status) {
 		endpoint="friend?status_wanted="+friend_status

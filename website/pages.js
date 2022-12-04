@@ -80,20 +80,20 @@ export function feedMy() {
 }
 
 // When you look at your list of friends.
-export function accFriends() {
+export async function accFriends() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "friends");
 	phelp.insertMiniHeader("Manage Friends", "manage");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertText("Current Friends");
-	pact.getFriends('accepted')
+	await pact.getFriends('accepted')
 	if (testing) test.testFriends("current");
 	phelp.insertText("Outgoing requests");
-	pact.getFriends('requested')
+	await pact.getFriends('requested')
 	if (testing) test.testFriends("outgoing");
 	phelp.insertText("Incoming requests");
-	pact.getFriends('pending')
+	await pact.getFriends('pending')
 	if (testing) test.testFriends("incoming");
 	
 }
