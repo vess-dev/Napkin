@@ -1,6 +1,7 @@
 import * as phelp from "./pageshelpers.js";
 import * as help from "./helpers.js";
 import * as route from "./routes.js";
+import {setCookie, getCookie} from "./cookies.js";
 
 
 // The header for the regular user pages.
@@ -405,7 +406,9 @@ function userLoginAction () {
 				throw new Error('error', response)
 			}
 		})
-		.then(() => {         
+		.then((json) => {      
+			sessionId = json.sessionid;
+			setCookie("sessionid", sessionId, 7);   
 			routePage('#feedGlobal')
 			return resolve('login successful')
 		})
