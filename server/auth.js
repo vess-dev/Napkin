@@ -18,7 +18,7 @@ function handleLoginAttempt (givenUser) {
     .then(dbObj=>{
     	userObj = dbObj;
       // Compare hash to entered password   
-      console.log('given, dbobj', givenUser.user_password, dbObj.user_password)   
+      console.log('given, dbobj', givenUser.password, dbObj.user_password)   
       return bcrypt.compare(givenUser.password, dbObj.user_password);
   	})
     .then((result)=> {        
