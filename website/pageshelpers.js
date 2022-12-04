@@ -378,7 +378,7 @@ export function getGroupsSelector() {
 export function insertUploadForm() {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementImageForm = document.createElement("form");
-	elementImageForm.setAttribute("action", "#upload");
+	elementImageForm.setAttribute("action", "/#upload");
 	elementImageForm.setAttribute("method", "post")
 	elementImageForm.setAttribute("enctype", "multipart/form-data");
 	
@@ -388,7 +388,6 @@ export function insertUploadForm() {
 	fileUploadElement.setAttribute('name', 'filetoupload')
 	const submitButton = document.createElement('input')
 	submitButton.setAttribute('type', 'submit')
-	submitButton.setAttribute('value', 'submit')
 	elementImageForm.appendChild(fileUploadElement);
 	elementImageForm.appendChild(submitButton)
 	elementBoxFull.appendChild(elementImageForm)
