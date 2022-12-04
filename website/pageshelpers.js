@@ -258,6 +258,8 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 		case "accepted":
 			const elementButtonRemove = createButton("remove", ["button", "buttonred"], "Remove", "TODOREMOVE");
 			elementButtonBox.append(elementButtonRemove);
+			const elementButtonGroups = createButton("remove", ["button", "buttongreen"], "Edit Groups", "TODOGROUPS");
+			elementButtonBox.append(elementButtonGroups);
 			break;
 		case "requested":
 			const elementButtonCancel = createButton("cancel", ["button", "buttonred"], "Cancel Request", "TODOCANCEL");
