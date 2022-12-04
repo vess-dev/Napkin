@@ -1,6 +1,11 @@
+// Make an asset path.
+export function pathImage(imageName) {
+	return "./assets/" + imageName + ".png";
+}
+
 // Load an image to use.
 export function loadImage(imageName) {
-	let imagePath = "./assets/" + imageName + ".png";
+	let imagePath = pathImage(imageName);
 	if (!imagePath) {return null } else {
 		const elementImage = document.createElement("img");
 		elementImage.setAttribute("src", imagePath);

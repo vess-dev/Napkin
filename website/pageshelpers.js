@@ -102,13 +102,18 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementPostInfo.textContent = userName + " on " + postDate;
 	elementDivInfo.append(elementPostInfo);
 	// Add the likes to the post.
-	const elementHeart = help.loadImage("heart");
+	const imageHeart = help.loadImage("heart");
+	const elementHeart = document.createElement("input");
+	elementHeart.setAttribute("type", "image");
+	elementHeart.setAttribute("src", help.pathImage("heart"));
+	elementHeart.onclick = ""; // TODO: Sending likes for a post.
 	elementHeart.setAttribute("class", "userpicture");
 	elementDivInfo.append(elementHeart);
 	const elementPostLikes = document.createElement("div");
 	elementPostLikes.setAttribute("class", "usertext");
 	elementPostLikes.textContent = postLikes;
 	elementDivInfo.append(elementPostLikes);
+	// Append the final div with all the info.
 	elementBoxMain.append(elementDivInfo);
 	// Add the actual post's content.
 	const elementPostContent = document.createElement("div");
