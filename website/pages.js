@@ -11,7 +11,7 @@ const userHeader = [["feedglobal", "Global Feed", "routePage('#feedGlobal')"], [
 // The header for the admin pages.
 const adminHeader = [["pending", "Pending Accounts", "routePage('#adminPending')"], ["disabled", "Disabled Accounts", "routePage('#adminDisabled')"], ["active", "Active Accounts", "routePage('#adminActive')"], ["blacklist", "Blacklisted Accounts", "routePage('#adminBlacklist')"]];
 
-// Not clean but this works.
+// Not clean but this works.  Ahha! Good fix, thanks. -C
 window.postCreateAction = pact.postCreateAction;
 window.queryImage = pact.queryImage;
 window.userCreateAction = pact.userCreateAction;

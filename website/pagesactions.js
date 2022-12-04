@@ -56,7 +56,7 @@ export function feedFill(postType) {
 }
 
 // Send a post create to the server.
-export function postCreateAction() {
+export async function postCreateAction() {
 	let post_title = document.querySelector("#post_title").value;
 	let post_content = document.querySelector("#post_content").value;
 	let post_image = document.querySelector("#post_image").payload;
@@ -66,20 +66,27 @@ export function postCreateAction() {
 	let groupList =""
 	for (let one of group_ids) {groupList += one + ","}
 	console.log("have groupList", groupList)
+	
+	let options = {
+		method: "POST",
+		credentials: "include",
+		body: post_image
+	}
 
-	const formData = new FormData() ;
-		formData.append('post_image', post_image)
-		formData.append('post_title', post_title)
-		formData.append('post_content', post_content)
-		formData.append('group_id', groupList)
-	console.log('send formdata',formData);
+	await fetch(route.SERVER + "upload", options) 
+	console.log('fetch finished - check your logs!')
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "POST",
 			credentials: "include",
 			headers: {
 			"Content-Type": "application/json"},
-			body: formData
+			body: JSON.stringify({
+				post_title: post_title,
+				post_content: post_content,
+				post_image, post_image,
+				group_id: groupList
+			  })
 		};
 		fetch(route.SERVER + "post", options)
 		.then((response) => {

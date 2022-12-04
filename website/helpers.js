@@ -14,6 +14,7 @@ export function loadImage(imageName) {
 }
 // note to Vess - post image URLs are absolute, not relative.  Going to run loadPostImage on feed drawing to 
 // avoid breaking your relative images elsewhere. -C
+// in hindsight, I guess naming could have been better! :)
 
 export function loadPostImage(imageURL) {
 	if (!imageURL) {return null } else {

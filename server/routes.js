@@ -9,5 +9,6 @@ const COMMENT = '/comment';
 const USERPASSWD = '/userpassword';
 const POSTGROUP = '/postgroup';
 const MYPOSTS = '/myposts';
+const UPLOAD = '/upload';
 
-module.exports={MYPOSTS, USER, USERPASSWD, LOGIN, LOGOUT, POST, GROUPMEMBERS, GROUP, FRIEND, COMMENT, POSTGROUP};
+module.exports={UPLOAD, MYPOSTS, USER, USERPASSWD, LOGIN, LOGOUT, POST, GROUPMEMBERS, GROUP, FRIEND, COMMENT, POSTGROUP};

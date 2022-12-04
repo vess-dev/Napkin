@@ -1,5 +1,7 @@
 const http = require('http');
 const querystring = require('querystring');
+const busboy = require('busboy');
+//^ file uploads 
 const url = require('url');
 
 const auth = require('./auth.js');
@@ -421,6 +423,29 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
             });
           } 
         }
+
+    // Upload route
+    if (url.pathname === routes.UPLOAD) {
+      console.log('upload called')
+      if (method === 'POST') {
+        console.log('method is post for comment')
+        routeFound = true;
+        
+        let filename = '';
+        const bb = busboy({ headers: request.headers });
+        bb.on('file', (name, file, info) => {
+          filename = info.filename;
+          const saveTo = path.join('website/usercontent', filename);
+          file.pipe(fs.createWriteStream(saveTo));
+        });
+        bb.on('close', () => {
+          response.writeHead(200, { 'Content-Type': 'text/plain' });
+          response.end(`upload success: ${filename}`);
+        });
+        req.pipe(bb);
+      }}
+
+
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {
       routeFound = true;
