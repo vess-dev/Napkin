@@ -142,6 +142,7 @@ export function postCreate() {
 	phelp.getGroupsSelector()
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"], ["post_image", ["button", "buttonother"], "Post Image", "uploadImage()"]]);
 	phelp.makeCloudinarylink()
+	pact.createCloudinaryWidget()
 
 }
 
