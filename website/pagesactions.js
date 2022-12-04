@@ -329,3 +329,31 @@ export function friendSearchAction () {
 		});
 	});
 };
+
+export function makeFriendRequest(friend_id) {
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "POST",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+			body: JSON.stringify({
+				friend_id: friend_id
+			  })
+		};
+		fetch(route.SERVER + "friend", options)
+		.then((response) => {
+			if (response.ok) {
+				routePage("##accFriends")
+				return response.json();
+			}
+			else {
+				throw new help.clientError("Server Error", response.status, "Problem requesting a friend.");
+			}
+		})
+		.then(json=> resolve(json))
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+}

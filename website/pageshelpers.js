@@ -274,7 +274,7 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 			elementButtonBox.append(elementButtonUnblock);
 			break;
 		case "search":
-			const elementButtonSend = createButton("send", ["button", "buttongreen"], "Send Friend Request", "TODOREQUEST");
+			const elementButtonSend = createButton("send", ["button", "buttongreen"], "Send Friend Request", `makeFriendRequest(${friend_ID})`);
 			elementButtonBox.append(elementButtonSend);
 			break;
 	}

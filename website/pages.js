@@ -21,6 +21,7 @@ window.createCloudinaryWidget = pact.createCloudinaryWidget;
 window.makeCloudinarylink = phelp.makeCloudinarylink;
 window.processLikeClick = pact.processLikeClick;
 window.friendSearchAction = pact.friendSearchAction;
+window.makeFriendRequest = pact.makeFriendRequest ;
 
 // Disable or enable testing.
 const testing = false;
