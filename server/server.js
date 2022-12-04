@@ -44,9 +44,29 @@ function handleHTTPRequests(request, response) {
   let queryObject = querystring.parse(URLquery)
   console.log('queryObject:', queryObject)
 
-  
   let parsedRequestBody = "";
   let userId = null;
+
+// trying to graft in busboy earlier 
+
+if (request.method === 'POST' && parsedURL.pathname == '/upload' ) {
+  const bb = busboy({ headers: request.headers });
+  bb.on('file', (name, file, info) => {
+    filename = info.filename;
+    console.log('filename is', filename)
+    const saveTo = path.join('website/usercontent', filename);
+    console.log('saveTo is',saveTo)
+    file.pipe(fs.createWriteStream(saveTo));
+  });
+  bb.on('close', () => {
+    res.writeHead(200, { 'Connection': 'close' });
+    res.end(`That's all folks!`);
+  });
+  request.pipe(bb);
+  return;
+}
+
+//
 
   let data = '';
   request.on('data', chunk => {
@@ -425,7 +445,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
           } 
         }
 
-    // Upload route
+ /*   // Upload route
     if (url.pathname === routes.UPLOAD) {
       console.log('upload called')
       if (method === 'POST') {
@@ -448,7 +468,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
         });
         request.pipe(bb);
       }}
-
+*/
 
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {
