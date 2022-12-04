@@ -43,7 +43,7 @@ export function insertMiniHeader(headerName, buttonType) {
 		elementButtonBox.setAttribute("class", "buttonbox");
 		switch (buttonType) {
 			case "logout":
-				const elementButtonLogout = createButton("logout", ["button", "buttonred"], "Logout", "routePage('#accLogin')");
+				const elementButtonLogout = createButton("logout", ["button", "buttonred"], "Logout", "");
 				elementButtonBox.append(elementButtonLogout);
 				break;
 			case "manage":

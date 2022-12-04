@@ -201,6 +201,9 @@ export function accSettings() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "account");
 	phelp.insertMiniHeader("Account Settings", "logout");
+		//KLUDGE
+		let tmpbutton = document.querySelector('#logout')
+		tmpbutton.addEventListener('click', userLogoutAction)
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Change email:", "email", false);
@@ -209,6 +212,7 @@ export function accSettings() {
 	phelp.insertInputBox("Change password:", "password", true);
 	phelp.insertInputBox("Confirm password:", "confirm", true);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#accSettings')"], ["image", ["button", "buttonother"], "Change Image", "TODOCHANGEIMAGE"]]);
+
 }
 
 // Fill the admin pages with bunk data.
@@ -348,3 +352,30 @@ function userCreateAction() {
 	});
 };
 
+
+function userLogoutAction() {
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "POST",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+		};
+		fetch(route.SERVER+'logout', options)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				throw new Error('error', response)
+			}
+		})
+		.then(() => {           
+			routePage('#accLogin')
+			return resolve(true)
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+}
