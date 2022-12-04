@@ -53,7 +53,7 @@ function addNewUser(userObject) {
       return reject(new BaseError("Missing Fields", 400, "Email and Password are required fields"));
     }
 
-    if (!userObject.status) {userObject.status = 'accepted'}
+    if (!userObject.user_status) {userObject.user_status = 'accepted'}
     if (!userObject.age) {userObject.age = 0}
     console.log('starting bcrypt')
     bcrypt.genSalt(10).then((salt) => {              
