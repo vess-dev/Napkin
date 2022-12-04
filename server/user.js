@@ -52,12 +52,10 @@ function addNewUser(userObject) {
     if (!userObject.user_email || !userObject.user_password) {
       return reject(new BaseError("Missing Fields", 400, "Email and Password are required fields"));
     }
-    // can't do this here.
-    userObject.remove('admin_flag')
 
     if (!userObject.status) {userObject.status = 'accepted'}
     if (!userObject.age) {userObject.age = 0}
-
+    console.log('starting bcrypt')
     bcrypt.genSalt(10).then((salt) => {              
       bcrypt.hash(userObject.user_password, salt).then((hash) =>{        
         // Store hash in the database
@@ -84,6 +82,8 @@ function insertUser(user_first_name, user_last_name, user_email, user_password, 
       {user_first_name: user_first_name, user_password: user_password, user_last_name: user_last_name, user_email: user_email, user_handle: user_handle, user_status: user_status, user_age: age}, 
       function(error, results, fields) {
         if (error) {
+          console.log('error:', error)
+          console.log('results:', results)
           if (error.code === 'ER_DUP_ENTRY') {          
             return reject(new BaseError("DB Error", 400, "Username already exists"));
           }
