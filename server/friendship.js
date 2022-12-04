@@ -47,7 +47,7 @@ function makeFriendRequest(friend_id, userID) {
         }
         else { 
           console.log(results)
-          console.log('results.friendship_status is', results.friendship_status)
+          console.log('results.friendship_status is', results[0].friendship_status)
           if (results.length == 0) { 
             // make friends! 
             console.log('not yet friends - so request!')
@@ -55,17 +55,17 @@ function makeFriendRequest(friend_id, userID) {
             makeFriendsStatus(userID, friend_id, 'pending')
             return resolve({"Success": "friendship created"})
           } 
-          else if (results.friendship_status == 'pending') {
+          else if (results[0].friendship_status == 'pending') {
             makeFriendsStatus(friend_id, userID, 'accepted')
             makeFriendsStatus(userID, friend_id, 'accepted')
             console.log('setting to accepted', friend_id, userID)
           }        
-          else if (results.friendship_status == 'accepted')  {
+          else if (results[0].friendship_status == 'accepted')  {
             return reject(new BaseError("No request needed", 400, "you're already friends"))
           } else if (results.friendship_status == 'blocked'){
             return reject(new BaseError("BLOCKED", 400, "you may not make another request for this user"))
           } 
-          return resolve(results);        
+          return resolve(true);        
         }
   });
 })}
