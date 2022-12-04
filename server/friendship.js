@@ -52,7 +52,12 @@ function makeFriendRequest(friend_id, userID) {
             makeFriendsStatus(friend_id, userID, 'requested')
             makeFriendsStatus(userID, friend_id, 'pending')
             return resolve({"Success": "friendship created"})
-          }             
+          } 
+          if (results.friendship_status == 'pending') {
+            makeFriendsStatus(friend_id, userID, 'accepted')
+            makeFriendsStatus(userID, friend_id, 'accepted')
+
+          }        
           if (results.friendship_status == 'accepted')  {
             return reject(new BaseError("No request needed", 400, "you're already friends"))
           } else if (results.friendship_status == 'blocked'){
@@ -65,7 +70,7 @@ function makeFriendRequest(friend_id, userID) {
 
 async function makeFriendsStatus(friend_id, userID, newStatus) {
   return new Promise((resolve, reject) =>{
-  db.pool.query(`insert into friendships (user_id, friend_id, friendship_status) values
+  db.pool.query(`replace into friendships (user_id, friend_id, friendship_status) values
       (?,?,?)`,
       [userID, friend_id, newStatus],
       function(error, results) {
