@@ -251,7 +251,7 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 	const elementButtonBox = document.createElement("div");
 	elementButtonBox.setAttribute("class", "buttonbox");
 	switch (itemType) {
-		case "active":
+		case "accepted":
 			const elementButtonRemove = createButton("remove", ["button", "buttonred"], "Remove", "TODOREMOVE");
 			elementButtonBox.append(elementButtonRemove);
 			break;

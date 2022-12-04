@@ -87,7 +87,7 @@ export function accFriends() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertText("Current Friends");
-	pact.getFriends('active')
+	pact.getFriends('accepted')
 	if (testing) test.testFriends("current");
 	phelp.insertText("Outgoing requests");
 	pact.getFriends('requested')
