@@ -379,6 +379,9 @@ export function makeCloudinarylink() {
 	thisbutton.setAttribute('id','upload_widget')
 	thisbutton.setAttribute('class','cloudinary-button')
 	thisbutton.innerHTML='Upload Image'
+	const elementBoxFull = document.getElementById("boxfull");
+	elementBoxFull.appendChild(thisbutton)
+
 
 }
 /*
