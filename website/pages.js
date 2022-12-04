@@ -142,8 +142,8 @@ export function postCreate() {
 	phelp.insertInputBox("Post image URL:", "post_image_url", false);
 	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.getGroupsSelector()
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"], ["post_image", ["button", "buttonother"], "Post Image", "makeCloudinarylink()"]]);
-	//phelp.makeCloudinarylink()
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"], ]);
+	phelp.makeCloudinarylink()
 	pact.createCloudinaryWidget()
 
 }
