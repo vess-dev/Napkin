@@ -116,7 +116,10 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	// comment count here, needs styling
 	const elementCommentCount = document.createElement("div");
 	elementCommentCount.setAttribute("class", "usertext");
-	elementCommentCount.textContent = postComments + "comments";
+	if (postComments ==1) {
+		elementCommentCount.textContent = "1 comment";
+	} else {elementCommentCount.textContent = postComments + " comments";}
+	
 	elementDivInfo.append(elementCommentCount);
 	// Append the final div with all the info.
 	elementBoxMain.append(elementDivInfo);
