@@ -318,8 +318,11 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         if (method === 'GET') {
           console.log('on friends route')
           routeFound = true;
+          let statusWanted
+          if (queryObject && queryObject.status_wanted) {
+            statusWanted = queryObject.status_wanted}
 
-          friend.getFriendList(userID).then(list=>{
+          friend.getFriendList(userID,statusWanted).then(list=>{
             response.statusCode = 200;
             response.write(JSON.stringify(list));
           })
