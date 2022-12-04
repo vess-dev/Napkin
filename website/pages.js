@@ -70,6 +70,7 @@ function feedFill(postType) {
 		};
 		fetch(route.SERVER + endpoint, options)
 		.then((response) => {
+			if (response.statusCode == 401) { routePage('#accLogin')}
 			if (response.ok) {
 				return response.json();
 			}
