@@ -393,7 +393,7 @@ function userLoginAction () {
 			"Content-Type": "application/json"},
             body: JSON.stringify({
 				user_email: user_email,
-				user_password: user_password
+				password: password
 			})
 		};
 		fetch(route.SERVER+'login', options)

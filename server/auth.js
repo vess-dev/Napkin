@@ -11,7 +11,7 @@ const BaseError = require('./BaseError.js');
  * Returns error if user not present, or password hashes do not match
  */ 
 function handleLoginAttempt (givenUser) {
-  console.log('Handling login attempt for ' + givenUser.user_email, givenUser);
+  console.log('Handling login attempt for ' + givenUser);
   let userObj = null;
   return new Promise((resolve, reject)=>{
     getHashforAuth(givenUser.user_email)
@@ -54,7 +54,7 @@ function getHashforAuth(user_email) {
     console.log('got user_email is', user_email)  
     db.pool.query(`SELECT user_id, user_password from users WHERE user_email = '${user_email}'`,      
       function(error, results, fields) {
-        console.log(error, results, fields)
+        console.log(error, results)
         if (error) {                            
           return reject(new BaseError('DB Error', 500, error));
         }
