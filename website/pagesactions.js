@@ -14,6 +14,35 @@ export function queryImage() {
 	}
 }
 
+export function uploadImage() {
+	const elementInput = document.createElement("input");
+	elementInput.setAttribute("type", "file");
+	elementInput.setAttribute("accept", "image/*");
+	elementInput.click();
+	elementInput.onchange = e => {
+		const elementImage = document.getElementById("post_image");
+		elementImage.setAttribute("payload", elementInput.value);
+		uploadImageAction(elementInput.files[0])
+	}
+}
+
+export function uploadImageAction(imagefile) {
+
+	let options = {
+		method: "POST",
+		credentials: "include",
+		body: imagefile
+	}
+
+	fetch(route.SERVER + "upload", options).then((response) =>
+	{
+		console.log('response was: ',response)
+		console.log('options was', options)
+		console.log('fetch finished - check your logs!')
+	}
+	) 
+}
+
 // Fill the feed with non-user made posts, or user made posts.
 export function feedFill(postType) {
 	let endpoint;
@@ -60,30 +89,14 @@ export async function postCreateAction() {
 	let post_title = document.querySelector("#post_title").value;
 	let post_content = document.querySelector("#post_content").value;
 	let post_image = document.querySelector("#post_image").payload;
-	console.log('post_image is',post_image)
-	console.log('or maybe', document.querySelector('#post_image').value)
+
 	let selected  = document.querySelectorAll("#group_selector option:checked");
 	console.log("have ",post_title, post_content, post_image)
 	let group_ids = Array.from(selected).map(el => el.value);
 	let groupList =""
 	for (let one of group_ids) {groupList += one + ","}
 	console.log("have groupList", groupList)
-	
-	let options = {
-		method: "POST",
-		credentials: "include",
-		body: post_image
-	}
 
-	fetch(route.SERVER + "upload", options).then((response) =>
-	{
-		console.log('response was: ',response)
-		console.log('options was', options)
-		console.log('fetch finished - check your logs!')
-	}
-	) 
-
-/*	
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "POST",
@@ -114,7 +127,7 @@ export async function postCreateAction() {
 			return reject(error);
 		});
 	});
-	*/
+	
 };
 
 // Send a user create to the server. 

@@ -17,6 +17,7 @@ window.queryImage = pact.queryImage;
 window.userCreateAction = pact.userCreateAction;
 window.userLoginAction = pact.userLoginAction;
 window.userLogoutAction = pact.userLogoutAction;
+window.uploadImage = pact.uploadImage;
 
 // Disable or enable testing.
 const testing = false;
@@ -136,9 +137,10 @@ export function postCreate() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Post title:", "post_title", false);
+	phelp.insertInputBox("Post image URL:", "post_image_url", false);
 	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.getGroupsSelector()
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"], ["post_image", ["button", "buttonother"], "Post Image", "queryImage()"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"], ["post_image", ["button", "buttonother"], "Post Image", "uploadImage()"]]);
 }
 
 // When you want to edit a post.
@@ -149,7 +151,7 @@ export function postEdit(postID) {
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("placeholder postID"+postID, "post_title", false);
 	phelp.insertInputBox("Post title:", "post_title", false);
-	phelp.insertInputBox("Post image URL:", "post_image", false);
+	phelp.insertInputBox("Post image URL:", "post_image_url", false);
 	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.getGroupsSelector()
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction("+postID+")"]]);
