@@ -66,7 +66,7 @@ export function userCreateAction() {
 	let user_password = document.querySelector("#password").value;
 	let user_confirm = document.querySelector("#confirm").value;
 	
-	// TODO: client side error checking for password and confirm not matching. (Do you have an error popup, Vess?) (V: No popup. help.clientError() exists now.)
+	// TODO: client side error checking for password and confirm not matching. (Do you have an error popup, Vess?) (V: Use help.woops(<text>) for now.)
 
 	return new Promise((resolve, reject) => {
 		let options = {

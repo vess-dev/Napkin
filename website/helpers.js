@@ -22,3 +22,8 @@ export class clientError extends Error {
 		Error.captureStackTrace(this)
 	}
 }
+
+// Simple error window. Fix later?
+export function woops(woopsText) {
+	window.alert(woopsText);
+}
