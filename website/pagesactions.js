@@ -44,6 +44,7 @@ export function feedFill(postType) {
 		.then((postsList) => {
 			for (let post of postsList) {
 				phelp.insertPost(help.loadImage(post.user_image), post.post_title, post.user_handle, post.post_timestamp, post.post_content, help.loadImage(post.post_image), postType);
+				phelp.insertPostActions(post.post_id)
 				phelp.insertBigBreak();
 			}
 			return resolve(true)

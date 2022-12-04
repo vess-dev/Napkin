@@ -19,7 +19,7 @@ window.userLoginAction = pact.userLoginAction;
 window.userLogoutAction = pact.userLogoutAction;
 
 // Disable or enable testing.
-//const testing = true;
+const testing = false;
 
 
 // Always insert the content box first, and then the header type.
