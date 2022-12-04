@@ -1,8 +1,8 @@
-import * as phelp from "./pageshelpers.js";
 import * as help from "./helpers.js";
+import * as pact from "./pagesactions.js";
+import * as phelp from "./pageshelpers.js";
 import * as route from "./routes.js";
 import {setCookie, getCookie} from "./cookies.js";
-
 
 // The header for the regular user pages.
 const userHeader = [["feedglobal", "Global Feed", "routePage('#feedGlobal')"], ["feedmy", "My Feed", "routePage('#feedMy')"], ["createpost", "Create Post", "routePage('#postCreate')"], ["friends", "Friends", "routePage('#accFriends')"], ["groups", "Groups", "routePage('#accGroups')"], ["account", "Settings", "routePage('#accSettings')"]]
@@ -21,9 +21,9 @@ export function accLogin() {
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", ""], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"], ["test", ["button", "buttonother"], "adminTest", "routePage('#adminPending')"]]);
-		//KLUDGE
-		let tmpbutton = document.querySelector('#login')
-		tmpbutton.addEventListener('click', userLoginAction)
+	// KLUDGE
+	let tmpbutton = document.querySelector('#login')
+	tmpbutton.addEventListener('click', pact.userLoginAction)
 }
 
 // When you are creating an account.
@@ -39,9 +39,9 @@ export function accCreate() {
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertInputBox("Confirm password:", "confirm", true);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", ""], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
-	//KLUDGE
-	let tmpbutton = document.querySelector('#submit')
-	tmpbutton.addEventListener('click', userCreateAction)
+	// KLUDGE
+	let tmpbutton = document.querySelector("#submit")
+	tmpbutton.addEventListener("click", pact.userCreateAction)
 }
 
 // When your account is now pending.
@@ -74,13 +74,13 @@ function feedFill(postType) {
 		};
 		fetch(route.SERVER + endpoint, options)
 		.then((response) => {
-			if (response.statusCode == 401) { routePage('#accLogin')}
+			if (response.statusCode == 401) { routePage("#accLogin")}
 			if (response.ok) {
 				return response.json();
 			}
 			else {
 				//throw new ClientError("User Error", response.status,"Unable to retrieve posts");
-				throw new Error('error', response)
+				throw new Error("error", response)
 			}
 		})
 		.then((postsList) => {
@@ -182,10 +182,9 @@ export function postCreate() {
 	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.getGroupsSelector()
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", ""]]);
-	let tmpbutton = document.querySelector('#submit')
-	//KLUDGE
-	tmpbutton.addEventListener('click', postCreateAction)
-	
+	let tmpbutton = document.querySelector("#submit")
+	// KLUDGE
+	tmpbutton.addEventListener("click", pact.postCreateAction)
 }
 
 // When you want to edit a post.
@@ -198,7 +197,6 @@ export function postEdit() {
 	phelp.insertInputBox("Post image URL:", "post_image", false);
 	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#myFeed')"]]);
-
 }
 
 // When you look at your account settings.
@@ -206,9 +204,11 @@ export function accSettings() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "account");
 	phelp.insertMiniHeader("Account Settings", "logout");
-		//KLUDGE
-		let tmpbutton = document.querySelector('#logout')
-		tmpbutton.addEventListener('click', userLogoutAction)
+
+	// KLUDGE
+	let tmpbutton = document.querySelector("#logout")
+	tmpbutton.addEventListener("click", pact.userLogoutAction)
+	
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Change email:", "email", false);
@@ -217,7 +217,6 @@ export function accSettings() {
 	phelp.insertInputBox("Change password:", "password", true);
 	phelp.insertInputBox("Confirm password:", "confirm", true);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#accSettings')"], ["image", ["button", "buttonother"], "Change Image", "TODOCHANGEIMAGE"]]);
-
 }
 
 // Fill the admin pages with bunk data.
@@ -270,151 +269,3 @@ export function adminBlacklist() {
 	adminFill(adminPage);
 }
 
-function postCreateAction() {
-    let post_title = document.querySelector('#post_title').value;
-    let post_content = document.querySelector('#post_content').value;
-    let post_image = document.querySelector('#post_image').value;
-    let selected  = document.querySelectorAll('#group_selector option:checked');
-	console.log('have ',post_title, post_content, post_image)
-    let group_ids = Array.from(selected).map(el => el.value);
-    let groupList 
-    for (let one of group_ids) {groupList += one+','}
-	console.log('have groupList',groupList)
-	return new Promise((resolve, reject) => {
-		let options = {
-			method: "POST",
-			credentials: "include",
-			headers: {
-			"Content-Type": "application/json"},
-            body: JSON.stringify({
-                post_title: post_title,
-                post_content: post_content,
-                post_image, post_image,
-                group_id: groupList
-              })
-		};
-		fetch(route.SERVER+'post', options)
-		.then((response) => {
-			if (response.ok) {
-				return response.json();
-			}
-			else {
-				throw new Error('error', response)
-			}
-		})
-		.then(() => {
-            routePage('#myFeed')
-			return resolve(true)
-		})
-		.catch((error) => {
-			return reject(error);
-		});
-	});
-};
-
-    
-function userCreateAction() {
-    let user_first_name = document.querySelector('#firstname').value;
-    let user_last_name = document.querySelector('#lastname').value;
-    let user_handle = document.querySelector('#screenname').value;
-	let user_email = document.querySelector('#email').value;
-	let user_password = document.querySelector('#password').value;
-	let user_confirm = document.querySelector('#confirm').value;
-	
-	// TODO: client side error checking for password and confirm not matching. (Do you have an error popup, Vess?)
-
-	return new Promise((resolve, reject) => {
-		let options = {
-			method: "POST",
-			credentials: "include",
-			headers: {
-			"Content-Type": "application/json"},
-            body: JSON.stringify({
-                user_first_name: user_first_name,
-				user_last_name: user_last_name,
-				user_handle: user_handle,
-				user_email: user_email,
-				user_password: user_password
-			})
-		};
-		fetch(route.SERVER+'user', options)
-		.then((response) => {
-			if (response.ok) {
-				return response.json();
-			}
-			else {
-				throw new Error('error', response)
-			}
-		})
-		.then(() => {
-            
-			routePage('#accLogin')
-			return resolve(true)
-		})
-		.catch((error) => {
-			return reject(error);
-		});
-	});
-};
-
-
-function userLogoutAction() {
-	return new Promise((resolve, reject) => {
-		let options = {
-			method: "POST",
-			credentials: "include",
-			headers: {
-			"Content-Type": "application/json"},
-		};
-		fetch(route.SERVER+'logout', options)
-		.then((response) => {
-			if (response.ok) {
-				routePage('#accLogin')
-				return response.json();
-			}
-			else {
-				throw new Error('error', response)
-			}
-		})
-		.then(json=> resolve(json))
-		.catch((error) => {
-			return reject(error);
-		});
-	});
-}
-
-function userLoginAction () {
-	let user_email = document.querySelector('#email').value;
-	let password = document.querySelector('#password').value;
-	return new Promise((resolve, reject) => {
-		let options = {
-			method: "POST",
-			credentials: "include",
-			headers: {
-			"Content-Type": "application/json"},
-            body: JSON.stringify({
-				user_email: user_email,
-				password: password
-			})
-		};
-		fetch(route.SERVER+'login', options)
-		.then((response) => {
-			if (response.ok) {
-				return response.json();
-			}
-			else {
-				throw new Error('error', response)
-			}
-		})
-		.then((json) => {      
-			let sessionid = json.sessionid;
-			setCookie("sessionid", sessionid, 7);   
-			routePage('#feedGlobal')
-			return resolve('login successful')
-		})
-		.catch((error) => {
-			return reject(error);
-		});
-	});
-};
-	

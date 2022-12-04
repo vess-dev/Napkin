@@ -305,6 +305,7 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 	elementDivUser.append(elementButtonBox);
 	elementBoxFull.append(elementDivUser);
 }
+
 export function getGroupsSelector() {
 	let selector = document.createElement('select')
 	selector.setAttribute('multiple', true)
@@ -338,4 +339,3 @@ export function getGroupsSelector() {
 	}
 	)
 }
-
