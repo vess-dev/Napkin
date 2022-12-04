@@ -11,6 +11,9 @@ export function testPosts() {
 }
 
 // Test friends.
+export function testFriends(friendType) {
+	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", friendType);
+}
 
 // Fill the admin pages with bunk data.
 export function testAdmin(adminPage) {

@@ -87,20 +87,11 @@ export function accFriends() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertText("Current Friends");
-	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
-		"current");
-	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
-		"current");
+	if (testing) test.testFriends("current");
 	phelp.insertText("Outgoing requests");
-	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
-		"outgoing");
-	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
-		"outgoing");
+	if (testing) test.testFriends("outgoing");
 	phelp.insertText("Incoming requests");
-	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
-		"incoming");
-	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
-		"incoming");
+	if (testing) test.testFriends("incoming");
 }
 
 // When you look at who you have blocked.
@@ -110,10 +101,7 @@ export function accBlocked() {
 	phelp.insertMiniHeader("Manage Blocked", "blocked");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
-	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
-		"blocked");
-	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
-		"blocked");
+	if (testing) test.testFriends("blocked");
 }
 
 // When you're searching for a friend.
@@ -125,11 +113,9 @@ export function friendSearch() {
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Search by Name:", "screenname", false);
 	phelp.insertText("Search Results");
-	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
-		"search");
+	if (testing) test.testFriends("search");
 	phelp.insertText("Additional Results");
-	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
-		"search");
+	if (testing) test.testFriends("search");
 }
 
 // When you look at your groups.
@@ -177,8 +163,6 @@ export function accSettings() {
 	phelp.insertInputBox("Confirm password:", "confirm", true);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#accSettings')"], ["image", ["button", "buttonother"], "Change Image", "TODOCHANGEIMAGE"]]);
 }
-
-
 
 // For admins to look at pending accounts.
 export function adminPending() {
