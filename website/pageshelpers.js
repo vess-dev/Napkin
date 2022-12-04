@@ -110,7 +110,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementHeart.setAttribute("class", "userpicture");
 	const likesDiv = document.createElement('div');
 	//elementDivInfo.append(elementHeart);
-	elementDivInfo.append(commentDiv)
+	elementDivInfo.append(likesDiv)
 	likesDiv.append(elementHeart)
 	const elementPostLikes = document.createElement("div");
 	elementPostLikes.setAttribute("class", "usertext");
