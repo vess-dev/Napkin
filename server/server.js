@@ -56,8 +56,9 @@ if (request.method === 'POST' && parsedURL.pathname == '/upload' ) {
     var form = new formidable.IncomingForm();
     form.parse(request, function (err, fields, files) {
       var oldpath = files.filetoupload.filepath;
-      var newpath = 'usercontent/' + files.filetoupload.originalFilename;
+      var newpath = 'website/usercontent/' + files.filetoupload.originalFilename;
       fs.rename(oldpath, newpath, function (err) {
+        console.log('error is ',err)
         if (err) throw err;
         res.write('File uploaded and moved!');
         res.end();
