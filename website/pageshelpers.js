@@ -374,7 +374,14 @@ export function getGroupsSelector() {
 
 	)
 }
+export function makeCloudinarylink() {
+	let thisbutton=document.createElement('button')
+	thisbutton.setAttribute('id','upload_widget')
+	thisbutton.setAttribute('class','cloudinary-button')
+	thisbutton.innerHTML='Upload Image'
 
+}
+/*
 export function insertUploadForm() {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementImageForm = document.createElement("form");
@@ -393,3 +400,4 @@ export function insertUploadForm() {
 	elementBoxFull.appendChild(elementImageForm)
 	
 }
+*/

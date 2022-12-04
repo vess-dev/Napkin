@@ -13,6 +13,22 @@ export function queryImage() {
 		elementImage.setAttribute("payload", elementInput.value);
 	}
 }
+
+export function createCloudinaryWidget () {
+var myWidget = cloudinary.createUploadWidget({
+	cloudName: 'dkz6vktw0', 
+	uploadPreset: 'default'}, (error, result) => { 
+	  if (!error && result && result.event === "success") { 
+		console.log('Done! Here is the image info: ', result.info); 
+	  }
+	}
+  )
+  
+  document.getElementById("upload_widget").addEventListener("click", function(){
+	  myWidget.open();
+	}, false);
+}
+
 /* 
 export function uploadImage() {
 	const elementInput = document.createElement("input");
