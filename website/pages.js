@@ -2,6 +2,7 @@ import * as help from "./helpers.js";
 import * as pact from "./pagesactions.js";
 import * as phelp from "./pageshelpers.js";
 import * as route from "./routes.js";
+import * as test from "./testers.js";
 import {setCookie, getCookie} from "./cookies.js";
 
 // The header for the regular user pages.
@@ -16,6 +17,10 @@ window.queryImage = pact.queryImage;
 window.userCreateAction = pact.userCreateAction;
 window.userLoginAction = pact.userLoginAction;
 window.userLogoutAction = pact.userLogoutAction;
+
+// Disable or enable testing.
+const testing = true;
+
 
 // Always insert the content box first, and then the header type.
 
@@ -62,52 +67,13 @@ export function accPending() {
 	phelp.insertBottomButtons([["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
 }
 
-// Fill the feed with non-user made posts, or user made posts.
-function feedFill(postType) {
-	let endpoint;
-	if (postType) {
-		// True means the individual user's posts.
-		endpoint = "myposts";
-	} else {
-		// False means the "global" feed.
-		endpoint = "post";
-	}
-	return new Promise((resolve, reject) => {
-		let options = {
-			method: "GET",
-			credentials: "include",
-			headers: {
-			"Content-Type": "application/json"}
-		};
-		fetch(route.SERVER + endpoint, options)
-		.then((response) => {
-			if (response.statusCode == 401) { routePage("#accLogin")}
-			if (response.ok) {
-				return response.json();
-			}
-			else {
-				throw new help.clientError("Server Error", response.status, "Unable to retrieve posts");
-			}
-		})
-		.then((postsList) => {
-			for (let post of postsList) {
-				phelp.insertPost(help.loadImage(post.user_image), post.post_title, post.user_handle, post.post_timestamp, post.post_content, help.loadImage(post.post_image), postType);
-				phelp.insertBigBreak();
-			}
-			return resolve(true)
-		})
-		.catch((error) => {
-			return reject(error);
-		});
-	});
-}
-
 // When you are looking at the global feed.
 export function feedGlobal() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedglobal");
 	phelp.insertNextButton();
-	feedFill(false);
+	if (testing) test.testPosts();
+	pact.feedFill(false);
 }
 
 // When you are looking at just your feed.
@@ -115,7 +81,8 @@ export function feedMy() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedmy");
 	phelp.insertNextButton();
-	feedFill(true);
+	if (testing) test.testPosts();
+	pact.feedFill(true);
 }
 
 // When you look at your list of friends.

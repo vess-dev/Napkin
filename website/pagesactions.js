@@ -14,6 +14,46 @@ export function queryImage() {
 	}
 }
 
+// Fill the feed with non-user made posts, or user made posts.
+export function feedFill(postType) {
+	let endpoint;
+	if (postType) {
+		// True means the individual user's posts.
+		endpoint = "myposts";
+	} else {
+		// False means the "global" feed.
+		endpoint = "post";
+	}
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "GET",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"}
+		};
+		fetch(route.SERVER + endpoint, options)
+		.then((response) => {
+			if (response.statusCode == 401) { routePage("#accLogin")}
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				throw new help.clientError("Server Error", response.status, "Unable to retrieve posts");
+			}
+		})
+		.then((postsList) => {
+			for (let post of postsList) {
+				phelp.insertPost(help.loadImage(post.user_image), post.post_title, post.user_handle, post.post_timestamp, post.post_content, help.loadImage(post.post_image), postType);
+				phelp.insertBigBreak();
+			}
+			return resolve(true)
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+}
+
 // Send a post create to the server.
 export function postCreateAction() {
 	let post_title = document.querySelector("#post_title").value;

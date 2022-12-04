@@ -73,7 +73,7 @@ export function insertBigBreak() {
 }
 
 // Add a post to the page.
-export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postType) {
+export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postLikes, postComments) {
 	const elementContent = document.getElementById("content");
 	const elementBoxPost = document.createElement("div");
 	elementBoxPost.setAttribute("class", "postbox");
