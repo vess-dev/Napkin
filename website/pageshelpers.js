@@ -113,6 +113,11 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementPostLikes.setAttribute("class", "usertext");
 	elementPostLikes.textContent = postLikes;
 	elementDivInfo.append(elementPostLikes);
+	// comment count here, needs styling
+	const elementCommentCount = document.createElement("div");
+	elementCommentCount.setAttribute("class", "usertext");
+	elementCommentCount.textContent = postComments + "comments";
+	elementDivInfo.append(elementCommentCount);
 	// Append the final div with all the info.
 	elementBoxMain.append(elementDivInfo);
 	// Add the actual post's content.
@@ -179,7 +184,7 @@ export function insertTextAreaBox(inputText, inputName, inputPassword, currentVa
 
 export function insertPostActions(postID) {
 	//TODO: need post deletion, remove post from all groups (makes post invisible), post edit
-	
+
 }
 
 // Create and add different button types.
