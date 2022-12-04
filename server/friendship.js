@@ -3,10 +3,11 @@ const bcrypt = require('bcrypt');
 const BaseError = require('./BaseError.js');
 
 
-function getFriendList(userID) {
+function getFriendList(userID,statusWanted) {
   console.log('getFriendList function called')
+  if (!statusWanted) {
   return new Promise((resolve, reject) =>{
-     db.pool.query(`select friend_id, user_first_name, user_last_name, user_handle, user_image, user_status 
+     db.pool.query(`select friend_id, user_first_name, user_last_name, user_handle, user_image, friendship_status, user_status 
      from friendships join users on friend_id=users.user_id where friendships.user_id = ? `, userID,
       function(error, results) {
         console.log(results)
@@ -16,12 +17,23 @@ function getFriendList(userID) {
         else {               
           return resolve(results);        
         }
-
-    
-    
-
   });
 })}
+else {
+  return new Promise((resolve, reject) =>{
+    db.pool.query(`select friend_id, user_first_name, user_last_name, user_handle, user_image, friendship_status, user_status 
+    from friendships join users on friend_id=users.user_id where friendships.user_id = ? and friendship_status = ?`, [userID,statusWanted],
+     function(error, results) {
+       console.log(results)
+       if (error) {                    
+         return reject(new BaseError("DB Error", 500, error));
+       }
+       else {               
+         return resolve(results);        
+       }
+ });
+})
+}}
 
 function makeFriendRequest(friend_id, userID) {
   console.log('starting makefriendrequest route wtih', friend_id, userID)
