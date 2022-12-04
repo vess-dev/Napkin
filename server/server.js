@@ -54,8 +54,8 @@ function handleHTTPRequests(request, response) {
   });
   request.on('end', () => {
     if (data) { 
-      console.log('data is',data)
-      parsedRequestBody = JSON.parse(data);
+      if (parsedURL !='/upoad'){
+      parsedRequestBody = JSON.parse(data);}
     }
 
     const sessionid = auth.extractCookie('sessionid', request.headers.cookie);   
