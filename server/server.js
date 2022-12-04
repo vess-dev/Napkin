@@ -62,7 +62,7 @@ function handleHTTPRequests(request, response) {
     const sessionid = auth.extractCookie('sessionid', request.headers.cookie);   
     //console.log('sessionid is ', sessionid)   
     auth.validateSession(sessionid, parsedURL.pathname, method).then(userID=>{
-        routeRequests(parsedURL, method, parsedRequestBody, response, userID, queryObject);  
+        routeRequests(parsedURL, method, parsedRequestBody, response, userID, queryObject, request.headers);  
       })
     .catch(error=>{
       handleErrorReply(response, error, 401, "Please login to view this page");
@@ -74,7 +74,7 @@ function handleHTTPRequests(request, response) {
 /**
  * 
  */   
-function routeRequests(url, method, bodyObject, response, userID, queryObject) {
+function routeRequests(url, method, bodyObject, response, userID, queryObject, inbound_file_data) {
   let routeFound = false;
   console.log('urlpathname is', url.pathname)
   console.log('queryObject is', queryObject)
@@ -430,10 +430,11 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
       console.log('upload called')
       if (method === 'POST') {
         console.log('method is post for upload')
+
         routeFound = true;
         
         let filename = '';
-        const bb = busboy({ headers: request.headers });
+        const bb = busboy({ headers: inbound_file_data });
         bb.on('file', (name, file, info) => {
           filename = info.filename;
           console.log('filename is', filename)
