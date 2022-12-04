@@ -63,21 +63,23 @@ export function postCreateAction() {
 	let selected  = document.querySelectorAll("#group_selector option:checked");
 	console.log("have ",post_title, post_content, post_image)
 	let group_ids = Array.from(selected).map(el => el.value);
-	let groupList 
+	let groupList =""
 	for (let one of group_ids) {groupList += one + ","}
 	console.log("have groupList", groupList)
+
+	const formData = new FormData() ;
+		formData.append('post_image', post_image)
+		formData.append('post_title', post_title)
+		formData.append('post_content', post_content)
+		formData.append('group_id', groupList)
+	console.log('send formdata',formData);
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "POST",
 			credentials: "include",
 			headers: {
 			"Content-Type": "application/json"},
-			body: JSON.stringify({
-				post_title: post_title,
-				post_content: post_content,
-				post_image, post_image,
-				group_id: groupList
-			  })
+			body: formData
 		};
 		fetch(route.SERVER + "post", options)
 		.then((response) => {
