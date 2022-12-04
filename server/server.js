@@ -30,8 +30,8 @@ server.on('request', handleHTTPRequests);
  */ 
 function handleHTTPRequests(request, response) {
 
-  console.log('Method: ' + request.method + "\nURL: " + request.url);
-  console.log('Headers: ' + request.headers.cookie);
+//  console.log('Method: ' + request.method + "\nURL: " + request.url);
+//  console.log('Headers: ' + request.headers.cookie);
 
   // Setup CORS
   response.setHeader('Access-Control-Allow-Origin', 'http://cpsc.roanoke.edu');
@@ -41,37 +41,15 @@ function handleHTTPRequests(request, response) {
   response.setHeader('content-type', 'application/json');  
   const method = request.method;
   const parsedURL = url.parse(request.url);
-  console.log('parsedURL is',parsedURL)
+//  console.log('parsedURL is',parsedURL)
   let URLquery = parsedURL.query
   let queryObject = querystring.parse(URLquery)
-  console.log('queryObject:', queryObject)
+//  console.log('queryObject:', queryObject)
 
-  let parsedRequestBody = "";
+//  let parsedRequestBody = "";
   let userId = null;
 
-// trying to graft in formidable processing
 
-if (request.method === 'POST' && parsedURL.pathname == '/upload' ) {
-    console.log('start form processing')
-    var form = new formidable.IncomingForm();
-    form.parse(request, function (err, fields, files) {
-      if (err) {console.log(err)}
-      var oldpath = files.filetoupload.filepath;
-      var newpath = 'website/usercontent/' + files.filetoupload.originalFilename;
-      console.log('newpath is', newpath)
-      console.log('oldpath is',oldpath)
-      fs.rename(oldpath, newpath, function (err) {
-        console.log('error is ',err)
-        if (err) throw err;
-        response.write('File uploaded and moved!');
-        response.end();
-      });
-    });
-    return 
-}
-
-
-//
 
   let data = '';
   request.on('data', chunk => {
@@ -102,7 +80,6 @@ if (request.method === 'POST' && parsedURL.pathname == '/upload' ) {
 function routeRequests(url, method, bodyObject, response, userID, queryObject, inbound_file_data) {
   let routeFound = false;
   console.log('urlpathname is', url.pathname)
-  console.log('queryObject is', queryObject)
   try {
     // OPTIONS handling
     if (method === 'OPTIONS') {
