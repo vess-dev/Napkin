@@ -17,7 +17,7 @@ export function queryImage() {
 export function createCloudinaryWidget () {
 var myWidget = cloudinary.createUploadWidget({
 	cloudName: 'dkz6vktw0', 
-	uploadPreset: 'default'}, (error, result) => { 
+	uploadPreset: 'wnlaqufk'}, (error, result) => { 
 	  if (!error && result && result.event === "success") { 
 		console.log('Done! Here is the image info: ', result.info); 
 	  }
