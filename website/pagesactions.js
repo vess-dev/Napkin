@@ -3,7 +3,7 @@ import * as phelp from "./pageshelpers.js";
 import * as route from "./routes.js";
 
 // Query the user for an image choice. This is hackish.
-export function queryImage() {
+/*export function queryImage() {
 	const elementInput = document.createElement("input");
 	elementInput.setAttribute("type", "file");
 	elementInput.setAttribute("accept", "image/*");
@@ -12,7 +12,7 @@ export function queryImage() {
 		const elementImage = document.getElementById("post_image");
 		elementImage.setAttribute("payload", elementInput.value);
 	}
-}
+} */
 
 export function createCloudinaryWidget () {
 var myWidget = cloudinary.createUploadWidget({
@@ -108,7 +108,7 @@ export function feedFill(postType) {
 export async function postCreateAction() {
 	let post_title = document.querySelector("#post_title").value;
 	let post_content = document.querySelector("#post_content").value;
-	let post_image = document.querySelector("#post_image").payload;
+	let post_image = document.querySelector("#post_image_url").value;
 
 	let selected  = document.querySelectorAll("#group_selector option:checked");
 	console.log("have ",post_title, post_content, post_image)
