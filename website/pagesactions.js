@@ -227,7 +227,7 @@ export function getFriends(friend_status) {
 				throw new help.clientError("Server Error", response.status, "Unable to retrieve friends");
 			}
 		})
-		.then((postsList) => {
+		.then((friendsList) => {
 			for (let friend of friendsList) {
 				phelp.insertFriendItem(help.loadPostImage(friend.user_image), friend.user_handle, friend_status, friend.friend_id);
 			}

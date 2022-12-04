@@ -60,12 +60,12 @@ cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
 
 GET http://cpsc.roanoke.edu:3009/myposts
 content-type: application/json
-cookie: sessionid=f0969177-914e-4884-b7ae-b844c10e8993
+cookie: sessionid=6d6419bc-03aa-495b-8edd-c47602e45077
 ###
 
 GET http://cpsc.roanoke.edu:3009/post
 content-type: application/json
-cookie: sessionid=f0969177-914e-4884-b7ae-b844c10e8993
+cookie: sessionid=6d6419bc-03aa-495b-8edd-c47602e45077
 ###
 
 POST http://cpsc.roanoke.edu:3009/post
@@ -82,17 +82,21 @@ cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
 
 POST http://cpsc.roanoke.edu:3009/friend
 content-type: application/json
-cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
+cookie: sessionid=fbb1b3b9-7c5c-43cf-a5c7-3ace0913df30
 
 {"friend_id": 8}
 
 ###
-GET http://cpsc.roanoke.edu:3009/friend
+GET http://cpsc.roanoke.edu:3009/friend?status_wanted=requested
 content-type: application/json
-cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
+cookie: sessionid=fbb1b3b9-7c5c-43cf-a5c7-3ace0913df30
 
 ###
+GET http://cpsc.roanoke.edu:3009/friend
+content-type: application/json
+cookie: sessionid=fbb1b3b9-7c5c-43cf-a5c7-3ace0913df30
 
+###
 POST http://cpsc.roanoke.edu:3009/group
 content-type: application/json
 cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
@@ -111,9 +115,9 @@ cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 ###
 POST http://cpsc.roanoke.edu:3009/comment
 content-type: application/json
-cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
+cookie: sessionid=6d6419bc-03aa-495b-8edd-c47602e45077
 
-{"post_id": 1, "comment_content": "making still more comments!!"}
+{"post_id": 5, "comment_content": "commenting on my own post, too!!!"}
 
 ###
 
