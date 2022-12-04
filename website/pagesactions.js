@@ -140,7 +140,7 @@ export async function postCreateAction() {
 			}
 		})
 		.then(() => {
-			routePage("#myFeed")
+			routePage("#feedMy")
 			return resolve(true)
 		})
 		.catch((error) => {
