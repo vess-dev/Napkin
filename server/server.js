@@ -435,6 +435,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         const bb = busboy({ headers: request.headers });
         bb.on('file', (name, file, info) => {
           filename = info.filename;
+          console.log('filename is', filename)
           const saveTo = path.join('website/usercontent', filename);
           console.log('saveTo is',saveTo)
           file.pipe(fs.createWriteStream(saveTo));

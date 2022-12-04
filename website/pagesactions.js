@@ -73,8 +73,15 @@ export async function postCreateAction() {
 		body: post_image
 	}
 
-	await fetch(route.SERVER + "upload", options) 
-	console.log('fetch finished - check your logs!')
+	fetch(route.SERVER + "upload", options).then((response) =>
+	{
+		console.log('response was: ',response)
+		console.log('options was', options)
+		console.log('fetch finished - check your logs!')
+	}
+	) 
+
+/*	
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "POST",
@@ -105,6 +112,7 @@ export async function postCreateAction() {
 			return reject(error);
 		});
 	});
+	*/
 };
 
 // Send a user create to the server. 
