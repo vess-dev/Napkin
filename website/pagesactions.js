@@ -346,7 +346,7 @@ export function makeFriendRequest(friend_id) {
 		fetch(route.SERVER + "friend", options)
 		.then((response) => {
 			if (response.ok) {
-				routePage("#accFriends")
+				//routePage("#accFriends")
 				return response.json();
 			}
 			else {
