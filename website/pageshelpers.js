@@ -116,7 +116,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementPostLikes.setAttribute("class", "usertext");
 	elementPostLikes.textContent = postLikes;
 	likesDiv.append(elementPostLikes);
-	likesDiv.addEventListener('click', processLikeClick(postID));
+	likesDiv.addEventListener('click', () => processLikeClick(postID));
 	// comment count here, needs styling
 	const elementCommentCount = document.createElement("div");
 	elementCommentCount.setAttribute("class", "usertext");
