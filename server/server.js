@@ -176,7 +176,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
       }
       // Get list of all posts
       if (method === 'GET') {
-        console.log('so far so good')
+        console.log('will get posts feed')
         routeFound = true;
         // Get list of posts
         post.getPostList(userID).then(list=>{
@@ -196,7 +196,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
     if (url.pathname === routes.MYPOSTS) {
        // Get list of all posts
       if (method === 'GET') {
-        console.log('so far so good')
+        console.log('will get own posts')
         routeFound = true;
         // Get list of posts
         post.getMyPostList(userID).then(list=>{
