@@ -120,11 +120,12 @@ export function friendSearch() {
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Search by Name:", "screenname", false);
 	phelp.createButton('submit',"Search","")
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "searchButtonAction()"]])
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Search", "friendSearchAction()"]])
 	phelp.insertText("Search Results");
+
 	if (testing) test.testFriends("search");
-	phelp.insertText("Additional Results");
-	if (testing) test.testFriends("search");
+//	phelp.insertText("Additional Results");
+//	if (testing) test.testFriends("search");
 }
 
 // When you look at your groups.
