@@ -295,3 +295,37 @@ export async function getFriends(friend_status) {
 		});
 	});
 }
+export function friendSearchAction () {
+	let searchString=document.querySelector('#screenname').value
+
+	let endpoint = 'user'
+	if (searchString) { endpoint= `user?search=${encodeURIComponent('searchString')}` }
+
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "GET",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"}
+		};
+		fetch(route.SERVER + endpoint, options)
+		.then((response) => {
+			if (response.statusCode == 401) { routePage("#accLogin")}
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				throw new help.clientError("Server Error", response.status, "Unable to retrieve friends");
+			}
+		})
+		.then((friendsList) => {
+			for (let friend of friendsList) {
+				phelp.insertFriendItem(help.loadPostImage(friend.user_image), friend.user_handle, friend_status, friend.friend_id);
+			}
+			return resolve(true)
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+
