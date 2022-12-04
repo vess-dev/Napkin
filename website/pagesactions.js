@@ -320,7 +320,7 @@ export function friendSearchAction () {
 		})
 		.then((friendsList) => {
 			for (let friend of friendsList) {
-				phelp.insertFriendItem(help.loadPostImage(friend.user_image), friend.user_handle, 'none', friend.user_id);
+				phelp.insertFriendItem(help.loadPostImage(friend.user_image), friend.user_handle, 'search', friend.user_id);
 			}
 			return resolve(true)
 		})
