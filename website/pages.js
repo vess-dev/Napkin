@@ -34,7 +34,7 @@ export function accCreate() {
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertInputBox("Confirm password:", "confirm", true);
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "userCreateAction"], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", ""], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
 	//KLUDGE
 	let tmpbutton = document.querySelector('#submit')
 	tmpbutton.addEventListener('click', userCreateAction)
