@@ -203,7 +203,7 @@ export function userLogoutAction() {
 		});
 	});
 }
-function getFriends(friend_status) {
+export function getFriends(friend_status) {
 	return new Promise((resolve, reject) => {
 		endpoint="friend?status_wanted="+friend_status
 		let options = {
