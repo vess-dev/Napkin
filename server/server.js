@@ -443,7 +443,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
       auth.handleLogout(userID)
       .then(reply=>{
         response.statusCode = 200;
-        response.write('{"message": "User has successfully been logged out"');
+        response.write('{"message": "User has successfully been logged out"}');
       })
       .catch(error=>{
         handleErrorReply(response, error);

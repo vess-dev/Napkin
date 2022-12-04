@@ -108,7 +108,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementBoxMain.append(elementPostContent);
 	elementBoxPost.append(elementBoxMain);
 	// Where the picture of a post lies.
-	console.log('postImage is',postImage)
+
 	if (postImage) {
 	postImage.setAttribute("class", "postpicture");
 	elementBoxPost.append(postImage);}
