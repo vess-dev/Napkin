@@ -55,6 +55,8 @@ function addNewUser(userObject) {
     // can't do this here.
     userObject.remove('admin_flag')
 
+    if (!userObject.status) {userObject.status = 'accepted'}
+    
     bcrypt.genSalt(10).then((salt) => {              
       bcrypt.hash(userObject.user_password, salt).then((hash) =>{        
         // Store hash in the database
