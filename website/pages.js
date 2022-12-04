@@ -364,16 +364,14 @@ function userLogoutAction() {
 		fetch(route.SERVER+'logout', options)
 		.then((response) => {
 			if (response.ok) {
+				routePage('#accLogin')
 				return response.json();
 			}
 			else {
 				throw new Error('error', response)
 			}
 		})
-		.then(() => {           
-			routePage('#accLogin')
-			return resolve(true)
-		})
+		.then(json=> resolve(json))
 		.catch((error) => {
 			return reject(error);
 		});
