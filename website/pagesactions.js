@@ -60,6 +60,8 @@ export async function postCreateAction() {
 	let post_title = document.querySelector("#post_title").value;
 	let post_content = document.querySelector("#post_content").value;
 	let post_image = document.querySelector("#post_image").payload;
+	console.log('post_image is',post_image)
+	console.log('or maybe', documentquerySelector('#post_image').value)
 	let selected  = document.querySelectorAll("#group_selector option:checked");
 	console.log("have ",post_title, post_content, post_image)
 	let group_ids = Array.from(selected).map(el => el.value);
