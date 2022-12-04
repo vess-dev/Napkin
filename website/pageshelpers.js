@@ -1,3 +1,4 @@
+import * as help from "./helpers.js";
 import * as routes from "./routes.js";
 
 // Insert a content box where... Content is displayed. Haha.
@@ -85,8 +86,9 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementDivInfo.setAttribute("class", "userdiv");
 	// Add the user picture.
 	if (userPicture) {
-	userPicture.setAttribute("class", "userpicture");
-	elementDivInfo.append(userPicture); }
+		userPicture.setAttribute("class", "userpicture");
+		elementDivInfo.append(userPicture);
+	}
 	// Add the post title.
 	const elementPostTitle = document.createElement("div");
 	elementPostTitle.setAttribute("id", "title");
@@ -97,8 +99,16 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	const elementPostInfo = document.createElement("div");
 	elementPostInfo.setAttribute("id", "info");
 	elementPostInfo.setAttribute("class", "usertext textright");
-	elementPostInfo.textContent = "Posted by " + userName + " on " + postDate;
+	elementPostInfo.textContent = userName + " on " + postDate;
 	elementDivInfo.append(elementPostInfo);
+	// Add the likes to the post.
+	const elementHeart = help.loadImage("heart");
+	elementHeart.setAttribute("class", "userpicture");
+	elementDivInfo.append(elementHeart);
+	const elementPostLikes = document.createElement("div");
+	elementPostLikes.setAttribute("class", "usertext");
+	elementPostLikes.textContent = postLikes;
+	elementDivInfo.append(elementPostLikes);
 	elementBoxMain.append(elementDivInfo);
 	// Add the actual post's content.
 	const elementPostContent = document.createElement("div");
@@ -108,10 +118,10 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementBoxMain.append(elementPostContent);
 	elementBoxPost.append(elementBoxMain);
 	// Where the picture of a post lies.
-
 	if (postImage) {
-	postImage.setAttribute("class", "postpicture");
-	elementBoxPost.append(postImage);}
+		postImage.setAttribute("class", "postpicture");
+		elementBoxPost.append(postImage);
+	}
 	elementContent.append(elementBoxPost);
 }
 
