@@ -204,8 +204,13 @@ export function userLogoutAction() {
 	});
 }
 export function getFriends(friend_status) {
-	return new Promise((resolve, reject) => {
+	let endpoint
+	if (friend_status) {
 		endpoint="friend?status_wanted="+friend_status
+	} else { 
+		endpoint="friend"
+	}
+	return new Promise((resolve, reject) => {
 		let options = {
 			method: "GET",
 			credentials: "include",
