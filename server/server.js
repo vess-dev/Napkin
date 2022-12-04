@@ -1,6 +1,7 @@
 const http = require('http');
 const querystring = require('querystring');
-const busboy = require('busboy');
+//const busboy = require('busboy');
+const fs = require('fs');
 //^ file uploads 
 const url = require('url');
 
@@ -50,19 +51,24 @@ function handleHTTPRequests(request, response) {
 // trying to graft in busboy earlier 
 
 if (request.method === 'POST' && parsedURL.pathname == '/upload' ) {
-  const bb = busboy({ headers: request.headers });
-  bb.on('file', (name, file, info) => {
-    filename = info.filename;
-    console.log('filename is', filename)
-    const saveTo = path.join('website/usercontent', filename);
-    console.log('saveTo is',saveTo)
-    file.pipe(fs.createWriteStream(saveTo));
+  let data = '';
+  request.on('data', chunk => {
+    data += chunk;
   });
-  bb.on('close', () => {
-    res.writeHead(200, { 'Connection': 'close' });
-    res.end(`That's all folks!`);
+  request.on('end', () => {
+    if (data) { 
+      const saveTo = path.join('website/usercontent', filename);
+      fs.writeFile(saveTo, data, function(err) {
+        if (err) { return console.log(err)} else {
+          console.log('success?')
+        }
+        response.statusCode = 200;
+        response.end();     
+      })
+    } 
+
   });
-  request.pipe(bb);
+ 
   return;
 }
 
