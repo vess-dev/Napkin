@@ -13,7 +13,7 @@ export function queryImage() {
 		elementImage.setAttribute("payload", elementInput.value);
 	}
 }
-
+/* 
 export function uploadImage() {
 	const elementInput = document.createElement("input");
 	elementInput.setAttribute("type", "file");
@@ -43,6 +43,7 @@ export function uploadImageAction(imagefile) {
 	}
 	) 
 }
+*/ 
 
 // Fill the feed with non-user made posts, or user made posts.
 export function feedFill(postType) {

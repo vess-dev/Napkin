@@ -374,3 +374,22 @@ export function getGroupsSelector() {
 
 	)
 }
+
+export function insertUploadForm() {
+	const elementBoxFull = document.getElementById("boxfull");
+	const elementImageForm = document.createElement("form");
+	elementImageForm.setAttribute("action", "#upload");
+	elementImageForm.setAttribute("method", "post")
+	elementImageForm.setAttribute("enctype", "multipart/form-data");
+	
+	const fileUploadElement = document.createElement('input');
+	fileUploadElement.setAttribute("accept", "image/*");
+	//fileUploadElement.click();
+	fileUploadElement.onchange = e => {
+		elementImageForm.submit() }
+	fileUploadElement.setAttribute('type','file');
+	fileUploadElement.setAttribute('name', 'filetoupload')
+	elementImageForm.appendChild(fileUploadElement);
+	elementBoxFull.appendChild(elementImageForm)
+	
+}

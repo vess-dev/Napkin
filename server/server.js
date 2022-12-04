@@ -2,6 +2,7 @@ const http = require('http');
 const querystring = require('querystring');
 //const busboy = require('busboy');
 const fs = require('fs');
+const formidable = require('formidable')
 //^ file uploads 
 const url = require('url');
 
@@ -48,30 +49,23 @@ function handleHTTPRequests(request, response) {
   let parsedRequestBody = "";
   let userId = null;
 
-// trying to graft in busboy earlier 
+// trying to graft in formidable processing
 
 if (request.method === 'POST' && parsedURL.pathname == '/upload' ) {
-  let data = '';
-  request.on('data', chunk => {
-    data += chunk;
-  });
-  request.on('end', () => {
-    if (data) { 
-      let filename ='testdata.png'
-      const saveTo = 'website/usercontent/' + filename;
-      console.log('saveTo is', saveTo)
-      fs.writeFileSync(saveTo, data, 'utf8')
-          console.log('success?')
-        
-        response.statusCode = 200;
-        response.end();     
-      }
-    
 
-  });
- 
-  return;
+    var form = new formidable.IncomingForm();
+    form.parse(request, function (err, fields, files) {
+      var oldpath = files.filetoupload.filepath;
+      var newpath = 'usercontent/' + files.filetoupload.originalFilename;
+      fs.rename(oldpath, newpath, function (err) {
+        if (err) throw err;
+        res.write('File uploaded and moved!');
+        res.end();
+      });
+    });
+    return 
 }
+
 
 //
 
