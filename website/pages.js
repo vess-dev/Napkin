@@ -32,10 +32,7 @@ export function accLogin() {
 	phelp.insertFullBox(false);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
-	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", ""], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"], ["test", ["button", "buttonother"], "adminTest", "routePage('#adminPending')"]]);
-	// KLUDGE
-	let tmpbutton = document.querySelector('#login')
-	tmpbutton.addEventListener('click', pact.userLoginAction)
+	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", "userLoginAction"], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"], ["test", ["button", "buttonother"], "adminTest", "routePage('#adminPending')"]]);
 }
 
 // When you are creating an account.
@@ -50,10 +47,7 @@ export function accCreate() {
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertInputBox("Confirm password:", "confirm", true);
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", ""], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
-	// KLUDGE
-	let tmpbutton = document.querySelector("#submit")
-	tmpbutton.addEventListener("click", pact.userCreateAction)
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "userCreateAction"], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
 }
 
 // When your account is now pending.
@@ -93,19 +87,19 @@ export function accFriends() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertText("Current Friends");
-	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
 		"current");
-	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
 		"current");
 	phelp.insertText("Outgoing requests");
-	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
 		"outgoing");
-	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
 		"outgoing");
 	phelp.insertText("Incoming requests");
-	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
 		"incoming");
-	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
 		"incoming");
 }
 
@@ -116,9 +110,9 @@ export function accBlocked() {
 	phelp.insertMiniHeader("Manage Blocked", "blocked");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
-	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
 		"blocked");
-	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
 		"blocked");
 }
 
@@ -131,10 +125,10 @@ export function friendSearch() {
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Search by Name:", "screenname", false);
 	phelp.insertText("Search Results");
-	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
 		"search");
 	phelp.insertText("Additional Results");
-	phelp.insertFriendItem(help.loadImage("./assets/test1.jpg"), "Will Smith", 
+	phelp.insertFriendItem(help.loadImage("test1"), "Will Smith", 
 		"search");
 }
 
@@ -184,11 +178,7 @@ export function accSettings() {
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#accSettings')"], ["image", ["button", "buttonother"], "Change Image", "TODOCHANGEIMAGE"]]);
 }
 
-// Fill the admin pages with bunk data.
-function adminFill(adminPage) {
-	for (let itrFill = 10; itrFill--;)
-		phelp.insertUserItem(help.loadImage("./assets/test1.jpg"), "Will Smith " + itrFill, "will.smith68@gmail.com", "Nov 10th 2022", adminPage);
-}
+
 
 // For admins to look at pending accounts.
 export function adminPending() {
@@ -198,7 +188,7 @@ export function adminPending() {
 	phelp.insertMiniHeader("New User Requests", "logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
-	adminFill(adminPage);
+	if (testing) test.testAdmin(adminPage);
 }
 
 // For admins to look at disabled accounts.
@@ -209,7 +199,7 @@ export function adminDisabled() {
 	phelp.insertMiniHeader("Disabled Accounts", "logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
-	adminFill(adminPage);
+	if (testing) test.testAdmin(adminPage);
 }
 
 // For admins to look at active accounts.
@@ -220,7 +210,7 @@ export function adminActive() {
 	phelp.insertMiniHeader("Active Accounts", "logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
-	adminFill(adminPage);
+	if (testing) test.testAdmin(adminPage);
 }
 
 // For admins to look at blacklisted accounts.
@@ -231,6 +221,5 @@ export function adminBlacklist() {
 	phelp.insertMiniHeader("Blacklisted Emails", "logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
-	adminFill(adminPage);
+	if (testing) test.testAdmin(adminPage);
 }
-

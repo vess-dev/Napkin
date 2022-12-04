@@ -221,7 +221,7 @@ textarea.inputfield {
 
 .block {
 	overflow: auto;
-	height: calc(300px - 6rem);
+	height: calc(300px - 5.2rem);
 }
 
 .postpicture {

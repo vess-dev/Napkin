@@ -1,6 +1,7 @@
 // Load an image to use.
-export function loadImage(imagePath) {
-	if (!imagePath) { return null } else {
+export function loadImage(imageName) {
+	let imagePath = "./assets/" + imageName + ".jpg";
+	if (!imagePath) {return null } else {
 		const elementImage = document.createElement("img");
 		elementImage.setAttribute("src", imagePath);
 		return elementImage;
