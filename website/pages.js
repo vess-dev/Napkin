@@ -384,7 +384,7 @@ function userLogoutAction() {
 
 function userLoginAction () {
 	let user_email = document.querySelector('#email').value;
-	let user_password = document.querySelector('#password').value;
+	let password = document.querySelector('#password').value;
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "POST",
