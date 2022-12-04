@@ -52,7 +52,7 @@ export function accCreate() {
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertInputBox("Confirm password:", "confirm", true);
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "userCreateAction"], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "userCreateAction()"], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
 }
 
 // When your account is now pending.
