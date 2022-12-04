@@ -20,6 +20,7 @@ window.userLogoutAction = pact.userLogoutAction;
 window.createCloudinaryWidget = pact.createCloudinaryWidget;
 window.makeCloudinarylink = phelp.makeCloudinarylink;
 window.processLikeClick = pact.processLikeClick;
+window.friendSearchAction = pact.friendSearchAction;
 
 // Disable or enable testing.
 const testing = false;
