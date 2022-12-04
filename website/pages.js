@@ -383,15 +383,8 @@ function userLogoutAction() {
 }
 
 function userLoginAction () {
-    let user_first_name = document.querySelector('#firstname').value;
-    let user_last_name = document.querySelector('#lastname').value;
-    let user_handle = document.querySelector('#screenname').value;
 	let user_email = document.querySelector('#email').value;
 	let user_password = document.querySelector('#password').value;
-	let user_confirm = document.querySelector('#confirm').value;
-	
-	// TODO: client side error checking for password and confirm not matching. (Do you have an error popup, Vess?)
-
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "POST",
