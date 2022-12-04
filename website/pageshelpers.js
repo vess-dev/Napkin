@@ -143,7 +143,7 @@ export function insertFullBox(miniHeader) {
 }
 
 // A div that has text on the left, and an input box on the right.
-export function insertInputBox(inputText, inputName, inputPassword) {
+export function insertInputBox(inputText, inputName, inputPassword, currentValue) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementInputFull = document.createElement("div");
 	elementInputFull.setAttribute("class", "inputbox");
@@ -159,7 +159,7 @@ export function insertInputBox(inputText, inputName, inputPassword) {
 	elementBoxFull.append(elementInputFull);
 }
 
-export function insertTextAreaBox(inputText, inputName, inputPassword) {
+export function insertTextAreaBox(inputText, inputName, inputPassword, currentValue) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementInputFull = document.createElement("div");
 	elementInputFull.setAttribute("class", "inputbox");
@@ -175,6 +175,11 @@ export function insertTextAreaBox(inputText, inputName, inputPassword) {
 	}
 	elementInputFull.append(elementInputField);
 	elementBoxFull.append(elementInputFull);
+}
+
+export function insertPostActions(postID) {
+	//TODO: need post deletion, remove post from all groups (makes post invisible), post edit
+	
 }
 
 // Create and add different button types.
@@ -352,7 +357,7 @@ export function getGroupsSelector() {
 		const elementBoxFull = document.getElementById("boxfull");
 		const elementInputFull = document.createElement("div");
 		elementInputFull.setAttribute("class", "inputbox");
-		elementInputFull.textContent = 'Groups who can see this post';
+		elementInputFull.textContent = 'Post visible to:';
 		elementInputFull.append(selector);
 		elementBoxFull.append(elementInputFull);
 	}

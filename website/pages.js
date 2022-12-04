@@ -19,7 +19,7 @@ window.userLoginAction = pact.userLoginAction;
 window.userLogoutAction = pact.userLogoutAction;
 
 // Disable or enable testing.
-const testing = true;
+//const testing = true;
 
 
 // Always insert the content box first, and then the header type.
@@ -138,15 +138,17 @@ export function postCreate() {
 }
 
 // When you want to edit a post.
-export function postEdit() {
+export function postEdit(postID) {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader);
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
+	phelp.insertInputBox("placeholder postID"+postID, "post_title", false);
 	phelp.insertInputBox("Post title:", "post_title", false);
 	phelp.insertInputBox("Post image URL:", "post_image", false);
 	phelp.insertTextAreaBox("Post content:", "post_content", false);
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#myFeed')"]]);
+	phelp.getGroupsSelector()
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction("+postID+")"]]);
 }
 
 // When you look at your account settings.
