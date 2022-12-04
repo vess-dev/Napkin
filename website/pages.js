@@ -10,6 +10,13 @@ const userHeader = [["feedglobal", "Global Feed", "routePage('#feedGlobal')"], [
 // The header for the admin pages.
 const adminHeader = [["pending", "Pending Accounts", "routePage('#adminPending')"], ["disabled", "Disabled Accounts", "routePage('#adminDisabled')"], ["active", "Active Accounts", "routePage('#adminActive')"], ["blacklist", "Blacklisted Accounts", "routePage('#adminBlacklist')"]];
 
+// Not clean but this works.
+window.postCreateAction = pact.postCreateAction;
+window.queryImage = pact.queryImage;
+window.userCreateAction = pact.userCreateAction;
+window.userLoginAction = pact.userLoginAction;
+window.userLogoutAction = pact.userLogoutAction;
+
 // Always insert the content box first, and then the header type.
 
 // When you need to login to Napkin.
@@ -175,16 +182,13 @@ export function accGroups() {
 export function postCreate() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "createpost");
+	phelp.insertMiniHeader("Create a post");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Post title:", "post_title", false);
-	phelp.insertInputBox("Post image URL:", "post_image", false);
 	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.getGroupsSelector()
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", ""]]);
-	let tmpbutton = document.querySelector("#submit")
-	// KLUDGE
-	tmpbutton.addEventListener("click", pact.postCreateAction)
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"], ["post_image", ["button", "buttonother"], "Post Image", "queryImage()"]]);
 }
 
 // When you want to edit a post.
@@ -204,11 +208,6 @@ export function accSettings() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "account");
 	phelp.insertMiniHeader("Account Settings", "logout");
-
-	// KLUDGE
-	let tmpbutton = document.querySelector("#logout")
-	tmpbutton.addEventListener("click", pact.userLogoutAction)
-	
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Change email:", "email", false);

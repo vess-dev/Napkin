@@ -1,7 +1,16 @@
+import * as phelp from "./pageshelpers.js";
 import * as route from "./routes.js";
 
+// Query the user for an image choice. This is hackish.
+export function queryImage() {
+	const elementInput = document.createElement("input");
+	elementInput.setAttribute("type", "file");
+	elementInput.setAttribute("accept", "image/*");
+	elementInput.click();
+}
+
 // Send a post create to the server.
-function postCreateAction() {
+export function postCreateAction() {
 	let post_title = document.querySelector("#post_title").value;
 	let post_content = document.querySelector("#post_content").value;
 	let post_image = document.querySelector("#post_image").value;
@@ -44,7 +53,7 @@ function postCreateAction() {
 };
 
 // Send a user create to the server. 
-function userCreateAction() {
+export function userCreateAction() {
 	let user_first_name = document.querySelector("#firstname").value;
 	let user_last_name = document.querySelector("#lastname").value;
 	let user_handle = document.querySelector("#screenname").value;
@@ -88,7 +97,7 @@ function userCreateAction() {
 };
 
 // Send a user login to the server. 
-function userLoginAction () {
+export function userLoginAction () {
 	let user_email = document.querySelector("#email").value;
 	let password = document.querySelector("#password").value;
 	return new Promise((resolve, reject) => {
@@ -124,7 +133,7 @@ function userLoginAction () {
 };
 
 // Send a user logout to the server. 
-function userLogoutAction() {
+export function userLogoutAction() {
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "POST",
