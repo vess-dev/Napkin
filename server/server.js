@@ -428,7 +428,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
     if (url.pathname === routes.UPLOAD) {
       console.log('upload called')
       if (method === 'POST') {
-        console.log('method is post for comment')
+        console.log('method is post for upload')
         routeFound = true;
         
         let filename = '';
@@ -436,13 +436,14 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject) {
         bb.on('file', (name, file, info) => {
           filename = info.filename;
           const saveTo = path.join('website/usercontent', filename);
+          console.log('saveTo is',saveTo)
           file.pipe(fs.createWriteStream(saveTo));
         });
         bb.on('close', () => {
           response.writeHead(200, { 'Content-Type': 'text/plain' });
           response.end(`upload success: ${filename}`);
         });
-        req.pipe(bb);
+        request.pipe(bb);
       }}
 
 
