@@ -31,7 +31,7 @@ export function uploadImageAction(imagefile) {
 	let options = {
 		method: "POST",
 		credentials: "include",
-		headers: {"content-type": "multipart/form-data"},
+
 		body: imagefile
 	}
 
