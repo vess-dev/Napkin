@@ -57,6 +57,7 @@ if (request.method === 'POST' && parsedURL.pathname == '/upload' ) {
   });
   request.on('end', () => {
     if (data) { 
+      let filename ='testdata.png'
       const saveTo = 'website/usercontent/' + filename;
       console.log('saveTo is', saveTo)
       fs.writeFile(saveTo, data, function(err) {
