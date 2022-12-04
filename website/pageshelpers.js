@@ -264,7 +264,8 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 			elementButtonBox.append(elementButtonCancel);
 			break;
 		case "pending":
-			const elementButtonApprove = createButton("approve", ["button", "buttongreen"], "Approve", "TODOAPPROVE");
+			const elementButtonApprove = createButton("approve", ["button", "buttongreen"], "Approve", `makeFriendRequest(${friend_ID})`);
+			// not an error - the API reads current status and sees that both want to be friends.
 			elementButtonBox.append(elementButtonApprove);
 			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", "TODODECLINE");
 			elementButtonBox.append(elementButtonDecline);

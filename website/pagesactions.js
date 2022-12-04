@@ -359,3 +359,4 @@ export function makeFriendRequest(friend_id) {
 		});
 	});
 }
+
