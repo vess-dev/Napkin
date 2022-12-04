@@ -335,7 +335,12 @@ export function getGroupsSelector() {
 			selector.appendChild(oneoption)
 		}
 		const elementBoxFull = document.getElementById("boxfull");
-		elementBoxFull.append(selector)
+		const elementInputFull = document.createElement("div");
+		elementInputFull.setAttribute("class", "inputbox");
+		elementInputFull.textContent = 'Groups who can see this post';
+		elementInputFull.append(selector);
+		elementBoxFull.append(elementInputFull);
 	}
+
 	)
 }
