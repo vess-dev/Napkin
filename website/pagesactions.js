@@ -1,6 +1,7 @@
 import * as help from "./helpers.js";
 import * as phelp from "./pageshelpers.js";
 import * as route from "./routes.js";
+import {setCookie} from "./cookies.js";
 
 // Query the user for an image choice. This is hackish.
 /*export function queryImage() {
