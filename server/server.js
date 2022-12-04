@@ -54,9 +54,9 @@ function handleHTTPRequests(request, response) {
   });
   request.on('end', () => {
     if (data) { 
-      if (parsedURL !='/upoad'){
+      if (parsedURL !='/upload'){
       parsedRequestBody = JSON.parse(data);}
-    }
+    } else {console.log('this is an upload, so do not parse the data this way')}
 
     const sessionid = auth.extractCookie('sessionid', request.headers.cookie);   
     //console.log('sessionid is ', sessionid)   
