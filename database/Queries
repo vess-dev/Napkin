@@ -17,8 +17,8 @@
 
 */DELETE*/ db.pool.query(`Delete from comments join posts on comments.post_id=posts.post_id where comment_id='${comment_id}' and posts.post_id = '${post_id}';
 /* 
-this delete needs some checking - who is allowed to delete a post? Also, could there be multiple comments by the same user on a single post? This would delete
-them all... */
+
+
 
 */INSERT*/ db.pool.query('INSERT INTO friendships SET ?', {friend_id:friend_id, friendship_status:friendship_status, friend_request_timestamp:friend_request_timestamp})
 */UPDATE*/ db.pool.query('UPDATE friendships SET ?', {friend_id: friend_id, friendship_status: friendship_status, friend_request_timestamp: friend_request_timestamp})
@@ -28,6 +28,7 @@ them all... */
 */INSERT*/ db.pool.query('INSERT INTO posts SET ?', {post_id: post_id, post_title: post_title, post_content: post_content, post_image: post_image, post_likes_score: post_likes_score, post_comment_count: post_comment_count, post_visable: post_visable, post_timestamp: post_timestamp})
 */UPDATE*/ db.pool.query('UPDATE posts SET ?', {post_id: post_id, post_title: post_title, post_content: post_content, post_image: post_image, post_likes_score: post_likes_score, post_comment_count: post_comment_count, post_visable: post_visable, post_timestamp: post_timestamp})
 */READ*/ db.pool.query(SELECT post_title, post_content, post_image, post_likes_score, post_comment_count, post_visable, post_timestamp FROM posts WHERE user_id > '0';)
+*/DELETE*/ db.pool.query('Delete FROM reactions where user_id = `${user_id}' and post_id = `${post_id}`)
 /* Good */
 
 */INSERT*/ db.pool.query('INSERT INTO reactions SET ?', {user_id: user_id, post_id: post_id})
