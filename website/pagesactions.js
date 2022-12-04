@@ -63,6 +63,10 @@ export function uploadImageAction(imagefile) {
 }
 */ 
 
+export function processLikeClick(postID) {
+	console.log('like clicked for postID', postID)
+}
+
 // Fill the feed with non-user made posts, or user made posts.
 export function feedFill(postType) {
 	let endpoint;
@@ -92,7 +96,7 @@ export function feedFill(postType) {
 		})
 		.then((postsList) => {
 			for (let post of postsList) {
-				phelp.insertPost(help.loadPostImage(post.user_image), post.post_title, post.user_handle, post.post_timestamp, post.post_content, help.loadPostImage(post.post_image), post.post_likes_score, post.post_comment_count);
+				phelp.insertPost(help.loadPostImage(post.user_image), post.post_title, post.user_handle, post.post_timestamp, post.post_content, help.loadPostImage(post.post_image), post.post_likes_score, post.post_comment_count, post.post_id);
 				phelp.insertPostActions(post.post_id)
 				phelp.insertBigBreak();
 			}

@@ -74,7 +74,7 @@ export function insertBigBreak() {
 }
 
 // Add a post to the page.
-export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postLikes, postComments) {
+export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postLikes, postComments, postID) {
 	const elementContent = document.getElementById("content");
 	const elementBoxPost = document.createElement("div");
 	elementBoxPost.setAttribute("class", "postbox");
@@ -106,13 +106,17 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	const elementHeart = document.createElement("input");
 	elementHeart.setAttribute("type", "image");
 	elementHeart.setAttribute("src", help.pathImage("heart"));
-	elementHeart.onclick = ""; // TODO: Sending likes for a post.
+	//elementHeart.onclick = ""; // TODO: Sending likes for a post.
 	elementHeart.setAttribute("class", "userpicture");
-	elementDivInfo.append(elementHeart);
+	const likesDiv = document.createElement('div');
+	//elementDivInfo.append(elementHeart);
+	elementDivInfo.append(commentDiv)
+	likesDiv.append(elementHeart)
 	const elementPostLikes = document.createElement("div");
 	elementPostLikes.setAttribute("class", "usertext");
 	elementPostLikes.textContent = postLikes;
-	elementDivInfo.append(elementPostLikes);
+	likesDiv.append(elementPostLikes);
+	likesDiv.onclick = `processLikeClick(${postID})`
 	// comment count here, needs styling
 	const elementCommentCount = document.createElement("div");
 	elementCommentCount.setAttribute("class", "usertext");
