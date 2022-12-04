@@ -86,8 +86,7 @@ function feedFill(postType) {
 				return response.json();
 			}
 			else {
-				//throw new ClientError("User Error", response.status,"Unable to retrieve posts");
-				throw new Error("error", response)
+				throw new help.clientError("Server Error", response.status, "Unable to retrieve posts");
 			}
 		})
 		.then((postsList) => {

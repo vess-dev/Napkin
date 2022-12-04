@@ -1,3 +1,4 @@
+import * as help from "./helpers.js";
 import * as phelp from "./pageshelpers.js";
 import * as route from "./routes.js";
 
@@ -43,7 +44,7 @@ export function postCreateAction() {
 				return response.json();
 			}
 			else {
-				throw new Error("error", response)
+				throw new help.clientError("Server Error", response.status, "Unable to create post.");
 			}
 		})
 		.then(() => {
@@ -65,7 +66,7 @@ export function userCreateAction() {
 	let user_password = document.querySelector("#password").value;
 	let user_confirm = document.querySelector("#confirm").value;
 	
-	// TODO: client side error checking for password and confirm not matching. (Do you have an error popup, Vess?) (V: Not yet, we need one.)
+	// TODO: client side error checking for password and confirm not matching. (Do you have an error popup, Vess?) (V: No popup. help.clientError() exists now.)
 
 	return new Promise((resolve, reject) => {
 		let options = {
@@ -87,7 +88,7 @@ export function userCreateAction() {
 				return response.json();
 			}
 			else {
-				throw new Error("error", response)
+				throw new help.clientError("Server Error", response.status, "Unable to create user.");
 			}
 		})
 		.then(() => {
@@ -121,7 +122,7 @@ export function userLoginAction () {
 				return response.json();
 			}
 			else {
-				throw new Error("error", response)
+				throw new help.clientError("Server Error", response.status, "Unable to login user.");
 			}
 		})
 		.then((json) => {      
@@ -152,7 +153,7 @@ export function userLogoutAction() {
 				return response.json();
 			}
 			else {
-				throw new Error("error", response)
+				throw new help.clientError("Server Error", response.status, "Unable to logout user.");
 			}
 		})
 		.then(json=> resolve(json))
