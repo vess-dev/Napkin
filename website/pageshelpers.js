@@ -238,8 +238,9 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 	const elementDivFriend = document.createElement("div");
 	elementDivFriend.setAttribute("class", "userdiv");
 	// Format the user picture with the appropriate class.
+	if (userPicture) {
 	userPicture.setAttribute("class", "userpicture");
-	elementDivFriend.append(userPicture);
+	elementDivFriend.append(userPicture); }
 	// Create a text block for the name.
 	const elementUserName = document.createElement("div");
 	elementUserName.setAttribute("id", "username");
