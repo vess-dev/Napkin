@@ -18,6 +18,7 @@ window.userCreateAction = pact.userCreateAction;
 window.userLoginAction = pact.userLoginAction;
 window.userLogoutAction = pact.userLogoutAction;
 window.createCloudinaryWidget = pact.createCloudinaryWidget;
+window.makeCloudinaryLink = phelp.makeCloudinarylink;
 
 
 // Disable or enable testing.
@@ -141,9 +142,9 @@ export function postCreate() {
 	phelp.insertInputBox("Post image URL:", "post_image_url", false);
 	phelp.insertTextAreaBox("Post content:", "post_content", false);
 	phelp.getGroupsSelector()
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"], ["post_image", ["button", "buttonother"], "Post Image", "createCloudinaryWidget()"]]);
-	phelp.makeCloudinarylink()
-	//pact.createCloudinaryWidget()
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"], ["post_image", ["button", "buttonother"], "Post Image", "makeCloudinarylink()"]]);
+	//phelp.makeCloudinarylink()
+	pact.createCloudinaryWidget()
 
 }
 
