@@ -19,7 +19,10 @@ export function accLogin() {
 	phelp.insertFullBox(false);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
-	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", "routePage('#feedGlobal')"], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"], ["test", ["button", "buttonother"], "adminTest", "routePage('#adminPending')"]]);
+	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", ""], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"], ["test", ["button", "buttonother"], "adminTest", "routePage('#adminPending')"]]);
+		//KLUDGE
+		let tmpbutton = document.querySelector('#login')
+		tmpbutton.addEventListener('click', userLoginAction)
 }
 
 // When you are creating an account.
@@ -378,3 +381,44 @@ function userLogoutAction() {
 		});
 	});
 }
+
+function userLoginAction () {
+    let user_first_name = document.querySelector('#firstname').value;
+    let user_last_name = document.querySelector('#lastname').value;
+    let user_handle = document.querySelector('#screenname').value;
+	let user_email = document.querySelector('#email').value;
+	let user_password = document.querySelector('#password').value;
+	let user_confirm = document.querySelector('#confirm').value;
+	
+	// TODO: client side error checking for password and confirm not matching. (Do you have an error popup, Vess?)
+
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "POST",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+            body: JSON.stringify({
+				user_email: user_email,
+				user_password: user_password
+			})
+		};
+		fetch(route.SERVER+'login', options)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				throw new Error('error', response)
+			}
+		})
+		.then(() => {         
+			routePage('#feedGlobal')
+			return resolve('login successful')
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+};
+	
