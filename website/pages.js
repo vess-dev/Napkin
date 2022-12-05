@@ -152,7 +152,7 @@ export function accFriendGroups() {
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertFullBox(false);
 	phelp.insertText('your friend is ' + friend_id)
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Save changes", "friendGroupsUpdateAction(friend_id)"], ]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Save changes", `friendGroupsUpdateAction(${friend_id})`], ]);
 	pact.loadFriendStats(friend_id);
 }
 
