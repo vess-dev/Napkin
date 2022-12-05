@@ -417,8 +417,8 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
       routeFound = true
       let friend_id = bodyObject.friend_id;
       let group_id = bodyObject.group_id
-      console.log('will call editGroupMemberships for ', group_id, friend_id, user_id)
-      editGroupMemberships(group_id, friend_id, user_id)
+      console.log('will call editGroupMemberships for ', group_id, friend_id, userID)
+      editGroupMemberships(group_id, friend_id, userID)
       .then(result => {
         response.statusCode = 200;
         
