@@ -261,3 +261,8 @@ textarea.inputfield {
 	flex-flow: column;
 	width: 100%;
 }
+
+.icons {
+	display: flex;
+	gap: 10px;
+}

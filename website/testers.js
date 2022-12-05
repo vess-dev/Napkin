@@ -2,12 +2,12 @@ import * as help from "./helpers.js";
 import * as phelp from "./pageshelpers.js";
 
 // Test posts.
-export function testPosts() {
-	phelp.insertPost(help.loadImage("test1", false), "Post 1", "Will Smith", "Nov 10th 2022", "I am will Smith.", help.loadImage("test1", false), 10, 1, 5151);
+export function testPosts(postType) {
+	phelp.insertPost(help.loadImage("test1", false), "Post 1", "Will Smith", "Nov 10th 2022", "I am will Smith.", help.loadImage("test1", false), 10, 1, 5151, postType);
 	phelp.insertBigBreak();
-	phelp.insertPost(help.loadImage("test2", false), "Post 2", "Will Smith", "Nov 10th 2022", ".", help.loadImage("test2", false), 20, 3, 2121);
+	phelp.insertPost(help.loadImage("test2", false), "Post 2", "Will Smith", "Nov 10th 2022", ".", help.loadImage("test2", false), 20, 3, 2121, postType);
 	phelp.insertBigBreak();
-	phelp.insertPost(help.loadImage("test3", false), "Post 3", "Will Smith", "Nov 10th 2022", help.longText(), help.loadImage("test1", false), 30, 5, 3434);
+	phelp.insertPost(help.loadImage("test3", false), "Post 3", "Will Smith", "Nov 10th 2022", help.longText(), help.loadImage("test1", false), 30, 5, 3434, postType);
 }
 
 // Test friends.

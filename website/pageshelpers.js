@@ -75,7 +75,11 @@ export function insertBigBreak() {
 }
 
 // Add a post to the page.
-export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postLikes, postComments, postID) {
+
+// postMy = true, means the individual user's posts.
+// postMy = false, means the "global" feed.
+
+export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postLikes, postComments, postID, postMy) {
 	const elementContent = document.getElementById("content");
 	// Ugg. Whatever. This is for comments on the bottom.
 	const elementBoxPoster = document.createElement("div");
@@ -102,6 +106,30 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementPostTitle.setAttribute("class", "usertext");
 	elementPostTitle.textContent = postTitle;
 	elementDivInfo.append(elementPostTitle);
+	// A bunch of flapjacking icons.
+	if (postMy) {
+		const elementDivIcons = document.createElement("div");
+		elementDivIcons.setAttribute("class", "icons");
+		const elementEye = document.createElement("input");
+		elementEye.setAttribute("type", "image");
+		elementEye.setAttribute("src", help.pathImage("eye", false));
+		elementEye.setAttribute("class", "userpicture");
+		elementEye.addEventListener("click", () => console.log("hide " + postID));
+		elementDivIcons.append(elementEye);
+		const elementEdit = document.createElement("input");
+		elementEdit.setAttribute("type", "image");
+		elementEdit.setAttribute("src", help.pathImage("edit", false));
+		elementEdit.setAttribute("class", "userpicture");
+		elementEdit.addEventListener("click", () => console.log("edit " + postID));
+		elementDivIcons.append(elementEdit);
+		const elementTrash = document.createElement("input");
+		elementTrash.setAttribute("type", "image");
+		elementTrash.setAttribute("src", help.pathImage("remove", false));
+		elementTrash.setAttribute("class", "userpicture");
+		elementTrash.addEventListener("click", () => console.log("trash " + postID));
+		elementDivIcons.append(elementTrash);
+		elementDivInfo.append(elementDivIcons);
+	}
 	// Add the various post info.
 	const elementPostInfo = document.createElement("div");
 	elementPostInfo.setAttribute("id", "info");
@@ -112,7 +140,6 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	const elementDivLikes = document.createElement("div");
 	elementDivLikes.setAttribute("class", "virtbox");
 	// Load the heart.
-	const imageHeart = help.loadImage("heart");
 	const elementHeart = document.createElement("input");
 	elementHeart.setAttribute("type", "image");
 	elementHeart.setAttribute("src", help.pathImage("heart", false));

@@ -76,7 +76,7 @@ export function feedGlobal() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedglobal");
 	phelp.insertNextButton();
-	if (testing) test.testPosts();
+	if (testing) test.testPosts(false);
 	pact.feedFill(false);
 }
 
@@ -85,7 +85,7 @@ export function feedMy() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedmy");
 	phelp.insertNextButton();
-	if (testing) test.testPosts();
+	if (testing) test.testPosts(true);
 	pact.feedFill(true);
 }
 
