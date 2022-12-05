@@ -1,6 +1,6 @@
 // Make an asset path.
 export function pathImage(imageName) {
-	return "/assets/" + imageName + ".png";
+	return "http://cpsc.roanoke.edu/~napkin/assets/" + imageName + ".png";
 }
 
 // Load an image to use.
