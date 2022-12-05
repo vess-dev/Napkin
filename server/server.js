@@ -184,6 +184,19 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
           response.end();
         });
       }
+      if (method === 'PUT') {
+        routeFound = true;
+        post.editPost(bodyObject, userID).then(reply=>{
+          response.statusCode = 200;
+          response.write('{"success":"Edited post with ID ' + reply + '"}');          
+        })
+        .catch(error=>{
+          handleErrorReply(response, error, 400);
+        })
+        .finally(() => {
+          response.end();
+        });
+      }
       // Get list of all posts
       if (method === 'GET') {
         console.log('will get posts feed')

@@ -262,14 +262,7 @@ export function insertInputBox(inputText, inputName, inputPassword, toggleArea, 
 	elementBoxFull.append(elementInputFull);
 }
 
-/*export function insertPostActions(postID) {
-	//TODO: need post deletion, remove post from all groups (makes post invisible), post edit
-	const elementPostBox = document.getElementById(postID);
-	elementPostBox.appendChild(createButton('edit', 'edit','Edit',"TODOEDITPOST"))
-	elementPostBox.appendChild(createButton('delete', 'delete','Delete',"TODOEDITPOST"))
-	elementPostBox.appendChild(createButton('hide', 'hide','Hide',"TODOEDITPOST"))
-	
-}*/
+
 
 // Create and add different button types.
 export function createButton(buttonId, buttonClasses, buttonText, buttonCall) {

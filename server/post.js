@@ -38,6 +38,42 @@ function createPost(postObject, userID) {
 
 }
 
+function editPost(postObject, userID) {
+  return new Promise((resolve, reject) =>{
+    if (!postObject || !userID || !postObject.post_title ||!postObject.post_id || !postObject.post_content) {
+      return reject(new BaseError('wrong parameters', 500, "must pass all params"))
+    }
+    postID = postObject.post_id;
+    postObject.remove(post_id)
+    db.pool.query('update posts SET ? where post_id = ?', [postObject, postID],
+      async function(error, results, fields) {
+        console.log(error, results, fields)
+        if (error) {
+            console.log('error editing post:', error)
+            return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
+        }
+        else {
+          // rows added     
+          console.log('edited post with number', postID)   
+          if (postObject.group_id) {
+            await removePostFromAllGroups(userID, postID)
+            console.log('calling putPostInGroup with', userID, postObject.group_id, postIDd)
+            if (Number.isInteger(postObject.group_id)) {putPostInGroup(userID, postObject.group_id, postID)}
+            else {
+              let allgroups = postObject.group_id.split(/[, ]+/)
+              for (let onegroup of allgroups) {
+                putPostInGroup(userID, onegroup, postID)
+              }
+            }
+          }
+          return resolve(postID);        
+        }
+    });
+  });
+
+}
+
+
 function putPostInGroup(user_id, group_id, post_id) {
   return new Promise((resolve, reject) =>{
   db.pool.query(`replace into post_groups (group_id, post_id)
@@ -58,6 +94,14 @@ function putPostInGroup(user_id, group_id, post_id) {
    
     }
 })})}
+
+async function removePostFromAllGroups(user_id, post_id) {
+  db.pool.query(`delete from post_groups
+  where post_id=? 
+  and
+  group_id IN (select group_id from groups where owner_id=? )`,[post_id, user_id])
+  return 
+}
 
 function removePostFromGroup(user_id, group_id, post_id) {
   return new Promise((resolve, reject) =>{
@@ -245,4 +289,4 @@ function getMyPostList(userID) {
       })})
 }
 
-module.exports = {getMyPostList, putPostInGroup, removePostFromGroup, getPostList, createPost, updatePostWeightByPost, updatePostWeightByUser, updateAllPostWeights}
+module.exports = {editPost, getMyPostList, putPostInGroup, removePostFromGroup, getPostList, createPost, updatePostWeightByPost, updatePostWeightByUser, updateAllPostWeights}

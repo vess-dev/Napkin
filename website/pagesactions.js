@@ -146,7 +146,7 @@ export function feedFill(postType) {
 }
 
 // Send a post create to the server.
-export async function postCreateAction() {
+export async function postCreateAction(post_id) {
 	let post_title = document.querySelector("#post_title").value;
 	let post_content = document.querySelector("#post_content").value;
 	let post_image = document.querySelector("#post_image_url").value;
@@ -158,18 +158,32 @@ export async function postCreateAction() {
 		groupList += one + ","
 	}
 	console.log("have groupList ", groupList);
+	let method
+	if (post_id) {
+		method = "PUT"
+		let bodyObject = {
+			post_title: post_title,
+			post_content: post_content,
+			post_image, post_image,
+			group_id: groupList,
+			post_id: post_id
+		  }
+	} else {
+		method = "POST"
+		let bodyObject = {
+			post_title: post_title,
+			post_content: post_content,
+			post_image, post_image,
+			group_id: groupList
+		  }
+	}
 	return new Promise((resolve, reject) => {
 		let options = {
-			method: "POST",
+			method: method,
 			credentials: "include",
 			headers: {
 			"Content-Type": "application/json"},
-			body: JSON.stringify({
-				post_title: post_title,
-				post_content: post_content,
-				post_image, post_image,
-				group_id: groupList
-			  })
+			body: JSON.stringify(bodyObject)
 		};
 		fetch(route.SERVER + "post", options)
 		.then((response) => {
