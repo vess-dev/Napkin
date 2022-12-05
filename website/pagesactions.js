@@ -498,5 +498,31 @@ export function friendGroupsUpdateAction(friend_id) {
 };
 
 export function removeFriendAction(friend_id) {
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "DELETE",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+		};
+		
+		fetch(route.SERVER + "friend?friend_id="+friend_id, options)
+		.then((response) => {
+			if (response.ok) {
+				return;
+			}
+			else {
+				throw new help.clientError("Server Error", response.status, "Problem updating friends.");
+			}
+		})
+		.then(() => {
+			routePage("#accFriends")
+			return resolve(true)
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
 	
-}
+};
+
