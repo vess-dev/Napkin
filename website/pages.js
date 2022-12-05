@@ -223,6 +223,7 @@ export function adminPending() {
 	phelp.insertMiniHeader("New User Requests", "logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
+	getAdminUsers(adminPage);
 	if (testing) test.testAdmin(adminPage);
 }
 
@@ -257,4 +258,37 @@ export function adminBlacklist() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	if (testing) test.testAdmin(adminPage);
+}
+
+export async function getAdminUsers(admin_status) {
+	
+	let endpoint = "adminusers?staus=" + admin_status;
+
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "GET",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"}
+		};
+		fetch(route.SERVER + endpoint, options)
+		.then((response) => {
+			if (response.statusCode == 401) {routePage("#accLogin")}
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				throw new help.clientError("Server Error", response.status, "Unable to retrieve admin users");
+			}
+		})
+		.then((friendsList) => {
+			for (let adminUser of adminUsersList) {
+				phelp.insertUserItem(help.loadImage(adminUser.user_image, true), adminUser.user_first_name, adminUser.user_last_name, adminUser.user_email, null, admin_status);
+			}
+			return resolve(true);
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
 }
