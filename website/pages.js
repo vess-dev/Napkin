@@ -139,12 +139,13 @@ export function accGroups() {
 
 // When you look at your groups.
 export function accFriendGroups() {
-	 let friend_id = document.querySelector('meta[name="friends_payload"]').content;
+	let friend_id = document.querySelector('meta[name="friends_payload"]').content;
 
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertFullBox(false);
 	phelp.insertText('your friend is ' + friend_id)
+	pact.loadFriendStats(friend_id)
 }
 
 // When you want to create a post.

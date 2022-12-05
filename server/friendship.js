@@ -89,4 +89,19 @@ async function makeFriendsStatus(friend_id, userID, newStatus) {
 })
 })};
 
-module.exports = {getFriendList, makeFriendRequest}
+function getFriendGroups(userID, friendID) {
+  return new Promise((resolve, reject) =>{
+    db.pool.query(`select group_id, group_name, user_id as inGroup from (select group_id, user_id from group_memberships where user_id=?) b right join groups using (group_id) 
+    where group_id in (select group_id from groups where owner_id=?)`, [friendID, userID],
+     function(error, results) {
+       console.log(results)
+       if (error) {                    
+         return reject(new BaseError("DB Error", 500, error));
+       }
+       else {               
+         return resolve(results);        
+       }
+ });
+})
+}
+module.exports = {getFriendList, makeFriendRequest, getFriendGroups}

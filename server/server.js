@@ -392,6 +392,28 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
         }); 
       }
       }
+  //FRIENDGROUPS routes
+
+   if (url.pathname === routes.FRIENDGROUPS) {
+    console.log('friends path', method)
+    if (method === 'GET') {
+      console.log('on friendgroups route')
+      routeFound = true;
+      let friend_id = queryObject.friend_id
+
+      friend.getFriendGroups(userID,friend_id).then(list=>{
+        response.statusCode = 200;
+        response.write(JSON.stringify(list));
+      })
+      .catch(error=>{
+        console.log('caught an error ', error)
+        handleErrorReply(response, error);
+      })
+      .finally(() => {
+        response.end(); 
+      });
+    }
+
  //COMMENT routes
         if (url.pathname === routes.COMMENT) {
           console.log('will serve comment stuff')
@@ -429,30 +451,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
           } 
         }
 
- /*   // Upload route
-    if (url.pathname === routes.UPLOAD) {
-      console.log('upload called')
-      if (method === 'POST') {
-        console.log('method is post for upload')
-
-        routeFound = true;
-        
-        let filename = '';
-        const bb = busboy({ headers: inbound_file_data });
-        bb.on('file', (name, file, info) => {
-          filename = info.filename;
-          console.log('filename is', filename)
-          const saveTo = path.join('website/usercontent', filename);
-          console.log('saveTo is',saveTo)
-          file.pipe(fs.createWriteStream(saveTo));
-        });
-        bb.on('close', () => {
-          response.writeHead(200, { 'Content-Type': 'text/plain' });
-          response.end(`upload success: ${filename}`);
-        });
-        request.pipe(bb);
-      }}
-*/
+ 
 
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {

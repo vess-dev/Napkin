@@ -141,8 +141,43 @@ content-type: application/json
 cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 ###
 
+
+GET http://cpsc.roanoke.edu:3009/friendgroups?friend_id=2
+content-type: application/json
+cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
+###
+
 GET http://cpsc.roanoke.edu:3009/comment?post_id=1
 content-type: application/json
 cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 
 ### 
+
+select * from 
+(select 1 as result, group_id from group_memberships where user_id=2 and group_id in (select group_id from groups where owner_id=1))
+full join on groups using group_id
+
+select group_id from group_memberships where user_id=2 and group_id in (select group_id from groups where owner_id=1) ;
+
+select group_name, group_id, user_id from (
+    (
+    select group_id, user_id from group_memberships where user_id=2 
+        AND group_id in (select group_id from groups where owner_id=1)
+    ) a 
+    cross join groups using (group_id)  
+) b 
+where b.owner_id=1;
+
+
+
+    select group_id, user_id from group_memberships gm 
+    
+    cross join groups using (group_id)  
+    where gm.user_id=2 
+        AND gm.group_id in (select group_id from groups where owner_id=1)
+
+select group_id, group_name, user_id from group_memberships right join groups using (group_id) 
+    where group_id in (select group_id from groups where owner_id=1)
+
+select group_id, group_name, user_id from (select group_id, user_id from group_memberships where user_id=2) b right join groups using (group_id) 
+    where group_id in (select group_id from groups where owner_id=1);
