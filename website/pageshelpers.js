@@ -187,7 +187,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementBoxPost.append(elementBoxMain);
 	// Where the picture of a post lies.
 	if (postImage) {
-
+		console.log('postImage is', postImage)
 		let postPictureElement = document.createElement('img')
 		postPictureElement.setAttribute("class", "postpicture");
 		postPictureElement.setAttribute("src", postImage)
