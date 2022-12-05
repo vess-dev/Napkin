@@ -263,7 +263,9 @@ export function insertInputBox(inputText, inputName, inputPassword, toggleArea, 
 
 export function insertPostActions(postID) {
 	//TODO: need post deletion, remove post from all groups (makes post invisible), post edit
-	insertBottomButtons(createButton('edit','edit',"TODOEDITPOST"), false)
+	const elementPostBox = document.getElementById("postBox");
+	elementPostBox.append(createButton('edit','edit',"TODOEDITPOST"))
+	
 }
 
 // Create and add different button types.
