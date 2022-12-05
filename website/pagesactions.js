@@ -480,7 +480,7 @@ export function friendGroupsUpdateAction(friend_id) {
 		fetch(route.SERVER + "friendgroups", options)
 		.then((response) => {
 			if (response.ok) {
-				return response.json();
+				return;
 			}
 			else {
 				throw new help.clientError("Server Error", response.status, "Problem updating friend groups.");
