@@ -360,8 +360,6 @@ export function makeFriendRequest(friend_id) {
 	});
 }
 export function editFriendGroups(friend_id) {
-	let friendbutton = document.querySelector('#body')
-	friendbutton.setAttribute("friends_payload", friend_id)
 	document.querySelector('meta[name="friends_payload"]').setAttribute("content", friend_id);
 
 	routePage('#accFriendGroups')
