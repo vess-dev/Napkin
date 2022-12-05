@@ -46,7 +46,7 @@ function editPost(postObject, userID) {
     }
     console.log('still ok?')
     let postID = postObject.post_id;
-    postObject.remove('post_id')
+    //postObject.remove('post_id')
     console.log('now have postObject', postObject)
     db.pool.query('update posts SET ? where post_id = ?', [postObject, postID],
       async function(error, results, fields) {
