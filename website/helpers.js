@@ -1,28 +1,20 @@
 // Make an asset path.
 export function pathImage(imageName) {
-	return "./assets/" + imageName + ".png";
+	return "/assets/" + imageName + ".png";
 }
 
 // Load an image to use.
-export function loadImage(imageName) {
-	let imagePath = pathImage(imageName);
-	if (!imagePath) {return null } else {
+export function loadImage(imageName, isURL) {
+	let imagePath;
+	if (!isURL) imagePath = pathImage(imageName);
+	else imagePath = isURL;
+	if (!imagePath) {return null} else {
 		const elementImage = document.createElement("img");
 		elementImage.setAttribute("src", imagePath);
 		return elementImage;
 	}
 }
-// note to Vess - post image URLs are absolute, not relative.  Going to run loadPostImage on feed drawing to 
-// avoid breaking your relative images elsewhere. -C
-// in hindsight, I guess naming could have been better! :)
-
-export function loadPostImage(imageURL) {
-	if (!imageURL) {return null } else {
-		const elementImage = document.createElement("img");
-		elementImage.setAttribute("src", imageURL);
-		return elementImage;
-	}
-}
+// Note to C: This should work? 
 
 // Return a long string of text.
 export function longText() {

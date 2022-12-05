@@ -108,7 +108,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementHeart.setAttribute("src", help.pathImage("heart"));
 	//elementHeart.onclick = ""; // TODO: Sending likes for a post.
 	elementHeart.setAttribute("class", "userpicture");
-	const likesDiv = document.createElement('div');
+	const likesDiv = document.createElement("div");
 	//elementDivInfo.append(elementHeart);
 	elementDivInfo.append(likesDiv)
 	likesDiv.append(elementHeart)
@@ -120,10 +120,11 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	// comment count here, needs styling
 	const elementCommentCount = document.createElement("div");
 	elementCommentCount.setAttribute("class", "usertext");
-	if (postComments ==1) {
+	if (postComments == 1) {
 		elementCommentCount.textContent = "1 comment";
-	} else {elementCommentCount.textContent = postComments + " comments";}
-	
+	} else {
+		elementCommentCount.textContent = postComments + " comments";
+	}
 	elementDivInfo.append(elementCommentCount);
 	// Append the final div with all the info.
 	elementBoxMain.append(elementDivInfo);

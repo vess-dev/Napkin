@@ -97,8 +97,8 @@ export function feedFill(postType) {
 		})
 		.then((postsList) => {
 			for (let post of postsList) {
-				phelp.insertPost(help.loadPostImage(post.user_image), post.post_title, post.user_handle, 
-				new Date(post.post_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"}), post.post_content, help.loadPostImage(post.post_image), post.post_likes_score, post.post_comment_count, post.post_id);
+				phelp.insertPost(help.loadImage(post.user_image, true), post.post_title, post.user_handle, 
+				new Date(post.post_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"}), post.post_content, help.loadImage(post.post_image, true), post.post_likes_score, post.post_comment_count, post.post_id);
 				phelp.insertPostActions(post.post_id);
 				phelp.insertBigBreak();
 			}
@@ -290,7 +290,7 @@ export async function getFriends(friend_status) {
 		})
 		.then((friendsList) => {
 			for (let friend of friendsList) {
-				phelp.insertFriendItem(help.loadPostImage(friend.user_image), friend.user_handle, friend_status, friend.friend_id);
+				phelp.insertFriendItem(help.loadImage(friend.user_image, true), friend.user_handle, friend_status, friend.friend_id);
 			}
 			return resolve(true);
 		})
@@ -326,7 +326,7 @@ export function friendSearchAction () {
 		})
 		.then((friendsList) => {
 			for (let friend of friendsList) {
-				phelp.insertFriendItem(help.loadPostImage(friend.user_image), friend.user_handle, "search", friend.user_id);
+				phelp.insertFriendItem(help.loadImage(friend.user_image, true), friend.user_handle, "search", friend.user_id);
 			}
 			return resolve(true);
 		})
