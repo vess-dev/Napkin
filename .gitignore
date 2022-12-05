@@ -2,3 +2,4 @@
 /server_logs/*
 server_logs
 .gitignore
+database/cathy.tmp.sql

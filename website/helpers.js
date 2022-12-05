@@ -5,7 +5,6 @@ export function pathImage(imageName) {
 
 // Load an image to use.
 export function loadImage(imageName, isURL) {
-	console.log('loadImage got', imageName, isURL)
 	let imagePath;
 	if (!imageName || imageName == "") {return null}
 	if (!isURL) imagePath = pathImage(imageName);

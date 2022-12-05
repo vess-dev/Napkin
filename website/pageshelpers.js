@@ -340,7 +340,7 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 			elementButtonBox.append(elementButtonGroups);
 			break;
 		case "requested":
-			const elementButtonCancel = createButton("cancel", ["button", "buttonred"], "Cancel Request", "TODOCANCEL");
+			const elementButtonCancel = createButton("cancel", ["button", "buttonred"], "Cancel Request", `removeFriendAction(${friend_ID})`);
 			elementButtonBox.append(elementButtonCancel);
 			break;
 		case "pending":
