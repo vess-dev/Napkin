@@ -112,13 +112,14 @@ export async function accFriends() {
 }
 
 // When you look at who you have blocked.
-export function accBlocked() {
+export async function accBlocked() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "friends");
 	phelp.insertMiniHeader("Manage Blocked", "blocked");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	if (testing) test.testFriends("blocked");
+	await pact.getFriends('blocked')
 }
 
 // When you're searching for a friend.
