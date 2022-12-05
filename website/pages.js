@@ -29,6 +29,7 @@ window.editFriendGroups = pact.editFriendGroups;
 window.friendSearchAction = pact.friendSearchAction;
 window.makeFriendRequest = pact.makeFriendRequest;
 window.friendGroupsUpdateAction = pact.friendGroupsUpdateAction;
+window.removeFriendAction = pact.removeFriendAction;
 
 window.updateAccount = pact.updateAccount;
 

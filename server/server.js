@@ -357,8 +357,22 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
           .finally(() => {
             response.end(); 
           });
+        } 
+        if (method === 'DELETE') {
+          routeFound = true;
+          friend.deleteFriendEntries(queryObject.friend_id, userID).then(()=>{
+            response.statusCode = 200;
+            response.write(JSON.stringify({"success": "deleted some friends entries"}));
+          })
+          .catch(error=>{
+            console.log('caught an error ', error)
+            handleErrorReply(response, error);
+          })
+          .finally(() => {
+            response.end(); 
+          });
         }
-      }
+      };
   //postgroup routes
     if (url.pathname === routes.POSTGROUP) {
 

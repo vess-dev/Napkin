@@ -104,4 +104,21 @@ function getFriendGroups(userID, friendID) {
  });
 })
 }
-module.exports = {getFriendList, makeFriendRequest, getFriendGroups}
+
+function deleteFriendEntries(friendID, userID) {
+  return new Promise((resolve, reject) =>{
+    db.pool.query(`delete from friendships where (user_id=? and friend_id = ? and friendship_status in ('accepted', 'pending', 'blocked')) or (user_id=? and friend_id=? and friendship_status in ('accepted', 'requested', 'rejected')) 
+    `, [friendID, userID, userID, friendID],
+     function(error, results) {
+       console.log(results)
+       if (error) {                    
+         return reject(new BaseError("DB Error", 500, error));
+       }
+       else {               
+         return resolve(results);        
+       }
+ });
+})
+}
+
+module.exports = {getFriendList, makeFriendRequest, getFriendGroups, deleteFriendEntries}

@@ -334,7 +334,7 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 	elementButtonBox.setAttribute("class", "buttonbox");
 	switch (itemType) {
 		case "accepted":
-			const elementButtonRemove = createButton("remove", ["button", "buttonred"], "Remove", "TODOREMOVE");
+			const elementButtonRemove = createButton("remove", ["button", "buttonred"], "Remove", `removeFriendAction(${friend_ID})`);
 			elementButtonBox.append(elementButtonRemove);
 			const elementButtonGroups = createButton("remove", ["button", "buttongreen"], "Edit Groups", `editFriendGroups(${friend_ID})`);
 			elementButtonBox.append(elementButtonGroups);

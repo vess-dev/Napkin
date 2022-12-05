@@ -496,3 +496,7 @@ export function friendGroupsUpdateAction(friend_id) {
 	});
 	
 };
+
+export function removeFriendAction(friend_id) {
+	
+}
