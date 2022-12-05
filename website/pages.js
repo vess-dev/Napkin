@@ -262,7 +262,7 @@ export function adminBlacklist() {
 
 export async function getAdminUsers(admin_status) {
 	
-	let endpoint = "adminusers?staus=" + admin_status;
+	let endpoint = "adminusers?status=" + admin_status;
 
 	return new Promise((resolve, reject) => {
 		let options = {
