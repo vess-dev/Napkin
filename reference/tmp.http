@@ -142,7 +142,7 @@ cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 ###
 
 
-GET http://cpsc.roanoke.edu:3009/friendgroups?friend_id=2
+GET http://cpsc.roanoke.edu:3009/friendgroups?friend_id=13
 content-type: application/json
 cookie: sessionid=d8e8016a-ac64-4461-a648-b20eb99270f9
 ###
