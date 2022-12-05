@@ -103,11 +103,10 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	// TODO:  userPicture is the URL.  Is isn't something you can set an attribute for.  What happened to the code that was here that worked?
 
 	if (userPicture) {
-		// need this? help.loadImage(post.post_image, true)
-		let userPictureElement = document.createElement('img')
-		userPictureElement.setAttribute("class", "userpicture");
-		userPictureElement.setAttribute("src", userPicture)
-		elementDivInfo.append(userPictureElement);
+		// need this? 
+		//help.loadImage(post.post_image, true)
+		userPicture.setAttribute("class", "userpicture");
+		elementDivInfo.append(userPicture);
 	}
 	// Add the post title.
 	const elementPostTitle = document.createElement("div");
@@ -187,11 +186,8 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementBoxPost.append(elementBoxMain);
 	// Where the picture of a post lies.
 	if (postImage) {
-		console.log('postImage is', postImage)
-		let postPictureElement = document.createElement('img')
-		postPictureElement.setAttribute("class", "postpicture");
-		postPictureElement.setAttribute("src", postImage)
-		elementDivInfo.append(postPictureElement);
+		postImage.setAttribute("class", "postpicture");
+		elementBoxPost.append(postImage);
 	}
 	elementBoxPoster.append(elementBoxPost);
 	elementContent.append(elementBoxPoster);
