@@ -588,4 +588,3 @@ export function loadGroupsEntries (userID) {
 		});
 	}
 	
-}
