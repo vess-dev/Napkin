@@ -11,7 +11,7 @@ const userHeader = [["feedglobal", "Global Feed", "routePage('#feedGlobal')"], [
 // The header for the admin pages.
 const adminHeader = [["pending", "Pending Accounts", "routePage('#adminPending')"], ["disabled", "Disabled Accounts", "routePage('#adminDisabled')"], ["active", "Active Accounts", "routePage('#adminActive')"], ["blacklist", "Blacklisted Accounts", "routePage('#adminBlacklist')"]];
 
-// Not clean but this works.  Ahha! Good fix, thanks. -C
+// Not clean but this works. Ahha! Good fix, thanks. -C
 window.postCreateAction = pact.postCreateAction;
 window.queryImage = pact.queryImage;
 window.userCreateAction = pact.userCreateAction;
@@ -21,12 +21,11 @@ window.createCloudinaryWidget = pact.createCloudinaryWidget;
 window.makeCloudinarylink = phelp.makeCloudinarylink;
 window.processLikeClick = pact.processLikeClick;
 window.friendSearchAction = pact.friendSearchAction;
-window.makeFriendRequest = pact.makeFriendRequest ;
-window.editFriendGroups = pact.editFriendGroups ;
+window.makeFriendRequest = pact.makeFriendRequest;
+window.editFriendGroups = pact.editFriendGroups;
 
 // Disable or enable testing.
 const testing = false;
-
 
 // Always insert the content box first, and then the header type.
 
@@ -101,7 +100,6 @@ export async function accFriends() {
 	phelp.insertText("Incoming requests");
 	await pact.getFriends('pending')
 	if (testing) test.testFriends("incoming");
-	
 }
 
 // When you look at who you have blocked.

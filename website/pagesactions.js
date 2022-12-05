@@ -16,18 +16,16 @@ import {setCookie} from "./cookies.js";
 } */
 
 export function createCloudinaryWidget () {
-var myWidget = cloudinary.createUploadWidget({
-	cloudName: 'dkz6vktw0', 
-	uploadPreset: 'wnlaqufk'}, (error, result) => { 
-	  if (!error && result && result.event === "success") { 
-		console.log('Done! Here is the image info: ', result.info.public_id); 
-		let fieldTarget=document.querySelector('#post_image_url')
-		fieldTarget.value = 'https://res.cloudinary.com/dkz6vktw0/image/upload/ar_1:1,c_fill,g_faces,h_300,r_8,w_300/' + result.info.public_id
-	  }
-	}
-  )
-  
-  document.getElementById("upload_widget").addEventListener("click", function(){
+	var myWidget = cloudinary.createUploadWidget({
+	cloudName: "dkz6vktw0", 
+	uploadPreset: "wnlaqufk"}, (error, result) => { 
+		if (!error && result && result.event === "success") { 
+			console.log("Done! Here is the image info: ", result.info.public_id); 
+			let fieldTarget=document.querySelector("#post_image_url");
+			fieldTarget.value = "https://res.cloudinary.com/dkz6vktw0/image/upload/ar_1:1,c_fill,g_faces,h_300,r_8,w_300/" + result.info.public_id;
+	  	}
+	});
+	document.getElementById("upload_widget").addEventListener("click", function() {
 	  myWidget.open();
 	}, false);
 }
@@ -64,8 +62,9 @@ export function uploadImageAction(imagefile) {
 }
 */ 
 
+// Get and send that a like was clicked on for a post.
 export function processLikeClick(postID) {
-	console.log('like clicked for postID', postID)
+	console.log("like clicked for postID", postID);
 }
 
 // Fill the feed with non-user made posts, or user made posts.
@@ -87,7 +86,7 @@ export function feedFill(postType) {
 		};
 		fetch(route.SERVER + endpoint, options)
 		.then((response) => {
-			if (response.statusCode == 401) { routePage("#accLogin")}
+			if (response.statusCode == 401) {routePage("#accLogin")};
 			if (response.ok) {
 				return response.json();
 			}
@@ -98,11 +97,11 @@ export function feedFill(postType) {
 		.then((postsList) => {
 			for (let post of postsList) {
 				phelp.insertPost(help.loadPostImage(post.user_image), post.post_title, post.user_handle, 
-				new Date(post.post_timestamp).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}), post.post_content, help.loadPostImage(post.post_image), post.post_likes_score, post.post_comment_count, post.post_id);
-				phelp.insertPostActions(post.post_id)
+				new Date(post.post_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"}), post.post_content, help.loadPostImage(post.post_image), post.post_likes_score, post.post_comment_count, post.post_id);
+				phelp.insertPostActions(post.post_id);
 				phelp.insertBigBreak();
 			}
-			return resolve(true)
+			return resolve(true);
 		})
 		.catch((error) => {
 			return reject(error);
@@ -115,14 +114,14 @@ export async function postCreateAction() {
 	let post_title = document.querySelector("#post_title").value;
 	let post_content = document.querySelector("#post_content").value;
 	let post_image = document.querySelector("#post_image_url").value;
-
 	let selected  = document.querySelectorAll("#group_selector option:checked");
-	console.log("have ",post_title, post_content, post_image)
+	console.log("have ", post_title, post_content, post_image);
 	let group_ids = Array.from(selected).map(el => el.value);
-	let groupList =""
-	for (let one of group_ids) {groupList += one + ","}
-	console.log("have groupList", groupList)
-
+	let groupList = "";
+	for (let one of group_ids) {
+		groupList += one + ","
+	}
+	console.log("have groupList ", groupList);
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "POST",
@@ -158,7 +157,7 @@ export async function postCreateAction() {
 
 // Send a user create to the server. 
 export function userCreateAction() {
-	console.log('userCreateAction called')
+	console.log("userCreateAction called")
 	let user_first_name = document.querySelector("#firstname").value;
 	let user_last_name = document.querySelector("#lastname").value;
 	let user_handle = document.querySelector("#screenname").value;
@@ -193,7 +192,7 @@ export function userCreateAction() {
 		})
 		.then(() => {
 			routePage("#accLogin");
-			return resolve(true)
+			return resolve(true);
 		})
 		.catch((error) => {
 			return reject(error);
@@ -228,8 +227,8 @@ export function userLoginAction () {
 		.then((json) => {      
 			let sessionid = json.sessionid;
 			setCookie("sessionid", sessionid, 7);   
-			routePage("#feedGlobal")
-			return resolve("login successful")
+			routePage("#feedGlobal");
+			return resolve("login successful");
 		})
 		.catch((error) => {
 			return reject(error);
@@ -249,7 +248,7 @@ export function userLogoutAction() {
 		fetch(route.SERVER + "logout", options)
 		.then((response) => {
 			if (response.ok) {
-				routePage("#accLogin")
+				routePage("#accLogin");
 				return response.json();
 			}
 			else {
@@ -262,12 +261,14 @@ export function userLogoutAction() {
 		});
 	});
 }
+
+// Ask the server for the list of friends an account has.
 export async function getFriends(friend_status) {
-	let endpoint
+	let endpoint;
 	if (friend_status) {
-		endpoint="friend?status_wanted="+friend_status
+		endpoint = "friend?status_wanted="+friend_status;
 	} else { 
-		endpoint="friend"
+		endpoint = "friend";
 	}
 	return new Promise((resolve, reject) => {
 		let options = {
@@ -278,7 +279,7 @@ export async function getFriends(friend_status) {
 		};
 		fetch(route.SERVER + endpoint, options)
 		.then((response) => {
-			if (response.statusCode == 401) { routePage("#accLogin")}
+			if (response.statusCode == 401) {routePage("#accLogin")}
 			if (response.ok) {
 				return response.json();
 			}
@@ -290,19 +291,21 @@ export async function getFriends(friend_status) {
 			for (let friend of friendsList) {
 				phelp.insertFriendItem(help.loadPostImage(friend.user_image), friend.user_handle, friend_status, friend.friend_id);
 			}
-			return resolve(true)
+			return resolve(true);
 		})
 		.catch((error) => {
 			return reject(error);
 		});
 	});
 }
+
+// Search for a person globally.
 export function friendSearchAction () {
-	let searchString=document.querySelector('#screenname').value
-
-	let endpoint = 'user'
-	if (searchString) { endpoint= `user?search=` + encodeURIComponent(searchString) }
-
+	let searchString = document.querySelector("#screenname'").value;
+	let endpoint = "user";
+	if (searchString) {
+		endpoint = "user?search=" + encodeURIComponent(searchString);
+	}
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "GET",
@@ -312,7 +315,7 @@ export function friendSearchAction () {
 		};
 		fetch(route.SERVER + endpoint, options)
 		.then((response) => {
-			if (response.statusCode == 401) { routePage("#accLogin")}
+			if (response.statusCode == 401) {routePage("#accLogin")}
 			if (response.ok) {
 				return response.json();
 			}
@@ -322,9 +325,9 @@ export function friendSearchAction () {
 		})
 		.then((friendsList) => {
 			for (let friend of friendsList) {
-				phelp.insertFriendItem(help.loadPostImage(friend.user_image), friend.user_handle, 'search', friend.user_id);
+				phelp.insertFriendItem(help.loadPostImage(friend.user_image), friend.user_handle, "search", friend.user_id);
 			}
-			return resolve(true)
+			return resolve(true);
 		})
 		.catch((error) => {
 			return reject(error);
@@ -332,6 +335,7 @@ export function friendSearchAction () {
 	});
 };
 
+// Make a friend request to the server.
 export function makeFriendRequest(friend_id) {
 	return new Promise((resolve, reject) => {
 		let options = {
@@ -359,14 +363,16 @@ export function makeFriendRequest(friend_id) {
 		});
 	});
 }
-export function editFriendGroups(friend_id) {
-	document.querySelector('meta[name="friends_payload"]').setAttribute("content", friend_id);
 
-	routePage('#accFriendGroups')
+// Edit a friend in a group.
+export function editFriendGroups(friend_id) {
+	document.querySelector("meta[name='friends_payload']").setAttribute("content", friend_id);
+	routePage("#accFriendGroups");
 }
 
+// Get the stats for a friend.
 export function loadFriendStats(friend_id) {
-	let endpoint = 'friendgroups?friend_id='+friend_id
+	let endpoint = "friendgroups?friend_id=" + friend_id;
 
 	return new Promise((resolve, reject) => {
 		let options = {
@@ -377,7 +383,7 @@ export function loadFriendStats(friend_id) {
 		};
 		fetch(route.SERVER + endpoint, options)
 		.then((response) => {
-			if (response.statusCode == 401) { routePage("#accLogin")}
+			if (response.statusCode == 401) {routePage("#accLogin")}
 			if (response.ok) {
 				return response.json();
 			}
@@ -386,31 +392,29 @@ export function loadFriendStats(friend_id) {
 			}
 		})
 		.then((data) => {
-			let selector = document.createElement('select')
-			selector.setAttribute('multiple', true)
-			selector.setAttribute('id','group_selector')
+			let selector = document.createElement("select");
+			selector.setAttribute("multiple", true);
+			selector.setAttribute("id", "group_selector");
 			
 			for (let onegroup of data) {
-				let oneoption=document.createElement('option')
-				oneoption.setAttribute('value',onegroup.group_id)
-				oneoption.textContent = onegroup.group_name
-				selector.appendChild(oneoption)
+				let oneoption = document.createElement("option");
+				oneoption.setAttribute("value",onegroup.group_id);
+				oneoption.textContent = onegroup.group_name;
+				selector.appendChild(oneoption);
 				if (onegroup.inGroup && onegroup.inGroup > 0 ) {
-					oneoption.setAttribute('selected', true)
+					oneoption.setAttribute("selected", true);
 				} 
 			}
 			const elementBoxFull = document.getElementById("boxfull");
 			const elementInputFull = document.createElement("div");
 			elementInputFull.setAttribute("class", "inputbox");
-			elementInputFull.textContent = 'Friend in the following groups:';
+			elementInputFull.textContent = "Friend in the following groups:";
 			elementInputFull.append(selector);
 			elementBoxFull.append(elementInputFull);
-
-			return resolve(true)
+			return resolve(true);
 		})
 		.catch((error) => {
 			return reject(error);
 		});
 	});
-
 }
