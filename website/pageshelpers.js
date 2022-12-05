@@ -364,7 +364,7 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 }
 
 // Create an admin user info div. Picture, name, email, date, item type.
-export function insertUserItem(userPicture, userName, userEmail, itemDate, itemType) {
+export function insertUserItem(userPicture, userFirstName, userLastName, userEmail, itemDate, itemType) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementDivUser = document.createElement("div");
 	elementDivUser.setAttribute("class", "userdiv");
@@ -375,7 +375,7 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 	const elementUserName = document.createElement("div");
 	elementUserName.setAttribute("id", "username");
 	elementUserName.setAttribute("class", "usertext");
-	elementUserName.textContent = userName;
+	elementUserName.textContent = userFirstName +' ' + userLastName;
 	elementDivUser.append(elementUserName);
 	// Create a text block for the email.
 	const elementUserEmail = document.createElement("div");
