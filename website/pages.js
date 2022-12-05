@@ -36,7 +36,7 @@ window.updateAccount = pact.updateAccount;
 window.loadGroupsEntries = pact.loadGroupsEntries;
 
 // Disable or enable testing.
-export const testing = true;
+export const testing = false;
 
 // Always insert the content box first, and then the header type.
 
