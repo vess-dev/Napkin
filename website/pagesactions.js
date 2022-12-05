@@ -457,3 +457,42 @@ export function loadFriendStats(friend_id) {
 		});
 	});
 }
+export function friendGroupsUpdateAction(friend_id) {
+
+	let selected  = document.querySelectorAll("#group_selector option:checked");
+	let group_ids = Array.from(selected).map(el => el.value);
+	let groupList = "";
+	for (let one of group_ids) {
+		groupList += one + ","
+	}
+	console.log("have groupList ", groupList);
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "POST",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+			body: JSON.stringify({
+				friend_id: friend_id,
+				group_id: groupList
+			  })
+		};
+		fetch(route.SERVER + "friendgroups", options)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				throw new help.clientError("Server Error", response.status, "Problem updating friend groups.");
+			}
+		})
+		.then(() => {
+			routePage("#accFriends")
+			return resolve(true)
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+	
+};

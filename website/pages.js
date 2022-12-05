@@ -28,6 +28,7 @@ window.processLikeClick = pact.processLikeClick;
 window.editFriendGroups = pact.editFriendGroups;
 window.friendSearchAction = pact.friendSearchAction;
 window.makeFriendRequest = pact.makeFriendRequest;
+window.friendGroupsUpdateAction = pact.friendGroupsUpdateAction;
 
 window.updateAccount = pact.updateAccount;
 
@@ -151,7 +152,7 @@ export function accFriendGroups() {
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertFullBox(false);
 	phelp.insertText('your friend is ' + friend_id)
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Save changes", "TODOfriendGroupsUpdateAction()"], ]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Save changes", "friendGroupsUpdateAction(friend_id)"], ]);
 	pact.loadFriendStats(friend_id);
 }
 
