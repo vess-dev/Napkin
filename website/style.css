@@ -223,14 +223,16 @@ textarea.inputfield {
 }
 
 .block {
-	overflow: auto;
 	height: calc(300px - 5.2rem);
+	overflow: auto;
 }
 
 .postpicture {
 	align-items: right;
 	height: 300px;
 	margin-left: auto;
+	min-height: 300px;
+	min-width: 300px;
 	object-fit: fill;
 	width: 300px;
 }

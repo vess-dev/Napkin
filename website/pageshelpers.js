@@ -206,7 +206,7 @@ export function insertBottomButtons(buttonList, cloudToggle) {
 	if (cloudToggle) {
 		let elementButtonCloud = document.createElement("button");
 		elementButtonCloud.setAttribute("id", "upload_widget")
-		elementButtonCloud.setAttribute("class", "cloudinary-button");
+		elementButtonCloud.setAttribute("class", "cloudinary-button buttonsubmit");
 		elementButtonCloud.textContent = "Upload Image";
 		elementDivBottom.appendChild(elementButtonCloud);
 	}
