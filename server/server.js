@@ -373,6 +373,25 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
           });
         }
       };
+  //REJECTFRIEND route
+  if (url.pathname === routes.REJECTFRIEND) {
+
+    if (method === 'POST') {
+      routeFound = true;
+      friend.rejectFriend(bodyObject.friend_id, userID).then(reply=>{
+        response.statusCode = 200;
+        response.write(JSON.stringify({"success": "blocked a friend request"}));          
+      })
+      .catch(error=>{
+        handleErrorReply(response, error, 400);
+      })
+      .finally(() => {
+        response.end();
+      });
+    }
+  }
+
+
   //postgroup routes
     if (url.pathname === routes.POSTGROUP) {
 

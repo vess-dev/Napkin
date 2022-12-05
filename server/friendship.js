@@ -121,4 +121,10 @@ function deleteFriendEntries(friendID, userID) {
 })
 }
 
-module.exports = {getFriendList, makeFriendRequest, getFriendGroups, deleteFriendEntries}
+function rejectFriend (friendID, userID) {
+  makeFriendsStatus(friendID, userID, 'rejected')
+  makeFriendsStatus(userID, friendID, 'blocked')
+
+}
+
+module.exports = {rejectFriend, getFriendList, makeFriendRequest, getFriendGroups, deleteFriendEntries}
