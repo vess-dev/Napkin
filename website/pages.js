@@ -22,6 +22,7 @@ window.makeCloudinarylink = phelp.makeCloudinarylink;
 window.processLikeClick = pact.processLikeClick;
 window.friendSearchAction = pact.friendSearchAction;
 window.makeFriendRequest = pact.makeFriendRequest ;
+window.editFriendGroups = pact.editFriendGroups ;
 
 // Disable or enable testing.
 const testing = false;
@@ -137,10 +138,11 @@ export function accGroups() {
 }
 
 // When you look at your groups.
-export function accFriendGroups(friend_id) {
+export function accFriendGroups() {
+	let friend_id = document.querySelector('#friends').payload
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
-	phelp.insertText('your friend' + friend_id)
+	phelp.insertText('your friend is ' + friend_id)
 }
 
 // When you want to create a post.

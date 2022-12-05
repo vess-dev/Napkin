@@ -359,4 +359,8 @@ export function makeFriendRequest(friend_id) {
 		});
 	});
 }
-
+export function editFriendGroups(friend_id) {
+	let friendbutton = document.querySelector('#friends')
+	friendbutton.payload = friend_id;
+	routePage('#accFriendGroups')
+}
