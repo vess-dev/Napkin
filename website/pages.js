@@ -121,6 +121,9 @@ export async function accBlocked() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	if (testing) test.testFriends("blocked");
+	phelp.insertText("People I've blocked:")
+	await pact.getFriends('rejected')
+	phelp.insertText("I'm blocked by:")
 	await pact.getFriends('blocked')
 }
 
