@@ -63,7 +63,7 @@ function routePage(newPage) {
 			page.postEdit();
 			break;
 		case route.PAGE_FRIEND_GROUPS:
-			page.friendGroups();
+			page.accFriendGroups();
 			break;
 		case route.PAGE_ACC_SETTINGS:
 			page.accSettings();

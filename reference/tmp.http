@@ -47,9 +47,9 @@ cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 
 POST http://cpsc.roanoke.edu:3009/groupmembers
 content-type: application/json
-cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
+cookie: sessionid=076fe3b2-bc21-4116-9ee4-4c418f19e733
 
-{"group_id": 10, "friend_id": 11}
+{"group_id": 10, "friend_id": 13}
 
 ###
 DELETE http://cpsc.roanoke.edu:3009/groupmembers?group_id=10&friend_id=11

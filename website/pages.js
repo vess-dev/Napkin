@@ -137,7 +137,7 @@ export function accGroups() {
 }
 
 // When you look at your groups.
-export function accGroups(friend_id) {
+export function accFriendGroups(friend_id) {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertText('your friend' + friend_id)
