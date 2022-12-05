@@ -506,7 +506,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
             routeFound = true;
             let status = queryObject.status
       
-            admin.getUsersForAdmin(queryStatus, userID).then(list=>{
+            admin.getUsersForAdmin(queryObject.status, userID).then(list=>{
               response.statusCode = 200;
               response.write(JSON.stringify(list));
             })
