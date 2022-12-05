@@ -67,7 +67,7 @@ function getGroupMembersList(group_id) {
 async function deleteUserFromMyGroups (friend_id, user_id) {
   console.log('starting deletion of friend for groups owned by user', friend_id, user_id)
   return new Promise((resolve, reject) =>{
-    db.pool.query(`delete from groups_memberships where user_id=? and group_id in (select group_id from groups where owner_id=?)`,
+    db.pool.query(`delete from group_memberships where user_id=? and group_id in (select group_id from groups where owner_id=?)`,
     [friend_id, user_id],
     function(error, results) {
       if (error) {                    
