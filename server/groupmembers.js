@@ -78,10 +78,12 @@ async function deleteUserFromMyGroups (friend_id, user_id) {
 
 async function editGroupMemberships(group_id, friend_id, user_id) {
   await deleteUserFromMyGroups(friend_id, user_id)  
+  console.log('deletion done, will work on group_id', group_id)
   if (Number.isInteger(group_id)) {addGroupMember(group_id, friend_id, user_id)
     } else {
       let allgroups = postObject.group_id.split(/[, ]+/)
       for (let onegroup of allgroups) {
+        console.log('will add friend to group:', friend_id, onegroup)
           addGroupMember(onegroup, friend_id, user_id)
       }
     }
