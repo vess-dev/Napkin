@@ -385,10 +385,25 @@ export function loadFriendStats(friend_id) {
 				throw new help.clientError("Server Error", response.status, "Unable to retrieve friends");
 			}
 		})
-		.then((friendsList) => {
-			for (let friend of friendsList) {
-				phelp.insertFriendItem(help.loadPostImage(friend.user_image), friend.user_handle, friend_status, friend.friend_id);
+		.then((data) => {
+			let selector = document.createElement('select')
+			selector.setAttribute('multiple', true)
+			selector.setAttribute('id','group_selector')
+
+			for (let onegroup of data) {
+				let oneoption=document.createElement('option')
+				oneoption.setAttribute('value',onegroup.group_id)
+				oneoption.textContent = onegroup.group_name
+				if (inGroup) {oneoption.setAttribute('selected', 'true')}
+				selector.appendChild(oneoption)
 			}
+			const elementBoxFull = document.getElementById("boxfull");
+			const elementInputFull = document.createElement("div");
+			elementInputFull.setAttribute("class", "inputbox");
+			elementInputFull.textContent = 'Post visible to:';
+			elementInputFull.append(selector);
+			elementBoxFull.append(elementInputFull);
+
 			return resolve(true)
 		})
 		.catch((error) => {
