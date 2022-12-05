@@ -366,7 +366,7 @@ export function editFriendGroups(friend_id) {
 }
 
 export function loadFriendStats(friend_id) {
-	let endpoint = 'friendgroups'
+	let endpoint = 'friendgroups?friend_id='+friend_id
 
 	return new Promise((resolve, reject) => {
 		let options = {
