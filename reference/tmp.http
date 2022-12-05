@@ -77,7 +77,7 @@ cookie: sessionid=f0969177-914e-4884-b7ae-b844c10e8993
 
 GET http://cpsc.roanoke.edu:3009/group
 content-type: application/json
-cookie: sessionid=2026fadb-68f5-48af-aaeb-ad1e60c79301
+cookie: sessionid=2271d572-73ad-4ab1-bc32-bf5c849ae4c7
 ###
 
 POST http://cpsc.roanoke.edu:3009/friend
@@ -92,7 +92,7 @@ content-type: application/json
 cookie: sessionid=fbb1b3b9-7c5c-43cf-a5c7-3ace0913df30
 
 ###
-GET http://cpsc.roanoke.edu:3009/friend
+GET http://cpsc.roanoke.edu:3009/group
 content-type: application/json
 cookie: sessionid=fbb1b3b9-7c5c-43cf-a5c7-3ace0913df30
 
@@ -104,7 +104,10 @@ cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 {"group_name": "Tired coders", "group_ranking": 3}
 
 ###
-
+GET http://cpsc.roanoke.edu:3009/adminusers?status=active
+content-type: application/json
+cookie: sessionid=d0a0a866-fc9d-428f-8431-082eb761eb39
+###
 
 PUT http://cpsc.roanoke.edu:3009/group
 content-type: application/json
@@ -152,6 +155,14 @@ content-type: application/json
 cookie: sessionid=c94b1d7e-f11d-4673-b774-7d76746dac54
 
 ### 
+
+POST http://cpsc.roanoke.edu:3009/friendgroups
+content-type: application/json
+cookie: sessionid=bb6e681c-b8b3-4227-8f64-8b10f8ae98b6
+
+{"friend_id": 13, "group_id": "10,2" }
+###
+
 
 select * from 
 (select 1 as result, group_id from group_memberships where user_id=2 and group_id in (select group_id from groups where owner_id=1))
