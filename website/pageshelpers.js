@@ -1,6 +1,6 @@
 import * as help from "./helpers.js";
 import * as pact from "./pagesactions.js";
-import * as routes from "./routes.js";
+import * as route from "./routes.js";
 
 // Insert a content box where... Content is displayed. Haha.
 export function insertContent() {
@@ -455,7 +455,7 @@ export function getGroupsSelector() {
 		headers: {
 		"Content-Type": "application/json"}
 	};
-	fetch(routes.SERVER+endpoint, options)
+	fetch(route.SERVER+endpoint, options)
 	.then((response) => {
 		if (response.ok) {
 			return response.json();
