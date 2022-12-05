@@ -39,6 +39,7 @@ function createPost(postObject, userID) {
 }
 
 function editPost(postObject, userID) {
+  console.log('starting to editPost',postObject)
   return new Promise((resolve, reject) =>{
     if (!postObject || !userID || !postObject.post_title ||!postObject.post_id || !postObject.post_content) {
       return reject(new BaseError('wrong parameters', 500, "must pass all params"))
@@ -57,7 +58,7 @@ function editPost(postObject, userID) {
           console.log('edited post with number', postID)   
           if (postObject.group_id) {
             await removePostFromAllGroups(userID, postID)
-            console.log('calling putPostInGroup with', userID, postObject.group_id, postIDd)
+            console.log('calling putPostInGroup with', userID, postObject.group_id, postID)
             if (Number.isInteger(postObject.group_id)) {putPostInGroup(userID, postObject.group_id, postID)}
             else {
               let allgroups = postObject.group_id.split(/[, ]+/)

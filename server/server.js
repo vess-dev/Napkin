@@ -84,7 +84,6 @@ function handleHTTPRequests(request, response) {
 function routeRequests(url, method, bodyObject, response, userID, queryObject, inbound_file_data) {
   let routeFound = false;
   console.log('urlpathname is', url.pathname)
-  console.log('queryObject is', queryObject)
   try {
     // OPTIONS handling
     if (method === 'OPTIONS') {
