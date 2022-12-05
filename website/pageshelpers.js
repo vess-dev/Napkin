@@ -422,8 +422,22 @@ export function insertUserItem(userPicture, userFirstName, userLastName, userEma
 }
 
 export function insertGroupItem(group_id, group_name, group_ranking) {
-	
+	const elementBoxFull = document.getElementById("boxfull");
+	const elementDivGroup = document.createElement("div");
+	elementDivGroup.setAttribute("class", "groupdiv");
+	// Create a text block for the name.
+	const elementGroupName = document.createElement("div");
+	elementGroupName.setAttribute("id", "group_name");
+	elementGroupName.setAttribute("class", "usertext");
+	elementGroupName.textContent = group_name + "#"+group_id + "ranking" + group_ranking;
+	elementDivGroup.append(elementGroupName);
+	// Setup the buttons properly.
+	const elementButtonBox = document.createElement("div");
+	elementButtonBox.setAttribute("class", "buttonbox");
+	elementDivGroup.append(elementButtonBox);
+	elementBoxFull.append(elementDivGroup);
 	//TODO
+	
 }
 
 // Get the groups selector input.
