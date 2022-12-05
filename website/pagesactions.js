@@ -394,8 +394,10 @@ export function loadFriendStats(friend_id) {
 				let oneoption=document.createElement('option')
 				oneoption.setAttribute('value',onegroup.group_id)
 				oneoption.textContent = onegroup.group_name
-				if (onegroup.inGroup) {oneoption.setAttribute('selected', true)}
 				selector.appendChild(oneoption)
+				if (onegroup.inGroup) {
+					console.log('need to select this one', onegroup.group_id)
+					oneoption.setAttribute('selected', true)}
 			}
 			const elementBoxFull = document.getElementById("boxfull");
 			const elementInputFull = document.createElement("div");
