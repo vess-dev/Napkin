@@ -281,7 +281,7 @@ export async function getAdminUsers(admin_status) {
 				throw new help.clientError("Server Error", response.status, "Unable to retrieve admin users");
 			}
 		})
-		.then((friendsList) => {
+		.then((adminUsersList) => {
 			for (let adminUser of adminUsersList) {
 				phelp.insertUserItem(help.loadImage(adminUser.user_image, true), adminUser.user_first_name, adminUser.user_last_name, adminUser.user_email, null, admin_status);
 			}
