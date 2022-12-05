@@ -350,7 +350,7 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", `rejectFriendAction(${friend_ID})`);
 			elementButtonBox.append(elementButtonDecline);
 			break;
-		case "blocked":
+		case "rejected":
 			const elementButtonUnblock = createButton("unblock", ["button", "buttonred"], "Unblock", `removeFriendAction(${friend_ID})`);
 			elementButtonBox.append(elementButtonUnblock);
 			break;
