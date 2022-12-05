@@ -142,3 +142,13 @@ replace INTO group_memberships (group_id, user_id)
          AND 11 IN (select friend_id from friendships where user_id=1 and friendship_status='accepted') 
 
          [group_id, friend_id, group_id, user_id, friend_id, user_id]
+
+
+delete from group_memberships where user_id=1 and friend_id = 13 and friend
+
+select group_id, group_name, user_id as inGroup from (select group_id, user_id from group_memberships where user_id=?) b right join groups using (group_id) 
+    where group_id in (select group_id from groups where owner_id=?)`, [friendID, userID],
+`
+select * from friendships 
+
+select * from friendships where (user_id=12 and friend_id = 1 and friendship_status in ('accepted', 'pending')) or (user_id=1 and friend_id=12 and friendship_status in ('accepted', 'requested')) 

@@ -557,7 +557,35 @@ export function rejectFriendAction(friend_id) {
 	
 };
 
-export function loadGroupsEntries () {
-	// use the /group endpoint (GET) then... 
-	//phelp.insertGroupItem(group_id, group_name, group_ranking)
+export function loadGroupsEntries (userID) {
+
+		return new Promise((resolve, reject) => {
+			let options = {
+				method: "GET",
+				credentials: "include",
+				headers: {
+				"Content-Type": "application/json"}
+			};
+			fetch(route.SERVER + 'group', options)
+			.then((response) => {
+				if (response.statusCode == 401) {routePage("#accLogin")}
+				if (response.ok) {
+					return response.json();
+				}
+				else {
+					throw new help.clientError("Server Error", response.status, "Unable to retrieve friends");
+				}
+			})
+			.then((groupList) => {
+				for (let onegroup of groupList) {
+					phelp.insertGroupItem(onegroup.group_id, onegroup.group_name, onegroup.group_ranking);
+				}
+				return resolve(true);
+			})
+			.catch((error) => {
+				return reject(error);
+			});
+		});
+	}
+	
 }

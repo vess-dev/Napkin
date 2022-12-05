@@ -422,6 +422,7 @@ export function insertUserItem(userPicture, userFirstName, userLastName, userEma
 }
 
 export function insertGroupItem(group_id, group_name, group_ranking) {
+	
 	//TODO
 }
 
