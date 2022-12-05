@@ -136,6 +136,13 @@ export function accGroups() {
 	phelp.insertHeader(userHeader, "groups");
 }
 
+// When you look at your groups.
+export function accGroups(friend_id) {
+	phelp.insertContent();
+	phelp.insertHeader(userHeader, "groups");
+	phelp.insertText('your friend' + friend_id)
+}
+
 // When you want to create a post.
 export function postCreate() {
 	phelp.insertContent();

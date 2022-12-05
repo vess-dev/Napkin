@@ -22,6 +22,7 @@ function clearPage() {
 // If given a page anchor, will load the appropriate page.
 // If not passed anything, will look at current URL anchor and load that page.
 function routePage(newPage) {
+	console.log('window.location is',window.location)
 	let currentHash = (newPage ? newPage : window.location.hash);
 	if (newPage) {
 		history.pushState({}, "", newPage);
@@ -60,6 +61,9 @@ function routePage(newPage) {
 			break;
 		case route.PAGE_POST_EDIT:
 			page.postEdit();
+			break;
+		case route.PAGE_FRIEND_GROUPS:
+			page.friendGroups();
 			break;
 		case route.PAGE_ACC_SETTINGS:
 			page.accSettings();

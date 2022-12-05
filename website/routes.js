@@ -13,6 +13,7 @@ export const PAGE_ACC_GROUPS = "#accGroups";
 export const PAGE_POST_CREATE = "#postCreate";
 export const PAGE_POST_EDIT = "#postEdit";
 export const PAGE_ACC_SETTINGS = "#accSettings";
+export const PAGE_FRIEND_GROUPS = "#friendGroups";
 
 // Admin paths.
 export const PAGE_ADMIN_PENDING = "#adminPending";
