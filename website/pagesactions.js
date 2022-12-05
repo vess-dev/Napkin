@@ -340,7 +340,7 @@ export async function getFriends(friend_status) {
 
 // Search for a person globally.
 export function friendSearchAction () {
-	let searchString = document.querySelector("#screenname'").value;
+	let searchString = document.querySelector("#screenname").value;
 	let endpoint = "user";
 	if (searchString) {
 		endpoint = "user?search=" + encodeURIComponent(searchString);
@@ -505,7 +505,7 @@ export function removeFriendAction(friend_id) {
 			headers: {
 			"Content-Type": "application/json"},
 		};
-		
+
 		fetch(route.SERVER + "friend?friend_id="+friend_id, options)
 		.then((response) => {
 			if (response.ok) {
