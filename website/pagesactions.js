@@ -15,13 +15,14 @@ import {setCookie} from "./cookies.js";
 	}
 } */
 
+// Fill the URL path on the post page with the cloud upload URL.
 export function createCloudinaryWidget () {
 	var myWidget = cloudinary.createUploadWidget({
 	cloudName: "dkz6vktw0", 
 	uploadPreset: "wnlaqufk"}, (error, result) => { 
 		if (!error && result && result.event === "success") { 
 			console.log("Done! Here is the image info: ", result.info.public_id); 
-			let fieldTarget=document.querySelector("#post_image_url");
+			let fieldTarget = document.querySelector("#post_image_url");
 			fieldTarget.value = "https://res.cloudinary.com/dkz6vktw0/image/upload/ar_1:1,c_fill,g_faces,h_300,r_8,w_300/" + result.info.public_id;
 	  	}
 	});

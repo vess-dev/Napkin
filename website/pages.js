@@ -25,7 +25,7 @@ window.makeFriendRequest = pact.makeFriendRequest;
 window.editFriendGroups = pact.editFriendGroups;
 
 // Disable or enable testing.
-const testing = false;
+const testing = true;
 
 // Always insert the content box first, and then the header type.
 
@@ -157,12 +157,10 @@ export function postCreate() {
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Post title:", "post_title", false);
 	phelp.insertInputBox("Post image URL:", "post_image_url", false);
-	phelp.insertTextAreaBox("Post content:", "post_content", false);
+	phelp.insertInputBox("Post content:", "post_content", false, true);
 	phelp.getGroupsSelector()
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"], ]);
-	phelp.makeCloudinarylink()
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"], ], true);
 	pact.createCloudinaryWidget()
-
 }
 
 // When you want to edit a post.
@@ -174,7 +172,7 @@ export function postEdit(postID) {
 	phelp.insertInputBox("placeholder postID"+postID, "post_title", false);
 	phelp.insertInputBox("Post title:", "post_title", false);
 	phelp.insertInputBox("Post image URL:", "post_image_url", false);
-	phelp.insertTextAreaBox("Post content:", "post_content", false);
+	phelp.insertInputBox("Post content:", "post_content", false, true);
 	phelp.getGroupsSelector()
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction("+postID+")"]]);
 }

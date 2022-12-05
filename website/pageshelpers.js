@@ -155,31 +155,19 @@ export function insertFullBox(miniHeader) {
 }
 
 // A div that has text on the left, and an input box on the right.
-export function insertInputBox(inputText, inputName, inputPassword, currentValue) {
+export function insertInputBox(inputText, inputName, inputPassword, toggleArea) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementInputFull = document.createElement("div");
 	elementInputFull.setAttribute("class", "inputbox");
 	elementInputFull.textContent = inputText;
-	const elementInputField = document.createElement("input");
-	elementInputField.setAttribute("class", "inputfield");
-	elementInputField.setAttribute("id", inputName);
-	// If the input should hide a password.
-	if (inputPassword) {
-		elementInputField.setAttribute("type", "password");
+	let elementInputField;
+	if (toggleArea) {
+		elementInputField = document.createElement("textarea");
 	}
-	elementInputFull.append(elementInputField);
-	elementBoxFull.append(elementInputFull);
-}
-
-export function insertTextAreaBox(inputText, inputName, inputPassword, currentValue) {
-	const elementBoxFull = document.getElementById("boxfull");
-	const elementInputFull = document.createElement("div");
-	elementInputFull.setAttribute("class", "inputbox");
-	elementInputFull.textContent = inputText;
-	const elementInputField = document.createElement("textarea");
+	else {
+		elementInputField = document.createElement("input");
+	}
 	elementInputField.setAttribute("class", "inputfield");
-	elementInputField.setAttribute("rows", 5);
-	elementInputField.setAttribute("cols", 50);
 	elementInputField.setAttribute("id", inputName);
 	// If the input should hide a password.
 	if (inputPassword) {
@@ -191,7 +179,6 @@ export function insertTextAreaBox(inputText, inputName, inputPassword, currentVa
 
 export function insertPostActions(postID) {
 	//TODO: need post deletion, remove post from all groups (makes post invisible), post edit
-
 }
 
 // Create and add different button types.
@@ -207,7 +194,7 @@ export function createButton(buttonId, buttonClasses, buttonText, buttonCall) {
 }
 
 // Add buttons to the bottom of a page.
-export function insertBottomButtons(buttonList) {
+export function insertBottomButtons(buttonList, cloudToggle) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementDivBottom = document.createElement("div");
 	for (let itrButton in buttonList) {
@@ -215,6 +202,13 @@ export function insertBottomButtons(buttonList) {
 		elementDivBottom.append(elementNewButton);
 	}
 	elementDivBottom.setAttribute("class", "buttonbottom");
+	if (cloudToggle) {
+		let elementButtonCloud = document.createElement("button");
+		elementButtonCloud.setAttribute("id", "upload_widget")
+		elementButtonCloud.setAttribute("class", "cloudinary-button");
+		elementButtonCloud.textContent = "Upload Image";
+		elementDivBottom.appendChild(elementButtonCloud);
+	}
 	elementBoxFull.append(elementDivBottom);
 }
 
@@ -379,16 +373,6 @@ export function getGroupsSelector() {
 		elementInputFull.append(selector);
 		elementBoxFull.append(elementInputFull);
 	})
-}
-
-// Fix the button to upload to cloudinary.
-export function makeCloudinarylink() {
-	let thisbutton = document.createElement("button");
-	thisbutton.setAttribute("id", "upload_widget")
-	thisbutton.setAttribute("class", "cloudinary-button");
-	thisbutton.innerHTML = "Upload Image";
-	const elementBoxFull = document.getElementById("boxfull");
-	elementBoxFull.appendChild(thisbutton)
 }
 
 /*

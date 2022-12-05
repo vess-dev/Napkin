@@ -98,5 +98,3 @@ CREATE TABLE posts_feed(
   foreign key (post_id) references posts(post_id),
   primary key (user_id, post_id)
 );
-
-

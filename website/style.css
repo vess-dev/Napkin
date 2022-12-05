@@ -43,7 +43,10 @@ body {
 }
 
 textarea.inputfield {
-	height: 6rem;
+	cols: 50;
+	height: 10rem;
+	rows: 5;
+	resize: none;
 }
 
 .testcube {
