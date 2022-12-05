@@ -22,7 +22,6 @@ function clearPage() {
 // If given a page anchor, will load the appropriate page.
 // If not passed anything, will look at current URL anchor and load that page.
 function routePage(newPage) {
-	console.log('window.location is',window.location)
 	let currentHash = (newPage ? newPage : window.location.hash);
 	if (newPage) {
 		history.pushState({}, "", newPage);

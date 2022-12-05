@@ -143,6 +143,7 @@ export function accFriendGroups() {
 
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
+	phelp.insertFullBox(false);
 	phelp.insertText('your friend is ' + friend_id)
 }
 
