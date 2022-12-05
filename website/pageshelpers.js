@@ -264,9 +264,9 @@ export function insertInputBox(inputText, inputName, inputPassword, toggleArea, 
 export function insertPostActions(postID) {
 	//TODO: need post deletion, remove post from all groups (makes post invisible), post edit
 	const elementPostBox = document.getElementById(postID);
-	elementPostBox.append(createButton('edit', 'edit','Edit',"TODOEDITPOST"))
-	elementPostBox.append(createButton('delete', 'delete','Delete',"TODOEDITPOST"))
-	elementPostBox.append(createButton('hide', 'hide','Hide',"TODOEDITPOST"))
+	elementPostBox.appendChild(createButton('edit', 'edit','Edit',"TODOEDITPOST"))
+	elementPostBox.appendChild(createButton('delete', 'delete','Delete',"TODOEDITPOST"))
+	elementPostBox.appendChild(createButton('hide', 'hide','Hide',"TODOEDITPOST"))
 	
 }
 
