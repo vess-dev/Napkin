@@ -556,3 +556,8 @@ export function rejectFriendAction(friend_id) {
 	});
 	
 };
+
+export function loadGroupsEntries () {
+	// use the /group endpoint (GET) then... 
+	//phelp.insertGroupItem(group_id, group_name, group_ranking)
+}

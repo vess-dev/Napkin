@@ -421,6 +421,10 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 	elementBoxFull.append(elementDivUser);
 }
 
+export function insertGroupItem(group_id, group_name, group_ranking) {
+	//TODO
+}
+
 // Get the groups selector input.
 export function getGroupsSelector() {
 	let selector = document.createElement("select");

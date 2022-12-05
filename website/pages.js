@@ -33,7 +33,7 @@ window.removeFriendAction = pact.removeFriendAction;
 window.rejectFriendAction = pact.rejectFriendAction ;
 
 window.updateAccount = pact.updateAccount;
-
+window.loadGroupsEntries = pact.loadGroupsEntries;
 
 // Disable or enable testing.
 export const testing = false;
@@ -148,6 +148,10 @@ export function friendSearch() {
 export function accGroups() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
+	phelp.insertFullBox(true)
+	phelp.insertText('My groups')
+	pact.loadGroupsEntries()
+
 }
 
 // When you look at your groups.
@@ -158,7 +162,7 @@ export function accFriendGroups() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertFullBox(false);
-	phelp.insertText('your friend is ' + friend_id)
+	phelp.insertText('Managing friend #' + friend_id)
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Save changes", `friendGroupsUpdateAction(${friend_id})`], ]);
 	pact.loadFriendStats(friend_id);
 }
