@@ -343,12 +343,13 @@ export function insertUserItem(userPicture, userName, userEmail, itemDate, itemT
 	elementBoxFull.append(elementDivUser);
 }
 
+// Get the groups selector input.
 export function getGroupsSelector() {
-	let selector = document.createElement('select')
-	selector.setAttribute('multiple', true)
-	selector.setAttribute('id','group_selector')
+	let selector = document.createElement("select");
+	selector.setAttribute("multiple", true);
+	selector.setAttribute("id", "group_selector");
 
-	let endpoint='group'
+	let endpoint = "group";
 	let options = {
 		method: "GET",
 		credentials: "include",
@@ -361,36 +362,35 @@ export function getGroupsSelector() {
 			return response.json();
 		}
 		else {
-			throw new Error('error', response)
+			throw new help.clientError("Server Error", response.status, "Unable to get groups.");
 		}
 	})
 	.then(data => {
 		for (let onegroup of data) {
-			let oneoption=document.createElement('option')
-			oneoption.setAttribute('value',onegroup.group_id)
-			oneoption.textContent = onegroup.group_name
-			selector.appendChild(oneoption)
+			let oneoption = document.createElement("option");
+			oneoption.setAttribute("value", onegroup.group_id);
+			oneoption.textContent = onegroup.group_name;
+			selector.appendChild(oneoption);
 		}
 		const elementBoxFull = document.getElementById("boxfull");
 		const elementInputFull = document.createElement("div");
 		elementInputFull.setAttribute("class", "inputbox");
-		elementInputFull.textContent = 'Post visible to:';
+		elementInputFull.textContent = "Post visible to:";
 		elementInputFull.append(selector);
 		elementBoxFull.append(elementInputFull);
-	}
-
-	)
+	})
 }
+
+// Fix the button to upload to cloudinary.
 export function makeCloudinarylink() {
-	let thisbutton=document.createElement('button')
-	thisbutton.setAttribute('id','upload_widget')
-	thisbutton.setAttribute('class','cloudinary-button')
-	thisbutton.innerHTML='Upload Image'
+	let thisbutton = document.createElement("button");
+	thisbutton.setAttribute("id", "upload_widget")
+	thisbutton.setAttribute("class", "cloudinary-button");
+	thisbutton.innerHTML = "Upload Image";
 	const elementBoxFull = document.getElementById("boxfull");
 	elementBoxFull.appendChild(thisbutton)
-
-
 }
+
 /*
 export function insertUploadForm() {
 	const elementBoxFull = document.getElementById("boxfull");
@@ -398,7 +398,6 @@ export function insertUploadForm() {
 	elementImageForm.setAttribute("action", "/#upload");
 	elementImageForm.setAttribute("method", "post")
 	elementImageForm.setAttribute("enctype", "multipart/form-data");
-	
 	const fileUploadElement = document.createElement('input');
 	fileUploadElement.setAttribute("accept", "image/*");
 	fileUploadElement.setAttribute('type','file');
@@ -408,6 +407,5 @@ export function insertUploadForm() {
 	elementImageForm.appendChild(fileUploadElement);
 	elementImageForm.appendChild(submitButton)
 	elementBoxFull.appendChild(elementImageForm)
-	
 }
 */
