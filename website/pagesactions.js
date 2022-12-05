@@ -18,7 +18,7 @@ import {setCookie} from "./cookies.js";
 } */
 
 // Fill the URL path on the post page with the cloud upload URL.
-export function createCloudinaryWidget () {
+export function createCloudinaryWidget() {
 	var myWidget = cloudinary.createUploadWidget({
 	cloudName: "dkz6vktw0", 
 	uploadPreset: "wnlaqufk"}, (error, result) => { 
@@ -31,6 +31,16 @@ export function createCloudinaryWidget () {
 	document.getElementById("upload_widget").addEventListener("click", function() {
 	  myWidget.open();
 	}, false);
+}
+
+// For updating the account info.
+export function updateAccount() {
+	const elementPass = document.getElementById("password");
+	const elementConfirm = document.getElementById("confirm");
+	if (elementPass.value != elementConfirm.value) {
+		help.woops("Passwords don't match.");
+		return;
+	}
 }
 
 /* 
@@ -190,8 +200,11 @@ export function userCreateAction() {
 	let user_email = document.querySelector("#email").value;
 	let user_password = document.querySelector("#password").value;
 	let user_confirm = document.querySelector("#confirm").value;
-	
-	// TODO: client side error checking for password and confirm not matching. (Do you have an error popup, Vess?) (V: Use help.woops(<text>) for now.)
+
+	if (user_password != user_confirm) {
+		help.woops("Passwords don't match.");
+		return;
+	}
 
 	return new Promise((resolve, reject) => {
 		let options = {

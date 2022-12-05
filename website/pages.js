@@ -29,6 +29,8 @@ window.editFriendGroups = pact.editFriendGroups;
 window.friendSearchAction = pact.friendSearchAction;
 window.makeFriendRequest = pact.makeFriendRequest;
 
+window.updateAccount = pact.updateAccount;
+
 // Disable or enable testing.
 export const testing = true;
 
@@ -192,11 +194,13 @@ export function accSettings() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Change email:", "email", false);
+	phelp.insertInputBox("Change profile picture:", "post_image_url", false);
 	phelp.insertInputBox("Change first name:", "firstname", false);
 	phelp.insertInputBox("Change last name:", "lastname", false);
 	phelp.insertInputBox("Change password:", "password", true);
 	phelp.insertInputBox("Confirm password:", "confirm", true);
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "routePage('#accSettings')"], ["image", ["button", "buttonother"], "Change Image", "TODOCHANGEIMAGE"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "updateAccount()"]], true);
+	pact.createCloudinaryWidget()
 }
 
 // For admins to look at pending accounts.

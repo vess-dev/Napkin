@@ -35,5 +35,5 @@ export class clientError extends Error {
 
 // Simple error window. Fix later?
 export function woops(woopsText) {
-	window.alert(woopsText);
+	window.alert("Error: " + woopsText);
 }
