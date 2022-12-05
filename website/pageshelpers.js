@@ -118,7 +118,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		elementEye.setAttribute("type", "image");
 		elementEye.setAttribute("src", help.pathImage("eye", false));
 		elementEye.setAttribute("class", "userpicture");
-		elementEye.addEventListener("click", () => console.log("hide " + postID));
+		elementEye.addEventListener("click", () => console.log("hide " + postID)); // TODO: HOOKUP HIDE?
 		elementDivIcons.append(elementEye);
 		const elementEdit = document.createElement("input");
 		elementEdit.setAttribute("type", "image");
@@ -130,7 +130,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		elementTrash.setAttribute("type", "image");
 		elementTrash.setAttribute("src", help.pathImage("remove", false));
 		elementTrash.setAttribute("class", "userpicture");
-		elementTrash.addEventListener("click", () => console.log("trash " + postID));
+		elementTrash.addEventListener("click", () => console.log("trash " + postID)); // TODO: HOOKUP DELETE?
 		elementDivIcons.append(elementTrash);
 		elementDivInfo.append(elementDivIcons);
 	}
