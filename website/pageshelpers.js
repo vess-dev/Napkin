@@ -370,8 +370,9 @@ export function insertUserItem(userPicture, userFirstName, userLastName, userEma
 	const elementDivUser = document.createElement("div");
 	elementDivUser.setAttribute("class", "userdiv");
 	// Format the user picture with the appropriate class.
+	if (userPicture) {
 	userPicture.setAttribute("class", "userpicture");
-	elementDivUser.append(userPicture);
+	elementDivUser.append(userPicture); }
 	// Create a text block for the name.
 	const elementUserName = document.createElement("div");
 	elementUserName.setAttribute("id", "username");
