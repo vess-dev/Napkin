@@ -396,9 +396,9 @@ export function loadFriendStats(friend_id) {
 				oneoption.textContent = onegroup.group_name
 				selector.appendChild(oneoption)
 				if (onegroup.inGroup && onegroup.inGroup > 0 ) {
-					console.log('need to select this one', onegroup.group_id)
+					console.log('need to select this one', onegroup.group_id, onegroup.inGroup)
 					oneoption.setAttribute('selected', true)
-				} else {console.log('not ',onegroup.group_id)}
+				} else {console.log('not ',onegroup.group_id, onegroup.inGroup)}
 			}
 			const elementBoxFull = document.getElementById("boxfull");
 			const elementInputFull = document.createElement("div");
