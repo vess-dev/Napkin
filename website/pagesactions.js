@@ -389,8 +389,9 @@ export function loadFriendStats(friend_id) {
 			let selector = document.createElement('select')
 			selector.setAttribute('multiple', true)
 			selector.setAttribute('id','group_selector')
-
+			
 			for (let onegroup of data) {
+				console.log('data dump',onegroup)
 				let oneoption=document.createElement('option')
 				oneoption.setAttribute('value',onegroup.group_id)
 				oneoption.textContent = onegroup.group_name
