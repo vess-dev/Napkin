@@ -394,13 +394,13 @@ export function loadFriendStats(friend_id) {
 				let oneoption=document.createElement('option')
 				oneoption.setAttribute('value',onegroup.group_id)
 				oneoption.textContent = onegroup.group_name
-				if (oneoption.inGroup) {oneoption.setAttribute('selected', 'true')}
+				if (oneoption.inGroup) {oneoption.setAttribute('selected', true)}
 				selector.appendChild(oneoption)
 			}
 			const elementBoxFull = document.getElementById("boxfull");
 			const elementInputFull = document.createElement("div");
 			elementInputFull.setAttribute("class", "inputbox");
-			elementInputFull.textContent = 'Post visible to:';
+			elementInputFull.textContent = 'Friend in the following groups:';
 			elementInputFull.append(selector);
 			elementBoxFull.append(elementInputFull);
 
