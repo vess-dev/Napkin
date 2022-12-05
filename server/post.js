@@ -44,7 +44,8 @@ function editPost(postObject, userID) {
     if (!postObject || !userID || !postObject.post_title ||!postObject.post_id || !postObject.post_content) {
       return reject(new BaseError('wrong parameters', 500, "must pass all params"))
     }
-    postID = postObject.post_id;
+    console.log('still ok?')
+    let postID = postObject.post_id;
     postObject.remove('post_id')
     console.log('now have postObject', postObject)
     db.pool.query('update posts SET ? where post_id = ?', [postObject, postID],
