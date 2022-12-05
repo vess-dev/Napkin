@@ -16,6 +16,7 @@ const groupmembers = require('./groupmembers.js')
 const group = require('./group.js')
 const friend = require('./friendship.js')
 const comment = require('./comments.js')
+const admin = require('./admin.js');
 
 const port = 3009 || process.argv[2];
 
@@ -499,7 +500,25 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
           } 
         }
 
- 
+        if (url.pathname === routes.ADMINUSERS) {
+          console.log('admin path', method)
+          if (method === 'GET') {
+            routeFound = true;
+            let status = queryObject.status
+      
+            admin.getUsersForAdmin(queryStatus, userID).then(list=>{
+              response.statusCode = 200;
+              response.write(JSON.stringify(list));
+            })
+            .catch(error=>{
+              console.log('caught an error ', error)
+              handleErrorReply(response, error);
+            })
+            .finally(() => {
+              response.end(); 
+            });
+          }
+        }
 
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {

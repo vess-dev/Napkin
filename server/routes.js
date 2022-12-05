@@ -10,7 +10,8 @@ const USERPASSWD = '/userpassword';
 const POSTGROUP = '/postgroup';
 const MYPOSTS = '/myposts';
 const UPLOAD = '/upload';
-const FRIENDGROUPS = '/friendgroups'
-const REJECTFRIEND = '/rejectfriend'
+const FRIENDGROUPS = '/friendgroups';
+const REJECTFRIEND = '/rejectfriend';
+const ADMINUSERS = '/adminusers';
 
-module.exports={REJECTFRIEND, FRIENDGROUPS, UPLOAD, MYPOSTS, USER, USERPASSWD, LOGIN, LOGOUT, POST, GROUPMEMBERS, GROUP, FRIEND, COMMENT, POSTGROUP};
+module.exports={ADMINUSERS, REJECTFRIEND, FRIENDGROUPS, UPLOAD, MYPOSTS, USER, USERPASSWD, LOGIN, LOGOUT, POST, GROUPMEMBERS, GROUP, FRIEND, COMMENT, POSTGROUP};
