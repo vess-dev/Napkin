@@ -394,7 +394,7 @@ export function loadFriendStats(friend_id) {
 				let oneoption=document.createElement('option')
 				oneoption.setAttribute('value',onegroup.group_id)
 				oneoption.textContent = onegroup.group_name
-				if (inGroup) {oneoption.setAttribute('selected', 'true')}
+				if (oneoptions.inGroup) {oneoption.setAttribute('selected', 'true')}
 				selector.appendChild(oneoption)
 			}
 			const elementBoxFull = document.getElementById("boxfull");
