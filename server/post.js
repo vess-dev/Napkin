@@ -45,7 +45,8 @@ function editPost(postObject, userID) {
       return reject(new BaseError('wrong parameters', 500, "must pass all params"))
     }
     postID = postObject.post_id;
-    postObject.remove(post_id)
+    postObject.remove('post_id')
+    console.log('now have postObject', postObject)
     db.pool.query('update posts SET ? where post_id = ?', [postObject, postID],
       async function(error, results, fields) {
         console.log(error, results, fields)
