@@ -395,7 +395,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
   //FRIENDGROUPS routes
 
    if (url.pathname === routes.FRIENDGROUPS) {
-    console.log('friends path', method)
+    console.log('friendgroups path', method)
     if (method === 'GET') {
       console.log('on friendgroups route')
       routeFound = true;
@@ -417,6 +417,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
       routeFound = true
       let friend_id = bodyObject.friend_id;
       let group_id = bodyObject.group_id
+      console.log('will call editGroupMemberships for ', group_id, friend_id, user_id)
       editGroupMemberships(group_id, friend_id, user_id)
       .then(result => {
         response.statusCode = 200;
