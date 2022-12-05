@@ -77,6 +77,12 @@ export function insertBigBreak() {
 // Add a post to the page.
 export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postLikes, postComments, postID) {
 	const elementContent = document.getElementById("content");
+	// Ugg. Whatever. This is for comments on the bottom.
+	const elementBoxPoster = document.createElement("div");
+	elementBoxPoster.setAttribute("id", postID);
+	elementBoxPoster.setAttribute("class", "postboxer");
+	elementBoxPoster.setAttribute("toggled", "false");
+	// Create the entire box post.
 	const elementBoxPost = document.createElement("div");
 	elementBoxPost.setAttribute("class", "postbox");
 	// Where all of the text of a post lies.
@@ -85,7 +91,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	// Where the user picture, title, name, and date lives.
 	const elementDivInfo = document.createElement("div");
 	elementDivInfo.setAttribute("class", "userdiv");
-	// Add the user picture.
+	// Add the user picture. TODO: IF THERE IS NO PICTURE, USE PROFILE.PNG.
 	if (userPicture) {
 		userPicture.setAttribute("class", "userpicture");
 		elementDivInfo.append(userPicture);
@@ -118,7 +124,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementPostLikes.textContent = postLikes;
 	elementDivLikes.append(elementPostLikes);
 	elementDivInfo.append(elementDivLikes);
-	// Comment count here, needs styling.
+	// Setup a div for the scroll and comments.
 	const elementDivComments = document.createElement("div");
 	elementDivComments.setAttribute("class", "virtbox");
 	// Append the scroll button.
@@ -126,7 +132,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementScroll.setAttribute("type", "image");
 	elementScroll.setAttribute("src", help.pathImage("scroll", false));
 	elementScroll.setAttribute("class", "userpicture");
-	elementScroll.addEventListener("click", () => pact.processLikeClick(postID)); // TODO: Get the comments for a post.
+	elementScroll.addEventListener("click", () => pact.processCommentClick(postID)); // Handle comments.
 	elementDivComments.append(elementScroll)
 	// Append the like count.
 	const elementCommentCount = document.createElement("div");
@@ -148,7 +154,33 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		postImage.setAttribute("class", "postpicture");
 		elementBoxPost.append(postImage);
 	}
-	elementContent.append(elementBoxPost);
+	elementBoxPoster.append(elementBoxPost);
+	elementContent.append(elementBoxPoster);
+}
+
+// Create a comment div.
+export function createComment(userPicture, commentName, commentContent, commentDate) {
+	const elementDivInfo = document.createElement("div");
+	elementDivInfo.setAttribute("class", "userdiv");
+	// Append the user picture.
+	userPicture.setAttribute("class", "userpicture");
+	elementDivInfo.append(userPicture);
+	// Append the commenter name.
+	const elementCommentName = document.createElement("div");
+	elementCommentName.setAttribute("class", "textdiv");
+	elementCommentName.textContent = commentName;
+	elementDivInfo.append(elementCommentName);
+	// Append the comment text.
+	const elementCommentText = document.createElement("div");
+	elementCommentText.setAttribute("class", "textdiv");
+	elementCommentText.textContent = commentContent;
+	elementDivInfo.append(elementCommentText);
+	// Append the comment date.
+	const elementCommentDate = document.createElement("div");
+	elementCommentDate.setAttribute("class", "textright");
+	elementCommentDate.textContent = commentDate;
+	elementDivInfo.append(elementCommentDate);
+	return elementDivInfo;
 }
 
 // A box for content that almost hits the bottom height.

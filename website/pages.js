@@ -14,18 +14,23 @@ const adminHeader = [["pending", "Pending Accounts", "routePage('#adminPending')
 // Not clean but this works. Ahha! Good fix, thanks. -C
 window.postCreateAction = pact.postCreateAction;
 window.queryImage = pact.queryImage;
+
 window.userCreateAction = pact.userCreateAction;
 window.userLoginAction = pact.userLoginAction;
 window.userLogoutAction = pact.userLogoutAction;
+
 window.createCloudinaryWidget = pact.createCloudinaryWidget;
 window.makeCloudinarylink = phelp.makeCloudinarylink;
+
+window.processCommentClick = pact.processCommentClick;
 window.processLikeClick = pact.processLikeClick;
+
+window.editFriendGroups = pact.editFriendGroups;
 window.friendSearchAction = pact.friendSearchAction;
 window.makeFriendRequest = pact.makeFriendRequest;
-window.editFriendGroups = pact.editFriendGroups;
 
 // Disable or enable testing.
-const testing = true;
+export const testing = true;
 
 // Always insert the content box first, and then the header type.
 

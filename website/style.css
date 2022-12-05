@@ -64,7 +64,7 @@ textarea.inputfield {
 	display: flex;
 	flex-flow: row;
 	gap: 1rem;
-	margin: 1rem;
+	margin: 0.5rem;
 }
 
 .usertext {
@@ -232,6 +232,11 @@ textarea.inputfield {
 	padding: 0.5rem;
 }
 
+.postboxer {
+	display: flex;
+	flex-flow: column;
+}
+
 .block {
 	height: calc(300px - 5.2rem);
 	overflow: auto;
@@ -247,4 +252,12 @@ textarea.inputfield {
 	min-width: 300px;
 	object-fit: fill;
 	width: 300px;
+}
+
+.commentsdiv {
+	background-color: white;
+	border: 2px solid gray;
+	display: flex;
+	flex-flow: column;
+	width: 100%;
 }

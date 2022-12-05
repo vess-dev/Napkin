@@ -1,6 +1,8 @@
 import * as help from "./helpers.js";
+import * as page from "./pages.js";
 import * as phelp from "./pageshelpers.js";
 import * as route from "./routes.js";
+import * as test from "./testers.js";
 import {setCookie} from "./cookies.js";
 
 // Query the user for an image choice. This is hackish.
@@ -69,8 +71,26 @@ export function processLikeClick(postID) {
 }
 
 // Get the comments for a post.
-export function processLikeClick(postID) {
-	console.log("comemnts clicked for postID: ", postID);
+export function processCommentClick(postID) {
+	console.log("comments clicked for postID: " + postID);
+	const elementPostBox = document.getElementById(postID);
+	console.log(elementPostBox.getAttribute("toggled"));
+	// If the box is not expanded.
+	if (elementPostBox.getAttribute("toggled") == "false") {
+		const elementCommentBox = document.createElement("div");
+		elementCommentBox.setAttribute("id", "commentsdiv" + postID);
+		elementCommentBox.setAttribute("class", "commentsdiv");
+		if (page.testing) test.testComments(elementCommentBox);
+		elementPostBox.append(elementCommentBox);
+		elementPostBox.setAttribute("toggled", "true")
+	}
+	// If it is expanded.
+	else {
+		const elementCommentBox = document.getElementById("commentsdiv" + postID);
+		elementCommentBox.remove();
+		elementPostBox.setAttribute("toggled", "false")
+	}
+	
 }
 
 // Fill the feed with non-user made posts, or user made posts.
