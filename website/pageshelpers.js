@@ -347,11 +347,11 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 			const elementButtonApprove = createButton("approve", ["button", "buttongreen"], "Approve", `makeFriendRequest(${friend_ID})`);
 			// not an error - the API reads current status and sees that both want to be friends.
 			elementButtonBox.append(elementButtonApprove);
-			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", "TODODECLINE");
+			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", `rejectFriendAction(${friend_ID})`);
 			elementButtonBox.append(elementButtonDecline);
 			break;
 		case "blocked":
-			const elementButtonUnblock = createButton("unblock", ["button", "buttonred"], "Unblock", "TODOUNBLOCK");
+			const elementButtonUnblock = createButton("unblock", ["button", "buttonred"], "Unblock", `removeFriendAction(${friend_ID})`);
 			elementButtonBox.append(elementButtonUnblock);
 			break;
 		case "search":

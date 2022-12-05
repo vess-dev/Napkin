@@ -30,8 +30,10 @@ window.friendSearchAction = pact.friendSearchAction;
 window.makeFriendRequest = pact.makeFriendRequest;
 window.friendGroupsUpdateAction = pact.friendGroupsUpdateAction;
 window.removeFriendAction = pact.removeFriendAction;
+window.rejectFriendAction = pact.rejectFriendAction ;
 
 window.updateAccount = pact.updateAccount;
+
 
 // Disable or enable testing.
 export const testing = false;

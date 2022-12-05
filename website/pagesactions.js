@@ -525,4 +525,35 @@ export function removeFriendAction(friend_id) {
 	});
 	
 };
+export function rejectFriendAction(friend_id) {
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "POST",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+			body: JSON.stringify({
+				friend_id: friend_id,
+				group_id: groupList
+			})
+		};
 
+		fetch(route.SERVER + "rejectfriend", options)
+		.then((response) => {
+			if (response.ok) {
+				return;
+			}
+			else {
+				throw new help.clientError("Server Error", response.status, "Problem updating friends.");
+			}
+		})
+		.then(() => {
+			routePage("#accFriends")
+			return resolve(true)
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+	
+};
