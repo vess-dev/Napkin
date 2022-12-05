@@ -187,8 +187,11 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementBoxPost.append(elementBoxMain);
 	// Where the picture of a post lies.
 	if (postImage) {
-		postImage.setAttribute("class", "postpicture");
-		elementBoxPost.append(postImage);
+
+		let postPictureElement = document.createElement('img')
+		postPictureElement.setAttribute("class", "postpicture");
+		postPictureElement.setAttribute("src", postImage)
+		elementDivInfo.append(postPictureElement);
 	}
 	elementBoxPoster.append(elementBoxPost);
 	elementContent.append(elementBoxPoster);
