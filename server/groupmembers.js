@@ -64,6 +64,27 @@ function getGroupMembersList(group_id) {
         })
       };  
 
+async function deleteUserFromMyGroups (friend_id, user_id) {
+  return new Promise((resolve, reject) =>{
+    db.pool.query(`delete from groups_memberships gm where gm.user_id=? and group_id in (select group_id from groups where owner_id=?)`,
+    [friend_id, user_id],
+    function(error, results) {
+      if (error) {                    
+        return reject(new BaseError("DB Error", 500, error));
+      }
+      else {  return resolve(true)  }
+    })})
+};
 
+async function editGroupMemberships(group_id, friend_id, user_id) {
+  await deleteUserFromMyGroups(friend_id, user_id)  
+  if (Number.isInteger(group_id)) {addGroupMember(group_id, friend_id, user_id)
+    } else {
+      let allgroups = postObject.group_id.split(/[, ]+/)
+      for (let onegroup of allgroups) {
+          addGroupMember(onegroup, friend_id, user_id)
+      }
+    }
+}
 
-module.exports = {getGroupMembersList, deleteGroupMember, addGroupMember}
+module.exports = {getGroupMembersList, deleteGroupMember, addGroupMember, editGroupMemberships}

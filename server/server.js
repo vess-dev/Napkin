@@ -252,7 +252,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
           response.end(); 
         });
       }
-        // Get add a member of a group
+        // add a member to a group
         if (method === 'POST') {
           routeFound = true;
 
@@ -412,6 +412,18 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
       .finally(() => {
         response.end(); 
       });
+    }
+    if (method === 'POST') {
+      routeFound = true
+      let friend_id = bodyObject.friend_id;
+      let group_id = bodyObject.group_id
+      editGroupMemberships(group_id, friend_id, user_id)
+      .then(result => {response.statusCode = 200;
+    }).catch(error =>{
+      console.log('caught an error',error)
+      handleErrorReply(response, error)
+    })
+    .finally(() => response.end() )
     }
   }
  //COMMENT routes
