@@ -139,7 +139,8 @@ export function accGroups() {
 
 // When you look at your groups.
 export function accFriendGroups() {
-	let friend_id = document.querySelector('#body').getAttribute('friends_payload')
+	 let friend_id = document.querySelector('meta[name="friends_payload"]').getAttribute("content");
+
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertText('your friend is ' + friend_id)
