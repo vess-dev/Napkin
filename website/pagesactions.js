@@ -191,6 +191,7 @@ export async function postCreateAction(post_id) {
 				return response.json();
 			}
 			else {
+				console.log(response)
 				throw new help.clientError("Server Error", response.status, "Unable to create post.");
 			}
 		})
@@ -199,6 +200,7 @@ export async function postCreateAction(post_id) {
 			return resolve(true)
 		})
 		.catch((error) => {
+			console.log(error)
 			return reject(error);
 		});
 	});
