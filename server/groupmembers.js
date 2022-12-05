@@ -65,6 +65,7 @@ function getGroupMembersList(group_id) {
       };  
 
 async function deleteUserFromMyGroups (friend_id, user_id) {
+  console.log('starting deletion of friend for groups owned by user', friend_id, user_id)
   return new Promise((resolve, reject) =>{
     db.pool.query(`delete from groups_memberships gm where gm.user_id=? and group_id in (select group_id from groups where owner_id=?)`,
     [friend_id, user_id],
@@ -72,11 +73,12 @@ async function deleteUserFromMyGroups (friend_id, user_id) {
       if (error) {                    
         return reject(new BaseError("DB Error", 500, error));
       }
-      else {  return resolve(true)  }
+      else {  return resolve(results)  }
     })})
 };
 
 async function editGroupMemberships(group_id, friend_id, user_id) {
+  console.log('editGroupsMembership started', group_id, friend_id, user_id)
   await deleteUserFromMyGroups(friend_id, user_id)  
   console.log('deletion done, will work on group_id', group_id)
   if (Number.isInteger(group_id)) {addGroupMember(group_id, friend_id, user_id)
