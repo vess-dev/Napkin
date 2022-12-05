@@ -245,8 +245,13 @@ export function insertInputBox(inputText, inputName, inputPassword, toggleArea, 
 	if (inputPassword) {
 		elementInputField.setAttribute("type", "password");
 	}
+	// If the input should have default content.
 	if (defaultContent) {
-		elementInputField.setAttribute("value", defaultContent);
+		if (toggleArea) {
+			elementInputField.value = defaultContent;
+		} else {
+			elementInputField.setAttribute("value", defaultContent);
+		}
 	}
 	elementInputFull.append(elementInputField);
 	elementBoxFull.append(elementInputFull);
