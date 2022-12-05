@@ -47,7 +47,7 @@ function makeFriendRequest(friend_id, userID) {
         }
         else { 
           console.log(results)
-          console.log('results.friendship_status is', results[0].friendship_status)
+          //console.log('results.friendship_status is', results[0].friendship_status)
           if (results.length == 0) { 
             // make friends! 
             console.log('not yet friends - so request!')
