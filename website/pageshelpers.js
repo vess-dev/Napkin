@@ -124,7 +124,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		elementEdit.setAttribute("type", "image");
 		elementEdit.setAttribute("src", help.pathImage("edit", false));
 		elementEdit.setAttribute("class", "userpicture");
-		elementEdit.addEventListener("click", () => payloadEdit(postID, postTitle, postContent, postImage));
+		elementEdit.addEventListener("click", () => payloadEdit(postID, postTitle, postContent, postImage.getAttribute("src")));
 		elementDivIcons.append(elementEdit);
 		const elementTrash = document.createElement("input");
 		elementTrash.setAttribute("type", "image");
@@ -246,7 +246,7 @@ export function insertInputBox(inputText, inputName, inputPassword, toggleArea, 
 		elementInputField.setAttribute("type", "password");
 	}
 	if (defaultContent) {
-		elementInputFull.setAttribute("value", defaultContent);
+		elementInputField.setAttribute("value", defaultContent);
 	}
 	elementInputFull.append(elementInputField);
 	elementBoxFull.append(elementInputFull);
