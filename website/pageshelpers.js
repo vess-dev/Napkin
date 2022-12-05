@@ -74,11 +74,15 @@ export function insertBigBreak() {
 	elementContent.append(elementBigBreak);
 }
 
-// Add a post to the page.
+// Extremely EVIL. I feel WRONG. I'm SORRY.
+export function payloadEdit(postID, postTitle, postContent, postImage) {
+	window.payload = [postID, postTitle, postContent, postImage];
+	routePage("#postEdit");
+}
 
+// Add a post to the page.
 // postMy = true, means the individual user's posts.
 // postMy = false, means the "global" feed.
-
 export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postLikes, postComments, postID, postMy) {
 	const elementContent = document.getElementById("content");
 	// Ugg. Whatever. This is for comments on the bottom.
@@ -120,7 +124,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		elementEdit.setAttribute("type", "image");
 		elementEdit.setAttribute("src", help.pathImage("edit", false));
 		elementEdit.setAttribute("class", "userpicture");
-		elementEdit.addEventListener("click", () => console.log("edit " + postID));
+		elementEdit.addEventListener("click", () => payloadEdit(postID, postTitle, postContent, postImage));
 		elementDivIcons.append(elementEdit);
 		const elementTrash = document.createElement("input");
 		elementTrash.setAttribute("type", "image");
@@ -223,7 +227,7 @@ export function insertFullBox(miniHeader) {
 }
 
 // A div that has text on the left, and an input box on the right.
-export function insertInputBox(inputText, inputName, inputPassword, toggleArea) {
+export function insertInputBox(inputText, inputName, inputPassword, toggleArea, defaultContent) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementInputFull = document.createElement("div");
 	elementInputFull.setAttribute("class", "inputbox");
@@ -240,6 +244,9 @@ export function insertInputBox(inputText, inputName, inputPassword, toggleArea) 
 	// If the input should hide a password.
 	if (inputPassword) {
 		elementInputField.setAttribute("type", "password");
+	}
+	if (defaultContent) {
+		elementInputFull.setAttribute("value", defaultContent);
 	}
 	elementInputFull.append(elementInputField);
 	elementBoxFull.append(elementInputFull);

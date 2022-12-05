@@ -169,17 +169,18 @@ export function postCreate() {
 }
 
 // When you want to edit a post.
-export function postEdit(postID) {
+export function postEdit() {
+	console.log(window.payload);
 	phelp.insertContent();
-	phelp.insertHeader(userHeader);
+	phelp.insertHeader(userHeader, "createpost");
+	phelp.insertMiniHeader("Editing post number " + window.payload[0]);
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
-	phelp.insertInputBox("placeholder postID"+postID, "post_title", false);
-	phelp.insertInputBox("Post title:", "post_title", false);
-	phelp.insertInputBox("Post image URL:", "post_image_url", false);
-	phelp.insertInputBox("Post content:", "post_content", false, true);
+	phelp.insertInputBox("Post title:", "post_title", false, false, window.payload[1]);
+	phelp.insertInputBox("Post image URL:", "post_image_url", false, false, window.payload[3]);
+	phelp.insertInputBox("Post content:", "post_content", false, true, window.payload[2]);
 	phelp.getGroupsSelector()
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction("+postID+")"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction(" + window.payload[0] + ")"]]);
 }
 
 // When you look at your account settings.
