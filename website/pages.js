@@ -93,6 +93,7 @@ export function feedMy() {
 	phelp.insertNextButton();
 	if (testing) test.testPosts(true);
 	pact.feedFill(true);
+	// true means it's the feedMy page, not the global feed.
 }
 
 // When you look at your list of friends.

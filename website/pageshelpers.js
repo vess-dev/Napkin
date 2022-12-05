@@ -263,7 +263,7 @@ export function insertInputBox(inputText, inputName, inputPassword, toggleArea, 
 
 export function insertPostActions(postID) {
 	//TODO: need post deletion, remove post from all groups (makes post invisible), post edit
-	createButton('edit','edit',"TODOEDITPOST")
+	insertBottomButtons(createButton('edit','edit',"TODOEDITPOST"), false)
 }
 
 // Create and add different button types.
