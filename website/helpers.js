@@ -7,8 +7,9 @@ export function pathImage(imageName) {
 export function loadImage(imageName, isURL) {
 	let imagePath;
 	if (!isURL) imagePath = pathImage(imageName);
-	else imagePath = isURL;
-	if (!imagePath) {return null} else {
+	else imagePath = imageName;
+	if (!imagePath) return pathImage("profile");
+	else {
 		const elementImage = document.createElement("img");
 		elementImage.setAttribute("src", imagePath);
 		return elementImage;

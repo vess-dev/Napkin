@@ -71,11 +71,21 @@ textarea.inputfield {
 	margin: 5px;
 }
 
+.liketext {
+	font-size: 15px;
+	text-align: center;
+}
+
+.vertbox {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .textright {
 	align-items: right;
 	margin-left: auto;
 }
-
 
 .userpicture {
 	height: 30px;

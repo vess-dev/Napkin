@@ -63,9 +63,14 @@ export function uploadImageAction(imagefile) {
 }
 */ 
 
-// Get and send that a like was clicked on for a post.
+// Send that a like was clicked on for a post.
 export function processLikeClick(postID) {
-	console.log("like clicked for postID", postID);
+	console.log("like clicked for postID: ", postID);
+}
+
+// Get the comments for a post.
+export function processLikeClick(postID) {
+	console.log("comemnts clicked for postID: ", postID);
 }
 
 // Fill the feed with non-user made posts, or user made posts.

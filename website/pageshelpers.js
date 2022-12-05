@@ -1,4 +1,5 @@
 import * as help from "./helpers.js";
+import * as pact from "./pagesactions.js";
 import * as routes from "./routes.js";
 
 // Insert a content box where... Content is displayed. Haha.
@@ -101,31 +102,38 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementPostInfo.setAttribute("class", "usertext textright");
 	elementPostInfo.textContent = userName + " on " + postDate;
 	elementDivInfo.append(elementPostInfo);
-	// Add the likes to the post.
+	// Setup a div for the heart and likes.
+	const elementDivLikes = document.createElement("div");
+	elementDivLikes.setAttribute("class", "virtbox");
+	// Load the heart.
 	const imageHeart = help.loadImage("heart");
 	const elementHeart = document.createElement("input");
 	elementHeart.setAttribute("type", "image");
-	elementHeart.setAttribute("src", help.pathImage("heart"));
-	//elementHeart.onclick = ""; // TODO: Sending likes for a post.
+	elementHeart.setAttribute("src", help.pathImage("heart", false));
 	elementHeart.setAttribute("class", "userpicture");
-	const likesDiv = document.createElement("div");
-	//elementDivInfo.append(elementHeart);
-	elementDivInfo.append(likesDiv)
-	likesDiv.append(elementHeart)
+	elementHeart.addEventListener("click", () => pact.processLikeClick(postID)); // TODO: Sending likes for a post.
+	elementDivLikes.append(elementHeart)
 	const elementPostLikes = document.createElement("div");
-	elementPostLikes.setAttribute("class", "usertext");
+	elementPostLikes.setAttribute("class", "liketext");
 	elementPostLikes.textContent = postLikes;
-	likesDiv.append(elementPostLikes);
-	likesDiv.addEventListener('click', () => processLikeClick(postID));
-	// comment count here, needs styling
+	elementDivLikes.append(elementPostLikes);
+	elementDivInfo.append(elementDivLikes);
+	// Comment count here, needs styling.
+	const elementDivComments = document.createElement("div");
+	elementDivComments.setAttribute("class", "virtbox");
+	// Append the scroll button.
+	const elementScroll = document.createElement("input");
+	elementScroll.setAttribute("type", "image");
+	elementScroll.setAttribute("src", help.pathImage("scroll", false));
+	elementScroll.setAttribute("class", "userpicture");
+	elementScroll.addEventListener("click", () => pact.processLikeClick(postID)); // TODO: Get the comments for a post.
+	elementDivComments.append(elementScroll)
+	// Append the like count.
 	const elementCommentCount = document.createElement("div");
-	elementCommentCount.setAttribute("class", "usertext");
-	if (postComments == 1) {
-		elementCommentCount.textContent = "1 comment";
-	} else {
-		elementCommentCount.textContent = postComments + " comments";
-	}
-	elementDivInfo.append(elementCommentCount);
+	elementCommentCount.setAttribute("class", "liketext");
+	elementCommentCount.textContent = postComments;
+	elementDivComments.append(elementCommentCount);
+	elementDivInfo.append(elementDivComments);
 	// Append the final div with all the info.
 	elementBoxMain.append(elementDivInfo);
 	// Add the actual post's content.
