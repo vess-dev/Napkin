@@ -533,8 +533,7 @@ export function rejectFriendAction(friend_id) {
 			headers: {
 			"Content-Type": "application/json"},
 			body: JSON.stringify({
-				friend_id: friend_id,
-				group_id: groupList
+				friend_id: friend_id
 			})
 		};
 
