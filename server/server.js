@@ -418,7 +418,9 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
       let friend_id = bodyObject.friend_id;
       let group_id = bodyObject.group_id
       editGroupMemberships(group_id, friend_id, user_id)
-      .then(result => {response.statusCode = 200;
+      .then(result => {
+        response.statusCode = 200;
+        response.write(JSON.stringify(result));
     }).catch(error =>{
       console.log('caught an error',error)
       handleErrorReply(response, error)
