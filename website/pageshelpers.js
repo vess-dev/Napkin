@@ -100,6 +100,8 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	const elementDivInfo = document.createElement("div");
 	elementDivInfo.setAttribute("class", "userdiv");
 	// Add the user picture. TODO: IF THERE IS NO PICTURE, USE PROFILE.PNG.
+	// TODO:  userPicture is the URL.  Is isn't something you can set an attribute for.  What happened to the code that was here that worked?
+	
 	if (userPicture) {
 		userPicture.setAttribute("class", "userpicture");
 		elementDivInfo.append(userPicture);
