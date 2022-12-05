@@ -158,10 +158,10 @@ export async function postCreateAction(post_id) {
 		groupList += one + ","
 	}
 	console.log("have groupList ", groupList);
-	let method
+	let method, bodyObject
 	if (post_id) {
 		method = "PUT"
-		let bodyObject = {
+		bodyObject = {
 			post_title: post_title,
 			post_content: post_content,
 			post_image, post_image,
@@ -170,7 +170,7 @@ export async function postCreateAction(post_id) {
 		  }
 	} else {
 		method = "POST"
-		let bodyObject = {
+		bodyObject = {
 			post_title: post_title,
 			post_content: post_content,
 			post_image, post_image,

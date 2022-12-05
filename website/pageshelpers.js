@@ -116,7 +116,6 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementDivInfo.append(elementPostTitle);
 	// A bunch of flapjacking icons.
 	if (postMy) {
-		console.log('drawing the extra icons?')
 		const elementDivIcons = document.createElement("div");
 		elementDivIcons.setAttribute("class", "icons");
 		const elementEye = document.createElement("input");
