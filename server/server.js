@@ -413,7 +413,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
         response.end(); 
       });
     }
-
+  }
  //COMMENT routes
         if (url.pathname === routes.COMMENT) {
           console.log('will serve comment stuff')
