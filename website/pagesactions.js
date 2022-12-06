@@ -637,4 +637,35 @@ export function adminSetStatus (statusWanted, targetUser) {
 		});
 }
 
-	
+export function loadGroupsEntries {
+	let endpoint = "groups?group_id=" + friend_id;
+
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "GET",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"}
+		};
+		fetch(route.SERVER + endpoint, options)
+		.then((response) => {
+			if (response.statusCode == 401) {routePage("#accLogin")}
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				throw new help.clientError("Server Error", response.status, "Unable to load groups");
+			}
+		})
+		.then((data) => {
+			for (let one of data) {
+				phelp.insertGroupItem(one.group_id, one.group_name, one.group_ranking)
+			}
+
+			return resolve(true);
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+}	

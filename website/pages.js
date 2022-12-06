@@ -157,7 +157,7 @@ export function accGroups() {
 
 }
 
-// When you look at your groups.
+// When you edit the groups your friends are in.
 export function accFriendGroups() {
 	// this kludge gets the friend_id so that we can pass it in.
 	let friend_id = document.querySelector('meta[name="friends_payload"]').content;
