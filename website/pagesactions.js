@@ -99,7 +99,7 @@ export function processCommentClick(postID) {
 				headers: {
 				"Content-Type": "application/json"}
 			};
-			fetch(route.SERVER + 'comments?post_id='+postID, options)
+			fetch(route.SERVER + 'comment?post_id='+postID, options)
 			.then((response) => {
 				if (response.statusCode == 401) {routePage("#accLogin")};
 				if (response.ok) {
