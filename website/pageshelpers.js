@@ -128,7 +128,9 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		elementEdit.setAttribute("type", "image");
 		elementEdit.setAttribute("src", help.pathImage("edit", false));
 		elementEdit.setAttribute("class", "userpicture");
-		elementEdit.addEventListener("click", () => payloadEdit(postID, postTitle, postContent, postImage.getAttribute("src")));
+		let tmpPostImage
+		if (postImage && postImage.src) { tmpPostImage = postImage.getAttribute("src")}
+		elementEdit.addEventListener("click", () => payloadEdit(postID, postTitle, postContent, tmpPostImage));
 		elementDivIcons.append(elementEdit);
 		const elementTrash = document.createElement("input");
 		elementTrash.setAttribute("type", "image");
