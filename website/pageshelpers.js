@@ -463,7 +463,7 @@ export function insertGroupItem(group_id, group_name, group_ranking) {
 		elementGroupName.setAttribute("id", "group_name");
 		elementGroupName.setAttribute("class", "usertext");
 		let options = ["","lowest priority", "low priority", "high priority", "highest priority"]
-		elementGroupName.textContent = group_name + "  (#"+group_id + ")  ranking: " + options.group_ranking;
+		elementGroupName.textContent = group_name + "  (#"+group_id + ")  ranking: " + options[group_ranking];
 		elementDivGroup.append(elementGroupName);
 		// Setup the buttons properly.
 		
