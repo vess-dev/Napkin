@@ -51,15 +51,22 @@ function triggerGroupCreation(userID) {
     owner_id: userID,
     group_ranking: 4
   }
-  db.pool.query(`select count(*) as rows from groups where group_name='All friends' and user_id = ?`, 
-    [userID], function(err, result) {
-      console.log('got row count', result)
-      console.log('try result0rows', result[0].rows )
-      if ( result[0].rows == 0) {
-        db.pool.query(`insert into groups set ? `, groupObject)
-      }
-    })
 
+  return new Promise((resolve, reject) =>{
+    db.pool.query(`select count(*) as rows from groups where group_name='All friends' and user_id = ?`, 
+    [userID],
+      function(error, results, fields) {
+        if (error) {
+          return reject(new BaseError("DB Error", 500, error));
+        }
+        console.log('got row count', results)
+        console.log('try result0rows', results[0].rows )
+        if ( results[0].rows == 0) {
+          db.pool.query(`insert into groups set ? `, groupObject)
+          return resolve(results);   
+        }
+      })
+  })
 }
 
 module.exports = {triggerGroupCreation, getUsersForAdmin, setStatusForAdmin} ;
