@@ -408,7 +408,7 @@ export function insertUserItem(userPicture, userFirstName, userLastName, userEma
 			const elementButtonDisable = createButton("disable", ["button", "buttonred"], "Disable", `adminSetStatus("disabled","${oneUserID}")`);
 			elementButtonBox.append(elementButtonDisable);
 			break;
-		case "blacklist":
+		case "blocked":
 			finalText = "Blacklisted on: ";
 			const elementButtonUnblack = createButton("unblacklist", ["button", "buttongreen"], "Unblacklist", `adminSetStatus("active","${oneUserID}")`);
 			elementButtonBox.append(elementButtonUnblack);
