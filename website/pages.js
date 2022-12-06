@@ -35,6 +35,8 @@ window.rejectFriendAction = pact.rejectFriendAction ;
 window.updateAccount = pact.updateAccount;
 window.loadGroupsEntries = pact.loadGroupsEntries;
 
+window.adminSetStatus = pact.adminSetStatus
+
 // Disable or enable testing.
 export const testing = false;
 

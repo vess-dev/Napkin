@@ -546,7 +546,26 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
             });
           }
         }
-
+        if (url.pathname === routes.ADMINSTATUS) {
+          console.log('admin status path', method)
+          if (method === 'POST') {
+            routeFound = true;
+            let statusWanted = bodyObject.status_wanted
+            let targetUser = bodyObject.target_user
+      
+            admin.setStatusForAdmin(statusWanted, targetUser, userID).then(()=>{
+              response.statusCode = 200;
+              
+            })
+            .catch(error=>{
+              console.log('caught an error ', error)
+              handleErrorReply(response, error);
+            })
+            .finally(() => {
+              response.end(); 
+            });
+          }
+        }
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {
       routeFound = true;

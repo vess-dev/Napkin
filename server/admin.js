@@ -21,4 +21,21 @@ function getUsersForAdmin(statusWanted, userID) {
       })
       }
 
-module.exports = {getUsersForAdmin} ;
+function setStatusForAdmin(statusWanted, targetUser, adminUserID) {
+  return new Promise((resolve, reject) =>{
+    db.pool.query(`update users set user_status = ? WHERE user_id = ? and 1=(select admin_flag from users where user_id=?)`,
+     [statusWanted, targetUser, adminUserID],
+     function(error, results) {
+       console.log(results)
+       if (error) {                    
+         return reject(new BaseError("DB Error", 500, error));
+       }
+       else {               
+         return resolve(results);        
+       }
+ });
+})
+}
+
+
+module.exports = {getUsersForAdmin, setStatusForAdmin} ;
