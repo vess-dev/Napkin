@@ -506,7 +506,11 @@ export function prePopulateSelectorsOnPost (post_id) {
 			oneoption.setAttribute("value", onegroup.group_id);
 			oneoption.textContent = onegroup.group_name;
 			selector.appendChild(oneoption);
+			if (onegroup.inGroup && onegroup.inGroup > 0 ) {
+				oneoption.setAttribute("selected", true);
+			} 
 		}
+
 		const elementBoxFull = document.getElementById("boxfull");
 		const elementInputFull = document.createElement("div");
 		elementInputFull.setAttribute("class", "inputbox");
