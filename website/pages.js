@@ -165,7 +165,8 @@ export function accAddGroup() {
 	phelp.insertMiniHeader("Add a group", "addgroup");
 	phelp.insertFullBox()
 	phelp.insertBigBreak()
-	phelp.insertText('Add a new group')
+	phelp.insertText('Add a new group');
+	phelp.insertInputBox('Group name',group_name,false,false,null)
 	phelp.insertRadioInputBox();
 }
 
@@ -176,6 +177,7 @@ export function accEditGroup() {
 	phelp.insertBigBreak()
 	phelp.insertFullBox()
 	phelp.insertText('Edit a group')
+	phelp.insertInputBox('Group name',group_name,false,false,'need something here');
 	phelp.insertRadioInputBox("there should be content here but there isn't yet");
 }
 
