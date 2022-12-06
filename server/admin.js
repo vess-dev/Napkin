@@ -22,8 +22,15 @@ function getUsersForAdmin(statusWanted, userID) {
       }
 
 function setStatusForAdmin(statusWanted, targetUser, adminUserID) {
+  /* 
+  update users set user_status = 'pending' 
+  where user_id=(select * from (select user_id from users where user_id=2 limit 1) tbla)
+  and 1=(select * from (select admin_flag from users where user_id=1) tblb)
+  */ 
   return new Promise((resolve, reject) =>{
-    db.pool.query(`update users set user_status = ? WHERE user_id = ? and 1=(select admin_flag from users where user_id=?)`,
+    db.pool.query(`update users set user_status = ? 
+    where user_id=(select * from (select user_id from users where user_id=? limit 1) tbla)
+    and 1=(select * from (select admin_flag from users where user_id=?) tblb)`,
      [statusWanted, targetUser, adminUserID],
      function(error, results) {
        console.log(results)
