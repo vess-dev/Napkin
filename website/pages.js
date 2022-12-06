@@ -163,6 +163,7 @@ export function accAddGroup() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertMiniHeader("Add a group", "addgroup");
+	phelp.insertFullBox()
 	phelp.insertBigBreak()
 	phelp.insertText('Add a new group')
 }
@@ -172,6 +173,7 @@ export function accEditGroup() {
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertMiniHeader("Edit a group", "editgroup");
 	phelp.insertBigBreak()
+	phelp.insertFullBox()
 	phelp.insertText('Edit a group')
 }
 
