@@ -277,7 +277,7 @@ export function insertRadioInputBox(defaultContent) {
 		let selector = document.createElement("select");
 		selector.setAttribute("id", "ranking_selector");
 
-		let options = ["","highest priority", "high priority", "low priority", "lowest priority"]
+		let options = ["","lowest priority", "low priority", "high priority", "highest priority"]
 			for (let oneval of [1,2,3,4]) {
 				let oneoption = document.createElement("option");
 				oneoption.setAttribute("value", oneval);
@@ -462,7 +462,8 @@ export function insertGroupItem(group_id, group_name, group_ranking) {
 		const elementGroupName = document.createElement("div");
 		elementGroupName.setAttribute("id", "group_name");
 		elementGroupName.setAttribute("class", "usertext");
-		elementGroupName.textContent = group_name + "  (#"+group_id + ")  ranking: " + group_ranking;
+		let options = ["","lowest priority", "low priority", "high priority", "highest priority"]
+		elementGroupName.textContent = group_name + "  (#"+group_id + ")  ranking: " + options.group_ranking;
 		elementDivGroup.append(elementGroupName);
 		// Setup the buttons properly.
 		
