@@ -84,6 +84,12 @@ export function payloadEdit(postID, postTitle, postContent, postImage) {
 	routePage("#postEdit");
 }
 
+// Right, so I'll join you there, then. -C
+export function payloadEditGroup(groupID, groupName, groupRanking) {
+	window.payload = [groupID, groupName, groupRanking];
+	routePage("#accEditGroup");
+}
+
 // Add a post to the page.
 // postMy = true, means the individual user's posts.
 // postMy = false, means the "global" feed.
@@ -461,7 +467,7 @@ export function insertGroupItem(group_id, group_name, group_ranking) {
 		// Setup the buttons properly.
 		
 		const elementButtonBox = document.createElement("div");
-		const elementButtonEdit = createButton("edit", ["button", "buttongreen"], "Edit", `groupEdit(${group_id}, "${group_name}", ${group_ranking})`);
+		const elementButtonEdit = createButton("edit", ["button", "buttongreen"], "Edit", `payloadEditGroup(${group_id}, "${group_name}", ${group_ranking})`);
 		elementButtonBox.append(elementButtonEdit);
 		const elementButtonDelete = createButton("delete", ["button", "buttonred"], "Delete", `groupDelete(${group_id})`);
 		elementButtonBox.append(elementButtonDelete);

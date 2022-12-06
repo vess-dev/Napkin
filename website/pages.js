@@ -173,16 +173,17 @@ export function accAddGroup() {
 }
 
 export function accEditGroup() {
-	let group_id  = document.querySelector('meta[name="groups_payload"]').content;
-
+	let group_id  = window.payload[0];
+	let group_name = window.payload[1];
+	let group_ranking = window.payload[2];
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertMiniHeader("Edit a group", "editgroup");
 	phelp.insertBigBreak()
 	phelp.insertFullBox()
 	phelp.insertText('Edit a group')
-	phelp.insertInputBox('Group name','group_name',false,false,'need something here');
-	phelp.insertRadioInputBox("there should be content here but there isn't yet");
+	phelp.insertInputBox('Group name','group_name',false,false,group_name);
+	phelp.insertRadioInputBox(group_ranking);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Save changes", `addGroupAction(${group_id})`], ]);
 
 }
