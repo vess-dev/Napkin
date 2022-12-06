@@ -501,6 +501,7 @@ export function prePopulateSelectorsOnPost (post_id) {
 	})
 	.then(data => {
 		for (let onegroup of data) {
+			console.log('onegroup')
 			let oneoption = document.createElement("option");
 			oneoption.setAttribute("value", onegroup.group_id);
 			oneoption.textContent = onegroup.group_name;
