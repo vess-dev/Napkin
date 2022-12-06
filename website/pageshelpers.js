@@ -483,7 +483,7 @@ export function prePopulateSelectorsOnPost (post_id) {
 	let selector = document.createElement("select");
 	selector.setAttribute("multiple", true);
 	selector.setAttribute("id", "group_selector");
-	let endpoint = "postgroups?post_id="+post_id
+	let endpoint = "postgroup?post_id="+post_id
 	let options = {
 		method: "GET",
 		credentials: "include",
@@ -514,7 +514,7 @@ export function prePopulateSelectorsOnPost (post_id) {
 		elementBoxFull.append(elementInputFull);
 		})
 	}
-	
+
 export async function getAdminUsers(admin_status) {
 	
 	let endpoint = "adminusers?status=" + admin_status;
