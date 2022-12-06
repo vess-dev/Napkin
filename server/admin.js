@@ -51,9 +51,8 @@ function triggerGroupCreation(userID) {
     owner_id: userID,
     group_ranking: 4
   }
-  //TOFIX - need to do this with a promise, not this way // TODO
-  db.pool.query(`select count(*) as rows from groups where group_name='All friends' and user_id = ?`, [userID]).then(
-    result => {
+  db.pool.query(`select count(*) as rows from groups where group_name='All friends' and user_id = ?`, 
+    [userID], function(err, result) {
       console.log('got row count', result)
       console.log('try result0rows', result[0].rows )
       if ( result[0].rows == 0) {
