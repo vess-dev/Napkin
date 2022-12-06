@@ -91,8 +91,39 @@ export function processCommentClick(postID) {
 		elementCommentBox.setAttribute("id", "commentsdiv" + postID);
 		elementCommentBox.setAttribute("class", "commentsdiv");
 		if (page.testing) test.testComments(elementCommentBox);
-		elementPostBox.append(elementCommentBox);
-		elementPostBox.setAttribute("toggled", "true")
+
+		return new Promise((resolve, reject) => {
+			let options = {
+				method: "GET",
+				credentials: "include",
+				headers: {
+				"Content-Type": "application/json"}
+			};
+			fetch(route.SERVER + 'comments?post_id='+postID, options)
+			.then((response) => {
+				if (response.statusCode == 401) {routePage("#accLogin")};
+				if (response.ok) {
+					return response.json();
+				}
+				else {
+					throw new help.clientError("Server Error", response.status, "Unable to retrieve comments");
+				}
+			})
+			.then((commentsList) => {
+				for (let comment of commentsList) {
+					elementCommentBox.append(phelp.createComment(help.loadImage(comment.user_image), comment.user_handle, comment.comment_content, 
+						new Date(post.post_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"})))
+				}
+				elementPostBox.append(elementCommentBox);
+				elementPostBox.setAttribute("toggled", "true")
+
+				return resolve(true);
+			})
+			.catch((error) => {
+				return reject(error);
+			});
+		})
+	
 	}
 	// If it is expanded.
 	else {
