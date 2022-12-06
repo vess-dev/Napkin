@@ -5,18 +5,6 @@ import * as route from "./routes.js";
 import * as test from "./testers.js";
 import {setCookie} from "./cookies.js";
 
-// Query the user for an image choice. This is hackish.
-/*export function queryImage() {
-	const elementInput = document.createElement("input");
-	elementInput.setAttribute("type", "file");
-	elementInput.setAttribute("accept", "image/*");
-	elementInput.click();
-	elementInput.onchange = e => {
-		const elementImage = document.getElementById("post_image");
-		elementImage.setAttribute("payload", elementInput.value);
-	}
-} */
-
 // Fill the URL path on the post page with the cloud upload URL.
 export function createCloudinaryWidget() {
 	var myWidget = cloudinary.createUploadWidget({
@@ -636,6 +624,58 @@ export function adminSetStatus (statusWanted, targetUser) {
 			});
 		});
 }
+
+export function addGroupAction (groupID) {
+	// save new/edited group
+	let method, bodyObject
+
+	let group_name = document.querySelector('#group_name').value
+	let group_ranking = document.querySelector('#ranking_selector').value ;
+
+	if (groupID) {
+		method = "PUT"
+		bodyObject = {
+			group_name: group_name,
+			group_ranking: group_ranking,
+			group_id: group_id
+		  }
+	} else {
+		method = "POST"
+		bodyObject = {
+			group_name: group_name,
+			group_ranking: group_ranking
+		  }
+	}
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: method,
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+			body: JSON.stringify(bodyObject)
+		};
+		fetch(route.SERVER + "group", options)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				console.log(response)
+				throw new help.clientError("Server Error", response.status, "Unable to create post.");
+			}
+		})
+		.then(() => {
+			routePage("#accGroups")
+			return resolve(true)
+		})
+		.catch((error) => {
+			console.log(error)
+			return reject(error);
+		});
+	});
+	
+};
+
 
 export function loadGroupsEntries () {
 	let endpoint = "group"
