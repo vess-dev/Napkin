@@ -410,7 +410,7 @@ export function insertUserItem(userPicture, userFirstName, userLastName, userEma
 			break;
 		case "blacklist":
 			finalText = "Blacklisted on: ";
-			const elementButtonUnblack = createButton("unblacklist", ["button", "buttongreen"], "Unblacklist", `adminSetStatus("blacklist","${oneUserID}")`);
+			const elementButtonUnblack = createButton("unblacklist", ["button", "buttongreen"], "Unblacklist", `adminSetStatus("active","${oneUserID}")`);
 			elementButtonBox.append(elementButtonUnblack);
 			break;
 	}

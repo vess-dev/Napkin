@@ -256,7 +256,7 @@ export function adminActive() {
 
 // For admins to look at blacklisted accounts.
 export function adminBlacklist() {
-	const adminPage = "blacklist";
+	const adminPage = "blocked";
 	phelp.insertContent();
 	phelp.insertHeader(adminHeader, adminPage);
 	phelp.insertMiniHeader("Blacklisted Emails", "logout");
