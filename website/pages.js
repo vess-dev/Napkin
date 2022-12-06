@@ -36,6 +36,7 @@ window.updateAccount = pact.updateAccount;
 window.loadGroupsEntries = pact.loadGroupsEntries;
 
 window.adminSetStatus = pact.adminSetStatus
+window.payloadEditGroup = phelp.payloadEditGroup;
 
 // Disable or enable testing.
 export const testing = false;
