@@ -37,12 +37,23 @@ function setStatusForAdmin(statusWanted, targetUser, adminUserID) {
        if (error) {                    
          return reject(new BaseError("DB Error", 500, error));
        }
-       else {               
+       else { 
+         triggerGroupCreation(targetUser)             
          return resolve(results);        
        }
  });
 })
 }
 
+function triggerGroupCreation(userID) {
+  let groupObject = {
+    group_name: 'All Friends',
+    owner_id: userID,
+    group_ranking: 4
+  }
+  db.pool.query(`insert into groups set ? `, groupObject)
 
-module.exports = {getUsersForAdmin, setStatusForAdmin} ;
+
+}
+
+module.exports = {triggerGroupCreation, getUsersForAdmin, setStatusForAdmin} ;
