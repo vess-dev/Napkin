@@ -604,14 +604,18 @@ export function rejectFriendAction(friend_id) {
 	
 };
 
-export function adminSetStatus (statusWanted, targetUser, ) {
+export function adminSetStatus (statusWanted, targetUser) {
 
 		return new Promise((resolve, reject) => {
 			let options = {
 				method: "POST",
 				credentials: "include",
 				headers: {
-				"Content-Type": "application/json"}
+				"Content-Type": "application/json"},
+				body: JSON.stringify({
+					status_wanted: statusWanted,
+					target_user: targetUser
+				})
 			};
 			fetch(route.SERVER + 'adminstatus', options)
 			.then((response) => {
@@ -631,36 +635,6 @@ export function adminSetStatus (statusWanted, targetUser, ) {
 				return reject(error);
 			});
 		});
-	}
+}
 
-	export function rejectFriendAction(friend_id) {
-		return new Promise((resolve, reject) => {
-			let options = {
-				method: "POST",
-				credentials: "include",
-				headers: {
-				"Content-Type": "application/json"},
-				body: JSON.stringify({
-					friend_id: friend_id
-				})
-			};
 	
-			fetch(route.SERVER + "rejectfriend", options)
-			.then((response) => {
-				if (response.ok) {
-					return;
-				}
-				else {
-					throw new help.clientError("Server Error", response.status, "Problem updating friends.");
-				}
-			})
-			.then(() => {
-				routePage("#accFriends")
-				return resolve(true)
-			})
-			.catch((error) => {
-				return reject(error);
-			});
-		});
-		
-	};
