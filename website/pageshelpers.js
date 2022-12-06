@@ -422,27 +422,28 @@ export function insertUserItem(userPicture, userFirstName, userLastName, userEma
 }
 
 export function insertGroupItem(group_id, group_name, group_ranking) {
-	const elementBoxFull = document.getElementById("boxfull");
-	const elementDivGroup = document.createElement("div");
-	elementDivGroup.setAttribute("class", "groupdiv");
-	// Create a text block for the name.
-	const elementGroupName = document.createElement("div");
-	elementGroupName.setAttribute("id", "group_name");
-	elementGroupName.setAttribute("class", "usertext");
-	elementGroupName.textContent = group_name + "  (#"+group_id + ")  ranking: " + group_ranking;
-	elementDivGroup.append(elementGroupName);
-	// Setup the buttons properly.
 	if (group_name != 'All Friends') {
-	const elementButtonBox = document.createElement("div");
-	const elementButtonEdit = createButton("edit", ["button", "buttongreen"], "Edit", `groupEdit("${group_id}, ${group_name}, ${group_ranking}")`);
-	elementButtonBox.append(elementButtonEdit);
-	const elementButtonDelete = createButton("delete", ["button", "buttonred"], "Delete", `groupDelete("${group_id}")`);
-	elementButtonBox.append(elementButtonDelete);
-	elementButtonBox.setAttribute("class", "buttonbox");
-	elementDivGroup.append(elementButtonBox);
+		const elementBoxFull = document.getElementById("boxfull");
+		const elementDivGroup = document.createElement("div");
+		elementDivGroup.setAttribute("class", "groupdiv");
+		// Create a text block for the name.
+		const elementGroupName = document.createElement("div");
+		elementGroupName.setAttribute("id", "group_name");
+		elementGroupName.setAttribute("class", "usertext");
+		elementGroupName.textContent = group_name + "  (#"+group_id + ")  ranking: " + group_ranking;
+		elementDivGroup.append(elementGroupName);
+		// Setup the buttons properly.
+		
+		const elementButtonBox = document.createElement("div");
+		const elementButtonEdit = createButton("edit", ["button", "buttongreen"], "Edit", `groupEdit("${group_id}, ${group_name}, ${group_ranking}")`);
+		elementButtonBox.append(elementButtonEdit);
+		const elementButtonDelete = createButton("delete", ["button", "buttonred"], "Delete", `groupDelete("${group_id}")`);
+		elementButtonBox.append(elementButtonDelete);
+		elementButtonBox.setAttribute("class", "buttonbox");
+		elementDivGroup.append(elementButtonBox);
+		elementBoxFull.append(elementDivGroup);
 	}
-	elementBoxFull.append(elementDivGroup);
-	//TODO
+	
 	
 }
 
