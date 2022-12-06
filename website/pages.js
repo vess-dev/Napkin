@@ -162,7 +162,7 @@ export function accGroups() {
 export function accAddGroup() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
-	phelp.insertMiniHeader("Add a group", "addgroup");
+	phelp.insertMiniHeader("Add a group", "");
 	phelp.insertFullBox()
 	phelp.insertBigBreak()
 	phelp.insertText('Add a new group');
