@@ -638,7 +638,7 @@ export function adminSetStatus (statusWanted, targetUser) {
 }
 
 export function loadGroupsEntries () {
-	let endpoint = "groups"
+	let endpoint = "group"
 
 	return new Promise((resolve, reject) => {
 		let options = {
