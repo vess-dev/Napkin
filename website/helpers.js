@@ -4,19 +4,20 @@ export function pathImage(imageName) {
 }
 
 // Load an image to use.
-export function loadImage(imageName, isURL) {
+export function loadImage(imageName, isURL, altImage) {
+	if (!altImage) {altImage = "profile"}
 	let imagePath;
-	if (!imageName || imageName == "") {return null}
+	
 	if (!isURL) imagePath = pathImage(imageName);
 	else imagePath = imageName;
-	if (!imagePath) return pathImage("profile");
-	else {
-		const elementImage = document.createElement("img");
-		elementImage.setAttribute("src", imagePath);
-		return elementImage;
-	}
+	if (!imagePath) {imagePath = pathImage(altImage)};
+	
+	const elementImage = document.createElement("img");
+	elementImage.setAttribute("src", imagePath);
+	return elementImage;
+	
 }
-// Note to C: This should work? 
+// Note to C: This should work?  Note to V - I think I made it better? You were sometimes returning the url instead of the element? -C
 
 // Return a long string of text.
 export function longText() {
