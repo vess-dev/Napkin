@@ -58,6 +58,10 @@ export function insertMiniHeader(headerName, buttonType) {
 				const elementButtonBack= createButton("tofriends", ["button", "buttonblue"], "Back to Friends", "routePage('#accFriends')");
 				elementButtonBox.append(elementButtonBack);
 				break;
+			case "addgroup":
+				const elementButtonGroup= createButton("tofriends", ["button", "buttonblue"], "Add Group", "routePage('#accAddGroup')");
+				elementButtonBox.append(elementButtonGroup);
+				break;
 		}
 		elementMiniDiv.append(elementButtonBox);
 	}

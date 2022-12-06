@@ -151,12 +151,28 @@ export function friendSearch() {
 export function accGroups() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
-	phelp.insertMiniHeader("Add a group", "group");
+	phelp.insertMiniHeader("Add a group", "addgroup");
 	phelp.insertFullBox(true)
 	phelp.insertBigBreak()
 	phelp.insertText('My groups')
 	pact.loadGroupsEntries()
 
+}
+
+export function accAddGroup() {
+	phelp.insertContent();
+	phelp.insertHeader(userHeader, "groups");
+	phelp.insertMiniHeader("Add a group", "addgroup");
+	phelp.insertBigBreak()
+	phelp.insertText('Add a new group')
+}
+
+export function accEditGroup() {
+	phelp.insertContent();
+	phelp.insertHeader(userHeader, "groups");
+	phelp.insertMiniHeader("Edit a group", "editgroup");
+	phelp.insertBigBreak()
+	phelp.insertText('Edit a group')
 }
 
 // When you edit the groups your friends are in.
