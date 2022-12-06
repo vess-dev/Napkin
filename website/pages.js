@@ -151,7 +151,9 @@ export function friendSearch() {
 export function accGroups() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
+	phelp.insertMiniHeader("Add a group", "group");
 	phelp.insertFullBox(true)
+	phelp.insertBigBreak()
 	phelp.insertText('My groups')
 	pact.loadGroupsEntries()
 
@@ -200,6 +202,8 @@ export function postEdit() {
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction(" + window.payload[0] + ")"], ["cancel", ["button", "buttonother"], "Cancel", "routePage('#feedGlobal')"]], true);
 	pact.createCloudinaryWidget()
 }
+
+
 
 // When you look at your account settings.
 export function accSettings() {
