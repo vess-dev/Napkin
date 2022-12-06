@@ -111,7 +111,7 @@ export function processCommentClick(postID) {
 			})
 			.then((commentsList) => {
 				for (let comment of commentsList) {
-					elementCommentBox.append(phelp.createComment(help.loadImage(comment.user_image), comment.user_handle, comment.comment_content, 
+					elementCommentBox.append(phelp.createComment(help.loadImage(comment.user_image, true, "profile"), comment.user_handle, comment.comment_content, 
 						new Date(comment.comment_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"})))
 				}
 				elementPostBox.append(elementCommentBox);
