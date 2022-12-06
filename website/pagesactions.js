@@ -621,7 +621,7 @@ export function adminSetStatus (statusWanted, targetUser) {
 			.then((response) => {
 				if (response.statusCode == 401) {routePage("#accLogin")}
 				if (response.ok) {
-					return response.json();
+					return ;
 				}
 				else {
 					throw new help.clientError("Server Error", response.status, "UProblem setting user status");
