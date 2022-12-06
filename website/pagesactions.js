@@ -637,7 +637,7 @@ export function addGroupAction (groupID) {
 		bodyObject = {
 			group_name: group_name,
 			group_ranking: group_ranking,
-			group_id: group_id
+			group_id: groupID
 		  }
 	} else {
 		method = "POST"

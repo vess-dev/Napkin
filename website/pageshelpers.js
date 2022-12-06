@@ -284,6 +284,7 @@ export function insertRadioInputBox(defaultContent) {
 				oneoption.textContent = options[oneval]
 				selector.appendChild(oneoption);
 			}
+			if (defaultContent) {selector.value = defaultContent }
 			const elementBoxFull = document.getElementById("boxfull");
 			const elementInputFull = document.createElement("div");
 			elementInputFull.setAttribute("class", "inputbox");
