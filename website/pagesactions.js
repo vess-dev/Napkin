@@ -628,7 +628,7 @@ export function adminSetStatus (statusWanted, targetUser) {
 				}
 			})
 			.then(() => {
-
+				routePage()
 				return resolve(true);
 			})
 			.catch((error) => {
