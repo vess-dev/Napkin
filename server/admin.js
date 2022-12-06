@@ -38,7 +38,7 @@ function setStatusForAdmin(statusWanted, targetUser, adminUserID) {
          return reject(new BaseError("DB Error", 500, error));
        }
        else { 
-         triggerGroupCreation(targetUser)             
+         if (statusWanted == 'active') {triggerGroupCreation(targetUser) }         
          return resolve(results);        
        }
  });
@@ -51,8 +51,12 @@ function triggerGroupCreation(userID) {
     owner_id: userID,
     group_ranking: 4
   }
-  db.pool.query(`insert into groups set ? `, groupObject)
-
+  db.pool.query(`select from count(*) as rows from groups where group_name='All friends' and user_id = ?`, [userID]).then(
+    result => {
+      if (result[0].rows == 0) {
+        db.pool.query(`insert into groups set ? `, groupObject)
+      }
+    })
 
 }
 
