@@ -471,7 +471,7 @@ export function insertGroupItem(group_id, group_name, group_ranking) {
 		const elementButtonBox = document.createElement("div");
 		const elementButtonEdit = createButton("edit", ["button", "buttongreen"], "Edit", `payloadEditGroup(${group_id}, "${group_name}", ${group_ranking})`);
 		elementButtonBox.append(elementButtonEdit);
-		const elementButtonDelete = createButton("delete", ["button", "buttonred"], "Delete", `groupDelete(${group_id})`);
+		const elementButtonDelete = createButton("delete", ["button", "buttonred"], "Delete", `TODOgroupDelete(${group_id})`);
 		elementButtonBox.append(elementButtonDelete);
 		elementButtonBox.setAttribute("class", "buttonbox");
 		elementDivGroup.append(elementButtonBox);
