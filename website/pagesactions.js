@@ -604,29 +604,27 @@ export function rejectFriendAction(friend_id) {
 	
 };
 
-export function loadGroupsEntries (userID) {
+export function adminSetStatus (statusWanted, targetUser, ) {
 
 		return new Promise((resolve, reject) => {
 			let options = {
-				method: "GET",
+				method: "POST",
 				credentials: "include",
 				headers: {
 				"Content-Type": "application/json"}
 			};
-			fetch(route.SERVER + 'group', options)
+			fetch(route.SERVER + 'adminstatus', options)
 			.then((response) => {
 				if (response.statusCode == 401) {routePage("#accLogin")}
 				if (response.ok) {
 					return response.json();
 				}
 				else {
-					throw new help.clientError("Server Error", response.status, "Unable to retrieve friends");
+					throw new help.clientError("Server Error", response.status, "UProblem setting user status");
 				}
 			})
-			.then((groupList) => {
-				for (let onegroup of groupList) {
-					phelp.insertGroupItem(onegroup.group_id, onegroup.group_name, onegroup.group_ranking);
-				}
+			.then(() => {
+
 				return resolve(true);
 			})
 			.catch((error) => {
@@ -634,4 +632,35 @@ export function loadGroupsEntries (userID) {
 			});
 		});
 	}
+
+	export function rejectFriendAction(friend_id) {
+		return new Promise((resolve, reject) => {
+			let options = {
+				method: "POST",
+				credentials: "include",
+				headers: {
+				"Content-Type": "application/json"},
+				body: JSON.stringify({
+					friend_id: friend_id
+				})
+			};
 	
+			fetch(route.SERVER + "rejectfriend", options)
+			.then((response) => {
+				if (response.ok) {
+					return;
+				}
+				else {
+					throw new help.clientError("Server Error", response.status, "Problem updating friends.");
+				}
+			})
+			.then(() => {
+				routePage("#accFriends")
+				return resolve(true)
+			})
+			.catch((error) => {
+				return reject(error);
+			});
+		});
+		
+	};
