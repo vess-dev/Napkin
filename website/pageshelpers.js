@@ -479,24 +479,42 @@ export function getGroupsSelector() {
 	})
 }
 
-/*
-export function insertUploadForm() {
-	const elementBoxFull = document.getElementById("boxfull");
-	const elementImageForm = document.createElement("form");
-	elementImageForm.setAttribute("action", "/#upload");
-	elementImageForm.setAttribute("method", "post")
-	elementImageForm.setAttribute("enctype", "multipart/form-data");
-	const fileUploadElement = document.createElement('input');
-	fileUploadElement.setAttribute("accept", "image/*");
-	fileUploadElement.setAttribute('type','file');
-	fileUploadElement.setAttribute('name', 'filetoupload')
-	const submitButton = document.createElement('input')
-	submitButton.setAttribute('type', 'submit')
-	elementImageForm.appendChild(fileUploadElement);
-	elementImageForm.appendChild(submitButton)
-	elementBoxFull.appendChild(elementImageForm)
-}
-*/
+export function prePopulateSelectorsOnPost (post_id) {
+	let selector = document.createElement("select");
+	selector.setAttribute("multiple", true);
+	selector.setAttribute("id", "group_selector");
+	let endpoint = "postgroups?post_id="+post_id
+	let options = {
+		method: "GET",
+		credentials: "include",
+		headers: {
+		"Content-Type": "application/json"}
+	}
+	fetch(route.SERVER+endpoint, options)
+	.then((response) => {
+		if (response.ok) {
+			return response.json();
+		}
+		else {
+			throw new help.clientError("Server Error", response.status, "Unable to get groups.");
+		}
+	})
+	.then(data => {
+		for (let onegroup of data) {
+			let oneoption = document.createElement("option");
+			oneoption.setAttribute("value", onegroup.group_id);
+			oneoption.textContent = onegroup.group_name;
+			selector.appendChild(oneoption);
+		}
+		const elementBoxFull = document.getElementById("boxfull");
+		const elementInputFull = document.createElement("div");
+		elementInputFull.setAttribute("class", "inputbox");
+		elementInputFull.textContent = "Post visible to:";
+		elementInputFull.append(selector);
+		elementBoxFull.append(elementInputFull);
+		})
+	}
+	
 export async function getAdminUsers(admin_status) {
 	
 	let endpoint = "adminusers?status=" + admin_status;

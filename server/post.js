@@ -78,6 +78,24 @@ function editPost(postObject, userID) {
 
 }
 
+function getPostGroups(userID,post_id) {
+  // not tested
+  return new Promise((resolve, reject) =>{
+    db.pool.query(`select group_id, group_name, post_id as inGroup from (select group_id, post_id
+      from post_groups where post_id=26) b right join groups using (group_id) 
+    where group_id in (select group_id from groups where owner_id=1)`, [post_id, userID],
+     function(error, results) {
+       console.log(results)
+       if (error) {                    
+         return reject(new BaseError("DB Error", 500, error));
+       }
+       else {               
+         return resolve(results);        
+       }
+ });
+})
+}
+
 
 function putPostInGroup(user_id, group_id, post_id) {
   return new Promise((resolve, reject) =>{
@@ -294,4 +312,4 @@ function getMyPostList(userID) {
       })})
 }
 
-module.exports = {editPost, getMyPostList, putPostInGroup, removePostFromGroup, getPostList, createPost, updatePostWeightByPost, updatePostWeightByUser, updateAllPostWeights}
+module.exports = {getPostGroups, editPost, getMyPostList, putPostInGroup, removePostFromGroup, getPostList, createPost, updatePostWeightByPost, updatePostWeightByUser, updateAllPostWeights}

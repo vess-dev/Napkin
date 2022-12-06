@@ -437,6 +437,23 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
           response.end();
         }); 
       }
+      if (method === 'GET') {
+        console.log('on postgroups route')
+        routeFound = true;
+        let post_id = queryObject.post_id
+  
+        post.getPostGroups(userID,post_id).then(list=>{
+          response.statusCode = 200;
+          response.write(JSON.stringify(list));
+        })
+        .catch(error=>{
+          console.log('caught an error ', error)
+          handleErrorReply(response, error);
+        })
+        .finally(() => {
+          response.end(); 
+        });
+      }
       }
   //FRIENDGROUPS routes
 

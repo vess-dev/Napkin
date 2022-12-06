@@ -194,7 +194,7 @@ export function postEdit() {
 	phelp.insertInputBox("Post title:", "post_title", false, false, window.payload[1]);
 	phelp.insertInputBox("Post image URL:", "post_image_url", false, false, window.payload[3]);
 	phelp.insertInputBox("Post content:", "post_content", false, true, window.payload[2]);
-	phelp.getGroupsSelector()
+	phelp.prePopulateSelectorsOnPost(window.payload[0])
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction(" + window.payload[0] + ")"], ["cancel", ["button", "buttonother"], "Cancel", "routePage('#feedGlobal')"]], true);
 	pact.createCloudinaryWidget()
 }
