@@ -393,24 +393,24 @@ export function insertUserItem(userPicture, userFirstName, userLastName, userEma
 	switch (itemType) {
 		case "pending":
 			finalText = "Created on: ";
-			const elementButtonApprove = createButton("approve", ["button", "buttongreen"], "Approve", `adminSetStatus("${active}","${oneUserID}")`);
+			const elementButtonApprove = createButton("approve", ["button", "buttongreen"], "Approve", `adminSetStatus("active","${oneUserID}")`);
 			elementButtonBox.append(elementButtonApprove);
-			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", `adminSetStatus("${blocked}","${oneUserID}")`);
+			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", `adminSetStatus("blocked","${oneUserID}")`);
 			elementButtonBox.append(elementButtonDecline);
 			break;
 		case "disabled":
 			finalText = "Disabled on: ";
-			const elementButtonEnable = createButton("enable", ["button", "buttongreen"], "Enable", `adminSetStatus("${active}","${oneUserID}")`);
+			const elementButtonEnable = createButton("enable", ["button", "buttongreen"], "Enable", `adminSetStatus("active","${oneUserID}")`);
 			elementButtonBox.append(elementButtonEnable);
 			break;
 		case "active":
 			finalText = "Approved on: ";
-			const elementButtonDisable = createButton("disable", ["button", "buttonred"], "Disable", `adminSetStatus("${disabled}","${oneUserID}")`);
+			const elementButtonDisable = createButton("disable", ["button", "buttonred"], "Disable", `adminSetStatus("disabled","${oneUserID}")`);
 			elementButtonBox.append(elementButtonDisable);
 			break;
 		case "blacklist":
 			finalText = "Blacklisted on: ";
-			const elementButtonUnblack = createButton("unblacklist", ["button", "buttongreen"], "Unblacklist", `adminSetStatus("${blacklist}","${oneUserID}")`);
+			const elementButtonUnblack = createButton("unblacklist", ["button", "buttongreen"], "Unblacklist", `adminSetStatus("blacklist","${oneUserID}")`);
 			elementButtonBox.append(elementButtonUnblack);
 			break;
 	}
