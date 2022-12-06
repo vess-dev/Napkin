@@ -100,7 +100,6 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	const elementDivInfo = document.createElement("div");
 	elementDivInfo.setAttribute("class", "userdiv");
 	// Add the user picture. TODO: IF THERE IS NO PICTURE, USE PROFILE.PNG.
-	// TODO:  userPicture is the URL.  Is isn't something you can set an attribute for.  What happened to the code that was here that worked?
 
 	if (userPicture) {
 		// need this? 
@@ -364,7 +363,7 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 }
 
 // Create an admin user info div. Picture, name, email, date, item type.
-export function insertUserItem(userPicture, userFirstName, userLastName, userEmail, itemDate, itemType) {
+export function insertUserItem(userPicture, userFirstName, userLastName, userEmail, itemDate, itemType, oneUserID) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementDivUser = document.createElement("div");
 	elementDivUser.setAttribute("class", "userdiv");
@@ -394,24 +393,24 @@ export function insertUserItem(userPicture, userFirstName, userLastName, userEma
 	switch (itemType) {
 		case "pending":
 			finalText = "Created on: ";
-			const elementButtonApprove = createButton("approve", ["button", "buttongreen"], "Approve", "TODOAPPROVE");
+			const elementButtonApprove = createButton("approve", ["button", "buttongreen"], "Approve", `adminSetStatus("${active}","${oneUserID}")`);
 			elementButtonBox.append(elementButtonApprove);
-			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", "TODODECLINE");
+			const elementButtonDecline = createButton("decline", ["button", "buttonred"], "Decline", `adminSetStatus("${blocked}","${oneUserID}")`);
 			elementButtonBox.append(elementButtonDecline);
 			break;
 		case "disabled":
 			finalText = "Disabled on: ";
-			const elementButtonEnable = createButton("enable", ["button", "buttongreen"], "Enable", "TODOENABLE");
+			const elementButtonEnable = createButton("enable", ["button", "buttongreen"], "Enable", `adminSetStatus("${active}","${oneUserID}")`);
 			elementButtonBox.append(elementButtonEnable);
 			break;
 		case "active":
 			finalText = "Approved on: ";
-			const elementButtonDisable = createButton("disable", ["button", "buttonred"], "Disable", "TODODISABLE");
+			const elementButtonDisable = createButton("disable", ["button", "buttonred"], "Disable", `adminSetStatus("${disabled}","${oneUserID}")`);
 			elementButtonBox.append(elementButtonDisable);
 			break;
 		case "blacklist":
 			finalText = "Blacklisted on: ";
-			const elementButtonUnblack = createButton("unblacklist", ["button", "buttongreen"], "Unblacklist", "TODOUNBLACKLIST");
+			const elementButtonUnblack = createButton("unblacklist", ["button", "buttongreen"], "Unblacklist", `adminSetStatus("${blacklist}","${oneUserID}")`);
 			elementButtonBox.append(elementButtonUnblack);
 			break;
 	}
@@ -543,7 +542,8 @@ export async function getAdminUsers(admin_status) {
 		})
 		.then((adminUsersList) => {
 			for (let adminUser of adminUsersList) {
-				insertUserItem(help.loadImage(adminUser.user_image, true), adminUser.user_first_name, adminUser.user_last_name, adminUser.user_email, null, admin_status);
+				insertUserItem(help.loadImage(adminUser.user_image, true), adminUser.user_first_name, 
+					adminUser.user_last_name, adminUser.user_email, null, admin_status, adminUser.user_id);
 			}
 			return resolve(true);
 		})
