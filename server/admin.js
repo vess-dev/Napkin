@@ -51,9 +51,11 @@ function triggerGroupCreation(userID) {
     owner_id: userID,
     group_ranking: 4
   }
-  db.pool.query(`select from count(*) as rows from groups where group_name='All friends' and user_id = ?`, [userID]).then(
+  db.pool.query(`select count(*) as rows from groups where group_name='All friends' and user_id = ?`, [userID]).then(
     result => {
-      if (result[0].rows == 0) {
+      console.log('got row count', result)
+      console.log('try result0rows', result[0].rows )
+      if ( result[0].rows == 0) {
         db.pool.query(`insert into groups set ? `, groupObject)
       }
     })
