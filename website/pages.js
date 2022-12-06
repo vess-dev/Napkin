@@ -168,9 +168,13 @@ export function accAddGroup() {
 	phelp.insertText('Add a new group');
 	phelp.insertInputBox('Group name','group_name',false,false,null)
 	phelp.insertRadioInputBox();
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Save new group", `addGroupAction()`], ]);
+
 }
 
 export function accEditGroup() {
+	let group_id  = document.querySelector('meta[name="groups_payload"]').content;
+
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertMiniHeader("Edit a group", "editgroup");
@@ -179,6 +183,8 @@ export function accEditGroup() {
 	phelp.insertText('Edit a group')
 	phelp.insertInputBox('Group name','group_name',false,false,'need something here');
 	phelp.insertRadioInputBox("there should be content here but there isn't yet");
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Save changes", `addGroupAction(${group_id})`], ]);
+
 }
 
 // When you edit the groups your friends are in.

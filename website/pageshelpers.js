@@ -271,7 +271,7 @@ export function insertRadioInputBox(defaultContent) {
 		let selector = document.createElement("select");
 		selector.setAttribute("id", "ranking_selector");
 
-		let options = ["highest priority", "high priority", "low priority", "lowest priority"]
+		let options = ["","highest priority", "high priority", "low priority", "lowest priority"]
 			for (let oneval of [1,2,3,4]) {
 				let oneoption = document.createElement("option");
 				oneoption.setAttribute("value", oneval);
