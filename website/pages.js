@@ -166,6 +166,7 @@ export function accAddGroup() {
 	phelp.insertFullBox()
 	phelp.insertBigBreak()
 	phelp.insertText('Add a new group')
+	phelp.insertRadioInputBox();
 }
 
 export function accEditGroup() {
@@ -175,6 +176,7 @@ export function accEditGroup() {
 	phelp.insertBigBreak()
 	phelp.insertFullBox()
 	phelp.insertText('Edit a group')
+	phelp.insertRadioInputBox("there should be content here but there isn't yet");
 }
 
 // When you edit the groups your friends are in.

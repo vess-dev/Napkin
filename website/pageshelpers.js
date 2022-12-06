@@ -266,6 +266,28 @@ export function insertInputBox(inputText, inputName, inputPassword, toggleArea, 
 	elementBoxFull.append(elementInputFull);
 }
 
+export function insertRadioInputBox(defaultContent) {
+		//todo - default content not working
+		let selector = document.createElement("select");
+		selector.setAttribute("id", "ranking_selector");
+
+		let options = ["highest priority", "high priority", "low priority", "lowest priority"]
+			for (let oneval of [1,2,3,4]) {
+				let oneoption = document.createElement("option");
+				oneoption.setAttribute("value", oneval);
+				oneoption.textContent = options[oneval]
+				selector.appendChild(oneoption);
+			}
+			const elementBoxFull = document.getElementById("boxfull");
+			const elementInputFull = document.createElement("div");
+			elementInputFull.setAttribute("class", "inputbox");
+			elementInputFull.textContent = "Priority for posts from users in this group:";
+			elementInputFull.append(selector);
+			elementBoxFull.append(elementInputFull);
+			if (defaultContent) {
+				console.log('default content for editing not done yet')
+			}
+}
 
 
 // Create and add different button types.
