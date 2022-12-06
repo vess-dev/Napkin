@@ -637,8 +637,8 @@ export function adminSetStatus (statusWanted, targetUser) {
 		});
 }
 
-export function loadGroupsEntries {
-	let endpoint = "groups?group_id=" + friend_id;
+export function loadGroupsEntries () {
+	let endpoint = "groups"
 
 	return new Promise((resolve, reject) => {
 		let options = {
