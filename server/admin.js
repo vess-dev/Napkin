@@ -53,7 +53,7 @@ function triggerGroupCreation(userID) {
   }
 
   return new Promise((resolve, reject) =>{
-    db.pool.query(`select count(*) as rows from groups where group_name='All friends' and user_id = ?`, 
+    db.pool.query(`select count(*) as rows from groups where group_name='All friends' and owner_id = ?`, 
     [userID],
       function(error, results, fields) {
         if (error) {
