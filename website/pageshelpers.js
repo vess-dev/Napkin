@@ -439,9 +439,9 @@ export function insertGroupItem(group_id, group_name, group_ranking) {
 		// Setup the buttons properly.
 		
 		const elementButtonBox = document.createElement("div");
-		const elementButtonEdit = createButton("edit", ["button", "buttongreen"], "Edit", `groupEdit("${group_id}, ${group_name}, ${group_ranking}")`);
+		const elementButtonEdit = createButton("edit", ["button", "buttongreen"], "Edit", `groupEdit(${group_id}, "${group_name}", ${group_ranking})`);
 		elementButtonBox.append(elementButtonEdit);
-		const elementButtonDelete = createButton("delete", ["button", "buttonred"], "Delete", `groupDelete("${group_id}")`);
+		const elementButtonDelete = createButton("delete", ["button", "buttonred"], "Delete", `groupDelete(${group_id})`);
 		elementButtonBox.append(elementButtonDelete);
 		elementButtonBox.setAttribute("class", "buttonbox");
 		elementDivGroup.append(elementButtonBox);

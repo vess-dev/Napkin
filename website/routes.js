@@ -14,6 +14,8 @@ export const PAGE_POST_CREATE = "#postCreate";
 export const PAGE_POST_EDIT = "#postEdit";
 export const PAGE_ACC_SETTINGS = "#accSettings";
 export const PAGE_FRIEND_GROUPS = "#accFriendGroups";
+export const PAGE_ADD_GROUP = "#accAddGroup";
+export const PAGE_EDIT_GROUP = "#accEditGroup";
 
 // Admin paths.
 export const PAGE_ADMIN_PENDING = "#adminPending";

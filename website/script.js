@@ -79,6 +79,12 @@ function routePage(newPage) {
 		case route.PAGE_ADMIN_BLACKLIST:
 			page.adminBlacklist();
 			break;
+		case route.PAGE_ADD_GROUP:
+			page.accAddGroup();
+			break;
+		case route.PAGE_EDIT_GROUP:
+			page.accEditGroup();
+			break;
 		default:
 			// If the route is unknown, redirect.
 			// TODO: #feedGlobal routing should kick back to #accLogin if no session cookie exists.
