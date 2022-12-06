@@ -46,7 +46,9 @@ function editPost(postObject, userID) {
     }
     console.log('still ok?')
     let postID = postObject.post_id;
-    //postObject.remove('post_id')
+    let groupID = postObject.group_id
+    delete postObject.post_id
+    delete postObject.group_id
     console.log('now have postObject', postObject)
     db.pool.query('update posts SET ? where post_id = ?', [postObject, postID],
       async function(error, results, fields) {
@@ -60,10 +62,10 @@ function editPost(postObject, userID) {
           console.log('edited post with number', postID)   
           if (postObject.group_id) {
             await removePostFromAllGroups(userID, postID)
-            console.log('calling putPostInGroup with', userID, postObject.group_id, postID)
-            if (Number.isInteger(postObject.group_id)) {putPostInGroup(userID, postObject.group_id, postID)}
+            console.log('calling putPostInGroup with', userID, groupID, postID)
+            if (Number.isInteger(groupID)) {putPostInGroup(userID, groupID, postID)}
             else {
-              let allgroups = postObject.group_id.split(/[, ]+/)
+              let allgroups = groupID.split(/[, ]+/)
               for (let onegroup of allgroups) {
                 putPostInGroup(userID, onegroup, postID)
               }
