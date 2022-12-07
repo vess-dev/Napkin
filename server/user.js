@@ -13,12 +13,12 @@ function getUserList() {
   return new Promise((resolve, reject) =>{
     db.pool.query('select user_handle, users.user_id, user_image, user_first_name, count(session_id) as "#sessions" from users LEFT join sessions on sessions.user_id = users.user_id group by users.user_id',
       function(error, results) {
-        console.log(results)
+        //console.log(results)
         if (error) {                    
           return reject(new BaseError("DB Error", 500, error));
         }
         else {  
-          console.log('results is', results)             
+          //console.log('results is', results)             
           return resolve(results);        
         }
     });
