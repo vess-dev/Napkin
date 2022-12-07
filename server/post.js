@@ -381,7 +381,7 @@ async function updateAllPostWeights() {
 function getPostList(userID) {
   return new Promise((resolve, reject) =>{
      db.pool.query(`select users.user_id, users.user_first_name, users.user_last_name, users.user_handle, users.user_image, post_weight, post_timestamp, tmp.post_id, 
-     post_title, post_content, post_image, post_likes_score, post_comment_count
+     post_title, post_content, post_image, post_likes_score, post_comment_count, post_visable
       from (select * from posts_feed where user_id= ? ) tmp 
       inner join posts on posts.post_id=tmp.post_id 
      inner join users on posts.user_id=users.user_id order by post_weight desc;`
