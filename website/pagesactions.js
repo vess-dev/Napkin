@@ -70,9 +70,6 @@ export function updateAccount() {
 	});
 };
 
-
-
-
 // Send that a like was clicked on for a post.
 export function processLikeClick(postID) {
 	console.log("like clicked for postID: ", postID);
@@ -635,6 +632,7 @@ export function removeFriendAction(friend_id) {
 	});
 	
 };
+
 export function rejectFriendAction(friend_id) {
 	return new Promise((resolve, reject) => {
 		let options = {
@@ -787,7 +785,8 @@ export function loadGroupsEntries () {
 			return reject(error);
 		});
 	});
-}	
+}
+
 export function sendCommentToNode (postID, comment_content) {
 
 		let method = "POST"

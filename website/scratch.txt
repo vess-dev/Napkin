@@ -1,0 +1,29 @@
+add delete to comments
+stop input from redirecting
+
+group delete button
+style group edit page
+
+post hide
+post delete
+
+allow the poster to delete comments too
+
+add upload image to create account page
+
+user_image null on new2? active?
+
+searching over and over doesnt remake
+
+missing fields should display appropriate error for account creation.
+
+blacklisted emails should not be able to make new accounts -> tell the front end appropriately too.
+
+pending on, disabled on, active on, and blacklisted on do not have a date in the db to display on the frontend. functions of interest for the fix: admin.setStatusForAdmin() and user.insertUser(). removed from pageshelpers.insertUserItem() for now.
+
+
+
+URL:
+https://res.cloudinary.com/dkz6vktw0/image/upload/ar_1:1,c_fill,g_faces,h_300,r_8,w_300/
+
+plus public_id

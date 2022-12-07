@@ -56,7 +56,8 @@ export function accLogin() {
 	phelp.insertFullBox(false);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
-	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", "userLoginAction()"], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"], ["test", ["button", "buttonother"], "adminTest", "routePage('#adminPending')"]]);
+	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", "userLoginAction()"], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"]]);
+	//["test", ["button", "buttonother"], "adminTest", "routePage('#adminPending')"]
 }
 
 // When you are creating an account.

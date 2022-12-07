@@ -452,8 +452,9 @@ export function insertUserItem(userPicture, userFirstName, userLastName, userEma
 			break;
 	}
 	finalText += itemDate;
-	elementUserDate.textContent = finalText;
-	elementDivUser.append(elementUserDate);
+	// The dates are not in the backend. Ignoring for now.
+	//elementUserDate.textContent = finalText;
+	//elementDivUser.append(elementUserDate);
 	elementDivUser.append(elementButtonBox);
 	elementBoxFull.append(elementDivUser);
 }
@@ -462,7 +463,7 @@ export function insertGroupItem(group_id, group_name, group_ranking) {
 	if (group_name != 'All Friends') {
 		const elementBoxFull = document.getElementById("boxfull");
 		const elementDivGroup = document.createElement("div");
-		elementDivGroup.setAttribute("class", "groupdiv");
+		elementDivGroup.setAttribute("class", "userdiv");
 		// Create a text block for the name.
 		const elementGroupName = document.createElement("div");
 		elementGroupName.setAttribute("id", "group_name");
@@ -471,7 +472,6 @@ export function insertGroupItem(group_id, group_name, group_ranking) {
 		elementGroupName.textContent = group_name + "  (#"+group_id + ")  ranking: " + options[group_ranking];
 		elementDivGroup.append(elementGroupName);
 		// Setup the buttons properly.
-		
 		const elementButtonBox = document.createElement("div");
 		const elementButtonEdit = createButton("edit", ["button", "buttongreen"], "Edit", `payloadEditGroup(${group_id}, "${group_name}", ${group_ranking})`);
 		elementButtonBox.append(elementButtonEdit);

@@ -1,7 +1,9 @@
+const admin = require('./admin.js');
 const db = require('./dbi.js');
 const bcrypt = require('bcrypt');
 const BaseError = require('./BaseError.js');
 
+const test = require('./test.js');
 
 /**
  *  Assumes the user is authenticated to perform this action
@@ -81,6 +83,7 @@ function addNewUser(userObject) {
         insertUser(userObject.user_first_name, userObject.user_last_name, userObject.user_email, hash, userObject.user_handle, userObject.user_status, userObject.age)
         .then(response=>{
           // I was doing something here?
+          admin.triggerGroupCreation(response)
           resolve(response)
         })          
         .catch((error)=> {          

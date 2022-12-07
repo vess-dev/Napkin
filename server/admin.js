@@ -63,7 +63,7 @@ function triggerGroupCreation(userID) {
         }
         console.log('got row count', results)
         console.log('try result rows', results[0].rcount )
-        if ( results[0].rows == 0 ) {
+        if ( results[0].rcount == 0 ) {
           db.pool.query(`insert into groups set ? `, groupObject)
           return resolve(results);   
         }
