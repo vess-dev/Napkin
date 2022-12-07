@@ -154,8 +154,8 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		elementEye.addEventListener("click", () => toggleEye("eye" + postID));
 		elementEye.setAttribute('data-vis', postVis)
 		elementEye.addEventListener("click", () => { 
-			let tmpVis = document.querySelector("eye" + postID).getAttribute('data-vis')
-			document.querySelector("eye" + postID).setAttribute('data-vis', !tmpVis)
+			let tmpVis = document.querySelector("#eye" + postID).getAttribute('data-vis')
+			document.querySelector("#eye" + postID).setAttribute('data-vis', !tmpVis)
 			console.log("hide " + postID)
 			updateVisibility(postID, !tmpVis)
 			}); // TODO: HOOKUP HIDE?
