@@ -594,7 +594,7 @@ export async function getAdminUsers(admin_status) {
 	});
 }
 
-async function getSettingsValues() {
+export async function getSettingsValues() {
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "GET",
