@@ -133,7 +133,7 @@ async function deletePost(post_id, userID) {
   db.pool.query(`delete from posts
   where post_id=? 
   and
-  owner_id=? )`,[post_id, userID],
+  user_id=? )`,[post_id, userID],
     (error, results) => {
        
     if (error) {   
@@ -142,7 +142,7 @@ async function deletePost(post_id, userID) {
                      
     } else { 
       console.log('post removed from group successfully: ', results)
-      deletePostPart2(post_id, user_id)
+      deletePostPart2(post_id, userID)
 
       return resolve(results); 
     }
