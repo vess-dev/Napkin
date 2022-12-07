@@ -1,6 +1,7 @@
 const db = require('./dbi.js');
 const bcrypt = require('bcrypt');
 const BaseError = require('./BaseError.js');
+const posts = require('./post.js');
 
 
 function getFriendList(userID,statusWanted) {
@@ -148,8 +149,18 @@ function deleteFriendEntries(friendID, userID) {
 
 function deletefromFeed(friend_id, user_id) {
   return new Promise((resolve, reject) =>{
-          db.pool.query('DELETE from posts_feed where user_id=?', user_id, updatePostWeightByUser(friend_id))        
-          return resolve(results);        
+          db.pool.query('DELETE from posts_feed where user_id=?', user_id, 
+          function(error, results) {
+            
+            if (error) {                    
+              return reject(new BaseError("DB Error", 500, error));
+            }
+            else {
+              posts.updatePostWeightByUser(friend_id)
+              return resolve(true)
+            }
+          }
+          )            
         }
       )}
 
