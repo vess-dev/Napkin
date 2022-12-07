@@ -150,6 +150,7 @@ function deleteFriendEntries(friendID, userID) {
 
 function deletefromFeed(friend_id, user_id) {
   return new Promise((resolve, reject) =>{
+          console.log('start delete from feed')
           db.pool.query('DELETE from posts_feed where user_id in (?, ?)', [user_id, friend_id], 
           function(error, results) {
             
