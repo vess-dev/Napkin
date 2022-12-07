@@ -144,8 +144,12 @@ export function processCommentClick(postID) {
 				let elementInputFull = document.createElement('input') ; // box to put a new comment in
 				elementInputFull.setAttribute("id", "commentInput")
 				elementInputFull.setAttribute("class", "inputbox");
-				elementInputFull.setAttribute("placeholder", 'type your comment here and press ENTER')
-				elementPostBox.append(elementInputFull);
+				elementInputFull.setAttribute("placeholder", 'Type your comment here. Press enter to submit.')
+				
+				elementCommentBox.append(elementInputFull);
+				elementPostBox.append(elementCommentBox);
+				elementPostBox.setAttribute("toggled", "true")
+
 				elementInputFull.addEventListener("keyup", function(event) {
 					if (event.key === "Enter") {
 						console.log('comment fake submitted! PostID:', postID, elementInputFull.value )
@@ -153,7 +157,6 @@ export function processCommentClick(postID) {
 						//TODO - handoff to DB.
 					}
 				});
-				// TODO CAS
 				return resolve(true);
 			})
 			.catch((error) => {
