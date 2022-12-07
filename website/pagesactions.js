@@ -146,7 +146,7 @@ export function processCommentClick(postID) {
 				
 				let elementInputFull = document.createElement('input') ; // box to put a new comment in
 				elementInputFull.setAttribute("class", "inputbox");
-				elementInputFull.setAttribute("hint", 'type your comment here and press ENTER')
+				elementInputFull.setAttribute("placeholder", 'type your comment here and press ENTER')
 				elementPostBox.append(elementInputFull);
 				// TODO CAS
 				return resolve(true);
