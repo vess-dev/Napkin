@@ -148,12 +148,14 @@ function changePasswordDB(hash,userID) {
 
 function updateUser(userObject,userID) {
   return new Promise((resolve, reject) =>{
-    if (userObject && userObject['password_raw'] ) {
+    let password_raw
+    if (userObject && userObject.hasOwnProperty('password_raw') ) {
       console.log('password change attempt')
-      let password_raw = userObject['password_raw']
+      password_raw = userObject['password_raw']
       delete userObject['password_raw']
+      changeUserPassword(password_raw, userID)  
     }
-    if (userObject && userObject['admin_flag'] ) { delete userObject['admin_flag']}
+    if (userObject && userObject.hasOwnProperty('admin_flag') ) { delete userObject['admin_flag']}
     console.log('about to run changeUserPassword')
     
     // TODO - handle password change here 
@@ -165,7 +167,7 @@ function updateUser(userObject,userID) {
         }
         else {
           // rows added
-          changeUserPassword(password_raw, userID)          
+                  
           return resolve(results);        
         }
     });
