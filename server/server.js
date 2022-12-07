@@ -517,7 +517,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
             console.log('method is post for comment')
             routeFound = true;
             
-            comment.getCommentsOnPost(queryObject.post_id)
+            comment.getCommentsOnPost(queryObject.post_id, userID)
             .then(list=>{
               response.statusCode = 200;
               response.write(JSON.stringify(list))})

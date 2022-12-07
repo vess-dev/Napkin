@@ -152,7 +152,7 @@ export function processCommentClick(postID) {
 				for (let comment of commentsList) {
 					console.log(comment);
 					let newComment = phelp.createComment(help.loadImage(comment.user_image, true, "profile"), comment.user_handle, comment.comment_content, 
-						new Date(comment.comment_timestamp).toLocaleDateString("en-us"), true, comment.comment_id)
+						new Date(comment.comment_timestamp).toLocaleDateString("en-us"), comment.comment_toggle, comment.comment_id)
 					elementCommentBox.append(newComment)
 				}
 				let elementInputFull = document.createElement('input') ; // box to put a new comment in
