@@ -41,11 +41,10 @@ window.addGroupAction = pact.addGroupAction;
 
 // Disable or enable testing.
 export const testadmin = false;
-export const testassets = false;
+export const testassets = true;
 export const testcomments = false;
 export const testfriends = false;
 export const testpages = false;
-export const testserver = false;
 
 // Always insert the content box first, and then the header type.
 

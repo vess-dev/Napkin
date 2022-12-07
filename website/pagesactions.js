@@ -138,23 +138,23 @@ export function processCommentClick(postID) {
 			})
 			.then((commentsList) => {
 				for (let comment of commentsList) {
-					elementCommentBox.append(phelp.createComment(help.loadImage(comment.user_image, true, "profile"), comment.user_handle, comment.comment_content, 
-						new Date(comment.comment_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"})))
+					console.log(comment)
+					let newComment = phelp.createComment(help.loadImage(comment.user_image, true, "profile"), comment.user_handle, comment.comment_content, 
+						new Date(comment.comment_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"}))
+					elementCommentBox.append(newComment)
 				}
 				let elementInputFull = document.createElement('input') ; // box to put a new comment in
 				elementInputFull.setAttribute("id", "commentInput")
-				elementInputFull.setAttribute("class", "inputbox");
+				elementInputFull.setAttribute("class", "inputbox combox");
 				elementInputFull.setAttribute("placeholder", 'Type your comment here. Press enter to submit.')
 				
 				elementCommentBox.append(elementInputFull);
 				elementPostBox.append(elementCommentBox);
 				elementPostBox.setAttribute("toggled", "true")
 
-				elementInputFull.addEventListener("keyup", function(event) {
-					if (event.key === "Enter") {
-						sendCommentToNode(postID, elementInputFull.value)
-						//TODO - handoff to DB.
-					}
+				elementInputFull.addEventListener("submit", function(event) {
+					sendCommentToNode(postID, elementInputFull.value)
+					//TODO - handoff to DB.
 				});
 				return resolve(true);
 			})
