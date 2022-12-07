@@ -213,6 +213,19 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
           response.end(); 
         });
       }
+      if (method === 'DELETE') {
+        routeFound = true;
+        post.deletePost(queryObject.post_id, userID).then(reply=>{
+          response.statusCode = 200;
+          response.write('{"success":"delete post "}');          
+        })
+        .catch(error=>{
+          handleErrorReply(response, error, 400);
+        })
+        .finally(() => {
+          response.end();
+        });
+      }
     }
 // MYPOST routes
     if (url.pathname === routes.MYPOSTS) {
