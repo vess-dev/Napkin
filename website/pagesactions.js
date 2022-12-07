@@ -350,6 +350,8 @@ export function userLoginAction () {
 			else {
 				if (response.status == 401) {
 					routePage("#accPending");
+				} else if (response.status == 402) {
+					help.woops("This account is blocked!");
 				} else {
 					help.woops("Unable to login user.");
 					throw new help.clientError("Server Error", response.status, "Unable to login user.");

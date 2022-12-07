@@ -24,6 +24,8 @@ function handleLoginAttempt (givenUser) {
       console.log('given, dbobj', givenUser.password, dbObj.user_password)   
       if (userObj["user_status"] === "pending") {
         return reject(new BaseError('User is pending', 401, 'User account is pending'));
+      } else if (userObj["user_status"] === "blocked") {
+        return reject(new BaseError('User is blocked', 402, 'User account is blocked'));
       }
       return bcrypt.compare(givenUser.password, dbObj.user_password);
   	})
