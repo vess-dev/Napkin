@@ -264,7 +264,7 @@ export async function accSettings() {
 	phelp.insertInputBox("Change profile picture:", "post_image_url", false, null, user_image);
 	phelp.insertInputBox("Change first name:", "firstname", false, null, user_first_name);
 	phelp.insertInputBox("Change last name:", "lastname", false, null, user_last_name);
-	phelp.insertInputBox("Change password:", "password", true, null);
+	phelp.insertInputBox("Change or current password:", "password", true, null);
 	phelp.insertInputBox("Confirm password:", "confirm", true, null);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "updateAccount()"]], true);
 	pact.createCloudinaryWidget()

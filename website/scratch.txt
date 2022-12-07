@@ -26,8 +26,6 @@ blacklisted emails should not be able to make new accounts -> tell the front end
 
 friend requests have a time on front end, but not on backend DO WE CARE?
 
-user_image null on new2? active? (Just a thing I noticed in my own db, an account with a blank on the user_image. no idea why. does it even matter?)
-
 
 
 URL:

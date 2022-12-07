@@ -35,6 +35,21 @@ export function updateAccount() {
 	const user_image_url = document.getElementById("post_image_url").value
 	const user_handle = document.getElementById("handle").value
 
+	if (!user_image_url.includes("https://res.cloudinary.com/dkz6vktw0/image/upload/ar_1:1,c_fill,g_faces,h_300,r_8,w_300/")) {
+		help.woops("Missing an image.")
+		return;
+	}
+
+	if (user_first_name == "" || user_last_name == "" || user_handle == "" || user_email == "" || elementPass.value == "" || elementConfirm.value == "" || user_image_url == "") {
+		help.woops("Fields were left empty.");
+		return;
+	}
+
+	if (!user_email.includes("@") || !user_email.endsWith(".com")) {
+		help.woops("Not a valid email address.");
+		return;
+	}
+
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "PUT",
