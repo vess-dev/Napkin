@@ -223,6 +223,17 @@ export async function postCreateAction(post_id) {
 	let post_content = document.querySelector("#post_content").value;
 	let post_image = document.querySelector("#post_image_url").value;
 	let selected  = document.querySelectorAll("#group_selector option:checked");
+
+	if (!post_image.includes("https://res.cloudinary.com/dkz6vktw0/image/upload/ar_1:1,c_fill,g_faces,h_300,r_8,w_300/")) {
+		help.woops("Missing an image.")
+		return;
+	}
+
+	if (post_content == "" || post_title == "") {
+		help.woops("Missing required fields.")
+		return;
+	}
+
 	console.log("have ", post_title, post_content, post_image);
 	let group_ids = Array.from(selected).map(el => el.value);
 	let groupList = "";

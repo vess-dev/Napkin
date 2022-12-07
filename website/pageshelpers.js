@@ -528,6 +528,9 @@ export function getGroupsSelector() {
 		for (let onegroup of data) {
 			let oneoption = document.createElement("option");
 			oneoption.setAttribute("value", onegroup.group_id);
+			if (onegroup.group_name == "All Friends") {
+				oneoption.setAttribute("selected", "selected")
+			}
 			oneoption.textContent = onegroup.group_name;
 			selector.appendChild(oneoption);
 		}	
