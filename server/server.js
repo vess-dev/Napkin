@@ -603,7 +603,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
       .then(reply=>{
         response.statusCode = 200;
         console.log('still got it? ', flag_tracker)
-        response.write(`{"sessionid": "${reply}"}`);        
+        response.write(`{"sessionid": "${reply}", "admin_flag": "${flag_tracker}"}`);        
       })
       .catch(error=>{
         handleErrorReply(response, error);

@@ -245,7 +245,7 @@ export async function accSettings() {
 	let user_image = data['user_image']
 	let user_first_name = data['user_first_name']
 	let user_last_name = data['user_last_name']
-	//TODO CAS
+	
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "account");
 	phelp.insertMiniHeader("Account Settings", "logout");

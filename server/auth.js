@@ -17,7 +17,8 @@ function handleLoginAttempt (givenUser) {
     getHashforAuth(givenUser.user_email)
     .then(dbObj=>{
     	userObj = dbObj;
-      // Compare hash to entered password   
+      // Compare hash to entered password 
+      console.log('got userObj, admin_flag is', userObj['admin_flag'])  
       console.log('given, dbobj', givenUser.password, dbObj.user_password)   
       return bcrypt.compare(givenUser.password, dbObj.user_password);
   	})
