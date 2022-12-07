@@ -244,6 +244,7 @@ export function accSettings() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Change email:", "email", false);
+	phelp.insertInputBox("Change handle:", "handle", false);
 	phelp.insertInputBox("Change profile picture:", "post_image_url", false);
 	phelp.insertInputBox("Change first name:", "firstname", false);
 	phelp.insertInputBox("Change last name:", "lastname", false);

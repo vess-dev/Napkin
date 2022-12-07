@@ -29,39 +29,51 @@ export function updateAccount() {
 		help.woops("Passwords don't match.");
 		return;
 	}
-}
+	const user_first_name = document.getElementById("firstname")
+	const user_last_name = document.getElementById("lastname")
+	const user_email = document.getElementById("email")
+	const user_image_url = document.getElementById("post_image_url")
+	const user_handle = document.getElementById("handle")
 
-/* 
-export function uploadImage() {
-	const elementInput = document.createElement("input");
-	elementInput.setAttribute("type", "file");
-	elementInput.setAttribute("accept", "image/*");
-	elementInput.click();
-	elementInput.onchange = e => {
-		const elementImage = document.getElementById("post_image");
-		elementImage.setAttribute("payload", elementInput.value);
-		uploadImageAction(elementInput.files[0])
-	}
-}
+	//TODO
 
-export function uploadImageAction(imagefile) {
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "PUT",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+			body: JSON.stringify({
+				user_first_name: user_first_name,
+				user_last_name: user_last_name,
+				user_handle: user_handle,
+				user_email: user_email,
+				user_image: user_image_url
 
-	let options = {
-		method: "POST",
-		credentials: "include",
-		headers: {"content-type": "image/png"},
-		body: imagefile
-	}
+			})
+		};
+		fetch(route.SERVER + "user", options)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				help.woops("Unable to edit user.");
+				throw new help.clientError("Server Error", response.status, "Unable to edit user.");
+			}
+		})
+		.then(() => {
+			routePage("#myFeed");
+			return resolve(true);
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+};
 
-	fetch(route.SERVER + "upload", options).then((response) =>
-	{
-		console.log('response was: ',response)
-		console.log('options was', options)
-		console.log('fetch finished - check your logs!')
-	}
-	) 
-}
-*/ 
+
+
 
 // Send that a like was clicked on for a post.
 export function processLikeClick(postID) {
