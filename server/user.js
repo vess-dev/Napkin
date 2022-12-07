@@ -163,4 +163,18 @@ function updateUser(userObject,userID) {
   });
 }
 
-module.exports = {addNewUser, insertUser, getUserList, searchUsers, changeUserPassword, updateUser}
+function getData(userID, getCol) {
+  return new Promise((resolve, reject) =>{
+    db.pool.query('select ? from users where user_id= ? ', [getCol, userID],
+      function(error, results, fields) {
+        if (error) {
+            return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
+        }
+        else {       
+          return resolve(results);        
+        }
+    });
+  });
+}
+
+module.exports = {addNewUser, insertUser, getUserList, searchUsers, changeUserPassword, updateUser, getData}

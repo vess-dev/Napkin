@@ -341,7 +341,8 @@ export function userLoginAction () {
 				throw new help.clientError("Server Error", response.status, "Unable to login user.");
 			}
 		})
-		.then((json) => {      
+		.then((json) => {
+			console.log(json);  
 			let sessionid = json.sessionid;
 			setCookie("sessionid", sessionid, 7);   
 			routePage("#feedGlobal");
