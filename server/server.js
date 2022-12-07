@@ -46,7 +46,7 @@ function handleHTTPRequests(request, response) {
   console.log('parsedURL is',parsedURL)
   let URLquery = parsedURL.query
   let queryObject = querystring.parse(URLquery)
-  console.log('queryObject:', queryObject)
+  //console.log('queryObject:', queryObject)
 
   let parsedRequestBody = "";
   let userId = null;

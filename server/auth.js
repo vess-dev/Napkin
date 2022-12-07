@@ -13,15 +13,15 @@ const test = require('./test.js');
  * Returns error if user not present, or password hashes do not match
  */ 
 function handleLoginAttempt (givenUser) {
-  console.log('Handling login attempt for ' + givenUser);
+  //console.log('Handling login attempt for ' + givenUser);
   let userObj = null;
   return new Promise((resolve, reject)=>{
     getHashforAuth(givenUser.user_email)
     .then(dbObj=>{
     	userObj = dbObj;
       // Compare hash to entered password 
-      console.log('got userObj, admin_flag is', userObj['admin_flag'])  
-      console.log('given, dbobj', givenUser.password, dbObj.user_password)   
+    //  console.log('got userObj, admin_flag is', userObj['admin_flag'])  
+    //  console.log('given, dbobj', givenUser.password, dbObj.user_password)   
       if (userObj["user_status"] === "pending") {
         return reject(new BaseError('User is pending', 401, 'User account is pending'));
       } else if (userObj["user_status"] === "blocked") {
@@ -96,7 +96,7 @@ function validateSession(session_id, pathname, method) {
       return resolve(null);
     }
 
-    console.log(`query: SELECT user_id from sessions WHERE session_id = '${session_id}'`);
+ //   console.log(`query: SELECT user_id from sessions WHERE session_id = '${session_id}'`);
     db.pool.query(`SELECT user_id from sessions WHERE session_id = '${session_id}'`,      
       function(error, results, fields) {        
         if (error) {                            
