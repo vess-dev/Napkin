@@ -123,6 +123,7 @@ async function removePostFromAllGroups(user_id, post_id) {
   where post_id=? 
   and
   group_id IN (select group_id from groups where owner_id=? )`,[post_id, user_id])
+  
   return 
 }
 
@@ -131,6 +132,8 @@ async function deletePost(post_id, userID) {
   where post_id=? 
   and
   owner_id=? )`,[post_id, userID])
+  db.pool.query(`delete from posts_feed
+  where post_id=? )`,[post_id])
   return 
 }
 function removePostFromGroup(user_id, group_id, post_id) {
