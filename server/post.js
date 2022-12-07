@@ -126,6 +126,13 @@ async function removePostFromAllGroups(user_id, post_id) {
   return 
 }
 
+async function deletePost(post_id, userID) {
+  db.pool.query(`delete from posts
+  where post_id=? 
+  and
+  owner_id=? )`,[post_id, userID])
+  return 
+}
 function removePostFromGroup(user_id, group_id, post_id) {
   return new Promise((resolve, reject) =>{
   db.pool.query(`delete from post_groups
@@ -188,7 +195,7 @@ async function updatePostWeightByPost(incoming_post_id) {
   async function updatePostWeightByUser(incoming_user_id) {
     // note: query returns multiple rows 
     // this is currently broken.  having problem, looks like.
-    
+
     
       db.pool.query(`select viewer_id, poster_id, post_id, max_ranking, post_likes_score, post_comment_count, post_timestamp from (
         select owner_id, member_id, max(group_ranking) as max_ranking from 
@@ -314,4 +321,4 @@ function getMyPostList(userID) {
       })})
 }
 
-module.exports = {getPostGroups, editPost, getMyPostList, putPostInGroup, removePostFromGroup, getPostList, createPost, updatePostWeightByPost, updatePostWeightByUser, updateAllPostWeights}
+module.exports = {deletePost, getPostGroups, editPost, getMyPostList, putPostInGroup, removePostFromGroup, getPostList, createPost, updatePostWeightByPost, updatePostWeightByUser, updateAllPostWeights}

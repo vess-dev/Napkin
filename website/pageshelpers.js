@@ -165,7 +165,10 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		elementTrash.setAttribute("type", "image");
 		elementTrash.setAttribute("src", help.pathImage("remove", false));
 		elementTrash.setAttribute("class", "userpicture");
-		elementTrash.addEventListener("click", () => console.log("trash " + postID)); // TODO: HOOKUP DELETE?
+		elementTrash.addEventListener("click", () => {
+			console.log("trash " + postID)
+			deletePost(postID);
+			}); // TODO: HOOKUP DELETE?
 		elementDivIcons.append(elementTrash);
 		elementDivInfo.append(elementDivIcons);
 	}
@@ -669,4 +672,33 @@ export async function getSettingsValues() {
 			return reject(error);
 		});
 	});
+};
+export function deletePost(post_id) {
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "DELETE",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+		};
+
+		fetch(route.SERVER + "post?post_id="+post_id, options)
+		.then((response) => {
+			if (response.ok) {
+				return;
+			}
+			else {
+				help.woops("Unable to delete post.");
+				throw new help.clientError("Server Error", response.status, "Problem deleting post.");
+			}
+		})
+		.then(() => {
+			routePage("#feedMy")
+			return resolve(true)
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+	
 };
