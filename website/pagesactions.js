@@ -78,7 +78,8 @@ export function processLikeClick(postID) {
 		.then((response) => {
 			if (response.statusCode == 401) {routePage("#accLogin")};
 			if (response.ok) {
-				return response.json();
+				//return response.json();
+				return(true)
 			}
 			else {
 				throw new help.clientError("Server Error", response.status, "Problem recording like/dislike");
