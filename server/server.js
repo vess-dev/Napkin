@@ -575,8 +575,8 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
         routeFound = true;
         let post_id = bodyObject.post_id 
         console.log('will dispatch with', post_id, userID)
-        reaction.dispatchReaction(post_id, userID).then(reply=>{
-          console.log(reply)
+        reaction.dispatchReaction(post_id, userID).then(()=>{
+          //console.log(reply)
           response.statusCode = 200;
           response.write('{"success":"Reaction recorded"}');          
         })
@@ -648,7 +648,7 @@ function handleErrorReply(response, errorObj, code, message) {
   else {
     console.error("Old error: " + message)
     response.statusCode = (code ? code : 400);
-    response.write('{"error": ' + (message ? '"' + message + '"' : "There was an error") + '}');
+    response.write('{"error": ' + '"'+(message ? '"' + message + '"' : "There was an error")+ '"' + '}');
   }
 }
 
