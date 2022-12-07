@@ -22,6 +22,7 @@ function getReaction(post_id, user_id) {
 }
 
 function dispatchReaction(post_id, user_id) {
+    return new Promise((resolve, reject) =>{
     console.log('dispatch reaction called')
     getReaction(post_id, user_id).then(results => {
         console.log('current reaction?', results[0].current_reaction)
@@ -35,10 +36,11 @@ function dispatchReaction(post_id, user_id) {
     }
         ).then(() => {
             updateLikes(post_id)
-            return true
-        })
-    return true
+            return resolve(true)
+        }).catch(error => console.log('dispatch says',error))
+})   
 }
+
 function addReaction(post_id, user_id) {
     console.log('add reaction called', post_id, user_id)
     return new Promise((resolve, reject) =>{
