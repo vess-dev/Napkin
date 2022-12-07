@@ -156,6 +156,8 @@ function deletefromFeed(friend_id, user_id) {
               return reject(new BaseError("DB Error", 500, error));
             }
             else {
+              deleteUserFromMyGroups (friend_id, user_id) 
+              deleteUserFromMyGroups (user_id, friend_id) 
               posts.updatePostWeightByUser(friend_id)
               posts.updatePostWeightByUser(user_id)
               return resolve(true)
