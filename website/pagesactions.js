@@ -145,6 +145,7 @@ export function processCommentClick(postID) {
 				elementPostBox.setAttribute("toggled", "true")
 				
 				let elementInputFull = document.createElement('input') ; // box to put a new comment in
+				elementInputFull.setAttribute("id", "commentInput")
 				elementInputFull.setAttribute("class", "inputbox");
 				elementInputFull.setAttribute("placeholder", 'type your comment here and press ENTER')
 				elementPostBox.append(elementInputFull);

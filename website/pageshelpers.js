@@ -273,7 +273,7 @@ export function insertInputBox(inputText, inputName, inputPassword, toggleArea, 
 }
 
 export function insertRadioInputBox(defaultContent) {
-		//todo - default content not working
+		
 		let selector = document.createElement("select");
 		selector.setAttribute("id", "ranking_selector");
 
