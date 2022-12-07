@@ -128,6 +128,7 @@ async function removePostFromAllGroups(user_id, post_id) {
 }
 
 async function deletePost(post_id, userID) {
+  console.log('start delete post,', post_id)
   db.pool.query(`delete from posts
   where post_id=? 
   and
