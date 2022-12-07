@@ -710,6 +710,7 @@ export function deletePost(post_id) {
 };
 
 export function updateVisibility(postID, newVisibility) {
+	console.log('called updateVisibility to make (1=visible) ', newVisibility)
 	let method, bodyObject
 		method = "PUT"
 		if (newVisibility) {newVisibility = 1} else {newVisibility = 0}
