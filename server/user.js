@@ -23,7 +23,25 @@ function getUserList() {
   });
 }
 
-function searchUsers(searchstring) {
+function searchUsers(searchstring, userID) {
+  // badly documented overload to avoid touching server.js & resulting merge-fest.
+  if (searchstring == "EXACTLYME") {
+    return new Promise((resolve, reject) =>{
+      db.pool.query('select user_handle, users.user_id, admin_status, user_image, user_first_name from users WHERE user_id=?', 
+        [userID],
+        function(error, results) {
+          console.log(results)
+          if (error) {                    
+            return reject(new BaseError("DB Error", 500, error));
+          }
+          else {  
+            console.log('results is', results)             
+            return resolve(results);        
+          }
+      });
+    })
+  
+  } else {
   searchstring = '%'+searchstring+'%'
   console.log('got into searchUsers and searchstring is', searchstring)
   return new Promise((resolve, reject) =>{
@@ -40,7 +58,7 @@ function searchUsers(searchstring) {
         }
     });
   });
-}
+}}
 
 /**
  *  Given a user object, attempts to add that user
