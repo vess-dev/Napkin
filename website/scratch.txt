@@ -2,13 +2,12 @@ BLOCKING A FRIEND REQUEST THROWS AN ERROR.
 FRIEND REQUESTS DO NOT HAVE A TIME ON FRONTEND, BUT DO ON BACKEND?
 
 add delete button to comments
+allow the poster to delete comments on their own post too
 
 group delete button hookup
 
 post hide button hookup
 post delete button hookup
-
-allow the poster to delete comments on their own post too
 
 add upload image button to the create account page
 

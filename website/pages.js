@@ -206,7 +206,7 @@ export function accFriendGroups() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertFullBox(false);
-	phelp.insertText('Managing friend ' + friend_name + ' #' + friend_id)
+	phelp.insertText('Managing friend "' + friend_name + '" #' + friend_id)
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Save changes", `friendGroupsUpdateAction(${friend_id})`], ]);
 	pact.loadFriendStats(friend_id);
 }

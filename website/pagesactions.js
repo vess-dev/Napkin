@@ -443,7 +443,7 @@ export async function getFriends(friend_status) {
 		})
 		.then((friendsList) => {
 			for (let friend of friendsList) {
-				phelp.insertFriendItem(help.loadImage(friend.user_image, true), friend.user_handle, friend_status, friend.friend_id);
+				phelp.insertFriendItem(help.loadImage(friend.user_image, true), friend.user_first_name + " " + friend.user_last_name + ` (${friend.user_handle})`, friend_status, friend.friend_id);
 			}
 			return resolve(true);
 		})
@@ -837,6 +837,9 @@ export function sendCommentToNode (postID, comment_content) {
 			const elementPostBox = document.getElementById(postID);
 			elementPostBox.setAttribute("toggled", "false")
 			processCommentClick(postID)
+			let likecount = document.getElementById("commentcount" + postID);
+			console.log("im a harry wizard" + likecount.textContent)
+			likecount.textContent = parseInt(likecount.textContent) + 1;
 			return resolve(true)
 		})
 		.catch((error) => {

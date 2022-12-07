@@ -187,6 +187,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	// Append the like count.
 	const elementCommentCount = document.createElement("div");
 	elementCommentCount.setAttribute("class", "liketext");
+	elementCommentCount.setAttribute("id", "commentcount" + postID);
 	elementCommentCount.textContent = postComments;
 	elementDivComments.append(elementCommentCount);
 	elementDivInfo.append(elementDivComments);
