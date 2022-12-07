@@ -594,12 +594,15 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
     if (!routeFound && url.pathname === routes.LOGIN) {
       routeFound = true;
       console.log('auth route, bodyObject is', bodyObject)
+      let flag_tracker
       auth.handleLoginAttempt(bodyObject)
       .then(reply=>{
+        flag_tracker = reply['admin_flag']
         return auth.generateSessionId(reply);
       })
       .then(reply=>{
         response.statusCode = 200;
+        console.log('still got it? ', flag_tracker)
         response.write(`{"sessionid": "${reply}"}`);        
       })
       .catch(error=>{
