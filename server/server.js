@@ -152,7 +152,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
       else if (method === 'GET' && queryObject && queryObject.search) {
         routeFound = true;
         // Get list of users
-        user.searchUsers(queryObject.search).then(list=>{
+        user.searchUsers(queryObject.search, userID).then(list=>{
           response.statusCode = 200;
           response.write(JSON.stringify(list));
         })
