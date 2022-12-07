@@ -210,7 +210,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 }
 
 // Create a comment div.
-export function createComment(userPicture, commentName, commentContent, commentDate) {
+export function createComment(userPicture, commentName, commentContent, commentDate, deleteToggle, commentId) {
 	const elementDivInfo = document.createElement("div");
 	elementDivInfo.setAttribute("class", "userdiv");
 	// Append the user picture.
@@ -231,6 +231,17 @@ export function createComment(userPicture, commentName, commentContent, commentD
 	elementCommentDate.setAttribute("class", "textright");
 	elementCommentDate.textContent = commentDate;
 	elementDivInfo.append(elementCommentDate);
+	if (deleteToggle) {
+		const elementDivIcons = document.createElement("div");
+		elementDivIcons.setAttribute("class", "icons");
+		const elementTrash = document.createElement("input");
+		elementTrash.setAttribute("type", "image");
+		elementTrash.setAttribute("src", help.pathImage("remove", false));
+		elementTrash.setAttribute("class", "userpicture");
+		elementTrash.addEventListener("click", () => console.log("delete " + commentId));
+		elementDivIcons.append(elementTrash);
+		elementDivInfo.append(elementDivIcons);
+	}
 	return elementDivInfo;
 }
 
