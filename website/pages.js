@@ -54,7 +54,7 @@ export function accLogin() {
 	phelp.insertMiniHeader("Log in to Napkin", false);
 	phelp.insertBigBreak();
 	phelp.insertFullBox(false);
-	phelp.insertInputBox("User email:", "email", false);
+	phelp.insertInputBox("User email or handle:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertBottomButtons([["login", ["button", "buttonsubmit"], "Login", "userLoginAction()"], ["create", ["button", "buttonother"], "Create Account", "routePage('#accCreate')"]]);
 	//["test", ["button", "buttonother"], "adminTest", "routePage('#adminPending')"]
@@ -201,11 +201,12 @@ export function accEditGroup() {
 export function accFriendGroups() {
 	// this kludge gets the friend_id so that we can pass it in.
 	let friend_id = document.querySelector('meta[name="friends_payload"]').content;
+	let friend_name = document.querySelector('meta[name="friends_name"]').content;
 
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertFullBox(false);
-	phelp.insertText('Managing friend #' + friend_id)
+	phelp.insertText('Managing friend ' + friend_name + ' #' + friend_id)
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Save changes", `friendGroupsUpdateAction(${friend_id})`], ]);
 	pact.loadFriendStats(friend_id);
 }

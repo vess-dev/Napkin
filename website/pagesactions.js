@@ -520,8 +520,9 @@ export function makeFriendRequest(friend_id) {
 }
 
 // Edit a friend in a group.
-export function editFriendGroups(friend_id) {
+export function editFriendGroups(friend_id, friend_name) {
 	document.querySelector("meta[name='friends_payload']").setAttribute("content", friend_id);
+	document.querySelector("meta[name='friends_name']").setAttribute("content", friend_name);
 	routePage("#accFriendGroups");
 }
 

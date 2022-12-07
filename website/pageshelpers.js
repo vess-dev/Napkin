@@ -353,7 +353,7 @@ export function insertNextButton() {
 
 // Create a friend user info div. Picture, name, and type.
 // added friend_ID, going to need it for functionality later -C
-export function insertFriendItem(userPicture, userName, itemType, friend_ID, edgeCase) {
+export function insertFriendItem(userPicture, userName, itemType, friend_ID, edgeCase, friendName) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementDivFriend = document.createElement("div");
 	elementDivFriend.setAttribute("class", "userdiv");
@@ -374,7 +374,7 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID, edg
 		case "accepted":
 			const elementButtonRemove = createButton("remove", ["button", "buttonred"], "Remove", `removeFriendAction(${friend_ID})`);
 			elementButtonBox.append(elementButtonRemove);
-			const elementButtonGroups = createButton("remove", ["button", "buttongreen"], "Edit Groups", `editFriendGroups(${friend_ID})`);
+			const elementButtonGroups = createButton("remove", ["button", "buttongreen"], "Edit Groups", `editFriendGroups(${friend_ID}, '${userName}')`);
 			elementButtonBox.append(elementButtonGroups);
 			break;
 		case "requested":

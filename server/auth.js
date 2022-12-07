@@ -62,7 +62,7 @@ function getHashforAuth(user_email) {
     return new Promise((resolve, reject)=>{
     // Fetch hash from db for username  
     console.log('got user_email is', user_email)  
-    db.pool.query(`SELECT user_id, user_password, admin_flag, user_status from users WHERE user_email = '${user_email}'`,      
+    db.pool.query(`SELECT user_id, user_password, admin_flag, user_status from users WHERE user_email = '${user_email}' or user_handle = '${user_email}'`,      
       function(error, results, fields) {
         console.log(error, results)
         if (error) {                            
