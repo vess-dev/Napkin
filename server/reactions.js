@@ -24,8 +24,8 @@ function getReaction(post_id, user_id) {
 function dispatchReaction(post_id, user_id) {
     console.log('dispatch reaction called')
     getReaction(post_id, user_id).then(results => {
-        console.log('current reaction?', results.current_reaction)
-        if (results.current_reaction) { 
+        console.log('current reaction?', results[0].current_reaction)
+        if (results[0].current_reaction) { 
             console.log('found a current reaction in the db')
             deleteReaction(post_id, user_id)
         } else {
