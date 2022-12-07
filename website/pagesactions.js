@@ -290,6 +290,11 @@ export function userCreateAction() {
 		return;
 	}
 
+	if (!user_email.includes("@") || !user_email.endsWith(".com")) {
+		help.woops("Not a valid email address.");
+		return;
+	}
+
 	if (user_first_name == "" || user_last_name == "" || user_handle == "" || user_email == "" || user_password == "") {
 		help.woops("Required fields are empty.");
 		return;
