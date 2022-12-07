@@ -35,8 +35,6 @@ export function updateAccount() {
 	const user_image_url = document.getElementById("post_image_url").value
 	const user_handle = document.getElementById("handle").value
 
-	//TODO - deal with passwords
-
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "PUT",
@@ -145,7 +143,11 @@ export function processCommentClick(postID) {
 				}
 				elementPostBox.append(elementCommentBox);
 				elementPostBox.setAttribute("toggled", "true")
-
+				
+				let elementInputFull = document.createElement('input')
+				elementInputFull.setAttribute("class", "inputbox");
+				elementPostBox.append(elementInputFull);
+				// TODO CAS
 				return resolve(true);
 			})
 			.catch((error) => {
