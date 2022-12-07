@@ -141,19 +141,18 @@ export function processCommentClick(postID) {
 					elementCommentBox.append(phelp.createComment(help.loadImage(comment.user_image, true, "profile"), comment.user_handle, comment.comment_content, 
 						new Date(comment.comment_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"})))
 				}
-
-				const elementInputFull = document.createElement("div");
+				let elementInputFull = document.createElement('input') ; // box to put a new comment in
+				elementInputFull.setAttribute("id", "commentInput")
 				elementInputFull.setAttribute("class", "inputbox");
-				
-				let elementInputField = document.createElement('input')
-				elementInputField.setAttribute("class", "inputbox");
-
-				elementInputFull.append(elementInputField);
-
-				elementCommentBox.append(elementInputFull);
-				elementPostBox.append(elementCommentBox);
-				elementPostBox.setAttribute("toggled", "true")
-				
+				elementInputFull.setAttribute("placeholder", 'type your comment here and press ENTER')
+				elementPostBox.append(elementInputFull);
+				elementInputFull.addEventListener("keyup", function(event) {
+					if (event.key === "Enter") {
+						console.log('comment fake submitted! PostID:', postID, elementInputFull.value )
+						sendCommentToNode(postID, elementInputFull.value)
+						//TODO - handoff to DB.
+					}
+				});
 				// TODO CAS
 				return resolve(true);
 			})
@@ -774,3 +773,41 @@ export function loadGroupsEntries () {
 		});
 	});
 }	
+export function sendCommentToNode (postID, comment_content) {
+
+		let method = "POST"
+		let bodyObject = {
+			"post_id": postID,
+			"comment_content": comment_content
+		  }
+	
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: method,
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+			body: JSON.stringify(bodyObject)
+		};
+		fetch(route.SERVER + "comment", options)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				console.log(response)
+				help.woops("Unable to create comment.");
+				throw new help.clientError("Server Error", response.status, "Unable to create comment.");
+			}
+		})
+		.then(() => {
+			routePage()
+			return resolve(true)
+		})
+		.catch((error) => {
+			console.log(error)
+			return reject(error);
+		});
+	});
+	
+};
