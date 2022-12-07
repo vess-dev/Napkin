@@ -152,7 +152,11 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		}
 		elementEye.setAttribute("class", "userpicture");
 		elementEye.addEventListener("click", () => toggleEye("eye" + postID));
-		elementEye.addEventListener("click", () => console.log("hide " + postID)); // TODO: HOOKUP HIDE?
+		elementEye.addEventListener("click", () => { 
+			postVis = !postVis 
+			console.log("hide " + postID)
+			updateVisibility(postID, !postVis)
+			}); // TODO: HOOKUP HIDE?
 		elementDivIcons.append(elementEye);
 		const elementEdit = document.createElement("input");
 		elementEdit.setAttribute("type", "image");
@@ -704,3 +708,43 @@ export function deletePost(post_id) {
 	});
 	
 };
+
+export function updateVisibility(postID, newVisibility) {
+	let method, bodyObject
+
+		method = "PUT"
+		bodyObject = {
+			"post_visable": newVisibility,
+			"post_id": postID
+		  }
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: method,
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+			body: JSON.stringify(bodyObject)
+		};
+		fetch(route.SERVER + "post", options)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				console.log(response)
+				help.woops("problems changing visibility.");
+				throw new help.clientError("Server Error", response.status, "Unable to change visibilty of post.");
+			}
+		})
+		.then(() => {
+			routePage("#feedMy")
+			return resolve(true)
+		})
+		.catch((error) => {
+			console.log(error)
+			return reject(error);
+		});
+	});
+	
+};
+}
