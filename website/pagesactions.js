@@ -151,7 +151,6 @@ export function processCommentClick(postID) {
 				elementPostBox.append(elementInputFull);
 				elementInputFull.addEventListener("keyup", function(event) {
 					if (event.key === "Enter") {
-						console.log('comment fake submitted! PostID:', postID, elementInputFull.value )
 						sendCommentToNode(postID, elementInputFull.value)
 						//TODO - handoff to DB.
 					}

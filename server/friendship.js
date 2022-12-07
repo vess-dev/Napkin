@@ -83,7 +83,9 @@ function addFriendToAllGroup(friend_id, user_id) {
         if (error) {                    
           return reject(new BaseError("DB Error", 500, error));
         }
-        else {           
+        else { 
+          updatePostWeightByUser(user_id)
+          updatePostWeightByUser(friend_id)          
           return resolve(results);        
         }
       })
@@ -146,9 +148,10 @@ function rejectFriend (friendID, userID) {
   makeFriendsStatus(friendID, userID, 'rejected')
   makeFriendsStatus(userID, friendID, 'blocked')
 
+  
 }
 
 function purgeFriendship (friendID, userID) {
-
+  //TODO - remove from groups, remove from posts_feed.
 }
 module.exports = {rejectFriend, getFriendList, makeFriendRequest, getFriendGroups, deleteFriendEntries}
