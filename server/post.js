@@ -82,8 +82,8 @@ function getPostGroups(userID,post_id) {
   // not tested
   return new Promise((resolve, reject) =>{
     db.pool.query(`select group_id, group_name, post_id as inGroup from (select group_id, post_id
-      from post_groups where post_id=26) b right join groups using (group_id) 
-    where group_id in (select group_id from groups where owner_id=1)`, [post_id, userID],
+      from post_groups where post_id=?) b right join groups using (group_id) 
+    where group_id in (select group_id from groups where owner_id=?)`, [post_id, userID],
      function(error, results) {
        console.log(results)
        if (error) {                    
