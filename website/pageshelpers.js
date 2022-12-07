@@ -151,7 +151,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		} else {
 			elementEye.setAttribute("src", help.pathImage("eye", false));
 		}
-		document.querySelector("#eye" + postID).setAttribute('data-vis',postVis)
+		elementEye.setAttribute('data-vis',postVis)
 		elementEye.setAttribute("class", "userpicture");
 		elementEye.addEventListener("click", () => toggleEye("eye" + postID));
 		elementEye.setAttribute('data-vis', postVis)
