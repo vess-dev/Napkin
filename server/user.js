@@ -150,8 +150,8 @@ function updateUser(userObject,userID) {
   return new Promise((resolve, reject) =>{
     if (userObject && userObject['password_raw'] ) {
       console.log('password change attempt')
-      let password_raw = userObject.['password_raw']
-      delete userObject.password_raw
+      let password_raw = userObject['password_raw']
+      delete userObject['password_raw']
     }
     if (userObject && userObject['admin_flag'] ) { delete userObject['admin_flag']}
     console.log('about to run changeUserPassword')
