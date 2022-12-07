@@ -155,7 +155,7 @@ function updateUser(userObject,userID) {
     }
     if (userObject && userObject.admin_flag ) { delete userObject['admin_flag']}
     console.log('about to run changeUserPassword')
-    changeUserPassword(password_raw, userID)
+    
     // TODO - handle password change here 
     db.pool.query('update users set ? where user_id= ? ', [userObject, userID],
       function(error, results, fields) {
@@ -164,7 +164,8 @@ function updateUser(userObject,userID) {
             return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
         }
         else {
-          // rows added          
+          // rows added
+          changeUserPassword(password_raw, userID)          
           return resolve(results);        
         }
     });
