@@ -674,6 +674,7 @@ export async function getSettingsValues() {
 	});
 };
 export function deletePost(post_id) {
+	console.log('delete post requested')
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "DELETE",

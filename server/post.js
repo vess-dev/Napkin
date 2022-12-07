@@ -129,14 +129,49 @@ async function removePostFromAllGroups(user_id, post_id) {
 
 async function deletePost(post_id, userID) {
   console.log('start delete post,', post_id)
+  return new Promise((resolve, reject) =>{
   db.pool.query(`delete from posts
   where post_id=? 
   and
-  owner_id=? )`,[post_id, userID])
-  db.pool.query(`delete from posts_feed
-  where post_id=? )`,[post_id])
-  return 
+  owner_id=? )`,[post_id, userID],
+    (error, results) => {
+       
+    if (error) {   
+      console.log('error on remove post in group', error)
+      return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
+                     
+    } else { 
+      console.log('post removed from group successfully: ', results)
+      deletePostPart2(post_id, user_id)
+
+      return resolve(results); 
+    }
+})})
+  
 }
+
+async function deletePostPart2(post_id, userID) {
+  console.log('start delete post,', post_id)
+  return new Promise((resolve, reject) =>{
+    db.pool.query(`delete from posts_feed
+    where post_id=? )`,[post_id],
+    (error, results) => {
+       
+    if (error) {   
+      console.log('error on remove post in group', error)
+      return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
+                     
+    } else { 
+      console.log('post removed from group successfully: ', results)
+      updatePostWeightByPost(post_id) 
+      return resolve(results); 
+    }
+})})
+  
+}
+
+
+
 function removePostFromGroup(user_id, group_id, post_id) {
   return new Promise((resolve, reject) =>{
   db.pool.query(`delete from post_groups
