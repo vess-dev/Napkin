@@ -44,12 +44,11 @@ export function updateAccount() {
 			headers: {
 			"Content-Type": "application/json"},
 			body: JSON.stringify({
-				user_first_name: user_first_name,
-				user_last_name: user_last_name,
-				user_handle: user_handle,
-				user_email: user_email,
-				user_image: user_image_url
-
+				"user_first_name": user_first_name,
+				"user_last_name": user_last_name,
+				"user_handle": user_handle,
+				"user_email": user_email,
+				"user_image": user_image_url
 			})
 		};
 		fetch(route.SERVER + "user", options)
