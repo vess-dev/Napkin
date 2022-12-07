@@ -116,7 +116,7 @@ export function processCommentClick(postID) {
 		const elementCommentBox = document.createElement("div");
 		elementCommentBox.setAttribute("id", "commentsdiv" + postID);
 		elementCommentBox.setAttribute("class", "commentsdiv");
-		if (page.testing) test.testComments(elementCommentBox);
+		if (page.testcomments) test.testComments(elementCommentBox);
 
 		return new Promise((resolve, reject) => {
 			let options = {

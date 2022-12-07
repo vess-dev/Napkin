@@ -1,6 +1,13 @@
+import * as page from "./pages.js";
+
 // Make an asset path.
 export function pathImage(imageName) {
-	return "http://cpsc.roanoke.edu/~napkin/assets/" + imageName + ".png";
+	if (!page.testassets) {
+		return "http://cpsc.roanoke.edu/~napkin/assets/" + imageName + ".png";
+	}
+	else {
+		return "/assets/" + imageName + ".png";
+	}
 }
 
 // Load an image to use.
