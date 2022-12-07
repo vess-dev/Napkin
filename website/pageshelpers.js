@@ -96,6 +96,7 @@ export function payloadEditGroup(groupID, groupName, groupRanking) {
 
 export function toggleEye(eyeD) {
 	console.log("heye" + eyeD)
+	// I love that this is eyeD.  
 	const elementEye = document.getElementById(eyeD);
 	if (elementEye.src.includes("hidden")) {
 		elementEye.src = help.pathImage("eye", false);
