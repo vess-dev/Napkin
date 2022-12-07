@@ -555,6 +555,7 @@ export function loadFriendStats(friend_id) {
 			let selector = document.createElement("select");
 			selector.setAttribute("multiple", true);
 			selector.setAttribute("id", "group_selector");
+			selector.setAttribute("class", "inputfield groupselector hector");
 			
 			for (let onegroup of data) {
 				let oneoption = document.createElement("option");
