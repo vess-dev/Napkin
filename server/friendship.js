@@ -137,21 +137,31 @@ function deleteFriendEntries(friendID, userID) {
        if (error) {                    
          return reject(new BaseError("DB Error", 500, error));
        }
-       else {               
+       else {     
+        deletefromFeed(friendID, userID)
+        deletefromFeed(userID, friendID)          
          return resolve(results);        
        }
  });
 })
 }
 
+function deletefromFeed(friend_id, user_id) {
+  return new Promise((resolve, reject) =>{
+          db.pool.query('DELETE from posts_feed where user_id=?', user_id, updatePostWeightByUser(friend_id))        
+          return resolve(results);        
+        }
+      )}
+
 function rejectFriend (friendID, userID) {
   makeFriendsStatus(friendID, userID, 'rejected')
   makeFriendsStatus(userID, friendID, 'blocked')
-
+  deletefromFeed(friendID, userID)
+  deletefromFeed(userID, friendID)
   
 }
 
 function purgeFriendship (friendID, userID) {
   //TODO - remove from groups, remove from posts_feed.
 }
-module.exports = {rejectFriend, getFriendList, makeFriendRequest, getFriendGroups, deleteFriendEntries}
+module.exports = {rejectFriend, getFriendList, makeFriendRequest, getFriendGroups, deleteFriendEntries, deletefromFeed}
