@@ -2,6 +2,7 @@ const db = require('./dbi.js');
 const bcrypt = require('bcrypt');
 const BaseError = require('./BaseError.js');
 const posts = require('./post.js');
+const gm = require('./groupmembers.js')
 
 
 function getFriendList(userID,statusWanted) {
@@ -156,8 +157,8 @@ function deletefromFeed(friend_id, user_id) {
               return reject(new BaseError("DB Error", 500, error));
             }
             else {
-              deleteUserFromMyGroups (friend_id, user_id) 
-              deleteUserFromMyGroups (user_id, friend_id) 
+              gm.deleteUserFromMyGroups (friend_id, user_id) 
+              gm.deleteUserFromMyGroups (user_id, friend_id) 
               posts.updatePostWeightByUser(friend_id)
               posts.updatePostWeightByUser(user_id)
               return resolve(true)

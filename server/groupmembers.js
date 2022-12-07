@@ -93,4 +93,4 @@ async function editGroupMemberships(group_id, friend_id, user_id) {
     }
 }
 
-module.exports = {getGroupMembersList, deleteGroupMember, addGroupMember, editGroupMemberships}
+module.exports = {getGroupMembersList, deleteGroupMember, addGroupMember, editGroupMemberships, deleteUserFromMyGroups}
