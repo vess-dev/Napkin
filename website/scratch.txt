@@ -1,7 +1,7 @@
-IS THE FRIENDS BLOCKED PAGE DONE ?
+BLOCKING A FRIEND REQUEST THROWS AN ERROR.
+FRIEND REQUESTS DO NOT HAVE A TIME ON FRONTEND, BUT DO ON BACKEND?
 
 add delete button to comments
-stop input on comments from redirecting
 
 group delete button hookup
 

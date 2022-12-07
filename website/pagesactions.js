@@ -148,9 +148,12 @@ export function processCommentClick(postID) {
 				elementCommentBox.append(elementInputFull);
 				elementPostBox.append(elementCommentBox);
 				elementPostBox.setAttribute("toggled", "true")
-
-				elementInputFull.addEventListener("submit", function(event) {
-					sendCommentToNode(postID, elementInputFull.value)
+				elementInputFull.setAttribute("onsubmit", "return false")
+				elementInputFull.addEventListener("keydown", function(event) {
+					if(event.key === 'Enter') {
+						event.preventDefault();
+						sendCommentToNode(postID, elementInputFull.value, postID)
+					}
 					//TODO - handoff to DB.
 				});
 				return resolve(true);
@@ -828,7 +831,12 @@ export function sendCommentToNode (postID, comment_content) {
 			}
 		})
 		.then(() => {
-			routePage()
+			//routePage()
+			let getBox = document.getElementById("commentsdiv" + postID);
+			getBox.remove();
+			const elementPostBox = document.getElementById(postID);
+			elementPostBox.setAttribute("toggled", "false")
+			processCommentClick(postID)
 			return resolve(true)
 		})
 		.catch((error) => {
@@ -836,5 +844,4 @@ export function sendCommentToNode (postID, comment_content) {
 			return reject(error);
 		});
 	});
-	
 };
