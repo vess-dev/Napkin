@@ -119,6 +119,7 @@ function putPostInGroup(user_id, group_id, post_id) {
 })})}
 
 async function removePostFromAllGroups(user_id, post_id) {
+  // does this code work? needs promises?
   db.pool.query(`delete from post_groups
   where post_id=? 
   and
@@ -141,8 +142,28 @@ async function deletePost(post_id, userID) {
                      
     } else { 
       console.log('post removed from group successfully: ', results)
-      deletePostPart2(post_id, userID)
+      deletePostPart1b(post_id, userID)
 
+      return resolve(results); 
+    }
+})})
+  
+}
+
+async function deletePostPart1b(post_id, userID) {
+  console.log('start delete post,', post_id)
+  return new Promise((resolve, reject) =>{
+    db.pool.query(`delete from post_groups
+  where post_id=?  `,[post_id],
+    (error, results) => {
+       
+    if (error) {   
+      console.log('error on remove post in group', error)
+      return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
+                     
+    } else { 
+      console.log('post removed from group successfully: ', results)
+      deletePostPart2(post_id, userID)
       return resolve(results); 
     }
 })})
