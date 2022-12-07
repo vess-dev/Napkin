@@ -187,6 +187,8 @@ async function updatePostWeightByPost(incoming_post_id) {
 
   async function updatePostWeightByUser(incoming_user_id) {
     // note: query returns multiple rows 
+    // this is currently broken.  having problem, looks like.
+    
     
       db.pool.query(`select viewer_id, poster_id, post_id, max_ranking, post_likes_score, post_comment_count, post_timestamp from (
         select owner_id, member_id, max(group_ranking) as max_ranking from 

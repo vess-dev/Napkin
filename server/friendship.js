@@ -86,8 +86,10 @@ function addFriendToAllGroup(friend_id, user_id) {
           return reject(new BaseError("DB Error", 500, error));
         }
         else { 
-          posts.updatePostWeightByUser(user_id)
-          posts.updatePostWeightByUser(friend_id)          
+          //posts.updatePostWeightByUser(user_id)
+          //posts.updatePostWeightByUser(friend_id)  
+          // temporary workaround -TODO: fix.
+          posts.updateAllPostWeights()    
           return resolve(results);        
         }
       })
@@ -160,8 +162,10 @@ function deletefromFeed(friend_id, user_id) {
             else {
               gm.deleteUserFromMyGroups (friend_id, user_id) 
               gm.deleteUserFromMyGroups (user_id, friend_id) 
-              posts.updatePostWeightByUser(friend_id)
-              posts.updatePostWeightByUser(user_id)
+            //  posts.updatePostWeightByUser(friend_id)
+            //  posts.updatePostWeightByUser(user_id)
+            posts.updateAllPostWeights() 
+            // temporary workaround
               return resolve(true)
             }
           }
