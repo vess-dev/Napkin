@@ -83,7 +83,7 @@ function updateLikes(post_id) {
            }
            else {   
             console.log('results from updateLikes:',results)            
-            return resolve(results);
+            return resolve(true);
                     
            }
          })})
