@@ -203,8 +203,9 @@ export function feedFill(postType) {
 		})
 		.then((postsList) => {
 			for (let post of postsList) {
-				phelp.insertPost(help.loadImage(post.user_image, true), post.post_title, post.user_handle, 
-				new Date(post.post_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"}), post.post_content, help.loadImage(post.post_image, true), post.post_likes_score, post.post_comment_count, post.post_id, postType);
+				console.log(post);
+				phelp.insertPost(help.loadImage(post.user_image, true), post.post_title, post.user_first_name + " (" + post.user_handle + ")", 
+				new Date(post.post_timestamp).toLocaleDateString("en-us"), post.post_content, help.loadImage(post.post_image, true), post.post_likes_score, post.post_comment_count, post.post_id, postType);
 				//if (postType) {  phelp.insertPostActions(post.post_id) }
 				phelp.insertBigBreak();
 			}
