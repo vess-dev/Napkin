@@ -24,6 +24,7 @@ function getReaction(post_id, user_id) {
 function dispatchReaction(post_id, user_id) {
     console.log('dispatch reaction called')
     getReaction(post_id, user_id).then(results => {
+        console.log('current reaction?', results.current_reaction)
         if (results.current_reaction) { 
             console.log('found a current reaction in the db')
             deleteReaction(post_id, user_id)
@@ -35,6 +36,7 @@ function dispatchReaction(post_id, user_id) {
         ).then(() => updateLikes(post_id))
 }
 function addReaction(post_id, user_id) {
+    console.log('add reaction called', post_id, user_id)
     return new Promise((resolve, reject) =>{
         db.pool.query(`insert into reactions (user_id, post_id) values (?,?) `
         , [user_id, post_id], 
@@ -52,6 +54,7 @@ function addReaction(post_id, user_id) {
 }
 
 function deleteReaction(post_id, user_id) {
+    console.log('delete reaction called', post_id, user_id)
     return new Promise((resolve, reject) =>{
         db.pool.query(`delete from reactions where user_id=? and post_id=?`
         , [user_id, post_id], 
