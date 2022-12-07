@@ -71,9 +71,10 @@ export function processLikeClick(postID) {
 			method: "POST",
 			credentials: "include",
 			headers: {
-			"Content-Type": "application/json"}
+			"Content-Type": "application/json"},
+			body: JSON.stringify({"post_id": postID})
 		};
-		fetch(route.SERVER + 'reaction?post_id='+postID, options)
+		fetch(route.SERVER + 'reaction', options)
 		.then((response) => {
 			if (response.statusCode == 401) {routePage("#accLogin")};
 			if (response.ok) {
