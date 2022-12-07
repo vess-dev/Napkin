@@ -15,6 +15,7 @@ const group = require('./group.js')
 const friend = require('./friendship.js')
 const comment = require('./comments.js')
 const admin = require('./admin.js');
+const reaction = require('./reactions.js');
 
 const port = 3009 || process.argv[2];
 
@@ -566,6 +567,24 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
             });
           }
         }
+      //REACTION routes
+      if (url.pathname === routes.REACTION) {
+
+      if (method === 'POST') {
+        console.log('method is post for reaction')
+        routeFound = true;
+        let post_id = bodyObject.post_id 
+        dispatchReaction(post_id, userID).then(reply=>{
+          response.statusCode = 200;
+          response.write('{"success":"Reaction recorded"}');          
+        })
+        .catch(error=>{
+          handleErrorReply(response, error, 400);
+        })
+        .finally(() => {
+          response.end();
+        });
+      } }
     // AUTH routes
     if (!routeFound && url.pathname === routes.LOGIN) {
       routeFound = true;
