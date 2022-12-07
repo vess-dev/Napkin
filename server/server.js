@@ -17,6 +17,8 @@ const comment = require('./comments.js')
 const admin = require('./admin.js');
 const reaction = require('./reactions.js');
 
+const test = require('./test.js');
+
 const port = 3009 || process.argv[2];
 
 const server = http.createServer();
@@ -592,8 +594,11 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
     if (!routeFound && url.pathname === routes.LOGIN) {
       routeFound = true;
       console.log('auth route, bodyObject is', bodyObject)
+      let grab_id;
       auth.handleLoginAttempt(bodyObject)
       .then(reply=>{
+        grab_id = reply.user_id;
+        l = user.getData(grab_id, "admin_flag").then(reply=>{test.locate(reply)});
         return auth.generateSessionId(reply);
       })
       .then(reply=>{
