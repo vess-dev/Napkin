@@ -593,3 +593,30 @@ export async function getAdminUsers(admin_status) {
 		});
 	});
 }
+
+async function getSettingsValues() {
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "GET",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"}
+		};
+		fetch(route.SERVER + 'user?search=EXACTLYME', options)
+		.then((response) => {
+			if (response.statusCode == 401) {routePage("#accLogin")}
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				throw new help.clientError("Server Error", response.status, "Unable to retrieve user data");
+			}
+		})
+		.then((data) => {
+			return resolve(data[0]);
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	});
+};

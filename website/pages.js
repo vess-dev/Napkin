@@ -237,19 +237,22 @@ export function postEdit() {
 
 
 // When you look at your account settings.
-export function accSettings() {
+export async function accSettings() {
+	await phelp.getSettingsValues().then(data=>{
+		user_handle = data.user_handle 
+	} );
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "account");
 	phelp.insertMiniHeader("Account Settings", "logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
-	phelp.insertInputBox("Change email:", "email", false);
-	phelp.insertInputBox("Change handle:", "handle", false);
-	phelp.insertInputBox("Change profile picture:", "post_image_url", false);
-	phelp.insertInputBox("Change first name:", "firstname", false);
-	phelp.insertInputBox("Change last name:", "lastname", false);
-	phelp.insertInputBox("Change password:", "password", true);
-	phelp.insertInputBox("Confirm password:", "confirm", true);
+	phelp.insertInputBox("Change email:", "email", false, null,);
+	phelp.insertInputBox("Change handle:", "handle", false, null,user_handle);
+	phelp.insertInputBox("Change profile picture:", "post_image_url", false, null);
+	phelp.insertInputBox("Change first name:", "firstname", false, null);
+	phelp.insertInputBox("Change last name:", "lastname", false, null);
+	phelp.insertInputBox("Change password:", "password", true, null);
+	phelp.insertInputBox("Confirm password:", "confirm", true, null);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "updateAccount()"]], true);
 	pact.createCloudinaryWidget()
 }
