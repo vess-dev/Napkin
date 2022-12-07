@@ -82,7 +82,8 @@ export function processLikeClick(postID) {
 				//return(true)
 			}
 			else {
-				throw new help.clientError("Server Error", response.status, "Problem recording like/dislike");
+				help.woops("Unable to record like.");
+				throw new help.clientError("Server Error", response.status, "Problem recording like.");
 			}
 		}).then((output) => {
 			console.log('reactions output',output)
@@ -121,7 +122,8 @@ export function processCommentClick(postID) {
 					return response.json();
 				}
 				else {
-					throw new help.clientError("Server Error", response.status, "Unable to retrieve comments");
+					help.woops("Unable to retrieve comments.");
+					throw new help.clientError("Server Error", response.status, "Unable to retrieve comments.");
 				}
 			})
 			.then((commentsList) => {
@@ -173,7 +175,8 @@ export function feedFill(postType) {
 				return response.json();
 			}
 			else {
-				throw new help.clientError("Server Error", response.status, "Unable to retrieve posts");
+				help.woops("Unable to retrieve post.");
+				throw new help.clientError("Server Error", response.status, "Unable to retrieve posts.");
 			}
 		})
 		.then((postsList) => {
@@ -238,6 +241,7 @@ export async function postCreateAction(post_id) {
 			}
 			else {
 				console.log(response)
+				help.woops("Unable to create post.");
 				throw new help.clientError("Server Error", response.status, "Unable to create post.");
 			}
 		})
@@ -287,6 +291,7 @@ export function userCreateAction() {
 				return response.json();
 			}
 			else {
+				help.woops("Unable to create user.");
 				throw new help.clientError("Server Error", response.status, "Unable to create user.");
 			}
 		})
@@ -321,6 +326,7 @@ export function userLoginAction () {
 				return response.json();
 			}
 			else {
+				help.woops("Unable to login user.");
 				throw new help.clientError("Server Error", response.status, "Unable to login user.");
 			}
 		})
@@ -352,6 +358,7 @@ export function userLogoutAction() {
 				return response.json();
 			}
 			else {
+				help.woops("Unable to logout user.");
 				throw new help.clientError("Server Error", response.status, "Unable to logout user.");
 			}
 		})
@@ -384,6 +391,7 @@ export async function getFriends(friend_status) {
 				return response.json();
 			}
 			else {
+				help.woops("Unable to retrieve friends.");
 				throw new help.clientError("Server Error", response.status, "Unable to retrieve friends");
 			}
 		})
@@ -420,6 +428,7 @@ export function friendSearchAction () {
 				return response.json();
 			}
 			else {
+				help.woops("Unable to retrieve friends.");
 				throw new help.clientError("Server Error", response.status, "Unable to retrieve friends");
 			}
 		})
@@ -454,6 +463,7 @@ export function makeFriendRequest(friend_id) {
 				return response.json();
 			}
 			else {
+				help.woops("Unable to add friend.");
 				throw new help.clientError("Server Error", response.status, "Problem requesting a friend.");
 			}
 		})
@@ -488,6 +498,7 @@ export function loadFriendStats(friend_id) {
 				return response.json();
 			}
 			else {
+				help.woops("Unable to retrieve friends.");
 				throw new help.clientError("Server Error", response.status, "Unable to retrieve friends");
 			}
 		})
@@ -544,6 +555,7 @@ export function friendGroupsUpdateAction(friend_id) {
 				return;
 			}
 			else {
+				help.woops("Unable to update friend group.");
 				throw new help.clientError("Server Error", response.status, "Problem updating friend groups.");
 			}
 		})
@@ -573,6 +585,7 @@ export function removeFriendAction(friend_id) {
 				return;
 			}
 			else {
+				help.woops("Unable to update friends.");
 				throw new help.clientError("Server Error", response.status, "Problem updating friends.");
 			}
 		})
@@ -604,6 +617,7 @@ export function rejectFriendAction(friend_id) {
 				return;
 			}
 			else {
+				help.woops("Unable to update friends.");
 				throw new help.clientError("Server Error", response.status, "Problem updating friends.");
 			}
 		})
@@ -638,7 +652,8 @@ export function adminSetStatus (statusWanted, targetUser) {
 					return ;
 				}
 				else {
-					throw new help.clientError("Server Error", response.status, "UProblem setting user status");
+					help.woops("Unable to set status.");
+					throw new help.clientError("Server Error", response.status, "Problem setting user status.");
 				}
 			})
 			.then(() => {
@@ -687,6 +702,7 @@ export function addGroupAction (groupID) {
 			}
 			else {
 				console.log(response)
+				help.woops("Unable to create post.");
 				throw new help.clientError("Server Error", response.status, "Unable to create post.");
 			}
 		})
@@ -720,6 +736,7 @@ export function loadGroupsEntries () {
 				return response.json();
 			}
 			else {
+				help.woops("Unable to load groups.");
 				throw new help.clientError("Server Error", response.status, "Unable to load groups");
 			}
 		})
