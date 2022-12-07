@@ -150,8 +150,8 @@ export function processCommentClick(postID) {
 				elementPostBox.append(elementInputFull);
 				elementInputFull.addEventListener("keyup", function(event) {
 					if (event.key === "Enter") {
-						// Do work
-						console.log('comment submitted! PostID:', postID, elementInputFull.value )
+						console.log('comment fake submitted! PostID:', postID, elementInputFull.value )
+						sendCommentToNode(postID, elementInputFull.value)
 						//TODO - handoff to DB.
 					}
 				});
@@ -775,3 +775,41 @@ export function loadGroupsEntries () {
 		});
 	});
 }	
+export function sendCommentToNode (postID, comment_content) {
+
+		let method = "POST"
+		let bodyObject = {
+			"post_id": postID,
+			"comment_content": comment_content
+		  }
+	
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: method,
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"},
+			body: JSON.stringify(bodyObject)
+		};
+		fetch(route.SERVER + "comment", options)
+		.then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				console.log(response)
+				help.woops("Unable to create comment.");
+				throw new help.clientError("Server Error", response.status, "Unable to create comment.");
+			}
+		})
+		.then(() => {
+			routePage()
+			return resolve(true)
+		})
+		.catch((error) => {
+			console.log(error)
+			return reject(error);
+		});
+	});
+	
+};
