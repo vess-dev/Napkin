@@ -69,10 +69,12 @@ export function accCreate() {
 	phelp.insertInputBox("User first name:", "firstname", false);
 	phelp.insertInputBox("User last name:", "lastname", false);
 	phelp.insertInputBox("User screen name:", "screenname", false);
+	phelp.insertInputBox("Profile picture:", "post_image_url", false, null);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertInputBox("Confirm password:", "confirm", true);
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "userCreateAction()"], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "userCreateAction()"], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]], true);
+	pact.createCloudinaryWidget()
 }
 
 // When your account is now pending.

@@ -311,9 +311,15 @@ export function userCreateAction() {
 	let user_first_name = document.querySelector("#firstname").value;
 	let user_last_name = document.querySelector("#lastname").value;
 	let user_handle = document.querySelector("#screenname").value;
+	const user_image_url = document.getElementById("post_image_url").value
 	let user_email = document.querySelector("#email").value;
 	let user_password = document.querySelector("#password").value;
 	let user_confirm = document.querySelector("#confirm").value;
+
+	if (!user_image_url.includes("https://res.cloudinary.com/dkz6vktw0/image/upload/ar_1:1,c_fill,g_faces,h_300,r_8,w_300/")) {
+		help.woops("Missing an image.")
+		return;
+	}
 
 	if (user_password != user_confirm) {
 		help.woops("Passwords don't match.");
@@ -341,7 +347,8 @@ export function userCreateAction() {
 				user_last_name: user_last_name,
 				user_handle: user_handle,
 				user_email: user_email,
-				user_password: user_password
+				user_password: user_password,
+				user_image: user_image_url
 			})
 		};
 		fetch(route.SERVER + "user", options)

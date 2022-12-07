@@ -10,9 +10,6 @@ group delete button hookup
 post hide button hookup
 post delete button hookup
 
-add upload image button to the create account page
-
-
 
 ========== DO WE EVEN KINDA CARE BELOW: ==========
 
@@ -24,7 +21,7 @@ pending on, disabled on, active on, and blacklisted on do not have a date in the
 
 blacklisted emails should not be able to make new accounts -> tell the front end appropriately too. (blacklisted currently can't just login. stretech goal? will phil even notice?)
 
-friend requests have a time on front end, but not on backend DO WE CARE?
+friend requests have a time on back end, but not on frontend DO WE CARE?
 
 
 
