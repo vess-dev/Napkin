@@ -568,6 +568,15 @@ export function prePopulateSelectorsOnPost (post_id) {
 	let selector = document.createElement("select");
 	selector.setAttribute("multiple", true);
 	selector.setAttribute("id", "group_selector");
+	selector.setAttribute("class", "inputfield groupselector");
+
+	const elementBoxFull = document.getElementById("boxfull");
+	const elementInputFull = document.createElement("div");
+	elementInputFull.setAttribute("class", "inputbox");
+	elementInputFull.textContent = "Post visible to:";
+	elementInputFull.append(selector);
+	elementBoxFull.append(elementInputFull);
+		
 	let endpoint = "postgroup?post_id="+post_id
 	let options = {
 		method: "GET",
@@ -596,13 +605,6 @@ export function prePopulateSelectorsOnPost (post_id) {
 				oneoption.setAttribute("selected", true);
 			} 
 		}
-
-		const elementBoxFull = document.getElementById("boxfull");
-		const elementInputFull = document.createElement("div");
-		elementInputFull.setAttribute("class", "inputbox");
-		elementInputFull.textContent = "Post visible to:";
-		elementInputFull.append(selector);
-		elementBoxFull.append(elementInputFull);
 		})
 	}
 
