@@ -579,6 +579,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
           response.write('{"success":"Reaction recorded"}');          
         })
         .catch(error=>{
+          console.log('error')
           handleErrorReply(response, error, 400);
         })
         .finally(() => {

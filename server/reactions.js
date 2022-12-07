@@ -3,11 +3,13 @@ const bcrypt = require('bcrypt');
 const BaseError = require('./BaseError.js');
 
 function getReaction(post_id, user_id) {
+    console.log('get reaction called')
     return new Promise((resolve, reject) =>{
         db.pool.query(`select count(user_id) as current_reaction from reactions where user_id=? and post_id=?)`
         , [user_id, post_id], 
          function(error, results) {
-           //console.log(results)
+            console.log(error)
+           console.log(results)
            if (error) {                    
              return reject(new BaseError("DB Error", 500, error));
            }
@@ -20,6 +22,7 @@ function getReaction(post_id, user_id) {
 }
 
 function dispatchReaction(post_id, user_id) {
+    console.log('dispatch reaction called')
     getReaction(post_id, user_id).then(results => {
         if (results.current_reaction) { 
             console.log('found a current reaction in the db')
