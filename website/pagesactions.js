@@ -148,6 +148,13 @@ export function processCommentClick(postID) {
 				elementInputFull.setAttribute("class", "inputbox");
 				elementInputFull.setAttribute("placeholder", 'type your comment here and press ENTER')
 				elementPostBox.append(elementInputFull);
+				elementInputFull.addEventListener("keyup", function(event) {
+					if (event.key === "Enter") {
+						// Do work
+						console.log('comment submitted! PostID:', postID, elementInputFull.value )
+						//TODO - handoff to DB.
+					}
+				});
 				// TODO CAS
 				return resolve(true);
 			})
