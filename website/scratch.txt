@@ -2,16 +2,12 @@
 
 BLOCKING A FRIEND REQUEST THROWS AN ERROR. !!FIX!!
 
-add delete button to comments
-allow the poster to delete comments on their own post too
+hookup comment delete button to API (pageshelpers l. 241)
 
-group delete button hookup
+group delete button hookup (pageshelpers l. 487)
 
-post hide button hookup
-post delete button hookup
-
-add upload image button to the create account page
-
+post hide button hookup (pageshelpers l. 138)
+post delete button hookup (pageshelpers l. 150)
 
 
 ========== DO WE EVEN KINDA CARE BELOW: ==========
@@ -24,9 +20,7 @@ pending on, disabled on, active on, and blacklisted on do not have a date in the
 
 blacklisted emails should not be able to make new accounts -> tell the front end appropriately too. (blacklisted currently can't just login. stretech goal? will phil even notice?)
 
-friend requests have a time on front end, but not on backend DO WE CARE?
-
-user_image null on new2? active? (Just a thing I noticed in my own db, an account with a blank on the user_image. no idea why. does it even matter?)
+friend requests have a time on back end, but not on frontend DO WE CARE?
 
 
 

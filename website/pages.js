@@ -39,6 +39,8 @@ window.adminSetStatus = pact.adminSetStatus
 window.payloadEditGroup = phelp.payloadEditGroup;
 window.addGroupAction = pact.addGroupAction;
 
+//window.toggleEye = phelp.toggleEye;
+
 // Disable or enable testing.
 export const testadmin = false;
 export const testassets = false;
@@ -69,10 +71,12 @@ export function accCreate() {
 	phelp.insertInputBox("User first name:", "firstname", false);
 	phelp.insertInputBox("User last name:", "lastname", false);
 	phelp.insertInputBox("User screen name:", "screenname", false);
+	phelp.insertInputBox("Profile picture:", "post_image_url", false, null);
 	phelp.insertInputBox("User email:", "email", false);
 	phelp.insertInputBox("User password:", "password", true);
 	phelp.insertInputBox("Confirm password:", "confirm", true);
-	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "userCreateAction()"], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]]);
+	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "userCreateAction()"], ["tologin", ["button", "buttonother"], "Back to Login", "routePage('#accLogin')"]], true);
+	pact.createCloudinaryWidget()
 }
 
 // When your account is now pending.
@@ -90,7 +94,7 @@ export function accPending() {
 export function feedGlobal() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedglobal");
-	phelp.insertNextButton();
+	//phelp.insertNextButton();
 	if (testpages) test.testPosts(false);
 	pact.feedFill(false);
 }
@@ -99,7 +103,7 @@ export function feedGlobal() {
 export function feedMy() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedmy");
-	phelp.insertNextButton();
+	//phelp.insertNextButton();
 	if (testpages) test.testPosts(true);
 	pact.feedFill(true);
 	// true means it's the feedMy page, not the global feed.
@@ -236,8 +240,8 @@ export function postEdit() {
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Post title:", "post_title", false, false, window.payload[1]);
 	phelp.insertInputBox("Post image URL:", "post_image_url", false, false, window.payload[3]);
-	phelp.insertInputBox("Post content:", "post_content", false, true, window.payload[2]);
 	phelp.prePopulateSelectorsOnPost(window.payload[0])
+	phelp.insertInputBox("Post content:", "post_content", false, true, window.payload[2]);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction(" + window.payload[0] + ")"], ["cancel", ["button", "buttonother"], "Cancel", "routePage('#feedGlobal')"]], true);
 	pact.createCloudinaryWidget()
 }
@@ -264,7 +268,7 @@ export async function accSettings() {
 	phelp.insertInputBox("Change profile picture:", "post_image_url", false, null, user_image);
 	phelp.insertInputBox("Change first name:", "firstname", false, null, user_first_name);
 	phelp.insertInputBox("Change last name:", "lastname", false, null, user_last_name);
-	phelp.insertInputBox("Change password:", "password", true, null);
+	phelp.insertInputBox("Change or current password:", "password", true, null);
 	phelp.insertInputBox("Confirm password:", "confirm", true, null);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "updateAccount()"]], true);
 	pact.createCloudinaryWidget()

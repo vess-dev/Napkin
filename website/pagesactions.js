@@ -35,6 +35,21 @@ export function updateAccount() {
 	const user_image_url = document.getElementById("post_image_url").value
 	const user_handle = document.getElementById("handle").value
 
+	if (!user_image_url.includes("https://res.cloudinary.com/dkz6vktw0/image/upload/ar_1:1,c_fill,g_faces,h_300,r_8,w_300/")) {
+		help.woops("Missing an image.")
+		return;
+	}
+
+	if (user_first_name == "" || user_last_name == "" || user_handle == "" || user_email == "" || elementPass.value == "" || elementConfirm.value == "" || user_image_url == "") {
+		help.woops("Fields were left empty.");
+		return;
+	}
+
+	if (!user_email.includes("@") || !user_email.endsWith(".com")) {
+		help.woops("Not a valid email address.");
+		return;
+	}
+
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "PUT",
@@ -104,7 +119,7 @@ export function processLikeClick(postID) {
 }
 
 // Get the comments for a post.
-export function processCommentClick(postID) {
+export function processCommentClick(postID, postMy) {
 	console.log("comments clicked for postID: " + postID);
 	const elementPostBox = document.getElementById(postID);
 	console.log(elementPostBox.getAttribute("toggled"));
@@ -135,9 +150,13 @@ export function processCommentClick(postID) {
 			})
 			.then((commentsList) => {
 				for (let comment of commentsList) {
-					console.log(comment)
+					console.log(comment);
+					let bumper = 0;
+					if (comment.comment_toggle || postMy) {
+						bumper = 1;
+					}
 					let newComment = phelp.createComment(help.loadImage(comment.user_image, true, "profile"), comment.user_handle, comment.comment_content, 
-						new Date(comment.comment_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"}))
+						new Date(comment.comment_timestamp).toLocaleDateString("en-us"), bumper, comment.comment_id)
 					elementCommentBox.append(newComment)
 				}
 				let elementInputFull = document.createElement('input') ; // box to put a new comment in
@@ -205,7 +224,7 @@ export function feedFill(postType) {
 			for (let post of postsList) {
 				console.log(post);
 				phelp.insertPost(help.loadImage(post.user_image, true), post.post_title, post.user_first_name + " (" + post.user_handle + ")", 
-				new Date(post.post_timestamp).toLocaleDateString("en-us"), post.post_content, help.loadImage(post.post_image, true), post.post_likes_score, post.post_comment_count, post.post_id, postType);
+				new Date(post.post_timestamp).toLocaleDateString("en-us"), post.post_content, help.loadImage(post.post_image, true), post.post_likes_score, post.post_comment_count, post.post_id, postType, true);
 				//if (postType) {  phelp.insertPostActions(post.post_id) }
 				phelp.insertBigBreak();
 			}
@@ -296,9 +315,15 @@ export function userCreateAction() {
 	let user_first_name = document.querySelector("#firstname").value;
 	let user_last_name = document.querySelector("#lastname").value;
 	let user_handle = document.querySelector("#screenname").value;
+	const user_image_url = document.getElementById("post_image_url").value
 	let user_email = document.querySelector("#email").value;
 	let user_password = document.querySelector("#password").value;
 	let user_confirm = document.querySelector("#confirm").value;
+
+	if (!user_image_url.includes("https://res.cloudinary.com/dkz6vktw0/image/upload/ar_1:1,c_fill,g_faces,h_300,r_8,w_300/")) {
+		help.woops("Missing an image.")
+		return;
+	}
 
 	if (user_password != user_confirm) {
 		help.woops("Passwords don't match.");
@@ -326,7 +351,8 @@ export function userCreateAction() {
 				user_last_name: user_last_name,
 				user_handle: user_handle,
 				user_email: user_email,
-				user_password: user_password
+				user_password: user_password,
+				user_image: user_image_url
 			})
 		};
 		fetch(route.SERVER + "user", options)
@@ -816,7 +842,7 @@ export function loadGroupsEntries () {
 	});
 }
 
-export function sendCommentToNode (postID, comment_content) {
+export function sendCommentToNode (postID, comment_content, postMy) {
 
 		let method = "POST"
 		let bodyObject = {
@@ -849,7 +875,7 @@ export function sendCommentToNode (postID, comment_content) {
 			getBox.remove();
 			const elementPostBox = document.getElementById(postID);
 			elementPostBox.setAttribute("toggled", "false")
-			processCommentClick(postID)
+			processCommentClick(postID, postMy)
 			let likecount = document.getElementById("commentcount" + postID);
 			console.log("im a harry wizard" + likecount.textContent)
 			likecount.textContent = parseInt(likecount.textContent) + 1;

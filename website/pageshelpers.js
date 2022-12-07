@@ -94,10 +94,20 @@ export function payloadEditGroup(groupID, groupName, groupRanking) {
 	routePage("#accEditGroup");
 }
 
+export function toggleEye(eyeD) {
+	console.log("heye" + eyeD)
+	const elementEye = document.getElementById(eyeD);
+	if (elementEye.src.includes("hidden")) {
+		elementEye.src = help.pathImage("eye", false);
+	} else {
+		elementEye.src = help.pathImage("hidden", false);
+	}
+}
+
 // Add a post to the page.
 // postMy = true, means the individual user's posts.
 // postMy = false, means the "global" feed.
-export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postLikes, postComments, postID, postMy) {
+export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postLikes, postComments, postID, postMy, postVis) {
 	const elementContent = document.getElementById("content");
 	// Ugg. Whatever. This is for comments on the bottom.
 	const elementBoxPoster = document.createElement("div");
@@ -132,9 +142,15 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		const elementDivIcons = document.createElement("div");
 		elementDivIcons.setAttribute("class", "icons");
 		const elementEye = document.createElement("input");
+		elementEye.setAttribute("id", "eye" + postID);
 		elementEye.setAttribute("type", "image");
-		elementEye.setAttribute("src", help.pathImage("eye", false));
+		if (postVis) {
+			elementEye.setAttribute("src", help.pathImage("hidden", false));
+		} else {
+			elementEye.setAttribute("src", help.pathImage("eye", false));
+		}
 		elementEye.setAttribute("class", "userpicture");
+		elementEye.addEventListener("click", () => toggleEye("eye" + postID));
 		elementEye.addEventListener("click", () => console.log("hide " + postID)); // TODO: HOOKUP HIDE?
 		elementDivIcons.append(elementEye);
 		const elementEdit = document.createElement("input");
@@ -182,7 +198,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementScroll.setAttribute("type", "image");
 	elementScroll.setAttribute("src", help.pathImage("scroll", false));
 	elementScroll.setAttribute("class", "userpicture");
-	elementScroll.addEventListener("click", () => pact.processCommentClick(postID)); // Handle comments.
+	elementScroll.addEventListener("click", () => pact.processCommentClick(postID, postMy)); // Handle comments.
 	elementDivComments.append(elementScroll)
 	// Append the like count.
 	const elementCommentCount = document.createElement("div");
@@ -210,7 +226,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 }
 
 // Create a comment div.
-export function createComment(userPicture, commentName, commentContent, commentDate) {
+export function createComment(userPicture, commentName, commentContent, commentDate, deleteToggle, commentId) {
 	const elementDivInfo = document.createElement("div");
 	elementDivInfo.setAttribute("class", "userdiv");
 	// Append the user picture.
@@ -231,6 +247,17 @@ export function createComment(userPicture, commentName, commentContent, commentD
 	elementCommentDate.setAttribute("class", "textright");
 	elementCommentDate.textContent = commentDate;
 	elementDivInfo.append(elementCommentDate);
+	if (deleteToggle) {
+		const elementDivIcons = document.createElement("div");
+		elementDivIcons.setAttribute("class", "icons");
+		const elementTrash = document.createElement("input");
+		elementTrash.setAttribute("type", "image");
+		elementTrash.setAttribute("src", help.pathImage("remove", false));
+		elementTrash.setAttribute("class", "userpicture");
+		elementTrash.addEventListener("click", () => console.log("delete " + commentId));
+		elementDivIcons.append(elementTrash);
+		elementDivInfo.append(elementDivIcons);
+	}
 	return elementDivInfo;
 }
 
@@ -541,6 +568,15 @@ export function prePopulateSelectorsOnPost (post_id) {
 	let selector = document.createElement("select");
 	selector.setAttribute("multiple", true);
 	selector.setAttribute("id", "group_selector");
+	selector.setAttribute("class", "inputfield groupselector");
+
+	const elementBoxFull = document.getElementById("boxfull");
+	const elementInputFull = document.createElement("div");
+	elementInputFull.setAttribute("class", "inputbox");
+	elementInputFull.textContent = "Post visible to:";
+	elementInputFull.append(selector);
+	elementBoxFull.append(elementInputFull);
+		
 	let endpoint = "postgroup?post_id="+post_id
 	let options = {
 		method: "GET",
@@ -569,13 +605,6 @@ export function prePopulateSelectorsOnPost (post_id) {
 				oneoption.setAttribute("selected", true);
 			} 
 		}
-
-		const elementBoxFull = document.getElementById("boxfull");
-		const elementInputFull = document.createElement("div");
-		elementInputFull.setAttribute("class", "inputbox");
-		elementInputFull.textContent = "Post visible to:";
-		elementInputFull.append(selector);
-		elementBoxFull.append(elementInputFull);
 		})
 	}
 

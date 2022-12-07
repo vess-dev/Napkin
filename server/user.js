@@ -80,7 +80,7 @@ function addNewUser(userObject) {
       bcrypt.hash(userObject.user_password, salt).then((hash) =>{        
         // Store hash in the database
         console.log('hash is ', hash)
-        insertUser(userObject.user_first_name, userObject.user_last_name, userObject.user_email, hash, userObject.user_handle, userObject.user_status, userObject.age)
+        insertUser(userObject.user_first_name, userObject.user_last_name, userObject.user_email, hash, userObject.user_handle, userObject.user_status, userObject.user_image, userObject.age)
         .then(response=>{
           // I was doing something here?
           admin.triggerGroupCreation(response)
@@ -100,10 +100,10 @@ function addNewUser(userObject) {
  *  If user is created successfull, the promise is resolved and userid is returned. 
  *  Else, promise is rejected and an error message is returned.
  */ 
-function insertUser(user_first_name, user_last_name, user_email, user_password, user_handle, user_status, age) {
+function insertUser(user_first_name, user_last_name, user_email, user_password, user_handle, user_status, user_image, age) {
   return new Promise((resolve, reject) =>{
     db.pool.query('INSERT INTO users SET ?', 
-      {user_first_name: user_first_name, user_password: user_password, user_last_name: user_last_name, user_email: user_email, user_handle: user_handle, user_status: user_status, user_age: age}, 
+      {user_first_name: user_first_name, user_password: user_password, user_last_name: user_last_name, user_email: user_email, user_handle: user_handle, user_status: user_status, user_image: user_image, user_age: age}, 
       function(error, results, fields) {
         if (error) {
           console.log('error:', error)

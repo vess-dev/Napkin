@@ -50,10 +50,10 @@ function(error, results) {
 })})
 }
 
-function getCommentsOnPost(post_id) {
+function getCommentsOnPost(post_id, userID) {
   console.log('getCommentsOnPost function called', post_id)
   return new Promise((resolve, reject) =>{
-     db.pool.query('SELECT comment_id, commenter_id, user_handle, user_image, comment_content, comment_timestamp FROM comments join users on (commenter_id=user_id) where post_id = ?', post_id,
+     db.pool.query('SELECT if(? = commenter_id, 1, 0) as comment_toggle, comment_id, commenter_id, user_handle, user_image, comment_content, comment_timestamp FROM comments join users on (commenter_id=user_id) where post_id = ?', [userID, post_id],
       function(error, results) {
         console.log(results)
         if (error) {                    
