@@ -133,7 +133,7 @@ async function deletePost(post_id, userID) {
   db.pool.query(`delete from posts
   where post_id=? 
   and
-  user_id=? )`,[post_id, userID],
+  user_id=? `,[post_id, userID],
     (error, results) => {
        
     if (error) {   
