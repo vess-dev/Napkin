@@ -41,7 +41,7 @@ function createPost(postObject, userID) {
 function editPost(postObject, userID) {
   console.log('starting to editPost',postObject)
   return new Promise((resolve, reject) =>{
-    if (!postObject || !userID || !postObject.post_title ||!postObject.post_id || !postObject.post_content) {
+    if (!postObject || !userID ) {
       return reject(new BaseError('wrong parameters', 500, "must pass all params"))
     }
     console.log('still ok?')
