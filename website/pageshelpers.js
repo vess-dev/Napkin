@@ -152,10 +152,12 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		}
 		elementEye.setAttribute("class", "userpicture");
 		elementEye.addEventListener("click", () => toggleEye("eye" + postID));
+		elementEye.setAttribute('data-vis', postVis)
 		elementEye.addEventListener("click", () => { 
-			postVis = !postVis 
+			let tmpVis = document.querySelector("eye" + postID).getAttribute('data-vis')
+			document.querySelector("eye" + postID).setAttribute('data-vis', !tmpVis)
 			console.log("hide " + postID)
-			updateVisibility(postID, postVis)
+			updateVisibility(postID, !tmpVis)
 			}); // TODO: HOOKUP HIDE?
 		elementDivIcons.append(elementEye);
 		const elementEdit = document.createElement("input");
@@ -738,7 +740,7 @@ export function updateVisibility(postID, newVisibility) {
 			}
 		})
 		.then(() => {
-			routePage("#feedMy")
+			//routePage("#feedMy")
 			return resolve(true)
 		})
 		.catch((error) => {
