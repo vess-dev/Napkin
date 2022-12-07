@@ -154,6 +154,7 @@ function updateUser(userObject,userID) {
       delete userObject.password_raw
     }
     if (userObject && userObject.admin_flag ) { delete userObject['admin_flag']}
+    console.log('about to run changeUserPassword')
     changeUserPassword(password_raw, userID)
     // TODO - handle password change here 
     db.pool.query('update users set ? where user_id= ? ', [userObject, userID],
