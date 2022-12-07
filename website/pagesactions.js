@@ -29,13 +29,13 @@ export function updateAccount() {
 		help.woops("Passwords don't match.");
 		return;
 	}
-	const user_first_name = document.getElementById("firstname")
-	const user_last_name = document.getElementById("lastname")
-	const user_email = document.getElementById("email")
-	const user_image_url = document.getElementById("post_image_url")
-	const user_handle = document.getElementById("handle")
+	const user_first_name = document.getElementById("firstname").value
+	const user_last_name = document.getElementById("lastname").value
+	const user_email = document.getElementById("email").value
+	const user_image_url = document.getElementById("post_image_url").value
+	const user_handle = document.getElementById("handle").value
 
-	//TODO
+	//TODO - deal with passwords
 
 	return new Promise((resolve, reject) => {
 		let options = {
