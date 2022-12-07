@@ -79,7 +79,10 @@ function addNewUser(userObject) {
         // Store hash in the database
         console.log('hash is ', hash)
         insertUser(userObject.user_first_name, userObject.user_last_name, userObject.user_email, hash, userObject.user_handle, userObject.user_status, userObject.age)
-        .then(response=>resolve(response))          
+        .then(response=>{
+          // I was doing something here?
+          resolve(response)
+        })          
         .catch((error)=> {          
             return reject(error);
         });                 
