@@ -575,13 +575,13 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
         routeFound = true;
         let post_id = bodyObject.post_id 
         console.log('will dispatch with', post_id, userID)
-        reaction.dispatchReaction(post_id, userID).then(()=>{
-          //console.log(reply)
+        reaction.dispatchReaction(post_id, userID).then((reply)=>{
+          console.log(reply)
           response.statusCode = 200;
           response.write('{"success":"Reaction recorded"}');          
         })
         .catch(error=>{
-          console.log('error', error)
+          console.log('reactions error', error)
           handleErrorReply(response, error, 400);
         })
         .finally(() => {
