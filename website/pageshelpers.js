@@ -747,4 +747,4 @@ export function updateVisibility(postID, newVisibility) {
 	});
 	
 };
-}
+
