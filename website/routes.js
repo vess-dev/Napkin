@@ -1,7 +1,7 @@
 import * as page from "./pages.js";
 
-//export const SERVER = "http://cpsc.roanoke.edu:3009/";
-export const SERVER = "http://0.0.0.0:3009/";
+export const SERVER = "http://cpsc.roanoke.edu:3009/";
+//export const SERVER = "http://0.0.0.0:3009/";
 
 // User paths.
 export const PAGE_ACC_LOGIN = "#accLogin";
