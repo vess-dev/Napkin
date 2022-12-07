@@ -132,7 +132,7 @@ async function deletePost(post_id, userID) {
   console.log('start delete post,', post_id)
   return new Promise((resolve, reject) =>{
     db.pool.query(`delete from posts_feed
-    where post_id=? )`,[post_id],
+    where post_id=?`,[post_id],
     (error, results) => {
        
     if (error) {   
@@ -175,7 +175,7 @@ async function deleteAllCommentsonPost(post_id, userID) {
   console.log('start delete post comments,', post_id)
   return new Promise((resolve, reject) =>{
     db.pool.query(`delete from comments
-    where post_id=? )`,[post_id],
+    where post_id=?`,[post_id],
     (error, results) => {
        
     if (error) {   
