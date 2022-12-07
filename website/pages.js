@@ -39,6 +39,8 @@ window.adminSetStatus = pact.adminSetStatus
 window.payloadEditGroup = phelp.payloadEditGroup;
 window.addGroupAction = pact.addGroupAction;
 
+//window.toggleEye = phelp.toggleEye;
+
 // Disable or enable testing.
 export const testadmin = false;
 export const testassets = true;

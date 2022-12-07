@@ -94,6 +94,16 @@ export function payloadEditGroup(groupID, groupName, groupRanking) {
 	routePage("#accEditGroup");
 }
 
+export function toggleEye(eyeD) {
+	console.log("heye" + eyeD)
+	const elementEye = document.getElementById(eyeD);
+	if (elementEye.src.includes("hidden")) {
+		elementEye.src = help.pathImage("eye", false);
+	} else {
+		elementEye.src = help.pathImage("hidden", false);
+	}
+}
+
 // Add a post to the page.
 // postMy = true, means the individual user's posts.
 // postMy = false, means the "global" feed.
@@ -132,6 +142,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		const elementDivIcons = document.createElement("div");
 		elementDivIcons.setAttribute("class", "icons");
 		const elementEye = document.createElement("input");
+		elementEye.setAttribute("id", "eye" + postID);
 		elementEye.setAttribute("type", "image");
 		if (postVis) {
 			elementEye.setAttribute("src", help.pathImage("hidden", false));
@@ -139,6 +150,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 			elementEye.setAttribute("src", help.pathImage("eye", false));
 		}
 		elementEye.setAttribute("class", "userpicture");
+		elementEye.addEventListener("click", () => toggleEye("eye" + postID));
 		elementEye.addEventListener("click", () => console.log("hide " + postID)); // TODO: HOOKUP HIDE?
 		elementDivIcons.append(elementEye);
 		const elementEdit = document.createElement("input");
