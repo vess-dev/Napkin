@@ -159,7 +159,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 			let tmpVis = document.querySelector("#eye" + postID).getAttribute('data-vis')
 			document.querySelector("#eye" + postID).setAttribute('data-vis', !tmpVis)
 			console.log("hide " + postID)
-			updateVisibility(postID, !tmpVis)
+			updateVisibility(postID, tmpVis)
 			}); // TODO: HOOKUP HIDE?
 		elementDivIcons.append(elementEye);
 		const elementEdit = document.createElement("input");
