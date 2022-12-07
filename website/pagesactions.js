@@ -141,12 +141,19 @@ export function processCommentClick(postID) {
 					elementCommentBox.append(phelp.createComment(help.loadImage(comment.user_image, true, "profile"), comment.user_handle, comment.comment_content, 
 						new Date(comment.comment_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"})))
 				}
+
+				const elementInputFull = document.createElement("div");
+				elementInputFull.setAttribute("class", "inputbox");
+				
+				let elementInputField = document.createElement('input')
+				elementInputField.setAttribute("class", "inputbox");
+
+				elementInputFull.append(elementInputField);
+
+				elementCommentBox.append(elementInputFull);
 				elementPostBox.append(elementCommentBox);
 				elementPostBox.setAttribute("toggled", "true")
 				
-				let elementInputFull = document.createElement('input')
-				elementInputFull.setAttribute("class", "inputbox");
-				elementPostBox.append(elementInputFull);
 				// TODO CAS
 				return resolve(true);
 			})

@@ -42,7 +42,7 @@ window.addGroupAction = pact.addGroupAction;
 // Disable or enable testing.
 export const testadmin = false;
 export const testassets = false;
-export const testcomments = false;
+export const testcomments = true;
 export const testfriends = false;
 export const testpages = false;
 export const testserver = false;
