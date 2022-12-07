@@ -241,17 +241,21 @@ export async function accSettings() {
 	
 	let data = await phelp.getSettingsValues()
 	let	user_handle = data['user_handle'] 
-	
+	let email = data['user_email']
+	let user_image = data['user_image']
+	let user_first_name = data['user_first_name']
+	let user_last_name = data['user_last_name']
+	//TODO CAS
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "account");
 	phelp.insertMiniHeader("Account Settings", "logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
-	phelp.insertInputBox("Change email:", "email", false, null,);
+	phelp.insertInputBox("Change email:", "email", false, null,email);
 	phelp.insertInputBox("Change handle:", "handle", false, null, user_handle);
-	phelp.insertInputBox("Change profile picture:", "post_image_url", false, null);
-	phelp.insertInputBox("Change first name:", "firstname", false, null);
-	phelp.insertInputBox("Change last name:", "lastname", false, null);
+	phelp.insertInputBox("Change profile picture:", "post_image_url", false, null, user_image);
+	phelp.insertInputBox("Change first name:", "firstname", false, null, user_first_name);
+	phelp.insertInputBox("Change last name:", "lastname", false, null, user_last_name);
 	phelp.insertInputBox("Change password:", "password", true, null);
 	phelp.insertInputBox("Confirm password:", "confirm", true, null);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "updateAccount()"]], true);
