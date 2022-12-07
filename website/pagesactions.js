@@ -330,7 +330,7 @@ export function userCreateAction() {
 		return;
 	}
 
-	if (!user_email.includes("@") || !user_email.endsWith(".com")) {
+	if (!user_email.includes("@") ) {
 		help.woops("Not a valid email address.");
 		return;
 	}
