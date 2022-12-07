@@ -27,7 +27,7 @@ function searchUsers(searchstring, userID) {
   // badly documented overload to avoid touching server.js & resulting merge-fest.
   if (searchstring == "EXACTLYME") {
     return new Promise((resolve, reject) =>{
-      db.pool.query('select user_handle, users.user_id, admin_status, user_image, user_first_name from users WHERE user_id=?', 
+      db.pool.query('select user_handle, users.user_id, admin_flag, user_image, user_first_name from users WHERE user_id=?', 
         [userID],
         function(error, results) {
           console.log(results)
