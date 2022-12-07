@@ -31,6 +31,7 @@ function addComment(commentObject, userID) {
 })}
 
 async function recalculateComments(post_id) {
+return new Promise((resolve, reject) =>{
 db.pool.query('UPDATE posts set post_comment_count = (select count(*) as ccount from comments where post_id=? group by post_id ) where post_id = ?', [post_id, post_id],
 function(error, results) {
   console.log('error:',error)
@@ -46,7 +47,7 @@ function(error, results) {
     posts.updatePostWeightByPost(post_id)            
     return resolve(results);        
   }
-})
+})})
 }
 
 function getCommentsOnPost(post_id) {
