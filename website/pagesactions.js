@@ -66,6 +66,31 @@ export function uploadImageAction(imagefile) {
 // Send that a like was clicked on for a post.
 export function processLikeClick(postID) {
 	console.log("like clicked for postID: ", postID);
+	return new Promise((resolve, reject) => {
+		let options = {
+			method: "POST",
+			credentials: "include",
+			headers: {
+			"Content-Type": "application/json"}
+		};
+		fetch(route.SERVER + 'reaction?post_id='+postID, options)
+		.then((response) => {
+			if (response.statusCode == 401) {routePage("#accLogin")};
+			if (response.ok) {
+				return response.json();
+			}
+			else {
+				throw new help.clientError("Server Error", response.status, "Problem recording like/dislike");
+			}
+		}).then((output) => {
+			console.log('reactions output',output)
+			routePage();
+			return resolve(true);
+		})
+		.catch((error) => {
+			return reject(error);
+		});
+	})
 }
 
 // Get the comments for a post.
