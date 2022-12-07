@@ -355,8 +355,13 @@ export function userLoginAction () {
 		.then((json) => {
 			console.log(json);  
 			let sessionid = json.sessionid;
+			let aflag = json.admin_flag;
 			setCookie("sessionid", sessionid, 7);   
-			routePage("#feedGlobal");
+			if (aflag === "1") {
+				routePage("#adminPending");
+			} else {
+				routePage("#feedGlobal");
+			}
 			return resolve("login successful");
 		})
 		.catch((error) => {
