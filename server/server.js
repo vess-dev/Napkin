@@ -575,7 +575,7 @@ function routeRequests(url, method, bodyObject, response, userID, queryObject, i
         routeFound = true;
         let post_id = bodyObject.post_id 
         console.log('will dispatch with', post_id, userID)
-        dispatchReaction(post_id, userID).then(reply=>{
+        reaction.dispatchReaction(post_id, userID).then(reply=>{
           console.log(reply)
           response.statusCode = 200;
           response.write('{"success":"Reaction recorded"}');          
