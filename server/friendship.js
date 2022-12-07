@@ -76,8 +76,7 @@ function addFriendToAllGroup(friend_id, user_id) {
   
   return new Promise((resolve, reject) =>{
      db.pool.query(`replace INTO group_memberships (group_id, user_id)
-     select group_id, ? from groups where owner_id=? and group_name='All Friends' limit 1, 
-     WHERE
+     select group_id, ? from groups where owner_id=? and group_name='All Friends' limit 1 AND
      ? IN (select friend_id from friendships where user_id=? and friendship_status='accepted')`, 
     [user_id, friend_id, friend_id, user_id],
       function(error, results) {
