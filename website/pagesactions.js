@@ -290,6 +290,11 @@ export function userCreateAction() {
 		return;
 	}
 
+	if (user_first_name == "" || user_last_name == "" || user_handle == "" || user_email == "" || user_password == "") {
+		help.woops("Required fields are empty.");
+		return;
+	}
+
 	return new Promise((resolve, reject) => {
 		let options = {
 			method: "POST",
