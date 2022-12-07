@@ -151,16 +151,16 @@ function deletefromFeed(friend_id, user_id) {
   return new Promise((resolve, reject) =>{
           db.pool.query('DELETE from posts_feed where user_id=?', user_id, 
           function(error, results) {
-            console.log(results)
+            
             if (error) {                    
               return reject(new BaseError("DB Error", 500, error));
             }
             else {
               posts.updatePostWeightByUser(friend_id)
+              return resolve(true)
             }
           }
-          )        
-          return resolve(results);        
+          )            
         }
       )}
 
