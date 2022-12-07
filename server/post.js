@@ -203,7 +203,7 @@ async function updatePostWeightByPost(incoming_post_id) {
         from 
         (post_groups JOIN group_memberships using (group_id)) 
         JOIN posts using (post_id)) as tab2
-        on (tab1.owner_id = tab2.viewer_id AND tab1.member_id = tab2.poster_id) having user_id = ?`, incoming_user_id,
+        on (tab1.owner_id = tab2.viewer_id AND tab1.member_id = tab2.poster_id) having viewer_id = ?`, incoming_user_id,
         (error, results) => {
        
         if (error) {   
