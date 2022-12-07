@@ -33,7 +33,11 @@ function dispatchReaction(post_id, user_id) {
             addReaction(post_id, user_id)
         }
     }
-        ).then(() => updateLikes(post_id))
+        ).then(() => {
+            updateLikes(post_id)
+            return resolve(true)
+        })
+
 }
 function addReaction(post_id, user_id) {
     console.log('add reaction called', post_id, user_id)
@@ -83,7 +87,7 @@ function updateLikes(post_id) {
            }
            else {   
             console.log('results from updateLikes:',results)            
-            return resolve(true);
+            return resolve(results);
                     
            }
          })})
