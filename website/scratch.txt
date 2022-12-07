@@ -1,5 +1,7 @@
-add delete to comments
-stop input from redirecting
+IS THE FRIENDS BLOCKED PAGE DONE ?
+
+add delete button to comments
+stop input on comments from redirecting
 
 group delete button hookup
 

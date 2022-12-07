@@ -492,6 +492,14 @@ export function getGroupsSelector() {
 	let selector = document.createElement("select");
 	selector.setAttribute("multiple", true);
 	selector.setAttribute("id", "group_selector");
+	selector.setAttribute("class", "inputfield groupselector");
+
+	const elementBoxFull = document.getElementById("boxfull");
+	const elementInputFull = document.createElement("div");
+	elementInputFull.setAttribute("class", "inputbox");
+	elementInputFull.textContent = "Post visible to:";
+	elementInputFull.append(selector);
+	elementBoxFull.append(elementInputFull);
 
 	let endpoint = "group";
 	let options = {
@@ -516,13 +524,7 @@ export function getGroupsSelector() {
 			oneoption.setAttribute("value", onegroup.group_id);
 			oneoption.textContent = onegroup.group_name;
 			selector.appendChild(oneoption);
-		}
-		const elementBoxFull = document.getElementById("boxfull");
-		const elementInputFull = document.createElement("div");
-		elementInputFull.setAttribute("class", "inputbox");
-		elementInputFull.textContent = "Post visible to:";
-		elementInputFull.append(selector);
-		elementBoxFull.append(elementInputFull);
+		}	
 	})
 }
 

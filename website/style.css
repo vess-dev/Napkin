@@ -281,3 +281,9 @@ textarea.inputfield {
 .combox {
 	margin: 0.5rem;
 }
+
+.groupselector {
+	float: right;
+	height: 5rem;
+	margin-bottom: 1rem;
+}

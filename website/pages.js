@@ -216,8 +216,8 @@ export function postCreate() {
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Post title:", "post_title", false);
 	phelp.insertInputBox("Post image URL:", "post_image_url", false);
-	phelp.insertInputBox("Post content:", "post_content", false, true);
 	phelp.getGroupsSelector()
+	phelp.insertInputBox("Post content:", "post_content", false, true);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Submit", "postCreateAction()"], ], true);
 	pact.createCloudinaryWidget()
 }
