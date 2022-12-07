@@ -271,3 +271,7 @@ textarea.inputfield {
 	display: flex;
 	padding-bottom: 10px;
 }
+
+.combox {
+	margin: 0.5rem;
+}
