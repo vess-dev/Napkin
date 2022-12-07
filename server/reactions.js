@@ -35,13 +35,54 @@ function dispatchReaction(post_id, user_id) {
         ).then(() => updateLikes(post_id))
 }
 function addReaction(post_id, user_id) {
-    console.log('nonfunctional addReaction called')
+    return new Promise((resolve, reject) =>{
+        db.pool.query(`insert into reactions (user_id, post_id) values (?,?) `
+        , [user_id, post_id], 
+         function(error, results) {
+            console.log(error)
+           console.log(results)
+           if (error) {                    
+             return reject(new BaseError("DB Error", 500, error));
+           }
+           else {               
+            return resolve(results);
+                    
+           }
+         })})
 }
 
 function deleteReaction(post_id, user_id) {
-    console.log('nonfunctional DeleteReaction called')
+    return new Promise((resolve, reject) =>{
+        db.pool.query(`delete from reactions where user_id=? and post_id=?`
+        , [user_id, post_id], 
+         function(error, results) {
+            console.log(error)
+           console.log(results)
+           if (error) {                    
+             return reject(new BaseError("DB Error", 500, error));
+           }
+           else {               
+            return resolve(results);
+                    
+           }
+         })})
 }
 function updateLikes(post_id) {
-    console.log('nonfunctional updateLikes called')
+
+    return new Promise((resolve, reject) =>{
+        db.pool.query(`update posts set post_likes_score = (select count(*) from reactions where post_id=?) where post_id=?`
+        , [post_id, post_id], 
+         function(error, results) {
+            console.log(error)
+           console.log(results)
+           if (error) {                    
+             return reject(new BaseError("DB Error", 500, error));
+           }
+           else {   
+            console.log('results from updateLikes:',results)            
+            return resolve(results);
+                    
+           }
+         })})
 }
 module.exports = {dispatchReaction} 
