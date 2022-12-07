@@ -466,8 +466,10 @@ export function friendSearchAction () {
 			}
 		})
 		.then((friendsList) => {
+			let elementResultBox = document.getElementById("resultbox");
+			elementResultBox.innerHTML = "";
 			for (let friend of friendsList) {
-				phelp.insertFriendItem(help.loadImage(friend.user_image, true), friend.user_handle, "search", friend.user_id);
+				phelp.insertFriendItem(help.loadImage(friend.user_image, true), friend.user_handle, "search", friend.user_id, true);
 			}
 			return resolve(true);
 		})

@@ -18,7 +18,7 @@ searching over and over doesnt remake (the box on the friend search infinitely e
 
 missing fields should display appropriate error for account creation. (missing username on the acc creation should say why. stretch goal? who cares.)
 
-blacklisted emails should not be able to make new accounts -> tell the front end appropriately too.
+blacklisted emails should not be able to make new accounts -> tell the front end appropriately too. (blacklisted currently can't just login. stretech goal? will phil even notice?)
 
 pending on, disabled on, active on, and blacklisted on do not have a date in the db to display on the frontend. functions of interest for the fix: admin.setStatusForAdmin() and user.insertUser(). removed from pageshelpers.insertUserItem() for now.
 

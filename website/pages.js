@@ -145,10 +145,13 @@ export function friendSearch() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Search by Name:", "screenname", false);
-	phelp.createButton('submit',"Search","")
+	//phelp.createButton('submit',"Search","")
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Search", "friendSearchAction()"]])
 	phelp.insertText("Search Results");
-
+	const elementBoxFull = document.getElementById("boxfull");
+	let elementResultBox = document.createElement("div");
+	elementResultBox.setAttribute("id", "resultbox");
+	elementBoxFull.append(elementResultBox);
 	if (testfriends) test.testFriends("search");
 //	phelp.insertText("Additional Results");
 //	if (testing) test.testFriends("search");

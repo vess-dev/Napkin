@@ -353,7 +353,7 @@ export function insertNextButton() {
 
 // Create a friend user info div. Picture, name, and type.
 // added friend_ID, going to need it for functionality later -C
-export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
+export function insertFriendItem(userPicture, userName, itemType, friend_ID, edgeCase) {
 	const elementBoxFull = document.getElementById("boxfull");
 	const elementDivFriend = document.createElement("div");
 	elementDivFriend.setAttribute("class", "userdiv");
@@ -398,6 +398,11 @@ export function insertFriendItem(userPicture, userName, itemType, friend_ID) {
 			break;
 	}
 	elementDivFriend.append(elementButtonBox);
+	if (edgeCase) {
+		let elementResultBox = document.getElementById("resultbox");
+		elementResultBox.append(elementDivFriend)
+		return;
+	}
 	elementBoxFull.append(elementDivFriend);
 }
 
