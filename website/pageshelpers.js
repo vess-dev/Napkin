@@ -157,10 +157,12 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		elementEye.setAttribute('data-vis', postVis)
 		elementEye.addEventListener("click", () => { 
 			let tmpVis = document.querySelector("#eye" + postID).getAttribute('data-vis')
+			if (tmpVis == 'true' || tmpVis ==1 ) {tmpVis = true}
+			if (!tmpVis || tmpVis == 'false' || tmpVis == 0 ) {tmpVis = false}
 			document.querySelector("#eye" + postID).setAttribute('data-vis', !tmpVis)
 			console.log("hide " + postID)
 			updateVisibility(postID, !tmpVis)
-			}); // TODO: HOOKUP HIDE?
+			}); 
 		elementDivIcons.append(elementEye);
 		const elementEdit = document.createElement("input");
 		elementEdit.setAttribute("type", "image");
