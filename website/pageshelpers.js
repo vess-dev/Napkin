@@ -155,7 +155,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		elementEye.addEventListener("click", () => { 
 			postVis = !postVis 
 			console.log("hide " + postID)
-			updateVisibility(postID, !postVis)
+			updateVisibility(postID, postVis)
 			}); // TODO: HOOKUP HIDE?
 		elementDivIcons.append(elementEye);
 		const elementEdit = document.createElement("input");
