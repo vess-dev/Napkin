@@ -92,7 +92,7 @@ export function accPending() {
 export function feedGlobal() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedglobal");
-	phelp.insertNextButton();
+	//phelp.insertNextButton();
 	if (testpages) test.testPosts(false);
 	pact.feedFill(false);
 }
@@ -101,7 +101,7 @@ export function feedGlobal() {
 export function feedMy() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedmy");
-	phelp.insertNextButton();
+	//phelp.insertNextButton();
 	if (testpages) test.testPosts(true);
 	pact.feedFill(true);
 	// true means it's the feedMy page, not the global feed.
