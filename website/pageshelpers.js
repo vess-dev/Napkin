@@ -55,11 +55,11 @@ export function insertMiniHeader(headerName, buttonType) {
 				elementButtonBox.append(elementButtonSearch);
 				break;
 			case "blocked":
-				const elementButtonBack= createButton("tofriends", ["button", "buttonblue"], "Back to Friends", "routePage('#accFriends')");
+				const elementButtonBack = createButton("tofriends", ["button", "buttonblue"], "Back to Friends", "routePage('#accFriends')");
 				elementButtonBox.append(elementButtonBack);
 				break;
 			case "addgroup":
-				const elementButtonGroup= createButton("tofriends", ["button", "buttonblue"], "Add Group", "routePage('#accAddGroup')");
+				const elementButtonGroup = createButton("togroups", ["button", "buttonblue"], "Add Group", "routePage('#accAddGroup')");
 				elementButtonBox.append(elementButtonGroup);
 				break;
 			case "editgroup":
@@ -504,6 +504,7 @@ export function getGroupsSelector() {
 			return response.json();
 		}
 		else {
+			help.woops("Unable to get groups.");
 			throw new help.clientError("Server Error", response.status, "Unable to get groups.");
 		}
 	})
@@ -540,6 +541,7 @@ export function prePopulateSelectorsOnPost (post_id) {
 			return response.json();
 		}
 		else {
+			help.woops("Unable to get groups.");
 			throw new help.clientError("Server Error", response.status, "Unable to get groups.");
 		}
 	})
@@ -582,13 +584,14 @@ export async function getAdminUsers(admin_status) {
 				return response.json();
 			}
 			else {
-				throw new help.clientError("Server Error", response.status, "Unable to retrieve admin users");
+				help.woops("Unable to retrieve admin users.");
+				throw new help.clientError("Server Error", response.status, "Unable to retrieve admin users.");
 			}
 		})
 		.then((adminUsersList) => {
 			for (let adminUser of adminUsersList) {
 				insertUserItem(help.loadImage(adminUser.user_image, true), adminUser.user_first_name, 
-					adminUser.user_last_name, adminUser.user_email, null, admin_status, adminUser.user_id);
+					adminUser.user_last_name, adminUser.user_email, "NO DATE?", admin_status, adminUser.user_id);
 			}
 			return resolve(true);
 		})
@@ -613,6 +616,7 @@ export async function getSettingsValues() {
 				return response.json();
 			}
 			else {
+				help.woops("Unable to retrieve user data.");
 				throw new help.clientError("Server Error", response.status, "Unable to retrieve user data");
 			}
 		})

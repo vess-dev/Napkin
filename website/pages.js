@@ -306,7 +306,7 @@ export function adminActive() {
 export function adminBlacklist() {
 	const adminPage = "blocked";
 	phelp.insertContent();
-	phelp.insertHeader(adminHeader, adminPage);
+	phelp.insertHeader(adminHeader, "blacklist");
 	phelp.insertMiniHeader("Blacklisted Emails", "logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);

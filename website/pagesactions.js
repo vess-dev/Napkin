@@ -348,8 +348,12 @@ export function userLoginAction () {
 				return response.json();
 			}
 			else {
-				help.woops("Unable to login user.");
-				throw new help.clientError("Server Error", response.status, "Unable to login user.");
+				if (response.status == 401) {
+					routePage("#accPending");
+				} else {
+					help.woops("Unable to login user.");
+					throw new help.clientError("Server Error", response.status, "Unable to login user.");
+				}
 			}
 		})
 		.then((json) => {

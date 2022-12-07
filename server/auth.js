@@ -5,6 +5,8 @@ const db = require('./dbi.js');
 const routes = require('./routes');
 const BaseError = require('./BaseError.js');
 
+const test = require('./test.js');
+
 /**
  * Given a username and password, returns a sessionid if the hashed password
  *  matches the hashed password associated with that user in the DB
@@ -20,6 +22,9 @@ function handleLoginAttempt (givenUser) {
       // Compare hash to entered password 
       console.log('got userObj, admin_flag is', userObj['admin_flag'])  
       console.log('given, dbobj', givenUser.password, dbObj.user_password)   
+      if (userObj["user_status"] === "pending") {
+        return reject(new BaseError('User is pending', 401, 'User account is pending'));
+      }
       return bcrypt.compare(givenUser.password, dbObj.user_password);
   	})
     .then((result)=> {        
@@ -53,7 +58,7 @@ function getHashforAuth(user_email) {
     return new Promise((resolve, reject)=>{
     // Fetch hash from db for username  
     console.log('got user_email is', user_email)  
-    db.pool.query(`SELECT user_id, user_password, admin_flag from users WHERE user_email = '${user_email}'`,      
+    db.pool.query(`SELECT user_id, user_password, admin_flag, user_status from users WHERE user_email = '${user_email}'`,      
       function(error, results, fields) {
         console.log(error, results)
         if (error) {                            

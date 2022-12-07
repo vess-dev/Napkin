@@ -5,9 +5,11 @@ const db = require('./dbi.js');
 const routes = require('./routes');
 const BaseError = require('./BaseError.js');
 
+const test = require('./test.js');
+
 function getUsersForAdmin(statusWanted, userID) {
         return new Promise((resolve, reject) =>{
-          db.pool.query(`select * from users where user_status = ? and 1=(select admin_flag from users where user_id=?)`,
+          db.pool.query(`select * from users where user_status = ? and admin_flag = 0 and 1=(select admin_flag from users where user_id=?)`,
            [statusWanted, userID],
            function(error, results) {
              console.log(results)
@@ -38,7 +40,7 @@ function setStatusForAdmin(statusWanted, targetUser, adminUserID) {
          return reject(new BaseError("DB Error", 500, error));
        }
        else { 
-         if (statusWanted == 'active') {triggerGroupCreation(targetUser) }         
+         if (statusWanted == 'active') { triggerGroupCreation(targetUser) }         
          return resolve(results);        
        }
  });
@@ -47,21 +49,21 @@ function setStatusForAdmin(statusWanted, targetUser, adminUserID) {
 
 function triggerGroupCreation(userID) {
   let groupObject = {
-    group_name: 'All Friends',
+    group_name: "All Friends",
     owner_id: userID,
     group_ranking: 4
   }
 
   return new Promise((resolve, reject) =>{
-    db.pool.query(`select count(*) as rows from groups where group_name='All friends' and owner_id = ?`, 
+    db.pool.query(`select count(*) as rcount from groups where group_name = 'All Friends' and owner_id = ?`, 
     [userID],
       function(error, results, fields) {
         if (error) {
           return reject(new BaseError("DB Error", 500, error));
         }
         console.log('got row count', results)
-        console.log('try result0rows', results[0].rows )
-        if ( results[0].rows == 0) {
+        console.log('try result rows', results[0].rcount )
+        if ( results[0].rows == 0 ) {
           db.pool.query(`insert into groups set ? `, groupObject)
           return resolve(results);   
         }
