@@ -85,8 +85,8 @@ function addFriendToAllGroup(friend_id, user_id) {
           return reject(new BaseError("DB Error", 500, error));
         }
         else { 
-          updatePostWeightByUser(user_id)
-          updatePostWeightByUser(friend_id)          
+          posts.updatePostWeightByUser(user_id)
+          posts.updatePostWeightByUser(friend_id)          
           return resolve(results);        
         }
       })
@@ -149,7 +149,7 @@ function deleteFriendEntries(friendID, userID) {
 
 function deletefromFeed(friend_id, user_id) {
   return new Promise((resolve, reject) =>{
-          db.pool.query('DELETE from posts_feed where user_id=?', user_id, 
+          db.pool.query('DELETE from posts_feed where user_id in (?, ?)', [user_id, friend_id], 
           function(error, results) {
             
             if (error) {                    
@@ -157,6 +157,7 @@ function deletefromFeed(friend_id, user_id) {
             }
             else {
               posts.updatePostWeightByUser(friend_id)
+              posts.updatePostWeightByUser(user_id)
               return resolve(true)
             }
           }
