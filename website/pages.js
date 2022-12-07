@@ -238,16 +238,17 @@ export function postEdit() {
 
 // When you look at your account settings.
 export async function accSettings() {
-	await phelp.getSettingsValues().then(data=>{
-		let user_handle = data.user_handle 
-	} );
+	
+	let data = await phelp.getSettingsValues()
+	let	user_handle = data['user_handle'] 
+	
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "account");
 	phelp.insertMiniHeader("Account Settings", "logout");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.insertInputBox("Change email:", "email", false, null,);
-	phelp.insertInputBox("Change handle:", "handle", false, null,user_handle);
+	phelp.insertInputBox("Change handle:", "handle", false, null, user_handle);
 	phelp.insertInputBox("Change profile picture:", "post_image_url", false, null);
 	phelp.insertInputBox("Change first name:", "firstname", false, null);
 	phelp.insertInputBox("Change last name:", "lastname", false, null);
