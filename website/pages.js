@@ -40,7 +40,12 @@ window.payloadEditGroup = phelp.payloadEditGroup;
 window.addGroupAction = pact.addGroupAction;
 
 // Disable or enable testing.
-export const testing = false;
+export const testadmin = false;
+export const testassets = false;
+export const testcomments = false;
+export const testfriends = false;
+export const testpages = false;
+export const testserver = false;
 
 // Always insert the content box first, and then the header type.
 
@@ -86,7 +91,7 @@ export function feedGlobal() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedglobal");
 	phelp.insertNextButton();
-	if (testing) test.testPosts(false);
+	if (testpages) test.testPosts(false);
 	pact.feedFill(false);
 }
 
@@ -95,7 +100,7 @@ export function feedMy() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "feedmy");
 	phelp.insertNextButton();
-	if (testing) test.testPosts(true);
+	if (testpages) test.testPosts(true);
 	pact.feedFill(true);
 	// true means it's the feedMy page, not the global feed.
 }
@@ -109,13 +114,13 @@ export async function accFriends() {
 	phelp.insertFullBox(true);
 	phelp.insertText("Current Friends");
 	await pact.getFriends('accepted')
-	if (testing) test.testFriends("current");
+	if (testfriends) test.testFriends("current");
 	phelp.insertText("Outgoing requests");
 	await pact.getFriends('requested')
-	if (testing) test.testFriends("outgoing");
+	if (testfriends) test.testFriends("outgoing");
 	phelp.insertText("Incoming requests");
 	await pact.getFriends('pending')
-	if (testing) test.testFriends("incoming");
+	if (testfriends) test.testFriends("incoming");
 }
 
 // When you look at who you have blocked.
@@ -125,7 +130,7 @@ export async function accBlocked() {
 	phelp.insertMiniHeader("Manage Blocked", "blocked");
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
-	if (testing) test.testFriends("blocked");
+	if (testfriends) test.testFriends("blocked");
 	phelp.insertText("People I've blocked:")
 	await pact.getFriends('rejected')
 	phelp.insertText("I'm blocked by:")
@@ -144,7 +149,7 @@ export function friendSearch() {
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Search", "friendSearchAction()"]])
 	phelp.insertText("Search Results");
 
-	if (testing) test.testFriends("search");
+	if (testfriends) test.testFriends("search");
 //	phelp.insertText("Additional Results");
 //	if (testing) test.testFriends("search");
 }
@@ -154,8 +159,8 @@ export function accGroups() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertMiniHeader("Add a group", "addgroup");
-	phelp.insertFullBox(true)
 	phelp.insertBigBreak()
+	phelp.insertFullBox(true)
 	phelp.insertText('My groups')
 	pact.loadGroupsEntries()
 
@@ -165,8 +170,8 @@ export function accAddGroup() {
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "groups");
 	phelp.insertMiniHeader("Add a group", "");
-	phelp.insertFullBox()
 	phelp.insertBigBreak()
+	phelp.insertFullBox()
 	phelp.insertText('Add a new group');
 	phelp.insertInputBox('Group name','group_name',false,false,null)
 	phelp.insertRadioInputBox();
@@ -271,7 +276,7 @@ export function adminPending() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.getAdminUsers(adminPage);
-	if (testing) test.testAdmin(adminPage);
+	if (testadmin) test.testAdmin(adminPage);
 }
 
 // For admins to look at disabled accounts.
@@ -283,7 +288,7 @@ export function adminDisabled() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.getAdminUsers(adminPage);
-	if (testing) test.testAdmin(adminPage);
+	if (testadmin) test.testAdmin(adminPage);
 }
 
 // For admins to look at active accounts.
@@ -295,7 +300,7 @@ export function adminActive() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.getAdminUsers(adminPage);
-	if (testing) test.testAdmin(adminPage);
+	if (testadmin) test.testAdmin(adminPage);
 }
 
 // For admins to look at blacklisted accounts.
@@ -307,7 +312,7 @@ export function adminBlacklist() {
 	phelp.insertBigBreak();
 	phelp.insertFullBox(true);
 	phelp.getAdminUsers(adminPage);
-	if (testing) test.testAdmin(adminPage);
+	if (testadmin) test.testAdmin(adminPage);
 }
 
 
