@@ -384,7 +384,7 @@ function getPostList(userID) {
      post_title, post_content, post_image, post_likes_score, post_comment_count, post_visable
       from (select * from posts_feed where user_id= ? ) tmp 
       inner join posts on posts.post_id=tmp.post_id 
-     inner join users on posts.user_id=users.user_id order by post_weight desc;`
+     inner join users on posts.user_id=users.user_id WHERE post_visable = 1 order by post_weight desc;`
      , userID, 
       function(error, results) {
         //console.log(results)
@@ -400,7 +400,7 @@ function getPostList(userID) {
 function getMyPostList(userID) {
   return new Promise((resolve, reject) =>{
      db.pool.query(`select users.user_id, users.user_first_name, users.user_last_name, users.user_handle, users.user_image, post_timestamp, posts.post_id, 
-     post_title, post_content, post_image, post_likes_score, post_comment_count   
+     post_title, post_content, post_image, post_likes_score, post_comment_count, post_visable 
      from posts 
      inner join users on posts.user_id=users.user_id 
      where posts.user_id= ?
