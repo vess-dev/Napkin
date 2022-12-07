@@ -97,7 +97,7 @@ export function payloadEditGroup(groupID, groupName, groupRanking) {
 // Add a post to the page.
 // postMy = true, means the individual user's posts.
 // postMy = false, means the "global" feed.
-export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postLikes, postComments, postID, postMy) {
+export function insertPost(userPicture, postTitle, userName, postDate, postContent, postImage, postLikes, postComments, postID, postMy, postVis) {
 	const elementContent = document.getElementById("content");
 	// Ugg. Whatever. This is for comments on the bottom.
 	const elementBoxPoster = document.createElement("div");
@@ -133,7 +133,11 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 		elementDivIcons.setAttribute("class", "icons");
 		const elementEye = document.createElement("input");
 		elementEye.setAttribute("type", "image");
-		elementEye.setAttribute("src", help.pathImage("eye", false));
+		if (postVis) {
+			elementEye.setAttribute("src", help.pathImage("hidden", false));
+		} else {
+			elementEye.setAttribute("src", help.pathImage("eye", false));
+		}
 		elementEye.setAttribute("class", "userpicture");
 		elementEye.addEventListener("click", () => console.log("hide " + postID)); // TODO: HOOKUP HIDE?
 		elementDivIcons.append(elementEye);
