@@ -5,7 +5,7 @@ const BaseError = require('./BaseError.js');
 function getReaction(post_id, user_id) {
     console.log('get reaction called')
     return new Promise((resolve, reject) =>{
-        db.pool.query(`select count(user_id) as current_reaction from reactions where user_id=? and post_id=?)`
+        db.pool.query(`select count(user_id) as current_reaction from reactions where user_id=? and post_id=?`
         , [user_id, post_id], 
          function(error, results) {
             console.log(error)
