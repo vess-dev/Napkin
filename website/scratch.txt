@@ -3,7 +3,6 @@
 BLOCKING A FRIEND REQUEST THROWS AN ERROR. !!FIX!!
 
 hookup comment delete button to API (pageshelpers l. 241)
-allow the poster to delete comments on their own post too (pageshelpers l. 241)
 
 group delete button hookup (pageshelpers l. 487)
 

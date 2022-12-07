@@ -119,7 +119,7 @@ export function processLikeClick(postID) {
 }
 
 // Get the comments for a post.
-export function processCommentClick(postID) {
+export function processCommentClick(postID, postMy) {
 	console.log("comments clicked for postID: " + postID);
 	const elementPostBox = document.getElementById(postID);
 	console.log(elementPostBox.getAttribute("toggled"));
@@ -151,8 +151,12 @@ export function processCommentClick(postID) {
 			.then((commentsList) => {
 				for (let comment of commentsList) {
 					console.log(comment);
+					let bumper = 0;
+					if (comment.comment_toggle || postMy) {
+						bumper = 1;
+					}
 					let newComment = phelp.createComment(help.loadImage(comment.user_image, true, "profile"), comment.user_handle, comment.comment_content, 
-						new Date(comment.comment_timestamp).toLocaleDateString("en-us"), comment.comment_toggle, comment.comment_id)
+						new Date(comment.comment_timestamp).toLocaleDateString("en-us"), bumper, comment.comment_id)
 					elementCommentBox.append(newComment)
 				}
 				let elementInputFull = document.createElement('input') ; // box to put a new comment in
@@ -838,7 +842,7 @@ export function loadGroupsEntries () {
 	});
 }
 
-export function sendCommentToNode (postID, comment_content) {
+export function sendCommentToNode (postID, comment_content, postMy) {
 
 		let method = "POST"
 		let bodyObject = {
@@ -871,7 +875,7 @@ export function sendCommentToNode (postID, comment_content) {
 			getBox.remove();
 			const elementPostBox = document.getElementById(postID);
 			elementPostBox.setAttribute("toggled", "false")
-			processCommentClick(postID)
+			processCommentClick(postID, postMy)
 			let likecount = document.getElementById("commentcount" + postID);
 			console.log("im a harry wizard" + likecount.textContent)
 			likecount.textContent = parseInt(likecount.textContent) + 1;

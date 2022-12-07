@@ -182,7 +182,7 @@ export function insertPost(userPicture, postTitle, userName, postDate, postConte
 	elementScroll.setAttribute("type", "image");
 	elementScroll.setAttribute("src", help.pathImage("scroll", false));
 	elementScroll.setAttribute("class", "userpicture");
-	elementScroll.addEventListener("click", () => pact.processCommentClick(postID)); // Handle comments.
+	elementScroll.addEventListener("click", () => pact.processCommentClick(postID, postMy)); // Handle comments.
 	elementDivComments.append(elementScroll)
 	// Append the like count.
 	const elementCommentCount = document.createElement("div");
