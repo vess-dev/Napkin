@@ -239,7 +239,7 @@ export function postEdit() {
 // When you look at your account settings.
 export async function accSettings() {
 	await phelp.getSettingsValues().then(data=>{
-		user_handle = data.user_handle 
+		let user_handle = data.user_handle 
 	} );
 	phelp.insertContent();
 	phelp.insertHeader(userHeader, "account");
