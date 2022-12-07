@@ -141,21 +141,21 @@ export function processCommentClick(postID) {
 					elementCommentBox.append(phelp.createComment(help.loadImage(comment.user_image, true, "profile"), comment.user_handle, comment.comment_content, 
 						new Date(comment.comment_timestamp).toLocaleDateString("en-us", {weekday:"long", year:"numeric", month:"short", day:"numeric"})))
 				}
-				elementPostBox.append(elementCommentBox);
-				elementPostBox.setAttribute("toggled", "true")
-				
 				let elementInputFull = document.createElement('input') ; // box to put a new comment in
 				elementInputFull.setAttribute("id", "commentInput")
 				elementInputFull.setAttribute("class", "inputbox");
-				elementInputFull.setAttribute("placeholder", 'type your comment here and press ENTER')
-				elementPostBox.append(elementInputFull);
+				elementInputFull.setAttribute("placeholder", 'Type your comment here. Press enter to submit.')
+				
+				elementCommentBox.append(elementInputFull);
+				elementPostBox.append(elementCommentBox);
+				elementPostBox.setAttribute("toggled", "true")
+
 				elementInputFull.addEventListener("keyup", function(event) {
 					if (event.key === "Enter") {
 						sendCommentToNode(postID, elementInputFull.value)
 						//TODO - handoff to DB.
 					}
 				});
-				// TODO CAS
 				return resolve(true);
 			})
 			.catch((error) => {
