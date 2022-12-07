@@ -130,6 +130,7 @@ async function removePostFromAllGroups(user_id, post_id) {
 
 async function deletePost(post_id, userID) {
   await deleteAllCommentsonPost(post_id, userID)
+  await deleteAllReactionsonPost(post_id, userID)
   console.log('start delete post,', post_id)
   return new Promise((resolve, reject) =>{
     db.pool.query(`delete from posts_feed
@@ -210,6 +211,23 @@ async function deleteAllCommentsonPost(post_id, userID) {
 })})
 }
 
+async function deleteAllReactionsonPost(post_id, userID) {
+  console.log('start delete post reactions,', post_id)
+  return new Promise((resolve, reject) =>{
+    db.pool.query(`delete from reactions
+    where post_id=?`,[post_id],
+    (error, results) => {
+       
+    if (error) {   
+      console.log('error on remove post in group', error)
+      return reject(new BaseError("DB Error", 500, "Error Code: " + error.code));
+                     
+    } else { 
+      console.log('post reactions removed from successfully: ', results)
+      return resolve(results); 
+    }
+})})
+}
 
 function removePostFromGroup(user_id, group_id, post_id) {
   return new Promise((resolve, reject) =>{
