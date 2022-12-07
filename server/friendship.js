@@ -58,10 +58,12 @@ function makeFriendRequest(friend_id, userID) {
           else if (results[0].friendship_status == 'pending') {
             makeFriendsStatus(friend_id, userID, 'accepted')
             makeFriendsStatus(userID, friend_id, 'accepted')
+            addFriendToAllGroup(friend_id, userID)
+            addFriendToAllGroup(userID, friend_id)
             console.log('setting to accepted', friend_id, userID)
           }        
           else if (results[0].friendship_status == 'accepted')  {
-            return reject(new BaseError("No request needed", 400, "you're already friends"))
+            return reject(new BaseError("No request needed", 200, "you're already friends"))
           } else if (results.friendship_status == 'blocked'){
             return reject(new BaseError("BLOCKED", 400, "you may not make another request for this user"))
           } 
@@ -69,6 +71,26 @@ function makeFriendRequest(friend_id, userID) {
         }
   });
 })}
+
+function addFriendToAllGroup(friend_id, user_id) {
+  
+  return new Promise((resolve, reject) =>{
+     db.pool.query(`replace INTO group_memberships (group_id, user_id)
+     select group_id, ? from groups where owner_id=? and group_name='All Friends' limit 1, 
+     WHERE
+     ? IN (select friend_id from friendships where user_id=? and friendship_status='accepted')`, 
+    [user_id, friend_id, friend_id, user_id],
+      function(error, results) {
+        if (error) {                    
+          return reject(new BaseError("DB Error", 500, error));
+        }
+        else {           
+          return resolve(results);        
+        }
+      })
+     
+    })
+  };  
 
 async function makeFriendsStatus(friend_id, userID, newStatus) {
   return new Promise((resolve, reject) =>{
@@ -127,4 +149,7 @@ function rejectFriend (friendID, userID) {
 
 }
 
+function purgeFriendship (friendID, userID) {
+
+}
 module.exports = {rejectFriend, getFriendList, makeFriendRequest, getFriendGroups, deleteFriendEntries}
