@@ -42,6 +42,12 @@ body {
 	width: 50%;
 }
 
+.inputselector {
+	font-size: 25px;
+	height: 3rem;
+	width: 20%;
+}
+
 textarea.inputfield {
 	cols: 50;
 	height: 10rem;

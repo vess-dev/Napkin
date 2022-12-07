@@ -277,9 +277,10 @@ export function insertInputBox(inputText, inputName, inputPassword, toggleArea, 
 }
 
 export function insertRadioInputBox(defaultContent) {
-		
+
 		let selector = document.createElement("select");
 		selector.setAttribute("id", "ranking_selector");
+		selector.setAttribute("class", "inputfield inputselector");
 
 		let options = ["","lowest priority", "low priority", "high priority", "highest priority"]
 			for (let oneval of [1,2,3,4]) {
@@ -288,6 +289,7 @@ export function insertRadioInputBox(defaultContent) {
 				oneoption.textContent = options[oneval]
 				selector.appendChild(oneoption);
 			}
+
 			if (defaultContent) {selector.value = defaultContent }
 			const elementBoxFull = document.getElementById("boxfull");
 			const elementInputFull = document.createElement("div");

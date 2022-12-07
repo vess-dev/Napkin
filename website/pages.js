@@ -192,7 +192,6 @@ export function accEditGroup() {
 	phelp.insertInputBox('Group name','group_name',false,false,group_name);
 	phelp.insertRadioInputBox(group_ranking);
 	phelp.insertBottomButtons([["submit", ["button", "buttonsubmit"], "Save changes", `addGroupAction(${group_id})`], ]);
-
 }
 
 // When you edit the groups your friends are in.
