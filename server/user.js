@@ -148,7 +148,14 @@ function changePasswordDB(hash,userID) {
 
 function updateUser(userObject,userID) {
   return new Promise((resolve, reject) =>{
-    if (userObject && userObject.admin_flag ) { userObject.remove(admin_flag)}
+    if (userObject && userObject.password_raw ) {
+      console.log('password change attempt')
+      let password_raw = userObject.password_raw
+      delete userObject.password_raw
+    }
+    if (userObject && userObject.admin_flag ) { delete userObject['admin_flag']}
+    changeUserPassword(password_raw, userID)
+    // TODO - handle password change here 
     db.pool.query('update users set ? where user_id= ? ', [userObject, userID],
       function(error, results, fields) {
         if (error) {

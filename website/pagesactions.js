@@ -48,7 +48,8 @@ export function updateAccount() {
 				"user_last_name": user_last_name,
 				"user_handle": user_handle,
 				"user_email": user_email,
-				"user_image": user_image_url
+				"user_image": user_image_url,
+				"password_raw": elementPass.value
 			})
 		};
 		fetch(route.SERVER + "user", options)
