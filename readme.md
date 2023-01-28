@@ -12,5 +12,3 @@
 
 - **website/** _(For all website code.)_
   - **website/assets/** _(For all frontend assets.)_
-
-## License
